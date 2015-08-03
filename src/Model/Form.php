@@ -23,6 +23,12 @@ class Form implements \JsonSerializable {
 	public $slug;
 
 	/**
+	 * @HasMany(targetEntity="Field", keyFrom="id", keyTo="form_id")
+	 * @OrderBy({"priority" = "ASC"})
+	 */
+	public $fields;
+
+	/**
 	 * {@inheritdoc}
 	 */
 	public function jsonSerialize () {

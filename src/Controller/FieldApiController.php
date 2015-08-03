@@ -4,7 +4,9 @@ namespace Pagekit\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
+use Pagekit\Kernel\Exception\NotFoundException;
 use Pagekit\Formmaker\Model\Field;
+use Pagekit\User\Model\Role;
 
 class FieldApiController {
 
@@ -37,6 +39,31 @@ class FieldApiController {
 		}
 
 		return ['message' => 'success', 'field' => $field];
+	}
+
+	/**
+	 * @Route("/edit")
+	 * @Request({"id"})
+	 */
+	public function editAction ($id = '') {
+		$formmaker = App::module('formmaker');
+
+		if (is_numeric($id)) {
+			$field = Field::find($id);
+		} else {
+			$field = Field::create();
+			$field->setType($id);
+		}
+
+		if (!$field) {
+			throw new NotFoundException(__('Field not found.'));
+		}
+
+		if (!$type = $formmaker->getType($field->type)) {
+			throw new NotFoundException(__('Type not found.'));
+		}
+
+		return ['field' => $field, 'type' => $type, 'roles' => array_values(Role::findAll())];
 	}
 
 	/**

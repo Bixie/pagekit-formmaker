@@ -40,7 +40,7 @@ trait FieldModelTrait {
 		}
 
 		if (!$field->id) {
-			$next = self::getConnection()->fetchColumn('SELECT MAX(priority) + 1 FROM @formmaker_fields');
+			$next = self::getConnection()->fetchColumn('SELECT MAX(priority) + 1 FROM @formmaker_field');
 			$field->priority = $next ? : 0;
 		}
 	}

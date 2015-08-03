@@ -32,15 +32,15 @@ return [
 			]
 		],
 		'/api/formmaker/field' => [
-			'name' => '@site/api/field',
+			'name' => '@formmaker/api/field',
 			'controller' => 'Pagekit\\Formmaker\\Controller\\FieldApiController'
 		],
 		'/api/formmaker/form' => [
-			'name' => '@site/api/form',
+			'name' => '@formmaker/api/form',
 			'controller' => 'Pagekit\\Formmaker\\Controller\\FormApiController'
 //		],
 //		'/api/formmaker/profile' => [
-//			'name' => '@site/api/profile',
+//			'name' => '@formmaker/api/profile',
 //			'controller' => 'Pagekit\\Formmaker\\Controller\\ProfileApiController'
 		]
 

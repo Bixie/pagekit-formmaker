@@ -22,7 +22,7 @@
                 <div class="uk-dropdown uk-dropdown-small uk-dropdown-flip">
                     <ul class="uk-nav uk-nav-dropdown">
                         <li v-repeat="type: types | orderBy 'label'"><a
-                                v-attr="href: $url('admin/userprofile/edit', { id: type.id })">{{ type.label }}</a></li>
+                                v-on="click: editFormField(type.id)">{{ type.label }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,6 +52,10 @@
         }}</h3>
 
 
+    <v-modal v-ref="editmodal" large>
+        <fieldedit formitem="{{@ formitem }}" fieldid="{{ editid }}"></fieldedit>
+    </v-modal>
+
     <script id="field" type="text/template">
         <li class="uk-nestable-item" v-class="uk-active: isSelected(field)" data-id="{{ field.id }}">
 
@@ -61,7 +65,7 @@
                 </div>
                 <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"></div>
                 <div class="pk-table-min-width-100">
-                    <a v-attr="href: $url('admin/userprofile/edit', { id: field.id })">{{ field.label }}</a>
+                    <a v-on="click: editFormField(field.id)">{{ field.label }}</a>
                 </div>
                 <div class="pk-table-width-100 uk-text-center">
                     <td class="uk-text-center">
@@ -90,13 +94,17 @@
             return {
                 pagesFields: 0,
                 countFields: '',
-                selectedFields: []
+                selectedFields: [],
+                editid: ''
             };
         },
 
         created: function () {
             this.Fields = this.$resource('api/formmaker/field/:id');
             this.load();
+            this.$on('close.editmodal', function () {
+                this.load();
+            });
         },
 
         methods: {
@@ -158,7 +166,19 @@
                     this.load();
                     UIkit.notify('Fields(s) deleted.');
                 });
+            },
+
+            editFormField: function (id) {
+
+                this.editid = id;
+                this.$.editmodal.open();
+
+//                this.$nextTick(function () {
+//                    //todo close dropdown ;~!
+//                    $(this.$.editmodal.$el).find('.uk-modal-dialog').focus();
+//                });
             }
+
 
         },
 
@@ -212,7 +232,9 @@
                     }
                 });
             }
-        }
+        },
+
+        mixins: [window.Formmakerfields]
 
     };
 

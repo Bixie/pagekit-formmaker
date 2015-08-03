@@ -41,21 +41,12 @@ module.exports = Vue.extend({
 
                 this.$set('formitem', data.formitem);
 
-                UIkit.notify(this.$trans('%type% saved.', {type: this.type.label}));
+                UIkit.notify(this.$trans('Form %title% saved.', {title: this.formitem.title}));
 
             }, function (data) {
                 UIkit.notify(data, 'danger');
             });
-        },
-
-        editField: function (id) {
-
-            this.$broadcast('editfield', id);
-
-            this.$.fieldEdit.open();
-
         }
-
     },
 
     components: {

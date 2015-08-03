@@ -1,6 +1,6 @@
 <?php $view->script('form-edit', 'formmaker:app/bundle/form-edit.js', ['vue', 'formmaker-formmakerfields', 'uikit-nestable']); ?>
 
-<form id="form-edit" class="uk-form" name="form" v-on="valid: save" v-cloak>
+<form id="form-edit" class="uk-form" name="formform" v-on="valid: save" v-cloak>
 
 	<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
 		<div data-uk-margin>
@@ -42,8 +42,4 @@
 	</div>
 
 </form>
-
-<v-modal v-ref="field-edit" large>
-	<fieldedit formitem="{{@ formitem }}"></fieldedit>
-</v-modal>
 

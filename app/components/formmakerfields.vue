@@ -10,7 +10,7 @@
 var fieldOptions;
 window.Formmakerfields = module.exports = {
 
-    props: ['forms', 'editField'],
+    props: ['fields', 'editField'],
 
     inherit: true,
 

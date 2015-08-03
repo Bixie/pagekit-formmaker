@@ -14,7 +14,7 @@ class FormApiController {
 	 */
 	public function indexAction () {
 		$query = Form::query();
-		return array_values($query->get());
+		return array_values($query->related('fields')->get());
 	}
 
 	/**
