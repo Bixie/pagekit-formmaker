@@ -1,0 +1,18 @@
+{
+  "name": "pagekit/formmaker",
+  "type": "pagekit-extension",
+  "version": "0.1.0",
+  "title": "Formmaker",
+  "description": "Formmaker for Pagekit",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bixie",
+      "email": "matthijs@bixie.nl",
+      "homepage": "http://www.bixie.nl"
+    }
+  ],
+  "extra": {
+    "image": "assets/images/image.svg"
+  }
+}
