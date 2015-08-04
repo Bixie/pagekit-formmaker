@@ -35,7 +35,7 @@ class FormController {
 				'name' => 'formmaker:views/admin/edit.php'
 			],
 			'$data' => [
-				'config' => $formmaker->config('default'),
+				'config' => $formmaker->config(),
 				'types' => $formmaker->getTypes(),
 				'formitem' => $form
 			]

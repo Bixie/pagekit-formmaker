@@ -1,6 +1,6 @@
 <template>
 
-    <component v-if="!isAdmin" v-repeat="field: forms | orderBy 'priority'" is="{{ field.type }}"></component>
+    <component v-show="!isAdmin" v-repeat="field: fields | orderBy 'priority'" is="{{ field.type }}"></component>
 
     <component v-if="isAdmin" is="{{ editField }}" is-admin="true"></component>
 

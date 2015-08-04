@@ -16,11 +16,11 @@
         </div>
 
         <div class="uk-form-row">
-            <span class="uk-form-label">{{ 'Redirect' | trans }}</span>
+            <label for="form-mail-address" class="uk-form-label">{{ 'Default mail address' | trans }}</label>
 
-            <div class="uk-form-controls uk-form-controls-text">
-                <label><input type="checkbox" value="override_registration" v-model="package.config.override_registration">
-                    {{ 'Redirect Pagekit registration page' | trans }}</label>
+            <div class="uk-form-controls">
+                <input id="form-mail-address" class="uk-form-width-large" type="text" name="fromAddress"
+                       v-model="package.config.from_address" v-valid="email">
             </div>
         </div>
 

@@ -29,7 +29,7 @@ class Field implements \JsonSerializable {
 	/** @Column(type="json_array") */
 	public $options;
 
-	/** @BelongsTo(targetEntity="Field", keyFrom="form_id") */
+	/** @BelongsTo(targetEntity="Form", keyFrom="form_id") */
 	public $form;
 
 	/**

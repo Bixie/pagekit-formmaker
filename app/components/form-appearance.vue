@@ -12,10 +12,28 @@
         </div>
 
         <div class="uk-form-row">
+            <label for="form-formstyle" class="uk-form-label">{{ 'Form style' | trans }}</label>
+
+            <div class="uk-form-controls">
+                <select id="form-formstyle" class="uk-form-width-large"
+                        options="['uk-form-stacked', 'uk-form-horizontal']"
+                        v-model="formitem.data.formStyle"></select>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
             <label for="form-class" class="uk-form-label">{{ 'Class suffix' | trans }}</label>
 
             <div class="uk-form-controls">
                 <input id="form-class" class="uk-form-width-large" type="text" v-model="formitem.data.classSfx">
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <label for="form-submit-button" class="uk-form-label">{{ 'Text submit button' | trans }}</label>
+
+            <div class="uk-form-controls">
+                <input id="form-submit-button" class="uk-form-width-large" type="text" v-model="formitem.data.submitButton">
             </div>
         </div>
 

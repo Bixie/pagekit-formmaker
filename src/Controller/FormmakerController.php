@@ -17,7 +17,7 @@ class FormmakerController {
 				'name' => 'formmaker:views/admin/forms.php'
 			],
 			'$data' => [
-				'config' => App::module('formmaker')->config('default'),
+				'config' => App::module('formmaker')->config(),
 				'types' => $formmaker->getTypes()
 			]
 		];

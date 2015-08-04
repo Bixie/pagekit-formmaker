@@ -28,8 +28,7 @@ module.exports = [
             "formmaker-radio": "./app/fields/radio.vue",
             "formmaker-text": "./app/fields/text.vue",
             /*frontpage views*/
-            "formmaker": "./app/views/profile.js",
-            "registration": "./app/views/registration.js",
+            "formmaker": "./app/views/form.js",
             /*admin views*/
             "form-edit": "./app/views/admin/edit.js",
             "forms": "./app/views/admin/forms.js"

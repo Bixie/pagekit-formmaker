@@ -9,7 +9,8 @@
                 <input id="form-label" class="uk-form-width-large" type="text" name="label"
                        v-model="field.label" v-valid="required">
             </div>
-            <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
+            <!-- //todo fix req message -->
+            <p class="uk-form-help-block uk-text-danger" v-show="formform.label.invalid">{{ 'Please enter a label' | trans }}</p>
         </div>
 
         <div v-if="type.required < 0" class="uk-form-row">

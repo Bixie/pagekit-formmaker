@@ -5,14 +5,16 @@ module.exports = Vue.extend({
             formitem: {
                 data: {
                     classSfx: '',
-                    required: false
+                    submitEmail: window.$data.config.from_address,
+                    afterSubmit: 'thankyou',
+                    submitButton: 'Submit',
+                    formStyle: 'uk-form-stacked'
                 }
             }
         }, window.$data);
     },
 
     created: function () {
-
     },
 
     ready: function () {
@@ -21,6 +23,12 @@ module.exports = Vue.extend({
     },
 
     computed: {
+        afterSubmitOptions: function () {
+            return [
+                { value: 'thankyou', text: this.$trans('Show Thank you message')},
+                { value: 'redirect', text: this.$trans('Redirect to page')}
+            ];
+        }
     },
 
     methods: {
@@ -54,6 +62,8 @@ module.exports = Vue.extend({
         formbasic: require('../../components/form-basic.vue'),
         formfields: require('../../components/form-fields.vue'),
         appearance: require('../../components/form-appearance.vue'),
+        submission: require('../../components/form-submission.vue'),
+        email: require('../../components/form-email.vue'),
         fieldedit: require('../../components/field-edit.vue')
 
     }

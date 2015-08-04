@@ -1,4 +1,4 @@
-<?php $view->script('form-edit', 'formmaker:app/bundle/form-edit.js', ['vue', 'formmaker-formmakerfields', 'uikit-nestable']); ?>
+<?php  $view->style('codemirror'); $view->script('form-edit', 'formmaker:app/bundle/form-edit.js', ['vue', 'editor', 'formmaker-formmakerfields', 'uikit-nestable']); ?>
 
 <form id="form-edit" class="uk-form" name="formform" v-on="valid: save" v-cloak>
 
@@ -24,6 +24,8 @@
 		<li><a>{{ 'General' | trans }}</a></li>
 		<li><a>{{ 'Fields' | trans }}</a></li>
 		<li><a>{{ 'Appearance' | trans }}</a></li>
+		<li><a>{{ 'Submission' | trans }}</a></li>
+		<li><a>{{ 'Email' | trans }}</a></li>
 	</ul>
 
 	<div class="uk-switcher uk-margin" v-el="content">
@@ -38,6 +40,12 @@
 		</div>
 		<div>
 			<appearance></appearance>
+		</div>
+		<div>
+			<submission></submission>
+		</div>
+		<div>
+			<email></email>
 		</div>
 	</div>
 

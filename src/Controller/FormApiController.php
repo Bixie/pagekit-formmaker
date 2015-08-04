@@ -7,6 +7,9 @@ use Pagekit\Application\Exception;
 use Pagekit\Formmaker\Model\Form;
 use Pagekit\Formmaker\Model\Profilevalue;
 
+/**
+ * @Route("form", name="form")
+ */
 class FormApiController {
 
 	/**

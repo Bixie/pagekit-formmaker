@@ -6,7 +6,7 @@ use Pagekit\Application as App;
 use Pagekit\Module\Module;
 use Pagekit\Formmaker\Model\Form;
 
-class FormmakerModule extends Module {
+class FormmakerExtension extends Module {
 	/**
 	 * @var array
 	 */

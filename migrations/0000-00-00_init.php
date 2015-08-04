@@ -31,6 +31,18 @@ return [
 				$table->setPrimaryKey(['id']);
 			});
 		}
+
+		if ($util->tableExists('@formmaker_submission') === false) {
+			$util->createTable('@formmaker_submission', function ($table) {
+				$table->addColumn('id', 'integer', ['unsigned' => true, 'length' => 10, 'autoincrement' => true]);
+				$table->addColumn('form_id', 'integer', ['unsigned' => true, 'length' => 10]);
+				$table->addColumn('email', 'string', ['length' => 255, 'notnull' => false]);
+				$table->addColumn('ip', 'string', ['length' => 255]);
+				$table->addColumn('created', 'datetime');
+				$table->addColumn('data', 'json_array', ['notnull' => false]);
+				$table->setPrimaryKey(['id']);
+			});
+		}
 	},
 
 	'down' => function () use ($app) {

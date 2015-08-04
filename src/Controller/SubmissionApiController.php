@@ -5,43 +5,47 @@ namespace Pagekit\Formmaker\Controller;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Pagekit\Kernel\Exception\NotFoundException;
-use Pagekit\Formmaker\Model\Field;
+use Pagekit\Formmaker\Model\Form;
+use Pagekit\Formmaker\Model\Submission;
 use Pagekit\User\Model\Role;
 
 /**
- * @Route("field", name="field")
+ * @Route("submission", name="submission")
  */
-class FieldApiController {
+class SubmissionApiController {
 
-	/**
-	 * @Route("/", methods="GET")
-	 */
-	public function indexAction () {
-		$query = Field::query();
-		return array_values($query->get());
-	}
 
 	/**
 	 * @Route("/", methods="POST")
 	 * @Route("/{id}", methods="POST", requirements={"id"="\d+"})
-	 * @Request({"field": "array", "id": "int"}, csrf=true)
+	 * @Request({"submission": "array", "id": "int"}, csrf=true)
 	 */
 	public function saveAction ($data, $id = 0) {
 
-		if (!$field = Field::find($id)) {
-			$field = Field::create();
+		if (!$submission = Submission::find($id)) {
+			$submission = Submission::create();
 			unset($data['id']);
+
+			$submission->form_id = $data['form_id'];
+			$submission->created = new \DateTime;
+			$submission->ip = App::request()->getClientIp();
 		}
+
+		if (!$form = Form::find($submission->form_id)) {
+			App::abort(404, 'Form not found.');
+		}
+
+		$submission->form = $form; //todo from relations?
 
 		try {
 
-			$field->save($data);
+			$submission->save($data);
 
 		} catch (Exception $e) {
 			App::abort(400, $e->getMessage());
 		}
 
-		return ['message' => 'success', 'field' => $field];
+		return ['message' => 'Submission successfull', 'submission' => $submission];
 	}
 
 	/**
@@ -73,23 +77,6 @@ class FieldApiController {
 		}
 
 		return ['field' => $field, 'type' => $type, 'roles' => array_values(Role::findAll())];
-	}
-
-	/**
-	 * @Route("/updateOrder", methods="POST")
-	 * @Request({"fields": "array"}, csrf=true)
-	 */
-	public function updateOrderAction ($fields = []) {
-		foreach ($fields as $data) {
-			if ($field = Field::find($data['id'])) {
-
-				$field->priority = $data['order'];
-
-				$field->save();
-			}
-		}
-
-		return ['message' => 'success'];
 	}
 
 	/**

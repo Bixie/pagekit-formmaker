@@ -6,7 +6,7 @@ return [
 
 	'type' => 'extension',
 
-	'main' => 'Pagekit\\Formmaker\\FormmakerModule',
+	'main' => 'Pagekit\\Formmaker\\FormmakerExtension',
 
 	'autoload' => [
 
@@ -14,34 +14,23 @@ return [
 
 	],
 
-	'nodes' => [
-
-	],
-
 	'routes' => [
 
-		'/form' => [
-			'name' => '@formmaker',
-			'controller' => 'Pagekit\\Formmaker\\Controller\\FormmakerController'
-		],
 		'/formmaker' => [
-			'name' => '@formmaker/admin',
+			'name' => '@formmaker',
 			'controller' => [
 				'Pagekit\\Formmaker\\Controller\\FormmakerController',
-				'Pagekit\\Formmaker\\Controller\\FormController'
+				'Pagekit\\Formmaker\\Controller\\FormController',
+				'Pagekit\\Formmaker\\Controller\\SiteController'
 			]
 		],
-		'/api/formmaker/field' => [
-			'name' => '@formmaker/api/field',
-			'controller' => 'Pagekit\\Formmaker\\Controller\\FieldApiController'
-		],
-		'/api/formmaker/form' => [
-			'name' => '@formmaker/api/form',
-			'controller' => 'Pagekit\\Formmaker\\Controller\\FormApiController'
-//		],
-//		'/api/formmaker/profile' => [
-//			'name' => '@formmaker/api/profile',
-//			'controller' => 'Pagekit\\Formmaker\\Controller\\ProfileApiController'
+		'/api/formmaker' => [
+			'name' => '@formmaker/api',
+			'controller' => [
+				'Pagekit\\Formmaker\\Controller\\FieldApiController',
+				'Pagekit\\Formmaker\\Controller\\FormApiController',
+				'Pagekit\\Formmaker\\Controller\\SubmissionApiController'
+			]
 		]
 
 	],
@@ -57,7 +46,7 @@ return [
 		'formmaker' => [
 			'label' => 'Formmaker',
 			'icon' => 'extensions/formmaker/assets/images/image.svg',
-			'url' => '@formmaker/admin',
+			'url' => '@formmaker',
 			// 'access' => 'formmaker: manage hellos',
 			'active' => '@formmaker(/*)'
 		],
@@ -65,9 +54,9 @@ return [
 		'formmaker: forms' => [
 			'label' => 'Forms',
 			'parent' => 'formmaker',
-			'url' => '@formmaker/admin',
+			'url' => '@formmaker',
 			'access' => 'formmaker: manage forms',
-			'active' => '@formmaker(/edit)?' //todo why no active?
+			'active' => '@formmaker(/edit)?'
 		]
 
 	],
@@ -88,20 +77,13 @@ return [
 
 	'config' => [
 
-		'override_registration' => 1
+		'from_address' => function () use ($app) {
+			return $app->config('system/mail')->get('from_address', '');
+		}
 
 	],
 
 	'events' => [
-
-		'boot' => function ($event, $app) {
-		},
-
-		'request' => function ($event, $request) use ($app) {
-			if ($app->config('formmaker')->get('override_registration', true) && $request->attributes->get('_route') == '@user/registration') {
-				$event->setResponse($app->redirect('@formmaker/registration'), [], 301);
-			}
-		},
 
 		'enable.formmaker' => function () use ($app) {
 			// run all migrations that are newer than the current version
