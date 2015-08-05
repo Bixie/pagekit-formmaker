@@ -14,10 +14,21 @@
         </div>
 
         <div class="uk-form-row">
-            <v-editor id="formitem-emailbody" value="{{@ formitem.data.emailbody }}"
-                      options="{{ {markdown : formitem.data.emailbody_markdown} }}"></v-editor>
+            <label for="form-emailsubject" class="uk-form-label">{{ 'Email subject' | trans }}</label>
+
+            <div class="uk-form-controls">
+                <input id="form-emailsubject" class="uk-form-width-large" type="text" name="emailsubject"
+                       v-model="formitem.data.email_subject">
+            </div>
+            <!-- //todo fix req message -->
+            <p class="uk-form-help-block uk-text-danger" v-show="formform.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
+        </div>
+
+        <div class="uk-form-row">
+            <v-editor id="formitem-emailbody" value="{{@ formitem.data.email_body }}"
+                      options="{{ {markdown : formitem.data.email_body_markdown} }}"></v-editor>
             <p>
-                <label><input type="checkbox" v-model="formitem.data.emailbody_markdown"> {{ 'Enable Markdown' | trans }}</label>
+                <label><input type="checkbox" v-model="formitem.data.email_body_markdown"> {{ 'Enable Markdown' | trans }}</label>
             </p>
         </div>
 

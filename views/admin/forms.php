@@ -36,8 +36,8 @@
 			</div>
 			<div class="pk-table-min-width-100">{{ 'Title' | trans }}</div>
 			<div class="pk-table-width-100 uk-text-center">{{ 'Status' | trans }}</div>
-			<div class="pk-table-width-150">{{ 'Fields' | trans }}</div>
 			<div class="pk-table-width-150">{{ 'Submissions' | trans }}</div>
+			<div class="pk-table-width-150">{{ 'Url' | trans }}</div>
 		</div>
 
 		<ul class="uk-nestable uk-margin-remove" v-el="nestable" v-show="forms.length">
@@ -70,10 +70,10 @@
 				</td>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-				todo
+				<a v-attr="href: $url('admin/formmaker/submissions', { filter: {form: formitem.id} })">Check submissions</a>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-				todo
+				<a v-attr="href: $url(formitem.url)" target="_blank">{{ formitem.url }}</a>
 			</div>
 		</div>
 

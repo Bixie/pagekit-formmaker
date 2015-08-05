@@ -6,6 +6,9 @@ module.exports = Vue.extend({
                 data: {
                     classSfx: '',
                     submitEmail: window.$data.config.from_address,
+                    email_subject: this.$trans('Thank you for your submission'),
+                    thankyou_markdown: true,
+                    email_body_markdown: true,
                     afterSubmit: 'thankyou',
                     submitButton: 'Submit',
                     formStyle: 'uk-form-stacked'

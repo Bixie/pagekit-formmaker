@@ -1,15 +1,14 @@
 <?php
 
-namespace Pagekit\Formmaker\Field;
+namespace Pagekit\Formmaker\Submission;
 
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
-use Pagekit\Database\ORM\PropertyTrait;
 use Pagekit\Formmaker\Model\Field;
 
 class Fieldsubmission {
 
-	use DataModelTrait, PropertyTrait;
+	use DataModelTrait;
 
 	/**
 	 * @var Field
@@ -32,9 +31,10 @@ class Fieldsubmission {
 	public function toFormattedArray () {
 		return [
 			'field' => $this->field->toArray(),
+			'slug' => $this->field->slug,
 			'type' => $this->type,
-			'value' => $this->get('value'),
-			'format' => $this->formatValue()
+			'label' => $this->field->label,
+			'value' => $this->formatValue()
 		];
 	}
 

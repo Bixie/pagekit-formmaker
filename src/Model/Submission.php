@@ -5,7 +5,8 @@ namespace Pagekit\Formmaker\Model;
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
 use Pagekit\Database\ORM\ModelTrait;
-use Pagekit\Formmaker\Field\Fieldsubmission;
+use Pagekit\Formmaker\Submission\Fieldsubmission;
+use Pagekit\Formmaker\Submission\MailHelper;
 
 /**
  * @Entity(tableClass="@formmaker_submission")
@@ -35,12 +36,15 @@ class Submission implements \JsonSerializable {
 	/** @Column(type="datetime") */
 	public $created;
 
-	/** @BelongsTo(targetEntity="Form", keyFrom="form_id") */
+	/**
+	 * @BelongsTo(targetEntity="Form", keyFrom="form_id")
+	 * @var Form
+	 */
 	public $form;
 	/**
 	 * @var Fieldsubmission[]
 	 */
-	public $fieldsubmissions = [];
+	public $fieldsubmissions;
 
 	/** @var array */
 	protected static $properties = [
@@ -61,12 +65,43 @@ class Submission implements \JsonSerializable {
 		return $this->form->get('afterSubmit') == 'redirect' ? App::url($this->form->get('redirect'), [], true) : false;
 	}
 
-	public function getThankyou () {
-		return $this->form->get('afterSubmit') == 'thankyou' ? App::content()->applyPlugins($this->form->get('thankyou'), ['form' => $this->form, 'markdown' => $this->form->get('thankyou_markdown')]) : false;
-	}
-
 	public function getFormtitle () {
 		return $this->form->title;
+	}
+
+	public function getThankyou () {
+		if ($this->form->get('afterSubmit') == 'thankyou') {
+			$thankyou = (new MailHelper($this))->replaceString($this->form->get('thankyou'));;
+			return App::content()->applyPlugins($thankyou, ['submission' => $this, 'markdown' => $this->form->get('thankyou_markdown')]);
+		}
+		return '';
+	}
+
+	public function getUserEmail () {
+		//todo
+		return '';
+	}
+
+	public function setFieldsubmissions () {
+		if (!isset($this->fieldsubmissions)) {
+			$fields = $this->form->getFields();
+			foreach ($this->data as $submissionvalue) {
+
+				if (isset($fields[$submissionvalue['field_id']])) {
+
+					$field = $fields[$submissionvalue['field_id']];
+
+				} else {
+
+					//field might be deleted from form
+					$field = Field::create();
+					$field->setType($submissionvalue['type']);
+				}
+
+				$this->fieldsubmissions[$field->slug] = (new Fieldsubmission($field, $submissionvalue))->toFormattedArray();
+			}
+		}
+		return $this->fieldsubmissions;
 	}
 
 	/**

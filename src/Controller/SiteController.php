@@ -26,7 +26,11 @@ class SiteController
      */
     public function formAction($id = 0)
     {
-        if (!$form = Form::where(['id = ?', 'status = ?'], [$id, 1])->related('fields')->first()) {
+		$user = App::user();
+
+		if (!$form = Form::where(['id = ?'], [$id])->where(function ($query) use ($user) {
+			if (!$user->isAdministrator()) $query->where('status = 1');
+		})->related('fields')->first()) {
             App::abort(404, __('Form not found!'));
         }
 

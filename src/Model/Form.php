@@ -2,6 +2,7 @@
 
 namespace Pagekit\Formmaker\Model;
 
+use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
 
 /**
@@ -22,9 +23,15 @@ class Form implements \JsonSerializable {
 	/** @Column(type="string") */
 	public $slug;
 
+	/** @var array */
+	protected static $properties = [
+		'url' => 'getFormUrl'
+	];
+
 	/**
 	 * @HasMany(targetEntity="Field", keyFrom="id", keyTo="form_id")
 	 * @OrderBy({"priority" = "ASC"})
+	 * @var Field[]
 	 */
 	public $fields;
 
@@ -33,6 +40,10 @@ class Form implements \JsonSerializable {
 			$this->fields = Field::query(['form_id' => $this->id])->orderBy('priority', 'ASC')->get();
 		}
 		return $this->fields;
+	}
+
+	public function getFormUrl () {
+		return  App::url('@formmaker/id', ['id' => $this->id]);
 	}
 
 	/**

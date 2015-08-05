@@ -38,10 +38,22 @@ trait FieldModelTrait {
 				}
 			}
 		}
+		//slug
+		$i = 2;
+		$id = $field->id;
+
+		if (!$field->slug) {
+			$field->slug = $field->title;
+		}
+
+		while (self::where(['slug = ?', 'form_id = ?'], [$field->slug, $field->form_id])->where(function ($query) use ($id) {
+			if ($id) $query->where('id <> ?', [$id]);
+		})->first()) {
+			$field->slug = preg_replace('/-\d+$/', '', $field->slug) . '-' . $i++;
+		}
 
 		if (!$field->id) {
-			$next = self::getConnection()->fetchColumn('SELECT MAX(priority) + 1 FROM @formmaker_field');
-			$field->priority = $next ? : 0;
+			$field->priority = 1 + self::getConnection()->fetchColumn('SELECT MAX(priority) FROM @formmaker_field');
 		}
 	}
 }

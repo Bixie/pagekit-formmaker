@@ -7,7 +7,7 @@ use Pagekit\Application\Exception;
 use Pagekit\Formmaker\Model\Form;
 use Pagekit\Formmaker\Model\Field;
 use Pagekit\Formmaker\Model\Submission;
-use Pagekit\Formmaker\Field\Fieldsubmission;
+use Pagekit\Formmaker\Submission\MailHelper;
 
 /**
  * @Route("submission", name="submission")
@@ -71,14 +71,15 @@ class SubmissionApiController {
 		if (!$form = Form::find($submission->form_id)) {
 			App::abort(404, 'Form not found.');
 		}
-
-		$submission->email = ''; //todo mailstuff
-
-		$submission->form = $form; //todo from relations?
+		$submission->form = $form;
 
 		try {
 
+			$submission->email = $submission->getUserEmail();
+
 			$submission->save($data);
+
+			(new MailHelper($submission))->sendMail();
 
 		} catch (Exception $e) {
 			App::abort(400, $e->getMessage());
@@ -97,22 +98,8 @@ class SubmissionApiController {
 		if (!$submission = Submission::where(['id = ?'], [$id])->related('form')->first()) {
 			App::abort(404, 'Submission not found.');
 		}
-		$fields = $submission->form->getFields();
 
-		foreach ($submission->data as $submissionvalue) {
-
-			if (isset($fields[$submissionvalue['field_id']])) {
-
-				$field = $fields[$submissionvalue['field_id']];
-
-			} else {
-
-				//field might be deleted form form
-				$field = Field::create();
-				$field->setType($submissionvalue['type']);
-			}
-			$submission->fieldsubmissions[$submissionvalue['field_id']] = (new Fieldsubmission($field, $submissionvalue))->toFormattedArray();
-		}
+		$submission->setFieldsubmissions();
 
 		return $submission;
 	}

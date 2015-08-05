@@ -19,6 +19,7 @@ module.exports = {
         this.fields.forEach(function (field) {
             this.submission.data[field.id] = {
                 field_id: field.id,
+                slug: field.slug,
                 type: field.type,
                 label: null,
                 value: null

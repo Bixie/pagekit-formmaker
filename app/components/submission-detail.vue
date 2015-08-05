@@ -12,14 +12,13 @@
         <dl class="uk-description-list uk-description-list-horizontal">
             <template v-repeat="fieldsubmission: submission.fieldsubmissions">
                 <dt>{{ fieldsubmission.field.label}}</dt>
-                <dd v-repeat="fieldsubmission.format">{{ $value }}</dd>
+                <dd v-repeat="fieldsubmission.value">{{ $value }}</dd>
             </template>
         </dl>
 
         <p class="uk-text-right">
             <button class="uk-button uk-modal-close">{{ 'Close' | trans}}</button>
         </p>
-
 
     </div>
 
