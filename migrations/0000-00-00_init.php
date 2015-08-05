@@ -13,6 +13,7 @@ return [
 				$table->addColumn('priority', 'integer', ['default' => 0]);
 				$table->addColumn('type', 'string', ['length' => 255]);
 				$table->addColumn('label', 'string', ['length' => 255]);
+				$table->addColumn('slug', 'string', ['length' => 255]);
 				$table->addColumn('options', 'json_array', ['notnull' => false]);
 				$table->addColumn('roles', 'json_array', ['notnull' => false]);
 				$table->addColumn('data', 'json_array', ['notnull' => false]);

@@ -12,6 +12,14 @@
             <!-- //todo fix req message -->
             <p class="uk-form-help-block uk-text-danger" v-show="formform.label.invalid">{{ 'Please enter a label' | trans }}</p>
         </div>
+        <div class="uk-form-row">
+            <label for="form-slug" class="uk-form-label">{{ 'Slug' | trans }}</label>
+
+            <div class="uk-form-controls">
+                <input id="form-slug" class="uk-form-width-large" type="text" v-model="field.slug">
+            </div>
+        </div>
+
 
         <div v-if="type.required < 0" class="uk-form-row">
             <span class="uk-form-label">{{ 'Field required' | trans }}</span>

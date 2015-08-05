@@ -67,7 +67,8 @@
                 </div>
                 <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"></div>
                 <div class="pk-table-min-width-100">
-                    <a v-on="click: editFormField(field.id)">{{ field.label }}</a>
+                    <a v-on="click: editFormField(field.id)">{{ field.label }}</a><br/>
+                    <small class="uk-text-muted">{{ field.slug }}</small>
                 </div>
                 <div class="pk-table-width-100 uk-text-center">
                     <td class="uk-text-center">

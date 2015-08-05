@@ -26,6 +26,9 @@ class Field implements \JsonSerializable {
 	/** @Column(type="string") */
 	public $label;
 
+	/** @Column(type="string") */
+	public $slug;
+
 	/** @Column(type="json_array") */
 	public $options;
 

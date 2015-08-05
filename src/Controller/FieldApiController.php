@@ -37,6 +37,11 @@ class FieldApiController {
 			unset($data['id']);
 		}
 
+		if (!$data['slug'] = $this->slugify($data['slug'] ?: $data['label'])) {
+			App::abort(400, __('Invalid slug.'));
+		}
+
+
 		try {
 
 			$field->save($data);
@@ -119,6 +124,17 @@ class FieldApiController {
 		}
 
 		return ['message' => 'success'];
+	}
+
+	protected function slugify ($slug) {
+		$slug = preg_replace('/\xE3\x80\x80/', ' ', $slug);
+		$slug = str_replace('-', ' ', $slug);
+		$slug = preg_replace('#[:\#\*"@+=;!><&\.%()\]\/\'\\\\|\[]#', "\x20", $slug);
+		$slug = str_replace('?', '', $slug);
+		$slug = trim(mb_strtolower($slug, 'UTF-8'));
+		$slug = preg_replace('#\x20+#', '-', $slug);
+
+		return $slug;
 	}
 
 }
