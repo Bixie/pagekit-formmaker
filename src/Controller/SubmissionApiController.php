@@ -4,15 +4,52 @@ namespace Pagekit\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
-use Pagekit\Kernel\Exception\NotFoundException;
 use Pagekit\Formmaker\Model\Form;
+use Pagekit\Formmaker\Model\Field;
 use Pagekit\Formmaker\Model\Submission;
-use Pagekit\User\Model\Role;
+use Pagekit\Formmaker\Field\Fieldsubmission;
 
 /**
  * @Route("submission", name="submission")
  */
 class SubmissionApiController {
+
+	/**
+	 * @Access("formmaker: manage submissions")
+	 * @Route("/", methods="GET")
+	 * @Request({"filter": "array", "page":"int"})
+	 */
+	public function indexAction ($filter = [], $page = 0) {
+		$query  = Submission::query();
+		$filter = array_merge(array_fill_keys(['status', 'form', 'order', 'limit'], ''), $filter);
+
+		extract($filter, EXTR_SKIP);
+
+		if (is_numeric($status)) {
+			$query->where(['status' => (int) $status]);
+		}
+
+		if ($form) {
+			$query->where(function ($query) use ($form) { //todo understand this :)
+				$query->orWhere(['form_id' => (int) $form]);
+			});
+		}
+
+		if (!preg_match('/^(created|ip|email)\s(asc|desc)$/i', $order, $order)) {
+			$order = [1 => 'created', 2 => 'desc'];
+		}
+
+
+		$limit = (int) $limit ?: App::module('formmaker')->config('submissions_per_page');
+		$count = $query->count();
+		$pages = ceil($count / $limit);
+		$page  = max(0, min($pages - 1, $page));
+
+		$submissions = array_values($query->offset($page * $limit)->related('form')->limit($limit)->orderBy($order[1], $order[2])->get());
+
+		return compact('submissions', 'pages', 'count');
+
+	}
 
 
 	/**
@@ -35,6 +72,8 @@ class SubmissionApiController {
 			App::abort(404, 'Form not found.');
 		}
 
+		$submission->email = ''; //todo mailstuff
+
 		$submission->form = $form; //todo from relations?
 
 		try {
@@ -49,34 +88,33 @@ class SubmissionApiController {
 	}
 
 	/**
-	 * @Route("/edit")
+	 * @Route("/detail")
 	 * @Request({"id"})
 	 */
-	public function editAction ($id = '') {
+	public function detailAction ($id) {
 		$formmaker = App::module('formmaker');
 
-		if (is_numeric($id)) {
-			$field = Field::find($id);
-		} else {
-			$field = Field::create();
-			$field->setType($id);
+		if (!$submission = Submission::where(['id = ?'], [$id])->related('form')->first()) {
+			App::abort(404, 'Submission not found.');
 		}
+		$fields = $submission->form->getFields();
 
-		if (!$field) {
-			throw new NotFoundException(__('Field not found.'));
-		}
+		foreach ($submission->data as $submissionvalue) {
 
-		if (!$type = $formmaker->getType($field->type)) {
-			throw new NotFoundException(__('Type not found.'));
-		}
-		//check fixed value
-		foreach (['multiple', 'required'] as $key) {
-			if ($type[$key] != -1) {
-				$field->set($key, $type[$key]);
+			if (isset($fields[$submissionvalue['field_id']])) {
+
+				$field = $fields[$submissionvalue['field_id']];
+
+			} else {
+
+				//field might be deleted form form
+				$field = Field::create();
+				$field->setType($submissionvalue['type']);
 			}
+			$submission->fieldsubmissions[$submissionvalue['field_id']] = (new Fieldsubmission($field, $submissionvalue))->toFormattedArray();
 		}
 
-		return ['field' => $field, 'type' => $type, 'roles' => array_values(Role::findAll())];
+		return $submission;
 	}
 
 	/**

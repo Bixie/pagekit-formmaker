@@ -57,6 +57,14 @@ return [
 			'url' => '@formmaker',
 			'access' => 'formmaker: manage forms',
 			'active' => '@formmaker(/edit)?'
+		],
+
+		'formmaker: submissions' => [
+			'label' => 'Submissions',
+			'parent' => 'formmaker',
+			'url' => '@formmaker/submissions',
+			'access' => 'formmaker: manage submissions',
+			'active' => '@formmaker/submissions'
 		]
 
 	],
@@ -69,6 +77,10 @@ return [
 
 		'formmaker: manage forms' => [
 			'title' => 'Manage forms'
+		],
+
+		'formmaker: manage submissions' => [
+			'title' => 'Manage submissions'
 		]
 
 	],
@@ -76,7 +88,7 @@ return [
 	'settings' => 'settings-formmaker',
 
 	'config' => [
-
+		'submissions_per_page' => 20,
 		'from_address' => function () use ($app) {
 			return $app->config('system/mail')->get('from_address', '');
 		}

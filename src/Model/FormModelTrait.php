@@ -30,13 +30,4 @@ trait FormModelTrait
 
     }
 
-    /**
-     * @Deleting
-     */
-    public static function deleting($event, Form $form)
-    {
-        foreach (self::where('field_id = ?', [$form->id])->get() as $field) {
-			$field->delete();
-        }
-    }
 }

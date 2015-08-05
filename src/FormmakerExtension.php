@@ -5,6 +5,7 @@ namespace Pagekit\Formmaker;
 use Pagekit\Application as App;
 use Pagekit\Module\Module;
 use Pagekit\Formmaker\Model\Form;
+use Pagekit\Formmaker\Model\Field;
 
 class FormmakerExtension extends Module {
 	/**
@@ -43,10 +44,31 @@ class FormmakerExtension extends Module {
 		if (!$this->types) {
 
 			$this->types = [];
-			$paths = glob(App::locator()->get('formmaker:app/fields') . '/*.json', GLOB_NOSORT) ?: [];
+			$paths = glob(App::locator()->get('formmaker:app/fields') . '/*.php', GLOB_NOSORT) ?: [];
 
 			foreach ($paths as $p) {
-				$package = json_decode(file_get_contents($p), true);
+				$package = array_merge([
+					'id' => '',
+					'hasOptions' => 0,
+					'required' => 0,
+					'multiple' => 0,
+					'dependancies' => [],
+					'style' => [],
+					'formatValue' => function (Field $field, $value) {
+						if (count($field->options)) {
+							$options = $field->getOptionsRef();
+							if (is_array($value) && count($value)) {
+								return array_map(function ($val) use ($options) {
+									return isset($options[$val]) ? $options[$val] : $val;
+								}, $value);
+							} else {
+								return $value ? isset($options[$value]) ? [$options[$value]] : [$value] : ['-'];
+							}
+						} else {
+							return is_array($value) ? count($value) ? $value : ['-'] : [$value ?: '-'];
+						}
+					}
+				], include($p));
 				$this->registerType($package);
 			}
 
@@ -60,7 +82,6 @@ class FormmakerExtension extends Module {
 	 * @param array $package
 	 */
 	public function registerType ($package) {
-		$package['label'] = __($package['id']);
 		$this->types[$package['id']] = $package;
 	}
 }

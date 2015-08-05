@@ -2,7 +2,7 @@ module.exports = {
 
     data: function () {
         return _.merge({
-            users: false,
+            forms: false,
             pages: 0,
             count: '',
             types: [],

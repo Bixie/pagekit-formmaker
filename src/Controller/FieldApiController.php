@@ -4,20 +4,24 @@ namespace Pagekit\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
-use Pagekit\Kernel\Exception\NotFoundException;
 use Pagekit\Formmaker\Model\Field;
 use Pagekit\User\Model\Role;
 
 /**
  * @Route("field", name="field")
+ * @Access("formmaker: manage forms")
  */
 class FieldApiController {
 
 	/**
 	 * @Route("/", methods="GET")
+	 * @Request({"form_id": "int"}, csrf=true)
 	 */
-	public function indexAction () {
-		$query = Field::query();
+	public function indexAction ($form_id) {
+		if (!$form_id) {
+			return [];
+		}
+		$query = Field::where(['form_id = ?'], [$form_id]);
 		return array_values($query->get());
 	}
 
@@ -59,11 +63,11 @@ class FieldApiController {
 		}
 
 		if (!$field) {
-			throw new NotFoundException(__('Field not found.'));
+			App::abort(404, __('Field not found.'));
 		}
 
 		if (!$type = $formmaker->getType($field->type)) {
-			throw new NotFoundException(__('Type not found.'));
+			App::abort(404, __('Type not found.'));
 		}
 		//check fixed value
 		foreach (['multiple', 'required'] as $key) {

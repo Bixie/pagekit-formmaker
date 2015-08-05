@@ -1,6 +1,8 @@
 <template>
 
-    <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
+    <div class="uk-alert" v-show="!formitem.id">{{ 'Save form before adding fields.' | trans}}</div>
+
+    <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin v-show="formitem.id">
         <div class="uk-flex uk-flex-middle uk-flex-wrap" data-uk-margin>
 
             <div class="uk-margin-left" v-show="selected.length">
@@ -110,7 +112,7 @@
         methods: {
 
             load: function () {
-                return this.Fields.query(function (data) {
+                return this.Fields.query({form_id: this.formitem.id}, function (data) {
                     this.$set('fields', data);
                 });
             },

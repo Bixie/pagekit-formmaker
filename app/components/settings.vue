@@ -24,6 +24,15 @@
             </div>
         </div>
 
+        <div class="uk-form-row">
+            <label class="uk-form-label">{{ 'Submissions per page' | trans }}</label>
+            <div class="uk-form-controls uk-form-controls-text">
+                <p class="uk-form-controls-condensed">
+                    <input type="number" step="10" v-model="package.config.submissions_per_page" class="uk-form-width-small">
+                </p>
+            </div>
+        </div>
+
     </div>
 
 </template>

@@ -78,7 +78,8 @@
                 this.$set('type', data.type);
                 this.$set('roles', data.roles);
                 this.field.form_id = this.formitem.id;
-                        UIkit.tab(this.$$.tab, {connect: this.$$.content});
+
+                UIkit.tab(this.$$.tab, {connect: this.$$.content});
                 this.loaded = true;
             });
 

@@ -31,6 +31,7 @@ module.exports = [
             "formmaker": "./app/views/form.js",
             /*admin views*/
             "form-edit": "./app/views/admin/edit.js",
+            "form-submissions": "./app/views/admin/submissions.js",
             "forms": "./app/views/admin/forms.js"
         },
         output: {

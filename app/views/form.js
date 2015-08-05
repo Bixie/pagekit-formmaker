@@ -8,6 +8,7 @@ module.exports = {
         thankyou: '',
         submission: {
             form_id: 0,
+            status: 1,
             data: {}
         }
     }, window.$data),
@@ -18,7 +19,7 @@ module.exports = {
         this.fields.forEach(function (field) {
             this.submission.data[field.id] = {
                 field_id: field.id,
-                field_type: field.type,
+                type: field.type,
                 label: null,
                 value: null
             };

@@ -56,6 +56,16 @@ class Field implements \JsonSerializable {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getOptionsRef () {
+		$options = [];
+		foreach ($this->options as $option) {
+			$options[$option['value']] = $option['text'];
+		}
+		return $options;
+	}
+	/**
 	 * {@inheritdoc}
 	 */
 	public function jsonSerialize () {

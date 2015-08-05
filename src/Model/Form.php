@@ -28,6 +28,13 @@ class Form implements \JsonSerializable {
 	 */
 	public $fields;
 
+	public function getFields () {
+		if (!isset($this->fields)) {
+			$this->fields = Field::query(['form_id' => $this->id])->orderBy('priority', 'ASC')->get();
+		}
+		return $this->fields;
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */
