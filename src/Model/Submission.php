@@ -16,7 +16,7 @@ class Submission implements \JsonSerializable {
 
 	const STATUS_ARCHIVED = 0;
 	const STATUS_ACTIVE = 1;
-	const STATUS_EXPORTED = 2;
+	const STATUS_DONE = 2;
 
 	/** @Column(type="integer") @Id */
 	public $id;
@@ -56,10 +56,18 @@ class Submission implements \JsonSerializable {
 	public static function getStatuses () {
 		return [
 			self::STATUS_ACTIVE => __('Active'),
-			self::STATUS_EXPORTED => __('Exported'),
+			self::STATUS_DONE => __('Done'),
 			self::STATUS_ARCHIVED => __('Archived')
 		];
 	}
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct () {
+		$this->created = new \DateTime;
+	}
+
 
 	public function getRedirect () {
 		return $this->form->get('afterSubmit') == 'redirect' ? App::url($this->form->get('redirect'), [], true) : false;

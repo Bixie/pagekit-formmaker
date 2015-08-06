@@ -35,8 +35,8 @@
     <div class="uk-overflow-container">
 
         <div class="pk-table-fake pk-table-fake-header" v-class="pk-table-fake-border: !fields || !fields.length">
-            <div class="pk-table-width-minimum pk-table-fake-nestable-padding"><input type="checkbox"
-                                                                                      v-check-all="selected: input[name=id]">
+            <div class="pk-table-width-minimum pk-table-fake-nestable-padding">
+                <input type="checkbox" v-check-all="selected: input[name=id]"><!-- //todo fix this! -->
             </div>
             <div class="pk-table-min-width-100">{{ 'Label' | trans }}</div>
             <div class="pk-table-width-100 uk-text-center">{{ 'Required' | trans }}</div>
@@ -53,7 +53,6 @@
     <h3 class="uk-h1 uk-text-muted uk-text-center" v-show="fields && !fields.length">{{ 'No fields found.' | trans
         }}</h3>
 
-
     <v-modal v-ref="editmodal" large>
         <fieldedit formitem="{{@ formitem }}" fieldid="{{ editid }}"></fieldedit>
     </v-modal>
@@ -65,7 +64,8 @@
                 <div class="pk-table-width-minimum pk-table-collapse">
                     <div class="uk-nestable-toggle" data-nestable-action="toggle"></div>
                 </div>
-                <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"></div>
+                <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"
+                    v-on="click: toggleSelect(field)"></div>
                 <div class="pk-table-min-width-100">
                     <a v-on="click: editFormField(field.id)">{{ field.label }}</a><br/>
                     <small class="uk-text-muted">{{ field.slug }}</small>
@@ -95,9 +95,7 @@
 
         data: function () {
             return {
-                pagesFields: 0,
-                countFields: '',
-                selectedFields: [],
+                selected: [],
                 editid: ''
             };
         },
@@ -115,6 +113,7 @@
             load: function () {
                 return this.Fields.query({form_id: this.formitem.id}, function (data) {
                     this.$set('fields', data);
+                    this.$set('selected', []);
                 });
             },
 
@@ -137,25 +136,18 @@
                 }, this);
             },
 
-            isSelected: function (field, children) {
-
-                if (_.isArray(field)) {
-                    return _.every(field, function (field) {
-                        return this.isSelected(field, children);
-                    }, this);
-                }
-
-                return this.selectedFields.indexOf(field.id.toString()) !== -1;
+            isSelected: function (field) {
+                return this.selected.indexOf(field.id.toString()) !== -1;
             },
 
             toggleSelect: function (field) {
 
-                var index = this.selectedFields.indexOf(field.id.toString());
+                var index = this.selected.indexOf(field.id.toString());
 
                 if (index == -1) {
-                    this.selectedFields.push(field.id.toString());
+                    this.selected.push(field.id.toString());
                 } else {
-                    this.selectedFields.splice(index, 1);
+                    this.selected.splice(index, 1);
                 }
             },
 
@@ -167,7 +159,7 @@
 
                 this.Fields.delete({id: 'bulk'}, {ids: this.selected}, function () {
                     this.load();
-                    UIkit.notify('Fields(s) deleted.');
+                    UIkit.notify('Field(s) deleted.');
                 });
             },
 

@@ -10,8 +10,11 @@
 			<div class="uk-margin-left" v-show="selected.length">
 				<ul class="uk-subnav pk-subnav-icon">
 					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}"
-						   data-uk-tooltip="{delay: 500}" v-on="click: removeForms"
-						   v-confirm="'Delete form? All values will be deleted from the formmakers.' | trans"></a>
+						   data-uk-tooltip="{delay: 500}" v-on="click: removeSubmissions"
+						   v-confirm="'Delete submissions? All data will be deleted from the database.' | trans"></a>
+					</li>
+					<li><a class="uk-icon uk-icon-archive pk-icon-hover" title="{{ 'Archive' | trans }}"
+						   data-uk-tooltip="{delay: 500}" v-on="click: status(0)"></a>
 					</li>
 				</ul>
 			</div>
@@ -20,8 +23,8 @@
 		<div class="uk-position-relative" data-uk-margin>
 
 			<div data-uk-dropdown="{ mode: 'click' }">
-				<a class="uk-button uk-button-primary" v-attr="href: $url('admin/formmaker/submissions/csv')">
-					{{ 'Export csv' | trans }}</a>
+				<button class="uk-button uk-button-primary" disabled>
+					{{ 'Export csv' | trans }}</button>
 
 			</div>
 
@@ -60,10 +63,10 @@
 					{{ submission.ip }}
 				</td>
 				<td class="uk-text-center">
-					<span title="{{ getStatusText(submission) }}"
+					<a title="{{ getStatusText(submission) }}" v-on="click: toggleStatus(submission)"
 						  v-class="pk-icon-circle-danger: !submission.status,
 							  pk-icon-circle-success: submission.status == 1,
-							  pk-icon-circle-primary: submission.status == 2"></span>
+							  pk-icon-circle-primary: submission.status == 2"></a>
 				</td>
 				<td>
 					<a v-attr="href: $url('admin/formmaker/edit', { id: submission.form_id })">{{ submission.form_title }}</a>

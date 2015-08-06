@@ -35,7 +35,7 @@ module.exports = {
                 return { text: status, value: id };
             });
 
-            return [{ text: this.$trans('Status'), value: '' }, { label: this.$trans('Filter by'), options: options }];
+            return [{ text: this.$trans('Status'), value: '' }, { text: this.$trans('Show all'), value: 'all' }, { label: this.$trans('Filter by'), options: options }];
         },
 
         formOptions: function () {
@@ -76,11 +76,33 @@ module.exports = {
             return this.statuses[submission.status];
         },
 
-        removeForms: function () {
+        status: function (status) {
 
-            this.Forms.delete({id: 'bulk'}, {ids: this.selected}, function () {
+            var submissions = this.getSelected();
+
+            submissions.forEach(function (submission) {
+                submission.status = status;
+            });
+
+            this.resource.save({id: 'bulk'}, {submissions: submissions}, function (data) {
                 this.load();
-                UIkit.notify('Forms(s) deleted.');
+                UIkit.notify(this.$trans('Submissions saved.'));
+            });
+        },
+
+        toggleStatus: function (submission) {
+            submission.status = submission.status === 2 ? 0 : submission.status + 1;
+            this.resource.save({id: submission.id}, {submission: submission}, function (data) {
+                this.load();
+                UIkit.notify(this.$trans('Submission saved.'));
+            });
+        },
+
+        removeSubmissions: function () {
+
+            this.resource.delete({id: 'bulk'}, {ids: this.selected}, function () {
+                this.load();
+                UIkit.notify('Submission(s) deleted.');
             });
         },
 
