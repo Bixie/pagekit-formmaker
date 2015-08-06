@@ -86,7 +86,7 @@ module.exports = {
 
             this.resource.save({id: 'bulk'}, {submissions: submissions}, function (data) {
                 this.load();
-                UIkit.notify(this.$trans('Submissions saved.'));
+                UIkit.notify(this.$trans('Submission(s) saved.'));
             });
         },
 

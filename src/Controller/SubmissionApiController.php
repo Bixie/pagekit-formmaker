@@ -107,8 +107,9 @@ class SubmissionApiController {
 	}
 
 	/**
+	 * @Access("formmaker: manage submissions")
 	 * @Route("/detail")
-	 * @Request({"id"})
+	 * @Request({"submission_id"}, csrf=true)
 	 */
 	public function detailAction ($id) {
 		$formmaker = App::module('formmaker');
