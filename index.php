@@ -102,7 +102,7 @@ return [
 			if ($version = $app['migrator']->create('formmaker:migrations', $this->config('version'))->run()) {
 				$app->config($this->name)->set('version', $version);
 			}
-			$app->config($this->name)->set('override_registration', 1); //todo shouldn't this be done by PackageController?
+			$app->config($this->name)->set('from_address', $app->config('system/mail')->get('from_address', '')); //todo shouldn't this be done by PackageController?
 
 		},
 

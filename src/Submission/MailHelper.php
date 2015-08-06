@@ -37,10 +37,10 @@ class MailHelper {
 			$mail = App::mailer()->create();
 			$mail->setTo($adminMail)->setSubject($mailSubject)->setBody(App::view('formmaker:views/mails/template.php', compact('mailBody')), 'text/html')->send();
 
-			if ($userMail) {
+			if ($this->submission->email) {
 
 				$mail = App::mailer()->create();
-				$mail->setTo($userMail)->setSubject($mailSubject)->setBody(App::view('formmaker:views/mails/template.php', compact('mailBody')), 'text/html')->send();
+				$mail->setTo($this->submission->email)->setSubject($mailSubject)->setBody(App::view('formmaker:views/mails/template.php', compact('mailBody')), 'text/html')->send();
 			}
 
 		} catch (\Exception $e) {
@@ -52,7 +52,7 @@ class MailHelper {
 
 	public function replaceString ($string, $arraySeparator = ', ') {
 		if (!$this->submission->fieldsubmissions) {
-			$this->submission->setFieldsubmissions();
+			$this->submission->getFieldsubmissions();
 		}
 		$string = preg_replace_callback('/\$\$(.+?)\$\$/is', function($matches) use ($arraySeparator) {
 			$placeholder = explode(':', trim($matches[1]), 2);

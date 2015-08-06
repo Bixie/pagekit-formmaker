@@ -45,7 +45,7 @@
 			<submission></submission>
 		</div>
 		<div>
-			<email></email>
+			<emailsettings></emailsettings>
 		</div>
 	</div>
 

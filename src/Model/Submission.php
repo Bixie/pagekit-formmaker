@@ -86,11 +86,14 @@ class Submission implements \JsonSerializable {
 	}
 
 	public function getUserEmail () {
-		//todo
+		$this->getFieldsubmissions();
+		if (isset($this->fieldsubmissions[$this->form->get('user_email_field')])) {
+			return $this->fieldsubmissions[$this->form->get('user_email_field')]['value'][0] ? : '';
+		}
 		return '';
 	}
 
-	public function setFieldsubmissions () {
+	public function getFieldsubmissions () {
 		if (!isset($this->fieldsubmissions)) {
 			$fields = $this->form->getFields();
 			foreach ($this->data as $submissionvalue) {

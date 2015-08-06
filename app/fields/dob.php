@@ -1,6 +1,4 @@
 <?php
-use Pagekit\Formmaker\Model\Field;
-
 return [
 	'id' => 'dob',
 	'label' => __('Date of birth'),
@@ -9,7 +7,7 @@ return [
 	'multiple' => 0,
 	'dependancies' => ['uikit-form-select', 'uikit-datepicker'],
 	'style' => ['uikit-form-select' => 'vendor/assets/uikit/css/components/form-select.css'],
-	'formatValue' => function (Field $field, $value) {
+	'formatValue' => function ($field, $value) {
 		$formats = ['DD-MM-YYYY' => 'F, m Y', 'MM-DD-YYYY' => 'm F Y'];
 		try {
 

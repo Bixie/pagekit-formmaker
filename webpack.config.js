@@ -24,6 +24,7 @@ module.exports = [
             /*fields*/
             "formmaker-checkbox": "./app/fields/checkbox.vue",
             "formmaker-dob": "./app/fields/dob.vue",
+            "formmaker-email": "./app/fields/email.vue",
             "formmaker-pulldown": "./app/fields/pulldown.vue",
             "formmaker-radio": "./app/fields/radio.vue",
             "formmaker-text": "./app/fields/text.vue",

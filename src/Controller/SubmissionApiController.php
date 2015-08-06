@@ -55,7 +55,6 @@ class SubmissionApiController {
 
 
 	/**
-	 * @Access("formmaker: manage submissions")
 	 * @Route("/", methods="POST")
 	 * @Route("/{id}", methods="POST", requirements={"id"="\d+"})
 	 * @Request({"submission": "array", "id": "int"}, csrf=true)
@@ -78,16 +77,20 @@ class SubmissionApiController {
 		}
 		$submission->form = $form;
 
-		try {
+		$submission->save($data);
 
-			$submission->email = $submission->getUserEmail();
+		$submission->email = $submission->getUserEmail();
 
-			$submission->save($data);
+		if ($id == 0 && $submission->email) {
+			try {
 
-			(new MailHelper($submission))->sendMail();
+				(new MailHelper($submission))->sendMail();
 
-		} catch (Exception $e) {
-			App::abort(400, $e->getMessage());
+				$submission->save();
+
+			} catch (Exception $e) {
+				App::abort(400, $e->getMessage());
+			}
 		}
 
 		return ['message' => 'Submission successfull', 'submission' => $submission];
@@ -118,7 +121,7 @@ class SubmissionApiController {
 			App::abort(404, 'Submission not found.');
 		}
 
-		$submission->setFieldsubmissions();
+		$submission->getFieldsubmissions();
 
 		return $submission;
 	}

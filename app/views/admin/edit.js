@@ -5,6 +5,7 @@ module.exports = Vue.extend({
             formitem: {
                 data: {
                     classSfx: '',
+                    user_email_field: false,
                     submitEmail: window.$data.config.from_address,
                     email_subject: this.$trans('Thank you for your submission'),
                     thankyou_markdown: true,
@@ -66,7 +67,7 @@ module.exports = Vue.extend({
         formfields: require('../../components/form-fields.vue'),
         appearance: require('../../components/form-appearance.vue'),
         submission: require('../../components/form-submission.vue'),
-        email: require('../../components/form-email.vue'),
+        emailsettings: require('../../components/form-email.vue'),
         fieldedit: require('../../components/field-edit.vue')
 
     }
