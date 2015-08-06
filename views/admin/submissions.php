@@ -65,8 +65,8 @@
 				<td class="uk-text-center">
 					<a title="{{ getStatusText(submission) }}" v-on="click: toggleStatus(submission)"
 						  v-class="pk-icon-circle-danger: !submission.status,
-							  pk-icon-circle-success: submission.status == 1,
-							  pk-icon-circle-primary: submission.status == 2"></a>
+							  pk-icon-circle-primary: submission.status == 1,
+							  pk-icon-circle-success: submission.status == 2"></a>
 				</td>
 				<td>
 					<a v-attr="href: $url('admin/formmaker/edit', { id: submission.form_id })">{{ submission.form_title }}</a>

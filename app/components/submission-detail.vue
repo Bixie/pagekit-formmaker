@@ -7,7 +7,9 @@
                 <h2 class="uk-margin-top-remove">{{ 'Submission for form "%formtitle%"' | trans {formtitle:submission.form_title} }}</h2>
                 <dl class="uk-description-list uk-description-list-horizontal">
                     <dt>{{ 'Submission date' | trans}}</dt><dd>{{ submission.created | datetime }}</dd>
-                    <dt>{{ 'Submission status' | trans}}</dt><dd>{{ getStatusText(submission) | trans }}</dd>
+                    <dt>{{ 'Submission status' | trans}}</dt><dd v-class="uk-text-danger: submission.status == 0,
+							  uk-text-primary: submission.status == 1,
+							  uk-text-success: submission.status == 2">{{ getStatusText(submission) | trans }}</dd>
                     <dt>{{ 'Remote IP address' | trans}}</dt><dd>{{ submission.ip }}</dd>
                     <dt>{{ 'Email sent to' | trans}}</dt><dd>{{ submission.email || 'No email provided' | trans }}</dd>
                 </dl>
@@ -77,8 +79,7 @@
         watch: {
             'submission.status': function (value, oldValue) {
                 if (oldValue !== null && oldValue !== value) {
-                    this.selected = [this.submissionid.toString()];
-                    this.status(value)
+                    this.status(value, [this.submission])
                 }
             }
         }

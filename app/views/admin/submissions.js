@@ -76,9 +76,9 @@ module.exports = {
             return this.statuses[submission.status];
         },
 
-        status: function (status) {
+        status: function (status, submissions) {
 
-            var submissions = this.getSelected();
+            submissions = submissions || this.getSelected();
 
             submissions.forEach(function (submission) {
                 submission.status = status;
