@@ -20,7 +20,7 @@
 		<div class="uk-position-relative" data-uk-margin>
 
 			<div data-uk-dropdown="{ mode: 'click' }">
-				<a class="uk-button uk-button-primary" v-attr="href: $url('admin/formmaker/edit')">
+				<a class="uk-button uk-button-primary" v-attr="href: $url('admin/formmaker/form/edit')">
 					{{ 'Add form' | trans }}</a>
 
 			</div>
@@ -61,7 +61,7 @@
 			</div>
 			<div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ formitem.id }}"></div>
 			<div class="pk-table-min-width-100">
-				<a v-attr="href: $url('admin/formmaker/edit', { id: formitem.id })">{{ formitem.title }}</a>
+				<a v-attr="href: $url('admin/formmaker/form/edit', { id: formitem.id })">{{ formitem.title }}</a>
 			</div>
 			<div class="pk-table-width-100 uk-text-center">
 				<td class="uk-text-center">

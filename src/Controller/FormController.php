@@ -7,16 +7,16 @@ use Pagekit\Kernel\Exception\NotFoundException;
 use Pagekit\Formmaker\Model\Form;
 
 /**
- * @Access("site: manage site")
+ * @Access("formmaker: manage forms", admin=true)
+ * @Route("form", name="form")
  */
 class FormController {
 
 	/**
 	 * @Route("/edit")
-	 * @Request({"id"})
-	 * @Access("site: manage site", admin=true)
+	 * @Request({"id": "int"})
 	 */
-	public function editAction ($id = '') {
+	public function editAction ($id = 0) {
 		$formmaker = App::module('formmaker');
 
 		if (!$form = Form::find($id)) {

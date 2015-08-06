@@ -69,7 +69,7 @@
 							  pk-icon-circle-success: submission.status == 2"></a>
 				</td>
 				<td>
-					<a v-attr="href: $url('admin/formmaker/edit', { id: submission.form_id })">{{ submission.form_title }}</a>
+					<a v-attr="href: $url('admin/formmaker/form/edit', { id: submission.form_id })">{{ submission.form_title }}</a>
 				</td>
 				<td class="pk-table-text-break">
 					{{ submission.email }}

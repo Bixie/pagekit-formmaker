@@ -22,7 +22,7 @@ class SiteController
     }
 
     /**
-     * @Route("/{id}", name="id")
+     * @Route("/{id}")
      */
     public function formAction($id = 0)
     {

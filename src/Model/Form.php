@@ -43,7 +43,7 @@ class Form implements \JsonSerializable {
 	}
 
 	public function getFormUrl () {
-		return  App::url('@formmaker/id', ['id' => $this->id]);
+		return  App::url('@formmaker/form', ['id' => $this->id]);
 	}
 
 	/**
