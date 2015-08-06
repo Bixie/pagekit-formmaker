@@ -68,8 +68,6 @@
         created: function () {
             this.Fields = this.$resource('api/formmaker/field/edit');
             this.Field = this.$resource('api/formmaker/field/:id');
-            console.log(this.formitem);
-            console.log(this.fieldid);
         },
 
         ready: function () {

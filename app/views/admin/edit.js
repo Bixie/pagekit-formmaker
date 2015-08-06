@@ -32,6 +32,9 @@ module.exports = Vue.extend({
                 { value: 'thankyou', text: this.$trans('Show Thank you message')},
                 { value: 'redirect', text: this.$trans('Redirect to page')}
             ];
+        },
+        formfields: function () {
+            return this.$.formfields.fields;
         }
     },
 
@@ -65,6 +68,7 @@ module.exports = Vue.extend({
 
         formbasic: require('../../components/form-basic.vue'),
         formfields: require('../../components/form-fields.vue'),
+        formfieldslist: require('../../components/form-fieldslist.vue'),
         appearance: require('../../components/form-appearance.vue'),
         submission: require('../../components/form-submission.vue'),
         emailsettings: require('../../components/form-email.vue'),

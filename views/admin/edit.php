@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div>
-			<formfields></formfields>
+			<formfields v-ref="formfields"></formfields>
 		</div>
 		<div>
 			<appearance></appearance>
