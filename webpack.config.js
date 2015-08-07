@@ -28,6 +28,7 @@ module.exports = [
             "formmaker-pulldown": "./app/fields/pulldown.vue",
             "formmaker-radio": "./app/fields/radio.vue",
             "formmaker-text": "./app/fields/text.vue",
+            "formmaker-textbox": "./app/fields/textbox.vue",
             /*frontpage views*/
             "formmaker": "./app/views/form.js",
             /*admin views*/

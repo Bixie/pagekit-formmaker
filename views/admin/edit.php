@@ -31,9 +31,6 @@
 	<div class="uk-switcher uk-margin" v-el="content">
 		<div>
 			<formbasic></formbasic>
-			<div class="uk-form-horizontal uk-margin" v-show="!type.hasOptions || formitem.options.length">
-				<formmakerfields edit-field="{{@ field.type }}"></formmakerfields>
-			</div>
 		</div>
 		<div>
 			<formfields v-ref="formfields"></formfields>

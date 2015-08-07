@@ -1,7 +1,7 @@
 <template>
 
     <div v-show="isAdmin && field.data.multiple" class="uk-form-row">
-        <label for="form-placeholder" class="uk-form-label">{{ 'Size' | trans }}</label>
+        <label for="form-size" class="uk-form-label">{{ 'Size' | trans }}</label>
 
         <div class="uk-form-controls">
             <input id="form-size" class="uk-form-width-small uk-text-right" type="number" min="1"

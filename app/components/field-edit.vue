@@ -29,10 +29,7 @@
 
         <div class="uk-switcher uk-margin" v-el="content">
             <div>
-                <fieldbasic field="{{@ field }}"></fieldbasic>
-                <div class="uk-form-horizontal uk-margin" v-show="!type.hasOptions || field.options.length">
-                    <formmakerfields edit-field="{{@ field.type }}"></formmakerfields>
-                </div>
+                <fieldbasic field="{{@ field }}" type="{{@ type }}"></fieldbasic>
             </div>
             <div>
                 <fieldoptions v-show="type.hasOptions" field="{{@ field }}"></fieldoptions>
@@ -57,6 +54,7 @@
                 },
                 field: {
                     label: '',
+                    priority: 0,
                     form_id: 0,
                     data: {}
                 }
