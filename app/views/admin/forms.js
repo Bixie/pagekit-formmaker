@@ -29,10 +29,10 @@ module.exports = {
 
             this.Forms.save({id: formitem.id}, {formitem: formitem}, function () {
                 this.load();
-                UIkit.notify('Form saved.');
+                this.$notify('Form saved.');
             }, function (message) {
                 this.load();
-                UIkit.notify(message, {status: 'danger'});
+                this.$notify(message, 'danger');
             });
         },
 
@@ -72,7 +72,7 @@ module.exports = {
 
             this.Forms.delete({id: 'bulk'}, {ids: this.selected}, function () {
                 this.load();
-                UIkit.notify('Forms(s) deleted.');
+                this.$notify('Forms(s) deleted.');
             });
         }
 
@@ -123,7 +123,7 @@ module.exports = {
                         });
 
                     }).error(function () {
-                        UIkit.notify(this.$trans('Reorder failed.'), 'danger');
+                        this.$notify(this.$trans('Reorder failed.'), 'danger');
                     });
                 }
             });

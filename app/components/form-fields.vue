@@ -123,10 +123,10 @@
 
                 this.Fields.save({id: field.id}, {field: field}, function () {
                     this.load();
-                    UIkit.notify('Field saved.');
+                    this.$notify('Field saved.');
                 }, function (message) {
                     this.load();
-                    UIkit.notify(message, {status: 'danger'});
+                    this.$notify(message, 'danger');
                 });
             },
 
@@ -159,7 +159,7 @@
 
                 this.Fields.delete({id: 'bulk'}, {ids: this.selected}, function () {
                     this.load();
-                    UIkit.notify('Field(s) deleted.');
+                    this.$notify('Field(s) deleted.');
                 });
             },
 
@@ -222,7 +222,7 @@
                             });
 
                         }).error(function () {
-                            UIkit.notify(this.$trans('Reorder failed.'), 'danger');
+                            this.$notify(this.$trans('Reorder failed.'), 'danger');
                         });
                     }
                 });

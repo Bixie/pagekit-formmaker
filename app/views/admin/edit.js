@@ -56,10 +56,10 @@ module.exports = Vue.extend({
 
                 this.$set('formitem', data.formitem);
 
-                UIkit.notify(this.$trans('Form %title% saved.', {title: this.formitem.title}));
+                this.$notify(this.$trans('Form %title% saved.', {title: this.formitem.title}));
 
             }, function (data) {
-                UIkit.notify(data, 'danger');
+                this.$notify(data, 'danger');
             });
         }
     },

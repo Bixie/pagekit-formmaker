@@ -52,9 +52,9 @@
                     name: this.package.name.replace('pagekit/', ''),
                     config: this.package.config
                 }, function () {
-                    UIkit.notify(this.$trans('Settings saved.'), '');
+                    this.$notify(this.$trans('Settings saved.'), '');
                 }).error(function (data) {
-                    UIkit.notify(data, 'danger');
+                    this.$notify(data, 'danger');
                 }).always(function () {
                     this.$parent.close();
                 });
