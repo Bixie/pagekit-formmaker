@@ -121,22 +121,12 @@ module.exports = {
 
     },
 
-    filters: {
-        datetime: function (date) {
-            return date ? this.$date(date, 'full') : '';
-            //todo datetime grr
-            if (typeof date === 'string') {
-                date = new Date(date);
-            }
-            return Globalize.formatDate(date, {skeleton: 'yMdhm'});
-        }
-    },
-
     components: {
         'submissiondetail': require('../../components/submission-detail.vue')
     }
 
 };
+require('../../lib/filters')(Vue);
 
 $(function () {
 

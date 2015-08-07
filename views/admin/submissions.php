@@ -1,4 +1,4 @@
-<?php $view->script('form-submissions', 'formmaker:app/bundle/form-submissions.js', ['vue', 'formmaker-formmakerfields']) ?>
+<?php $view->script('form-submissions', 'formmaker:app/bundle/form-submissions.js', ['vue', 'formmaker-formmakerfields', 'uikit-datepicker']) ?>
 
 <div id="formmaker-submissions" class="uk-form uk-form-horizontal" v-cloak>
 
