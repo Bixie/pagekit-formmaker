@@ -51,7 +51,7 @@ module.exports = Vue.extend({
             this.Forms.save({id: this.formitem.id}, data, function (data) {
 
                 if (!this.formitem.id) {
-                    window.history.replaceState({}, '', this.$url('admin/formmaker/edit', {id: data.formitem.id}))
+                    window.history.replaceState({}, '', this.$url.route('admin/formmaker/edit', {id: data.formitem.id}))
                 }
 
                 this.$set('formitem', data.formitem);

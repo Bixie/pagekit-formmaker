@@ -20,7 +20,7 @@
 		<div class="uk-position-relative" data-uk-margin>
 
 			<div data-uk-dropdown="{ mode: 'click' }">
-				<a class="uk-button uk-button-primary" v-attr="href: $url('admin/formmaker/form/edit')">
+				<a class="uk-button uk-button-primary" v-attr="href: $url.route('admin/formmaker/form/edit')">
 					{{ 'Add form' | trans }}</a>
 
 			</div>
@@ -61,7 +61,7 @@
 			</div>
 			<div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ formitem.id }}"></div>
 			<div class="pk-table-min-width-100">
-				<a v-attr="href: $url('admin/formmaker/form/edit', { id: formitem.id })">{{ formitem.title }}</a>
+				<a v-attr="href: $url.route('admin/formmaker/form/edit', { id: formitem.id })">{{ formitem.title }}</a>
 			</div>
 			<div class="pk-table-width-100 uk-text-center">
 				<td class="uk-text-center">
@@ -70,10 +70,10 @@
 				</td>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-				<a v-attr="href: $url('admin/formmaker/submissions', { filter: {form: formitem.id} })">Check submissions</a>
+				<a v-attr="href: $url.route('admin/formmaker/submissions', { filter: {form: formitem.id} })">Check submissions</a>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-				<a v-attr="href: $url(formitem.url)" target="_blank">{{ formitem.url }}</a>
+				<a v-attr="href: $url.route(formitem.url)" target="_blank">{{ formitem.url }}</a>
 			</div>
 		</div>
 

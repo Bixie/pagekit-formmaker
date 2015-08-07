@@ -119,10 +119,13 @@ return [
 		},
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
+			if ($app['user']->hasAccess('formmaker: manage submissions')) {
+				$scripts->register('widget-formmaker', 'formmaker:app/bundle/widget-formmaker.js', ['~dashboard', 'uikit-datepicker']);
+			}
 			$scripts->register('formmaker-settings', 'formmaker:app/bundle/settings.js', '~extensions');
 			$scripts->register('formmaker-site', 'formmaker:app/bundle/site.js', '~site-edit');
 			$scripts->register('formmaker-link', 'formmaker:app/bundle/link.js', '~panel-link');
-			//register forms
+			//register fields
 			$scripts->register('formmaker-formmakerfields', 'formmaker:app/bundle/formmaker-formmakerfields.js', 'vue');
 			$formmaker = $app->module('formmaker');
 			foreach ($formmaker->getTypes() as $type) {
@@ -136,7 +139,7 @@ return [
 		'view.styles' => function ($event, $styles) use ($app) {
 			//todo this should be prettier
 			$route = $app->request()->attributes->get('_route');
-			if (strpos($route, '@formmaker') === 0 || in_array($route, ['@user/edit'])) {
+			if (strpos($route, '@formmaker') === 0) {
 				$formmaker = $app->module('formmaker');
 				foreach ($formmaker->getTypes() as $type) {
 					if (isset($type['style'])) {
