@@ -28,7 +28,7 @@ class Submission implements \JsonSerializable {
 	public $form_id;
 
 	/** @Column(type="string") */
-	public $email;
+	public $email = '';
 
 	/** @Column(type="string") */
 	public $ip;

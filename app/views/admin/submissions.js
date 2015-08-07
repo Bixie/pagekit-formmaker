@@ -13,6 +13,12 @@ module.exports = {
     created: function () {
         this.resource = this.$resource('api/formmaker/submission/:id');
         this.config.filter = _.extend({ status: '', form: '', order: 'created desc'}, this.config.filter);
+        this.$on('close.submissionmodal', function () {
+            if (this.$url.current.hash) {
+                window.history.replaceState({}, '', this.$url.current.href.replace('#' + this.$url.current.hash, ''));
+                this.$url.current.hash = '';
+            }
+        });
 
     },
 
@@ -61,7 +67,19 @@ module.exports = {
                 this.$set('count', data.count);
                 this.$set('config.page', page);
                 this.$set('selected', []);
+                this.checkDetailHash();
             });
+        },
+
+        checkDetailHash: function () {
+            if (this.$url.current.hash) {
+                var id = parseInt(this.$url.current.hash, 10), submission = _.find(this.submissions, function (submission) {
+                    return submission.id === id;
+                });
+                if (submission) {
+                    this.submissionDetails(submission);
+                }
+            }
         },
 
         active: function (submission) {
@@ -107,6 +125,8 @@ module.exports = {
         },
 
         submissionDetails: function (submission) {
+            window.history.replaceState({}, '', this.$url.current.href.replace('#' + this.$url.current.hash, '') + '#' + submission.id);
+            this.$url.current.hash = '#' + submission.id;
             this.submissionID = submission.id;
             this.$.submissionmodal.open();
         },

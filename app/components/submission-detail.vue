@@ -11,7 +11,11 @@
 							  uk-text-primary: submission.status == 1,
 							  uk-text-success: submission.status == 2">{{ getStatusText(submission) | trans }}</dd>
                     <dt>{{ 'Remote IP address' | trans}}</dt><dd>{{ submission.ip }}</dd>
-                    <dt>{{ 'Email sent to' | trans}}</dt><dd>{{ submission.email || 'No email provided' | trans }}</dd>
+                    <dt>{{ 'Email sent to' | trans}}</dt>
+                    <dd>
+                        <a v-if="submission.email" href="mailto:{{ submission.email }}">{{ submission.email }}</a>
+                        <span v-if="!submission.email">{{ 'No email provided' | trans }}</span>
+                    </dd>
                 </dl>
                 <h3>{{ 'Submission data' | trans }}</h3>
                 <dl class="uk-description-list uk-description-list-horizontal">
@@ -64,6 +68,10 @@
                 this.loaded = true;
             }.bind(this));
 
+        },
+
+        beforeDestroy: function () {
+            this.$dispatch('close.submissionmodal');
         },
 
         computed: {

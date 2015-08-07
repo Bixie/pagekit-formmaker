@@ -26,14 +26,20 @@ class SubmissionApiController {
 		extract($filter, EXTR_SKIP);
 
 		if (is_numeric($status)) {
-			$query->where(['status' => (int)$status]);
+			$query->where('status = ?', [(int)$status]);
 		} elseif ($status != 'all') {
 			$query->where(['status > 0']);
 		}
 
 		if ($form) {
-			$query->where(function ($query) use ($form) { //todo understand this :)
-				$query->orWhere(['form_id' => (int)$form]);
+			$query->where(function ($query) use ($form) { //todo why nesting
+				if (is_array($form)) {
+					$form = [2,1];
+//					$query->orWhere('form_id IN(?)', [implode(',', $form)]); //todo selects only first id
+					$query->orWhere('form_id IN(' . implode(',', $form) . ')');
+				} else {
+					$query->orWhere(['form_id' => (int)$form]);
+				}
 			});
 		}
 
@@ -47,7 +53,7 @@ class SubmissionApiController {
 		$pages = ceil($count / $limit);
 		$page = max(0, min($pages - 1, $page));
 
-		$submissions = array_values($query->offset($page * $limit)->related('form')->limit($limit)->orderBy($order[1], $order[2])->get());
+		$submissions = array_values($query->offset($page * $limit)->limit($limit)->related('form')->orderBy($order[1], $order[2])->get());
 
 		return compact('submissions', 'pages', 'count');
 
