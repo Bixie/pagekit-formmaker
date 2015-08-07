@@ -78,6 +78,8 @@ module.exports = Vue.extend({
 
 });
 
+require('../../lib/filters')(Vue);
+
 $(function () {
 
     (new module.exports()).$mount('#form-edit');

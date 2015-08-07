@@ -126,6 +126,7 @@ module.exports = {
     }
 
 };
+
 require('../../lib/filters')(Vue);
 
 $(function () {

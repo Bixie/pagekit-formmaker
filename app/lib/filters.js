@@ -11,4 +11,8 @@ module.exports = function (Vue) {
         //return Globalize.formatDate(date, {skeleton: 'yMdhm'});
     });
 
+    Vue.filter('shortcode', function (slug, key) {
+        return '$$ ' + slug + ':' + key + ' $$';
+    });
+
 };
