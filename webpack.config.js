@@ -19,8 +19,8 @@ module.exports = [
         entry: {
             /*pagekit addons*/
             "settings": "./app/components/settings.vue",
-            "site": "./app/components/site.vue",
-            "link": "./app/components/link.vue",
+            "node-formmaker": "./app/components/node-formmaker.vue",
+            "link-formmaker": "./app/components/link-formmaker.vue",
             "widget-formmaker": "./app/components/widget-formmaker.vue",
             /*fields*/
             "formmaker-checkbox": "./app/fields/checkbox.vue",

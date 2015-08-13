@@ -123,8 +123,8 @@ return [
 				$scripts->register('widget-formmaker', 'formmaker:app/bundle/widget-formmaker.js', ['~dashboard', 'uikit-datepicker']);
 			}
 			$scripts->register('formmaker-settings', 'formmaker:app/bundle/settings.js', '~extensions');
-			$scripts->register('formmaker-site', 'formmaker:app/bundle/site.js', '~site-edit');
-			$scripts->register('formmaker-link', 'formmaker:app/bundle/link.js', '~panel-link');
+			$scripts->register('node-formmaker', 'formmaker:app/bundle/node-formmaker.js', '~site-edit');
+			$scripts->register('link-formmaker', 'formmaker:app/bundle/link-formmaker.js', '~panel-link');
 			//register fields
 			$scripts->register('formmaker-formmakerfields', 'formmaker:app/bundle/formmaker-formmakerfields.js', 'vue');
 			$formmaker = $app->module('formmaker');
