@@ -38,7 +38,7 @@
 		<table class="uk-table uk-table-hover uk-table-middle">
 			<thead>
 			<tr>
-				<th class="pk-table-width-minimum"><input type="checkbox" v-check-all="selected: input[name=id]"></th>
+				<th class="pk-table-width-minimum"><input type="checkbox" v-check-all="selected: input[name=id]" number></th>
 				<th class="pk-table-min-width-200" v-order="created: config.filter.order">{{ 'Submission date' | trans }}</th>
 				<th class="pk-table-width-100" v-order="ip: config.filter.order">{{ 'IP address' | trans }}</th>
 				<th class="pk-table-width-200 uk-text-center" v-order="email: config.filter.order">{{ 'Email' | trans }}</th>

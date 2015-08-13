@@ -32,7 +32,7 @@
                     <label for="form-status" class="uk-form-label">{{ 'Status' | trans }}</label>
 
                     <div class="uk-form-controls">
-                        <select id="form-status" class="uk-width-1-1" options="submissionStatuses" v-model="submission.status"></select>
+                        <select id="form-status" class="uk-width-1-1" options="submissionStatuses" v-model="submission.status" number></select>
                     </div>
                 </div>
 

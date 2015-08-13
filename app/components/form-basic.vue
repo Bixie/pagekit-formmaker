@@ -24,7 +24,7 @@
             <label for="form-status" class="uk-form-label">{{ 'Status' | trans }}</label>
 
             <div class="uk-form-controls">
-                <select id="form-status" class="uk-form-width-large" v-model="formitem.status">
+                <select id="form-status" class="uk-form-width-large" v-model="formitem.status" number>
                     <option value="0">{{ 'Disabled' | trans }}</option>
                     <option value="1">{{ 'Enabled' | trans }}</option>
                 </select>
