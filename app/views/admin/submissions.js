@@ -104,7 +104,7 @@ module.exports = {
 
             this.resource.save({id: 'bulk'}, {submissions: submissions}, function (data) {
                 this.load();
-                this.$notify(this.$trans('Submission(s) saved.'));
+                this.$notify('Submission(s) saved.');
             });
         },
 
@@ -112,7 +112,7 @@ module.exports = {
             submission.status = submission.status === 2 ? 0 : submission.status + 1;
             this.resource.save({id: submission.id}, {submission: submission}, function (data) {
                 this.load();
-                this.$notify(this.$trans('Submission saved.'));
+                this.$notify('Submission saved.');
             });
         },
 

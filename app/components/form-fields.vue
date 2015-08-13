@@ -222,7 +222,7 @@
                             });
 
                         }).error(function () {
-                            this.$notify(this.$trans('Reorder failed.'), 'danger');
+                            this.$notify('Reorder failed.', 'danger');
                         });
                     }
                 });

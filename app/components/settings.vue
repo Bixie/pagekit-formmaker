@@ -52,7 +52,7 @@
                     name: this.package.name.replace('pagekit/', ''),
                     config: this.package.config
                 }, function () {
-                    this.$notify(this.$trans('Settings saved.'), '');
+                    this.$notify('Settings saved.', '');
                 }).error(function (data) {
                     this.$notify(data, 'danger');
                 }).always(function () {
