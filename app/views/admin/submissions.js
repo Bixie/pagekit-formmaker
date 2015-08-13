@@ -12,7 +12,7 @@ module.exports = {
 
     created: function () {
         this.resource = this.$resource('api/formmaker/submission/:id');
-        this.config.filter = _.extend({ status: '', form: '', order: 'created desc'}, this.config.filter);
+        this.config.filter = _.extend({ status: '', form: '', order: 'created desc', limit: 25}, this.config.filter);
         this.$on('close.submissionmodal', function () {
             if (this.$url.current.hash) {
                 window.history.replaceState({}, '', this.$url.current.href.replace('#' + this.$url.current.hash, ''));
