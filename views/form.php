@@ -23,5 +23,5 @@ $view->script('formmaker', 'formmaker:app/bundle/formmaker.js', ['vue', 'formmak
 			<button class="uk-button uk-button-primary" type="submit">{{ formitem.data.submitButton | trans }}</button>
 		</div>
 	</div>
-<pre>{{$data|json}}</pre>
+
 </form>
