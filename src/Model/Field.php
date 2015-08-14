@@ -2,6 +2,7 @@
 
 namespace Pagekit\Formmaker\Model;
 
+use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
 use Pagekit\User\Model\AccessModelTrait;
 
@@ -35,6 +36,11 @@ class Field implements \JsonSerializable {
 	/** @BelongsTo(targetEntity="Form", keyFrom="form_id") */
 	public $form;
 
+	/** @var array */
+	protected static $properties = [
+		'prepared' => 'prepareValue'
+	];
+
 	/**
 	 * @param mixed $type
 	 */
@@ -59,6 +65,7 @@ class Field implements \JsonSerializable {
 	}
 
 	/**
+	 * reference value=>label for easy formatting
 	 * @return array
 	 */
 	public function getOptionsRef () {
@@ -68,6 +75,25 @@ class Field implements \JsonSerializable {
 		}
 		return $options;
 	}
+
+	/**
+	 * Prepare default value before displaying form
+	 * @return array
+	 */
+	public function prepareValue () {
+
+		$value = $this->get('value');
+		$type = App::module('formmaker')->getType($this->type);
+
+		if (is_callable($type['prepareValue'])) {
+
+			return call_user_func($type['prepareValue'], $this, $value);
+
+		}
+
+		return $value;
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */

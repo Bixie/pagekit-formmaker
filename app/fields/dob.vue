@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="isAdmin" class="uk-form-row {{field.data.classSfx}}">
+    <div v-if="isAdmin" class="uk-form-row">
         <span for="form-date-format" class="uk-form-label">{{ 'Date format' | trans }}</span>
 
         <div class="uk-form-controls">
@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div v-if="isAdmin" class="uk-form-row {{field.data.classSfx}}">
+    <div v-if="isAdmin" class="uk-form-row">
         <span for="form-min-age" class="uk-form-label">{{ 'Minimum age' | trans }}</span>
 
         <div class="uk-form-controls">
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div v-if="isAdmin" class="uk-form-row {{field.data.classSfx}}">
+    <div v-if="isAdmin" class="uk-form-row">
         <span for="form-max-age" class="uk-form-label">{{ 'Maximum age' | trans }}</span>
 
         <div class="uk-form-controls">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div v-if="!isAdmin" v-el="dob" class="uk-form-row {{field.data.classSfx}}">
+    <div v-if="!isAdmin" v-el="dob" class="uk-form-row {{field.data.classSfx || ''}}">
         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</span>
 

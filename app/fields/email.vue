@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="uk-form-row {{field.data.classSfx}}">
+    <div class="uk-form-row {{field.data.classSfx || ''}}">
         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</label>
 

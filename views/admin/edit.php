@@ -6,7 +6,9 @@
 		<div data-uk-margin>
 
 			<h2 class="uk-margin-remove" v-if="formitem.id">{{ 'Edit form' | trans }} <em>{{
-					formitem.title | trans}}</em></h2>
+					formitem.title | trans}}</em> <a v-attr="href: $url.route(formitem.url)" target="_blank"
+					class="uk-icon-external-link uk-icon-hover uk-text-small uk-margin-small-left"
+					title="{{ 'Preview form' | trans }}" data-uk-tooltip="{delay:500}"></a></h2>
 
 			<h2 class="uk-margin-remove" v-if="!formitem.id">{{ 'Add form' | trans }}</h2>
 

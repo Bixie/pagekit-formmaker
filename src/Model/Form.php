@@ -60,7 +60,9 @@ class Form implements \JsonSerializable {
 	 * {@inheritdoc}
 	 */
 	public function jsonSerialize () {
-		return $this->toArray();
+		$form = $this->toArray();
+		unset($form['data']['submitEmail']);
+		return $form;
 	}
 
 }

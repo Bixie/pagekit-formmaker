@@ -11,6 +11,7 @@ module.exports = {
             this.submission.data[this.field.id].type = this.field.type;
             this.submission.data[this.field.id].label = this.field.label;
             this.submission.data[this.field.id].value = defaultValue;
+            this.submission.data[this.field.id].prepared = this.field.prepared;
             return this.submission.data[this.field.id];
         },
         fieldInvalid: function (form) {

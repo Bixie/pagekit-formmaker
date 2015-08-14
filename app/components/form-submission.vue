@@ -13,7 +13,7 @@
                                 options="afterSubmitOptions" v-model="formitem.data.afterSubmit"></select>
                     </div>
                 </div>
-                <!-- //todo focus/ show contents -->
+
                 <div class="uk-form-row" v-show="formitem.data.afterSubmit == 'thankyou'">
                     <v-editor id="formitem-thankyou" value="{{@ formitem.data.thankyou }}" options="{{ {markdown : formitem.data.thankyou_markdown} }}"></v-editor>
                     <p>

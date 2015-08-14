@@ -54,6 +54,9 @@ class FormmakerExtension extends Module {
 					'multiple' => 0,
 					'dependancies' => [],
 					'style' => [],
+					'prepareValue' => function (Field $field, $value) {
+						return $value;
+					},
 					'formatValue' => function (Field $field, $value) {
 						if (count($field->options)) {
 							$options = $field->getOptionsRef();
