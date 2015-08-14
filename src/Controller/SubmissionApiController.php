@@ -7,6 +7,7 @@ use Pagekit\Application\Exception;
 use Pagekit\Formmaker\Model\Form;
 use Pagekit\Formmaker\Model\Submission;
 use Pagekit\Formmaker\Submission\MailHelper;
+use ReCaptcha\ReCaptcha as ReCaptcha;
 
 /**
  * @Route("submission", name="submission")
@@ -62,9 +63,9 @@ class SubmissionApiController {
 	/**
 	 * @Route("/", methods="POST")
 	 * @Route("/{id}", methods="POST", requirements={"id"="\d+"})
-	 * @Request({"submission": "array", "id": "int"}, csrf=true)
+	 * @Request({"submission": "array", "id": "int", "g-recaptcha-response": "string"}, csrf=true)
 	 */
-	public function saveAction ($data, $id = 0) {
+	public function saveAction ($data, $id = 0, $gRecaptchaResponse) {
 
 		if (!$submission = Submission::find($id)) {
 			$submission = Submission::create();
@@ -81,6 +82,14 @@ class SubmissionApiController {
 			App::abort(404, 'Form not found.');
 		}
 		$submission->form = $form;
+
+		if ($form->get('recaptcha')) {
+			$resp = (new ReCaptcha(App::module('formmaker')->config('recaptha_secret_key')))->verify($gRecaptchaResponse, App::request()->server->get('REMOTE_ADDR'));
+			if (!$resp->isSuccess()) {
+				$errors = $resp->getErrorCodes();
+				App::abort(403, $errors[0]);
+			}
+		}
 
 		$submission->save($data);
 
@@ -120,7 +129,6 @@ class SubmissionApiController {
 	 * @Request({"submission_id"}, csrf=true)
 	 */
 	public function detailAction ($id) {
-		$formmaker = App::module('formmaker');
 
 		if (!$submission = Submission::where(['id = ?'], [$id])->related('form')->first()) {
 			App::abort(404, 'Submission not found.');

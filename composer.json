@@ -14,5 +14,8 @@
   ],
   "extra": {
     "image": "assets/images/image.svg"
+  },
+  "require": {
+    "google/recaptcha": "~1.1"
   }
 }

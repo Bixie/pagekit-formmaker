@@ -87,4 +87,14 @@ class FormmakerExtension extends Module {
 	public function registerType ($package) {
 		$this->types[$package['id']] = $package;
 	}
+
+	/**
+	 * public accessable config
+	 * @return array
+	 */
+	public function publicConfig () {
+		$config = static::config();
+		unset($config['recaptha_secret_key']);
+		return $config;
+	}
 }

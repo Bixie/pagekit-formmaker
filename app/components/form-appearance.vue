@@ -46,6 +46,28 @@
             </div>
         </div>
 
+        <div class="uk-margin" v-show="formitem.data.recaptcha">
+            <div class="uk-form-row">
+                <label for="form-recaptcha_label" class="uk-form-label">{{ 'reCAPTCHA label' | trans }}</label>
+
+                <div class="uk-form-controls">
+                    <input id="form-recaptcha_label" class="uk-form-width-large" type="text" name="recaptcha_label"
+                           v-model="formitem.data.recaptcha_label" placeholder="{{ 'Empty for no label' | trans}}">
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <label for="form-recaptcha_label" class="uk-form-label">{{ 'reCAPTCHA setup' | trans }}</label>
+
+                <div class="uk-form-controls">
+                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_theme" options="recaptcha_themes"></select>
+                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_type" options="recaptcha_types"></select>
+                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_size" options="recaptcha_sizes"></select>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
 </template>
@@ -54,7 +76,33 @@
 
     module.exports = {
 
-        inherit: true
+        inherit: true,
+
+        data: function () {
+            return {
+                recaptcha_themes: [
+                    {value: '', text: this.$trans('- Style -')},
+                    {value: 'light', text: this.$trans('Light')},
+                    {value: 'dark', text: this.$trans('Dark')}
+                ],
+                recaptcha_types: [
+                    {value: '', text: this.$trans('- Type -')},
+                    {value: 'image', text: this.$trans('Image')},
+                    {value: 'audio', text: this.$trans('Audio')}
+                ],
+                recaptcha_sizes: [
+                    {value: '', text: this.$trans('- Size -')},
+                    {value: 'normal', text: this.$trans('Normal')},
+                    {value: 'compact ', text: this.$trans('Compact')}
+                ]
+            }
+        },
+
+        created: function () {
+            this.formitem.data.recaptcha_theme =  this.formitem.data.recaptcha_theme || '';
+            this.formitem.data.recaptcha_type =  this.formitem.data.recaptcha_type || '';
+            this.formitem.data.recaptcha_size =  this.formitem.data.recaptcha_size || '';
+        }
 
     };
 

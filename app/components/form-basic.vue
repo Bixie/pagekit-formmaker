@@ -31,6 +31,17 @@
             </div>
         </div>
 
+        <div class="uk-form-row">
+            <span class="uk-form-label">{{ 'Google reCAPTCHA' | trans }}</span>
+
+            <div class="uk-form-controls uk-form-controls-text">
+                <label v-show="config.recaptha_sitekey && config.recaptha_secret_key">
+                    <input type="checkbox" value="hide-title" v-model="formitem.data.recaptcha"> {{ 'Use reCAPTCHA' |
+                    trans }}</label>
+                <a  v-show="!(config.recaptha_sitekey && config.recaptha_secret_key)"
+                    class="uk-link-muted" v-attr="href: $url.route('admin/system/package/extensions')">{{ 'Enter reCAPTCHA keys in the extension settings' | trans}}</a>
+            </div>
+        </div>
 
     </div>
 

@@ -19,6 +19,8 @@ $view->script('formmaker', 'formmaker:app/bundle/formmaker.js', ['vue', 'formmak
 	<div v-show="!thankyou">
 		<formmakerfields fields="{{@ fields}}"></formmakerfields>
 
+		<recaptcha v-ref="grecaptcha" v-if="formitem.data.recaptcha" sitekey="{{ config.recaptha_sitekey }}" formitem="{{ formitem }}"></recaptcha>
+
 		<div class="uk-form-row">
 			<button class="uk-button uk-button-primary" type="submit">{{ formitem.data.submitButton | trans }}</button>
 		</div>

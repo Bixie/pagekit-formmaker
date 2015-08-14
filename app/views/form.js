@@ -32,12 +32,14 @@ module.exports = {
         submit: function (e) {
             e.preventDefault();
 
-            var vm = this;
+            var vm = this, data = {submission: this.submission};
 
             this.$set('message', '');
             this.$set('error', '');
 
-            this.$http.post('api/formmaker/submission', {submission: this.submission}, function (data) {
+            this.$broadcast('submit', data);
+
+            this.$http.post('api/formmaker/submission', data, function (data) {
                 this.message = data.message;
                 if (data.submission.thankyou) {
                     vm.$set('thankyou', data.submission.thankyou);
@@ -46,16 +48,20 @@ module.exports = {
                     window.location.replace(data.submission.redirect);
                 }
             }).error(function (error) {
-                this.error = error;
+                this.error = this.$trans(error);
             });
         }
 
+    },
+
+    components: {
+        recaptcha: require('../components/recaptcha.vue')
     }
 
 };
 
 $(function () {
 
-    new Vue(module.exports).$mount('#formmaker-profile');
+    window.Formmaker = new Vue(module.exports).$mount('#formmaker-profile');
 
 });
