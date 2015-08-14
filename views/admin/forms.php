@@ -70,7 +70,14 @@
 				</td>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-				<a v-attr="href: $url.route('admin/formmaker/submissions', { filter: {form: formitem.id} })">Check submissions</a>
+				<a v-attr="href: $url.route('admin/formmaker/submissions', { filter: {form: formitem.id} })">
+					<span v-if="!formitem.nrActiveSubmissions">{{ 'View submissions' | trans}}</span>
+					<span v-if="formitem.nrActiveSubmissions" class="uk-badge uk-badge-success">
+						<span>{{ formitem.nrActiveSubmissions }}</span>
+						{{ '{1} active submission|]1,Inf[ active submissions' | transChoice formitem.nrActiveSubmissions}}
+					</span>
+
+				</a>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
 				<a v-attr="href: $url.route(formitem.url)" target="_blank">{{ formitem.url }}</a>

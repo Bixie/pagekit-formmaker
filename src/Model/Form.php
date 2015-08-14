@@ -4,6 +4,7 @@ namespace Pagekit\Formmaker\Model;
 
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
+use Pagekit\Formmaker\Model\Submission;
 
 /**
  * @Entity(tableClass="@formmaker_form")
@@ -25,6 +26,7 @@ class Form implements \JsonSerializable {
 
 	/** @var array */
 	protected static $properties = [
+		'nrActiveSubmissions' => 'getNrActiveSubmissions',
 		'url' => 'getFormUrl'
 	];
 
@@ -40,6 +42,14 @@ class Form implements \JsonSerializable {
 			$this->fields = Field::query(['form_id' => $this->id])->orderBy('priority', 'ASC')->get();
 		}
 		return $this->fields;
+	}
+
+	public function getNrActiveSubmissions () {
+		if (!$this->id) return 0;
+		return App::db()->createQueryBuilder()
+			->from('@formmaker_submission')
+			->where(['form_id' => $this->id, 'status' => Submission::STATUS_ACTIVE])
+			->count();
 	}
 
 	public function getFormUrl () {
