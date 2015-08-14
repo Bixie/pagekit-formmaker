@@ -5,7 +5,6 @@ namespace Pagekit\Formmaker\Controller;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Pagekit\Formmaker\Model\Form;
-use Pagekit\Formmaker\Model\Field;
 use Pagekit\Formmaker\Model\Submission;
 use Pagekit\Formmaker\Submission\MailHelper;
 
@@ -34,8 +33,8 @@ class SubmissionApiController {
 		if ($form) {
 			$query->where(function ($query) use ($form) { //todo why nesting
 				if (is_array($form)) {
-					$form = [2,1];
 //					$query->orWhere('form_id IN(?)', [implode(',', $form)]); //todo selects only first id
+//					$query->whereInSet('form_id', $form); //input cleaned?
 					$query->orWhere('form_id IN(' . implode(',', $form) . ')');
 				} else {
 					$query->orWhere(['form_id' => (int)$form]);

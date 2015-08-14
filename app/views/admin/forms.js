@@ -50,18 +50,7 @@ module.exports = {
                 }, this);
             }
 
-            return this.selected.indexOf(field.id.toString()) !== -1 && (!children || !this.tree[field.id] || this.isSelected(this.tree[field.id], true));
-        },
-
-        toggleSelect: function (field) {
-
-            var index = this.selected.indexOf(field.id.toString());
-
-            if (index == -1) {
-                this.selected.push(field.id.toString());
-            } else {
-                this.selected.splice(index, 1);
-            }
+            return this.selected.indexOf(field.id) !== -1;
         },
 
         getType: function (field) {

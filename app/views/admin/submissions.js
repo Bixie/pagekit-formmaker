@@ -83,11 +83,11 @@ module.exports = {
         },
 
         active: function (submission) {
-            return this.selected.indexOf(submission.id.toString()) !== -1;
+            return this.selected.indexOf(submission.id) !== -1;
         },
 
         getSelected: function () {
-            return this.submissions.filter(function(submission) { return this.selected.indexOf(submission.id.toString()) !== -1; }, this);
+            return this.submissions.filter(function(submission) { return this.selected.indexOf(submission.id) !== -1; }, this);
         },
 
         getStatusText: function (submission) {
