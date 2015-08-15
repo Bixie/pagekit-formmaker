@@ -11,13 +11,16 @@ module.exports = {
     },
 
     created: function () {
-        this.resource = this.$resource('api/formmaker/submission/:id');
+        this.resource = this.$resource('api/formmaker/submission/:id', {}, {'export': {method: 'post', url: 'api/formmaker/submission/csv'}});
         this.config.filter = _.extend({ status: '', form: '', order: 'created desc'}, this.config.filter);
         this.$on('close.submissionmodal', function () {
             if (this.$url.current.hash) {
                 window.history.replaceState({}, '', this.$url.current.href.replace('#' + this.$url.current.hash, ''));
                 this.$url.current.hash = '';
             }
+        });
+        this.$on('close.csvmodal', function () {
+            this.load();
         });
 
     },
@@ -142,7 +145,8 @@ module.exports = {
     },
 
     components: {
-        'submissiondetail': require('../../components/submission-detail.vue')
+        'submissiondetail': require('../../components/submission-detail.vue'),
+        'submissioncsv': require('../../components/submission-csv.vue')
     }
 
 };

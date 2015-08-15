@@ -26,7 +26,7 @@
 		<div class="uk-position-relative" data-uk-margin>
 
 			<div data-uk-dropdown="{ mode: 'click' }">
-				<button class="uk-button uk-button-primary" disabled>
+				<button class="uk-button" v-on="click: $.csvmodal.open()">
 					{{ 'Export csv' | trans }}</button>
 
 			</div>
@@ -89,6 +89,10 @@
 
 	<v-modal v-ref="submissionmodal" large>
 		<submissiondetail submissionid="{{ submissionID }}"></submissiondetail>
+	</v-modal>
+
+	<v-modal v-ref="csvmodal" large>
+		<submissioncsv></submissioncsv>
 	</v-modal>
 
 </div>

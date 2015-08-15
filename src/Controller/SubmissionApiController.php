@@ -4,9 +4,12 @@ namespace Pagekit\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
+use Pagekit\Util\ArrObject;
 use Pagekit\Formmaker\Model\Form;
+use Pagekit\Formmaker\Model\Field;
 use Pagekit\Formmaker\Model\Submission;
 use Pagekit\Formmaker\Submission\MailHelper;
+use Pagekit\Formmaker\Submission\CsvHelper;
 use ReCaptcha\ReCaptcha as ReCaptcha;
 
 /**
@@ -162,6 +165,65 @@ class SubmissionApiController {
 		}
 
 		return ['message' => 'success'];
+	}
+
+	/**
+	 * @Route("/csv", methods="GET")
+	 * @Request({"options": "array"}, csrf=true)
+	 */
+	public function indexCsvAction ($options = []) {
+		$count = 0;
+		$forms = [];
+		$fields = [];
+		$form = ['id' => 0];
+		$options = new ArrObject($options);
+		if ($form_id = $options->get('form_id', 0)) {
+			//get forminfo
+			$form = Form::find($form_id);
+			$fields = Field::where(['form_id = ?'], [$form_id])->get();
+			$options->set('field_ids', array_keys($fields));
+			//count exported submissions
+			$query = Submission::query();
+			$query->where(['form_id = ?'], [$form_id])->whereIn('status', $options->get('status', [])); //input cleaned?
+			$count = $query->count();
+		} else {
+			$forms = array_values(Form::findAll());
+		}
+
+		//force int
+		$options->set('status', array_map(function ($id) {return (int) $id; }, $options->get('status', [])));
+		$options->set('form_id', (int)$form_id);
+		return ['options' => $options->toArray(), 'forms' => $forms, 'formitem' => $form, 'fields' => array_values($fields), 'count' => $count];
+	}
+
+	/**
+	 * @Route("/csv", methods="POST")
+	 * @Request({"options": "array"}, csrf=true)
+	 */
+	public function exportCsvAction ($options = []) {
+		$csvString = '';
+		$options = new ArrObject($options);
+		if ($form_id = $options->get('form_id', 0)) {
+			//get forminfo
+			$form = Form::find($form_id);
+
+			//get submissions
+			$query = Submission::query();
+			$query->where(['form_id = ?'], [$form_id])->whereIn('status', $options->get('status', [])); //input cleaned?
+			$submissions = $query->orderBy('created', 'desc')->get();
+
+			$csvString = (new CsvHelper($submissions, $form, $options))->toCsv();
+
+			if ($options->get('mark_archived', false)) {
+				Submission::query()->whereIn('id', array_keys($submissions))
+					->update(['status' => Submission::STATUS_ARCHIVED]);
+			}
+
+		} else {
+			App::abort(404, 'Not a single form was given.');
+		}
+
+		return ['csv' => $csvString];
 	}
 
 }

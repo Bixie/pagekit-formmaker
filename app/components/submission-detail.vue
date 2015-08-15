@@ -41,9 +41,9 @@
 
     </div>
 
-    <p class="uk-text-right">
-        <button class="uk-button uk-modal-close">{{ 'Close' | trans}}</button>
-    </p>
+    <div class="uk-modal-footer uk-text-right">
+        <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans}}</button>
+    </div>
 
 </template>
 
