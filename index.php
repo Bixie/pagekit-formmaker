@@ -121,7 +121,7 @@ return [
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
 			if ($app['user']->hasAccess('formmaker: manage submissions')) {
-				$scripts->register('widget-formmaker', 'formmaker:app/bundle/widget-formmaker.js', ['~dashboard', 'uikit-datepicker']);
+				$scripts->register('widget-formmaker', 'formmaker:app/bundle/widget-formmaker.js', ['~dashboard']);
 			}
 			$scripts->register('formmaker-settings', 'formmaker:app/bundle/settings.js', '~extensions');
 			$scripts->register('node-formmaker', 'formmaker:app/bundle/node-formmaker.js', '~site-edit');
