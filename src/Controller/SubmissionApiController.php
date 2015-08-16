@@ -10,7 +10,7 @@ use Pagekit\Formmaker\Model\Field;
 use Pagekit\Formmaker\Model\Submission;
 use Pagekit\Formmaker\Submission\MailHelper;
 use Pagekit\Formmaker\Submission\CsvHelper;
-use ReCaptcha\ReCaptcha as ReCaptcha;
+use ReCaptcha\ReCaptcha;
 
 /**
  * @Route("submission", name="submission")
@@ -68,7 +68,7 @@ class SubmissionApiController {
 	 * @Route("/{id}", methods="POST", requirements={"id"="\d+"})
 	 * @Request({"submission": "array", "id": "int", "g-recaptcha-response": "string"}, csrf=true)
 	 */
-	public function saveAction ($data, $id = 0, $gRecaptchaResponse) {
+	public function saveAction ($data, $id = 0, $gRecaptchaResponse ='') {
 
 		if (!$submission = Submission::find($id)) {
 			$submission = Submission::create();
@@ -86,7 +86,7 @@ class SubmissionApiController {
 		}
 		$submission->form = $form;
 
-		if ($form->get('recaptcha')) {
+		if ($form->get('recaptcha') && $id == 0) {
 			$resp = (new ReCaptcha(App::module('formmaker')->config('recaptha_secret_key')))->verify($gRecaptchaResponse, App::request()->server->get('REMOTE_ADDR'));
 			if (!$resp->isSuccess()) {
 				$errors = $resp->getErrorCodes();
