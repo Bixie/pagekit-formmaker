@@ -9,7 +9,6 @@
                 <input id="form-title" class="uk-form-width-large" type="text" name="title"
                        v-model="formitem.title" v-valid="required">
             </div>
-            <!-- //todo show req error-->
             <p class="uk-form-help-block uk-text-danger" v-show="form.title.invalid">{{ 'Please enter a title' | trans }}</p>
         </div>
         <div class="uk-form-row">

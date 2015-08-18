@@ -53,10 +53,6 @@
     <h3 class="uk-h1 uk-text-muted uk-text-center" v-show="fields && !fields.length">{{ 'No fields found.' | trans
         }}</h3>
 
-    <v-modal v-ref="editmodal" large>
-        <fieldedit formitem="{{@ formitem }}" fieldid="{{ editid }}"></fieldedit>
-    </v-modal>
-
     <script id="field" type="text/template">
         <li class="uk-nestable-item" v-class="uk-active: isSelected(field)" data-id="{{ field.id }}">
 
@@ -161,17 +157,6 @@
                     this.load();
                     this.$notify('Field(s) deleted.');
                 });
-            },
-
-            editFormField: function (id) {
-
-                this.editid = id;
-                this.$.editmodal.open();
-
-//                this.$nextTick(function () {
-//                    //todo close dropdown ;~!
-//                    $(this.$.editmodal.$el).find('.uk-modal-dialog').focus();
-//                });
             }
 
 

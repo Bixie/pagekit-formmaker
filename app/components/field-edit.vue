@@ -1,6 +1,6 @@
 <template>
     <div class="uk-modal-spinner" v-if="!loaded"></div>
-    <form id="field-edit" class="uk-form" name="form" v-on="valid: save" v-show="loaded">
+    <form id="field-edit" class="uk-form" name="fieldform" v-on="valid: save" v-show="loaded">
 
         <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
             <div data-uk-margin>
@@ -105,6 +105,11 @@
                 }, function (data) {
                     this.$notify(data, 'danger');
                 });
+            },
+            formFieldInvalid: function (fieldname) {
+                console.log(this.$parent);
+                console.log(this.$validator.validators);
+
             }
 
         },

@@ -14,7 +14,8 @@ module.exports = Vue.extend({
                     submitButton: 'Submit',
                     formStyle: 'uk-form-stacked'
                 }
-            }
+            },
+            editid: ''
         }, window.$data);
     },
 
@@ -61,6 +62,15 @@ module.exports = Vue.extend({
             }, function (data) {
                 this.$notify(data, 'danger');
             });
+        },
+
+        editFormField: function (id) {
+            this.editid = id;
+            this.$.editmodal.open();
+//                this.$nextTick(function () {
+//                    //todo close dropdown ;~!
+//                    $(this.$.editmodal.$el).find('.uk-modal-dialog').focus();
+//                });
         }
     },
 

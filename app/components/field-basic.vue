@@ -11,8 +11,8 @@
                         <input id="form-label" class="uk-form-width-large" type="text" name="label"
                                v-model="field.label" v-valid="required">
                     </div>
-                    <!-- //todo fix req message -->
-                    <p class="uk-form-help-block uk-text-danger" v-show="formform.label.invalid">{{ 'Please enter a label' | trans }}</p>
+                    <!-- //todo fix req message form is added to VModel Vue, not the actual parent-->
+                    <p class="uk-form-help-block uk-text-danger" v-show="fieldform.label.invalid">{{ 'Please enter a label' | trans }}</p>
                 </div>
                 <div class="uk-form-row">
                     <label for="form-slug" class="uk-form-label">{{ 'Slug' | trans }}</label>
