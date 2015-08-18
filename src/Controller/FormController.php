@@ -13,7 +13,7 @@ use Pagekit\Formmaker\Model\Form;
 class FormController {
 
 	/**
-	 * @Route("/edit")
+	 * @Route("/edit", name="edit")
 	 * @Request({"id": "int"})
 	 */
 	public function editAction ($id = 0) {

@@ -53,7 +53,7 @@ class Form implements \JsonSerializable {
 	}
 
 	public function getFormUrl () {
-		return  App::url('@formmaker/form', ['id' => $this->id]);
+		return  App::url('@formmaker/front/form', ['id' => $this->id]);
 	}
 
 	/**
@@ -61,7 +61,9 @@ class Form implements \JsonSerializable {
 	 */
 	public function jsonSerialize () {
 		$form = $this->toArray();
-		unset($form['data']['submitEmail']);
+		if (is_array($form['data'])) {
+			unset($form['data']['submitEmail']);
+		}
 		return $form;
 	}
 
