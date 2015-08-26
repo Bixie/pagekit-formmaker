@@ -36,7 +36,6 @@
 		<div class="uk-switcher uk-margin" v-el="content">
 			<div>
 				<formbasic></formbasic>
-				<pre>{{form}}</pre>
 			</div>
 			<div>
 				<formfields v-ref="formfields"></formfields>
