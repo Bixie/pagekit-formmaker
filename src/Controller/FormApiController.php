@@ -5,7 +5,7 @@ namespace Pagekit\Formmaker\Controller;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Pagekit\Formmaker\Model\Form;
-use Pagekit\Formmaker\Model\Profilevalue;
+use Pagekit\Formmaker\Model\Field;
 
 /**
  * @Route("form", name="form")
@@ -69,13 +69,13 @@ class FormApiController {
 	 * @Request({"id": "int"}, csrf=true)
 	 */
 	public function deleteAction ($id) {
-		if ($field = Form::find($id)) {
+		if ($form = Form::find($id)) {
 
-			foreach (Profilevalue::where(['field_id = :id'], [':id' => $id])->get() as $profilevalue) {
-				$profilevalue->delete();
+			foreach (Field::where(['field_id = :id'], [':id' => $id])->get() as $field) {
+				$field->delete();
 			}
 
-			$field->delete();
+			$form->delete();
 		}
 
 		return ['message' => 'success'];
