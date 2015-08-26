@@ -8,7 +8,7 @@ use Pagekit\Formmaker\Model\Form;
 class SiteController {
 
 	/**
-	 * @Route("/{id}", name="front/form")
+	 * @Route("/{id}", name="form/front")
 	 */
 	public function formAction ($id = 0) {
 		$user = App::user();

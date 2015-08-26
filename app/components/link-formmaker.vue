@@ -39,7 +39,7 @@
         watch: {
 
             formid: function (formid) {
-                this.link = '@formmaker/front/form?id=' + formid;
+                this.link = '@formmaker/form/front?id=' + formid;
             }
 
         },
