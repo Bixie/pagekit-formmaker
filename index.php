@@ -10,8 +10,7 @@ return [
 
 	'autoload' => [
 
-		'Pagekit\\Formmaker\\' => 'src',
-		'ReCaptcha\\' => 'vendor/google/recaptcha/src/ReCaptcha' //todo is this right??
+		'Pagekit\\Formmaker\\' => 'src'
 
 	],
 
