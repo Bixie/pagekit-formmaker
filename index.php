@@ -46,7 +46,7 @@ return [
 
 		'formmaker' => [
 			'label' => 'Formmaker',
-			'icon' => 'extensions/formmaker/assets/images/image.svg',
+			'icon' => 'packages/bixie/formmaker/icon.svg',
 			'url' => '@formmaker',
 			// 'access' => 'formmaker: manage hellos',
 			'active' => '@formmaker(/*)'
@@ -98,19 +98,6 @@ return [
 
 	'events' => [
 
-		'enable.formmaker' => function () use ($app) {
-			// run all migrations that are newer than the current version
-			if ($version = $app['migrator']->create('formmaker:migrations', $this->config('version'))->run()) {
-				$app->config($this->name)->set('version', $version);
-			}
-			$app->config($this->name)->set('from_address', $app->config('system/mail')->get('from_address', '')); //todo shouldn't this be done by PackageController?
-
-		},
-
-		'disable.formmaker' => function () use ($app) {
-			// disable hook
-		},
-
 		'uninstall.formmaker' => function () use ($app) {
 			// downgrade all migrations
 			$app['migrator']->create('formmaker:migrations', $this->config('version'))->run(0);
@@ -145,7 +132,7 @@ return [
 				foreach ($formmaker->getTypes() as $type) {
 					if (isset($type['style'])) {
 						foreach ($type['style'] as $name => $source) {
-							$styles->add('uikit-form-select', 'vendor/assets/uikit/css/components/form-select.css');
+							$styles->add($name, $source);
 
 						}
 					}

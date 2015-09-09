@@ -2,7 +2,7 @@
 
 return [
 
-	'up' => function () use ($app) {
+    'install' => function ($app) {
 
 		$util = $app['db']->getUtility();
 
@@ -15,7 +15,7 @@ return [
 				$table->addColumn('label', 'string', ['length' => 255]);
 				$table->addColumn('slug', 'string', ['length' => 255]);
 				$table->addColumn('options', 'json_array', ['notnull' => false]);
-				$table->addColumn('roles', 'json_array', ['notnull' => false]);
+				$table->addColumn('roles', 'simple_array', ['notnull' => false]);
 				$table->addColumn('data', 'json_array', ['notnull' => false]);
 				$table->setPrimaryKey(['id']);
 				$table->addIndex(['form_id'], 'FORMMAKER_FIELD_FORMID');
@@ -45,15 +45,24 @@ return [
 				$table->setPrimaryKey(['id']);
 			});
 		}
-	},
 
-	'down' => function () use ($app) {
+    },
 
-		$util = $app['db']->getUtility();
+    'uninstall' => function ($app) {
 
-		if ($util->tableExists('@formmaker_fields')) {
-			$util->dropTable('@formmaker_fields');
-		}
-	}
+        $util = $app['db']->getUtility();
+
+        if ($util->tableExists('@formmaker_field')) {
+            $util->dropTable('@formmaker_field');
+        }
+
+        if ($util->tableExists('@formmaker_form')) {
+            $util->dropTable('@formmaker_form');
+        }
+
+        if ($util->tableExists('@formmaker_submission')) {
+            $util->dropTable('@formmaker_submission');
+        }
+    }
 
 ];

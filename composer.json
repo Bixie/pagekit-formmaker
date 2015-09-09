@@ -1,5 +1,5 @@
 {
-  "name": "pagekit/formmaker",
+  "name": "bixie/formmaker",
   "type": "pagekit-extension",
   "version": "0.1.0",
   "title": "Formmaker",
@@ -13,7 +13,8 @@
     }
   ],
   "extra": {
-    "image": "assets/images/image.svg"
+    "icon": "icon.svg",
+    "scripts": "scripts.php"
   },
   "require": {
     "google/recaptcha": "~1.1"

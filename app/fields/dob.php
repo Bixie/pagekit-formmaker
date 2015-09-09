@@ -6,7 +6,7 @@ return [
 	'required' => 0,
 	'multiple' => 0,
 	'dependancies' => ['uikit-form-select', 'uikit-datepicker'],
-	'style' => ['uikit-form-select' => 'vendor/assets/uikit/css/components/form-select.css'],
+	'style' => ['uikit-form-select' => 'app/assets/uikit/css/components/form-select.css'],
 	'formatValue' => function ($field, $value) {
 		$formats = ['DD-MM-YYYY' => 'F, m Y', 'MM-DD-YYYY' => 'm F Y'];
 		try {

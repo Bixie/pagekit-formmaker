@@ -86,6 +86,6 @@
 
     };
 
-    window.PackageManager.components['settings-formmaker'] = module.exports;
+    window.Extensions.components['settings-formmaker'] = module.exports;
 
 </script>
