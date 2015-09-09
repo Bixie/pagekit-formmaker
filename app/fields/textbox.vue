@@ -35,10 +35,15 @@
             }}</label>
 
         <div class="uk-form-controls">
-            <textarea class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+            <textarea v-if="minLength || maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
                    v-model="dataObject.value"
-                   v-valid="required: fieldRequired, minLength: field.data.minLength, maxLength: field.data.maxLength"></textarea>
+                   v-valid="required: fieldRequired, minLength: minLength, maxLength: maxLength"></textarea>
+
+            <textarea v-if="!minLength && !maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+                   v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
+                   v-model="dataObject.value"
+                   v-valid="required: fieldRequired"></textarea>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>
@@ -68,6 +73,15 @@
             this.field.data.rows = this.field.data.rows || 4;
             this.field.data.minLength = this.field.data.minLength || 0;
             this.field.data.maxLength = this.field.data.maxLength || 0;
+        },
+
+        computed: {
+            minLength: function () {
+                return this.field.data.minLength && !this.isAdmin ? this.field.data.minLength : false;
+            },
+            maxLength: function () {
+                return this.field.data.maxLength && !this.isAdmin ? this.field.data.maxLength : false;
+            }
         }
 
     };

@@ -3,7 +3,7 @@
   "type": "pagekit-extension",
   "version": "0.1.0",
   "title": "Formmaker",
-  "description": "Formmaker for Pagekit",
+  "description": "Create forms in your Pagekit site. Build forms and manage the submissions.",
   "license": "MIT",
   "authors": [
     {

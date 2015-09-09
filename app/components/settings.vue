@@ -71,7 +71,7 @@
 
             save: function () {
                 this.$http.post('admin/system/settings/config', {
-                    name: this.package.name.replace('pagekit/', ''),
+                    name: 'formmaker',
                     config: this.package.config
                 }, function () {
                     this.$notify('Settings saved.', '');

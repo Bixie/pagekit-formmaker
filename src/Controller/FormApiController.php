@@ -71,7 +71,7 @@ class FormApiController {
 	public function deleteAction ($id) {
 		if ($form = Form::find($id)) {
 
-			foreach (Field::where(['field_id = :id'], [':id' => $id])->get() as $field) {
+			foreach (Field::where(['form_id = :id'], [':id' => $id])->get() as $field) {
 				$field->delete();
 			}
 

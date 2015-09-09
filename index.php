@@ -88,10 +88,10 @@ return [
 	'settings' => 'settings-formmaker',
 
 	'config' => [
-		'submissions_per_page' => 20,
-		'from_address' => function () use ($app) {
-			return $app->config('system/mail')->get('from_address', '');
-		}
+		'from_address' => '',
+		'recaptha_sitekey' => '',
+		'recaptha_secret_key' => '',
+		'submissions_per_page' => 20
 
 	],
 
