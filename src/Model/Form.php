@@ -62,7 +62,7 @@ class Form implements \JsonSerializable {
 	 */
 	public function jsonSerialize () {
 		$form = $this->toArray();
-		if (is_array($form['data'])) {
+		if (is_array($form['data']) && !App::user()->isAdministrator()) {
 			unset($form['data']['submitEmail']);
 		}
 		return $form;
