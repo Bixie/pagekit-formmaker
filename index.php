@@ -137,8 +137,13 @@ return [
 					}
 				}
 			}
-		}
+		},
 
+        'console.init' => function ($event, $console) {
+
+			$console->add(new \Pagekit\Formmaker\Console\Commands\FormmakerTranslateCommand());
+
+		}
 	]
 
 ];

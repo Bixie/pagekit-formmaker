@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pagekit UNKNOWN (bixie/formmaker, messages)\n"
-"POT-Creation-Date: 2015-09-09 22:27+0000\n"
+"POT-Creation-Date: 2015-09-10 09:59+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,6 +60,9 @@ msgstr ""
 msgid "Manage options"
 msgstr ""
 
+msgid "Add option"
+msgstr ""
+
 msgid "Title"
 msgstr ""
 
@@ -73,6 +76,9 @@ msgid "Text submit button"
 msgstr ""
 
 msgid "reCAPTCHA label"
+msgstr ""
+
+msgid "Empty for no label"
 msgstr ""
 
 msgid "reCAPTCHA setup"
@@ -96,6 +102,9 @@ msgstr ""
 msgid "Use reCAPTCHA"
 msgstr ""
 
+msgid "Enter reCAPTCHA keys in the extension settings"
+msgstr ""
+
 msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
 msgstr ""
 
@@ -114,6 +123,9 @@ msgstr ""
 msgid "Enable Markdown"
 msgstr ""
 
+msgid "Save form before adding fields."
+msgstr ""
+
 msgid "Delete"
 msgstr ""
 
@@ -124,6 +136,9 @@ msgid "Type"
 msgstr ""
 
 msgid "No fields found."
+msgstr ""
+
+msgid "Available variables"
 msgstr ""
 
 msgid "After submit"
@@ -147,7 +162,13 @@ msgstr ""
 msgid "Google reCAPTCHA secret key"
 msgstr ""
 
+msgid "Setup your reCaptcha keys at Google Recaptcha"
+msgstr ""
+
 msgid "Submissions per page"
+msgstr ""
+
+msgid "Export submissions as CSV file"
 msgstr ""
 
 msgid "Archived"
@@ -186,10 +207,31 @@ msgstr ""
 msgid "Mark exported as \"Archived\""
 msgstr ""
 
+msgid "Close"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
 msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
 msgstr ""
 
 msgid "Submission for form \"%formtitle%\""
+msgstr ""
+
+msgid "Submission date"
+msgstr ""
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Remote IP address"
+msgstr ""
+
+msgid "Email sent to"
 msgstr ""
 
 msgid "No email provided"
@@ -333,6 +375,9 @@ msgstr ""
 msgid "No forms found."
 msgstr ""
 
+msgid "View submissions"
+msgstr ""
+
 msgid "{1} active submission|]1,Inf[ active submissions"
 msgstr ""
 
@@ -340,9 +385,6 @@ msgid "Mark as done"
 msgstr ""
 
 msgid "Export csv"
-msgstr ""
-
-msgid "Submission date"
 msgstr ""
 
 msgid "No submissions found."
