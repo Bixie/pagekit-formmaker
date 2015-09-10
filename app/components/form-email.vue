@@ -6,7 +6,7 @@
             <div class="uk-width-medium-3-4">
 
                 <div class="uk-alert" v-show="formitem.data.user_email_field">
-                    {{ 'Email address from field "%field%" wil be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>
+                    {{ 'Email address from field "%field%" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>
                 <div class="uk-alert uk-alert-warning" v-show="!formitem.data.user_email_field">
                     {{ 'No email field is selected for user confirmation mail.' | trans }}</div>
 

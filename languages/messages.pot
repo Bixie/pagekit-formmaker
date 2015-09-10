@@ -1,0 +1,350 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pagekit UNKNOWN (bixie/formmaker, messages)\n"
+"POT-Creation-Date: 2015-09-09 22:27+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Label"
+msgstr ""
+
+msgid "Hide Label"
+msgstr ""
+
+msgid "Class suffix"
+msgstr ""
+
+msgid "Required error message"
+msgstr ""
+
+msgid "Please enter a label"
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Field required"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Multiple values"
+msgstr ""
+
+msgid "Multiple"
+msgstr ""
+
+msgid "Restrict Access"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Manage options"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Hide Title"
+msgstr ""
+
+msgid "Form style"
+msgstr ""
+
+msgid "Text submit button"
+msgstr ""
+
+msgid "reCAPTCHA label"
+msgstr ""
+
+msgid "reCAPTCHA setup"
+msgstr ""
+
+msgid "Please enter a title"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Google reCAPTCHA"
+msgstr ""
+
+msgid "Use reCAPTCHA"
+msgstr ""
+
+msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
+msgstr ""
+
+msgid "No email field is selected for user confirmation mail."
+msgstr ""
+
+msgid "Email submission to"
+msgstr ""
+
+msgid "Please enter valid email address"
+msgstr ""
+
+msgid "Email subject"
+msgstr ""
+
+msgid "Enable Markdown"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Add Field"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "No fields found."
+msgstr ""
+
+msgid "After submit"
+msgstr ""
+
+msgid "Redirect"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Formmaker Settings"
+msgstr ""
+
+msgid "Default mail address"
+msgstr ""
+
+msgid "Google reCAPTCHA sitekey"
+msgstr ""
+
+msgid "Google reCAPTCHA secret key"
+msgstr ""
+
+msgid "Submissions per page"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Data to export"
+msgstr ""
+
+msgid "Id"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "IP address"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Fields to export"
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "Mark exported as \"Archived\""
+msgstr ""
+
+msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
+msgstr ""
+
+msgid "Submission for form \"%formtitle%\""
+msgstr ""
+
+msgid "No email provided"
+msgstr ""
+
+msgid "Submission data"
+msgstr ""
+
+msgid "Filter forms"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Done submissions"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Number of submissions"
+msgstr ""
+
+msgid "{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions"
+msgstr ""
+
+msgid "{0} Submissions|{1} Submission|]1,Inf[ Submissions"
+msgstr ""
+
+msgid "Checkboxes"
+msgstr ""
+
+msgid "Date of birth"
+msgstr ""
+
+msgid "Date format"
+msgstr ""
+
+msgid "Minimum age"
+msgstr ""
+
+msgid "Maximum age"
+msgstr ""
+
+msgid "Email field"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Submission email"
+msgstr ""
+
+msgid "Send submission confirmation to this address"
+msgstr ""
+
+msgid "Html code"
+msgstr ""
+
+msgid "Pulldown"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Radio bullets"
+msgstr ""
+
+msgid "Textfield"
+msgstr ""
+
+msgid "Text area"
+msgstr ""
+
+msgid "Rows textarea"
+msgstr ""
+
+msgid "Min / Max length input"
+msgstr ""
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Invalid slug."
+msgstr ""
+
+msgid "Field not found."
+msgstr ""
+
+msgid "Type not found."
+msgstr ""
+
+msgid "Form not found."
+msgstr ""
+
+msgid "Formmaker"
+msgstr ""
+
+msgid "Submissions"
+msgstr ""
+
+msgid "Form not found!"
+msgstr ""
+
+msgid "Insufficient User Rights."
+msgstr ""
+
+msgid "Field type not found."
+msgstr ""
+
+msgid "Unable to send confirmation mail."
+msgstr ""
+
+msgid "Edit form"
+msgstr ""
+
+msgid "Preview form"
+msgstr ""
+
+msgid "Add form"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Fields"
+msgstr ""
+
+msgid "Submission"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "No forms found."
+msgstr ""
+
+msgid "{1} active submission|]1,Inf[ active submissions"
+msgstr ""
+
+msgid "Mark as done"
+msgstr ""
+
+msgid "Export csv"
+msgstr ""
+
+msgid "Submission date"
+msgstr ""
+
+msgid "No submissions found."
+msgstr ""
+
