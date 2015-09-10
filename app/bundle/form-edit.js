@@ -67,6 +67,9 @@ var Forms =
 	    },
 
 	    created: function () {
+	        this.$on('close.editmodal', function () {
+	            this.$.formfields.load();
+	        });
 	    },
 
 	    ready: function () {
@@ -219,9 +222,6 @@ var Forms =
 	        created: function () {
 	            this.Fields = this.$resource('api/formmaker/field/:id');
 	            this.load();
-	            this.$on('close.editmodal', function () {
-	                this.load();
-	            });
 	        },
 
 	        methods: {

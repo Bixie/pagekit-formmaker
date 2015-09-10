@@ -99,9 +99,6 @@
         created: function () {
             this.Fields = this.$resource('api/formmaker/field/:id');
             this.load();
-            this.$on('close.editmodal', function () {
-                this.load();
-            });
         },
 
         methods: {

@@ -20,6 +20,9 @@ module.exports = Vue.extend({
     },
 
     created: function () {
+        this.$on('close.editmodal', function () {
+            this.$.formfields.load();
+        });
     },
 
     ready: function () {
