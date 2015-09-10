@@ -1,6 +1,6 @@
 <template>
 
-    <div class="uk-alert" v-show="!formitem.id">{{ 'Save form before adding fields.' | trans}}</div>
+    <div class="uk-alert" v-show="!formitem.id">{{ 'Save form before adding fields.' | trans }}</div>
 
     <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin v-show="formitem.id">
         <div class="uk-flex uk-flex-middle uk-flex-wrap" data-uk-margin>

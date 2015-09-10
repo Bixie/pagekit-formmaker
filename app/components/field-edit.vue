@@ -6,10 +6,10 @@
             <div data-uk-margin>
 
                 <h2 class="uk-margin-remove" v-if="field.id">{{ 'Edit' | trans }} {{ type.label }} <em>{{
-                    field.label | trans}}</em></h2>
+                    field.label | trans }}</em></h2>
 
                 <h2 class="uk-margin-remove" v-if="!field.id">{{ 'Add' | trans }} {{ type.label }} <em>{{
-                    field.label | trans}}</em></h2>
+                    field.label | trans }}</em></h2>
 
             </div>
             <div data-uk-margin>

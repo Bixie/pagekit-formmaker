@@ -52,7 +52,7 @@
 
                 <div class="uk-form-controls">
                     <input id="form-recaptcha_label" class="uk-form-width-large" type="text" name="recaptcha_label"
-                           v-model="formitem.data.recaptcha_label" placeholder="{{ 'Empty for no label' | trans}}">
+                           v-model="formitem.data.recaptcha_label" placeholder="{{ 'Empty for no label' | trans }}">
                 </div>
             </div>
 

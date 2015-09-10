@@ -1,7 +1,7 @@
 <template>
 
     <div class="uk-modal-header">
-        <h2>{{ 'Export submissions as CSV file' | trans}}</h2>
+        <h2>{{ 'Export submissions as CSV file' | trans }}</h2>
     </div>
 
     <div class="uk-margin uk-form uk-form-stacked">
@@ -116,16 +116,16 @@
     </div>
 
     <div class="uk-modal-footer uk-text-right">
-        <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans}}</button>
+        <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans }}</button>
         <button type="button" class="uk-button uk-button-primary"
                 v-show="!csvLink" v-on="click: doExport" v-el="export"
                 v-attr="disabled: !formLoaded">
             <i v-show="exporting" class="uk-icon-spinner uk-icon-spin"></i>
-            <span v-show="!exporting">{{ 'Export' | trans}}</span>
+            <span v-show="!exporting">{{ 'Export' | trans }}</span>
         </button>
         <!-- //todo downloadname is buggy-->
         <a v-attr="href: csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
-               v-show="csvLink" v-el="exportlink"><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans}}</a>
+               v-show="csvLink" v-el="exportlink"><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
     </div>
 
 </template>
