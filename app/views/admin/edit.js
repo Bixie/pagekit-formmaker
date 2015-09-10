@@ -11,7 +11,7 @@ module.exports = Vue.extend({
                     thankyou_markdown: true,
                     email_body_markdown: true,
                     afterSubmit: 'thankyou',
-                    submitButton: 'Submit',
+                    submitButton: this.$trans('Submit'),
                     formStyle: 'uk-form-stacked'
                 }
             },

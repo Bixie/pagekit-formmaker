@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pagekit UNKNOWN (bixie/formmaker, messages)\n"
-"POT-Creation-Date: 2015-09-10 09:59+0000\n"
+"POT-Creation-Date: 2015-09-10 11:29+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,7 +9,67 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Forms"
+msgstr ""
+
+msgid "Submissions"
+msgstr ""
+
 msgid "Label"
+msgstr ""
+
+msgid "Manage options"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Save form before adding fields."
+msgstr ""
+
+msgid "Available variables"
+msgstr ""
+
+msgid "After submit"
+msgstr ""
+
+msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Submission for form \"%formtitle%\""
+msgstr ""
+
+msgid "Export submissions as CSV file"
+msgstr ""
+
+msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
+msgstr ""
+
+msgid "Date format"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Enable Markdown"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Formmaker Settings"
+msgstr ""
+
+msgid "Filter forms"
+msgstr ""
+
+msgid "{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions"
 msgstr ""
 
 msgid "Hide Label"
@@ -42,9 +102,6 @@ msgstr ""
 msgid "Restrict Access"
 msgstr ""
 
-msgid "Edit"
-msgstr ""
-
 msgid "Add"
 msgstr ""
 
@@ -57,13 +114,7 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-msgid "Manage options"
-msgstr ""
-
 msgid "Add option"
-msgstr ""
-
-msgid "Title"
 msgstr ""
 
 msgid "Hide Title"
@@ -120,12 +171,6 @@ msgstr ""
 msgid "Email subject"
 msgstr ""
 
-msgid "Enable Markdown"
-msgstr ""
-
-msgid "Save form before adding fields."
-msgstr ""
-
 msgid "Delete"
 msgstr ""
 
@@ -138,19 +183,7 @@ msgstr ""
 msgid "No fields found."
 msgstr ""
 
-msgid "Available variables"
-msgstr ""
-
-msgid "After submit"
-msgstr ""
-
 msgid "Redirect"
-msgstr ""
-
-msgid "Form"
-msgstr ""
-
-msgid "Formmaker Settings"
 msgstr ""
 
 msgid "Default mail address"
@@ -166,9 +199,6 @@ msgid "Setup your reCaptcha keys at Google Recaptcha"
 msgstr ""
 
 msgid "Submissions per page"
-msgstr ""
-
-msgid "Export submissions as CSV file"
 msgstr ""
 
 msgid "Archived"
@@ -216,9 +246,6 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
-msgstr ""
-
 msgid "Submission for form \"%formtitle%\""
 msgstr ""
 
@@ -240,9 +267,6 @@ msgstr ""
 msgid "Submission data"
 msgstr ""
 
-msgid "Filter forms"
-msgstr ""
-
 msgid "Show all"
 msgstr ""
 
@@ -258,9 +282,6 @@ msgstr ""
 msgid "Number of submissions"
 msgstr ""
 
-msgid "{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions"
-msgstr ""
-
 msgid "{0} Submissions|{1} Submission|]1,Inf[ Submissions"
 msgstr ""
 
@@ -270,9 +291,6 @@ msgstr ""
 msgid "Date of birth"
 msgstr ""
 
-msgid "Date format"
-msgstr ""
-
 msgid "Minimum age"
 msgstr ""
 
@@ -280,9 +298,6 @@ msgid "Maximum age"
 msgstr ""
 
 msgid "Email field"
-msgstr ""
-
-msgid "Placeholder"
 msgstr ""
 
 msgid "Submission email"
@@ -295,9 +310,6 @@ msgid "Html code"
 msgstr ""
 
 msgid "Pulldown"
-msgstr ""
-
-msgid "Size"
 msgstr ""
 
 msgid "Radio bullets"
@@ -390,3 +402,107 @@ msgstr ""
 msgid "No submissions found."
 msgstr ""
 
+msgid "%type% saved."
+msgstr ""
+
+msgid "- Style -"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "- Type -"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "- Size -"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Compact"
+msgstr ""
+
+msgid "Select form"
+msgstr ""
+
+msgid "Day"
+msgstr ""
+
+msgid "Month"
+msgstr ""
+
+msgid "Year"
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "February"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "April"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "October"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "December"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Thank you for your submission"
+msgstr ""
+
+msgid "Show Thank you message"
+msgstr ""
+
+msgid "Redirect to page"
+msgstr ""
+
+msgid "Form %title% saved."
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Filter by"
+msgstr ""
+
+msgid "Form"
+msgstr ""
