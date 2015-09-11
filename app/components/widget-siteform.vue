@@ -19,10 +19,10 @@
             </div>
 
             <div class="uk-form-row">
-                <span class="uk-form-label">{{ 'Title' | trans }}</span>
+                <span class="uk-form-label">{{ 'Form title' | trans }}</span>
 
                 <div class="uk-form-controls uk-form-controls-text">
-                    <label><input type="checkbox" value="hide-title" v-model="widget.data.hide_title"> {{ 'Hide Form title' |
+                    <label><input type="checkbox" value="hide-title" v-model="widget.data.hide_title"> {{ 'Hide form title' |
                         trans }}</label>
                 </div>
             </div>
