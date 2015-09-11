@@ -45,7 +45,7 @@ class Form implements \JsonSerializable {
 	}
 
 	public function getNrActiveSubmissions () {
-		if (!$this->id) return 0;
+		if (!$this->id || !App::user()->isAdministrator()) return 0;
 		return App::db()->createQueryBuilder()
 			->from('@formmaker_submission')
 			->where(['form_id' => $this->id, 'status' => Submission::STATUS_ACTIVE])
