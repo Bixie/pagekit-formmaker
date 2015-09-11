@@ -23,17 +23,15 @@ class SiteController {
 		if (!App::node()->hasAccess(App::user())) {
 			App::abort(403, __('Insufficient User Rights.'));
 		}
-		if ($form->get('recaptcha')) {
-			App::view()->on('footer', function ($event) {
-				$event->addResult('<script src="https://www.google.com/recaptcha/api.js?onload=grecacapthaCallback&render=explicit" async defer></script>');
-			});
-		}
+
+		$form->prepareView();
+
 		return [
 			'$view' => [
 				'title' => __($form->title),
 				'name' => 'formmaker:views/form.php'
 			],
-			'$data' => [
+			'$formmaker' => [
 				'config' => App::module('formmaker')->publicConfig(),
 				'formitem' => $form,
 				'fields' => array_values($form->fields)

@@ -11,7 +11,7 @@ module.exports = {
             status: 1,
             data: {}
         }
-    }, window.$data),
+    }, window.$formmaker),
 
     created: function () {
         //prepare submission
@@ -62,6 +62,6 @@ module.exports = {
 
 $(function () {
 
-    window.Formmaker = new Vue(module.exports).$mount('#formmaker-profile');
+    window.Formmaker = new Vue(module.exports).$mount('#formmaker-form');
 
 });

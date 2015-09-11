@@ -116,18 +116,9 @@ return [
 		},
 
 		'view.styles' => function ($event, $styles) use ($app) {
-			//todo this should be prettier
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@formmaker') === 0) {
-				$formmaker = $app->module('formmaker');
-				foreach ($formmaker->getTypes() as $type) {
-					if (isset($type['style'])) {
-						foreach ($type['style'] as $name => $source) {
-							$styles->add($name, $source);
-
-						}
-					}
-				}
+				$app->module('formmaker')->typeStyles($styles);
 			}
 		},
 

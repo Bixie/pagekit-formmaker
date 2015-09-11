@@ -59,7 +59,7 @@ var Forms =
 	            status: 1,
 	            data: {}
 	        }
-	    }, window.$data),
+	    }, window.$formmaker),
 
 	    created: function () {
 	        //prepare submission
@@ -110,7 +110,7 @@ var Forms =
 
 	$(function () {
 
-	    window.Formmaker = new Vue(module.exports).$mount('#formmaker-profile');
+	    window.Formmaker = new Vue(module.exports).$mount('#formmaker-form');
 
 	});
 

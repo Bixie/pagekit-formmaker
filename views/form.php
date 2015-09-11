@@ -2,7 +2,7 @@
 $view->script('formmaker', 'formmaker:app/bundle/formmaker.js', ['vue', 'formmaker-formmakerfields']);
 ?>
 
-<form id="formmaker-profile" class="uk-form {{ formitem.data.formStyle }} {{ formitem.data.classSfx }}"
+<form id="formmaker-form" class="uk-form {{ formitem.data.formStyle }} {{ formitem.data.classSfx }}"
 	  name="form" v-on="valid: submit" v-cloak>
 
 	<h1 class="uk-article-title" v-if="!formitem.data.hide_title">{{ formitem.title }}</h1>
