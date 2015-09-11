@@ -33,28 +33,29 @@ class FormmakerPlugin implements EventSubscriberInterface
         }
 
 		$user = App::user();
+		$formmaker = App::module('formmaker');
 
 		if (!$form = Form::where(['id = ?'], [$options['id']])->where(function ($query) use ($user) {
 			if (!$user->isAdministrator()) $query->where('status = 1');
 		})->related('fields')->first()
 		) {
-			App::abort(404, __('Form not found!'));
+			return 'Form not found';
 		}
 
 		$form->set('hide_title', !empty($options['hide_title']) ? true : false);
 
 		$form->prepareView();
 
-		App::on('view.data', function ($event, $data) use ($form) {
+		App::on('view.data', function ($event, $data) use ($form, $formmaker) {
 			$data->add('$formmaker', [
-				'config' => App::module('formmaker')->publicConfig(),
+				'config' => $formmaker->publicConfig(),
 				'formitem' => $form,
 				'fields' => array_values($form->fields)
 			]);
 		});
 
-		App::on('view.styles', function ($event, $styles) {
-			App::module('formmaker')->typeStyles($styles);
+		App::on('view.styles', function ($event, $styles) use ($formmaker) {
+			$formmaker->typeStyles($styles);
 		});
 
 		return App::view('formmaker:views/form.php');
