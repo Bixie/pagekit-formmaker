@@ -1,4 +1,4 @@
-# pagekit-formmaker
+# Pagekit Formmaker
 
 Bixie's Formmaker for Pagekit extension enables you to add forms to your website in a breeze.
 
@@ -8,7 +8,7 @@ Info and demo: [http://formmaker.bixie.org](http://formmaker.bixie.org).
 
 ## Installation
 
-Please install Formmaker via the built in Marketplace in your Pagikit Installation.
+Please install Formmaker via the built-in Marketplace in your Pagikit Installation.
 
 ![image](http://formmaker.bixie.org/storage/marketplace.jpg)
 
