@@ -14,8 +14,7 @@
             <div class="uk-form-row">
                 <label for="form-link-formmaker" class="uk-form-label">{{ 'Form' | trans }}</label>
                 <div class="uk-form-controls">
-                    <select id="form-link-formmaker" class="uk-width-1-1" v-model="widget.data.form_id" options="formOptions"></select>
-                </div>
+                    <select id="form-link-formmaker" class="uk-form-width-large" v-model="widget.data.form_id" options="formOptions"></select>                </div>
             </div>
 
             <div class="uk-form-row">
