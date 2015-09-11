@@ -1,7 +1,7 @@
 {
   "name": "bixie/formmaker",
   "type": "pagekit-extension",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "title": "Formmaker",
   "description": "Create forms in your Pagekit site. Build forms and manage the submissions.",
   "license": "MIT",
