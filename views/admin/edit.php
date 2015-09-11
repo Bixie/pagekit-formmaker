@@ -35,7 +35,18 @@
 
 		<div class="uk-switcher uk-margin" v-el="content">
 			<div>
-				<formbasic></formbasic>
+				<div class="uk-grid">
+				    <div class="uk-width-medium-3-4">
+						<formbasic></formbasic>
+				    </div>
+				    <div class="uk-width-medium-1-4">
+						<h3>{{ 'Plugin code' | trans }}</h3>
+						<p>{{ 'Add this code to any Pagekit content to show the form.' | trans }}</p>
+						<kbd>(formmaker){"id":"{{ formitem.id }}"}</kbd>
+						<p>{{ 'Optionally, you can hide the title of the form.' | trans }}</p>
+						<kbd>(formmaker){"id":"{{ formitem.id }}", "hide_title":"1"}</kbd>
+					</div>
+				</div>
 			</div>
 			<div>
 				<formfields v-ref="formfields"></formfields>

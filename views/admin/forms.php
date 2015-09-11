@@ -37,6 +37,8 @@
 			<div class="pk-table-min-width-100">{{ 'Title' | trans }}</div>
 			<div class="pk-table-width-100 uk-text-center">{{ 'Status' | trans }}</div>
 			<div class="pk-table-width-150">{{ 'Submissions' | trans }}</div>
+			<div class="pk-table-width-150">{{ 'Plugin code' | trans }}<a class="uk-icon-info uk-icon-hover uk-margin-small-left"
+					data-uk-tooltip="{delay:200}" title="{{ 'Add this code to any Pagekit content to show the form.' | trans }}"></a></div>
 			<div class="pk-table-width-150">{{ 'Url' | trans }}</div>
 		</div>
 
@@ -78,6 +80,9 @@
 					</span>
 
 				</a>
+			</div>
+			<div class="pk-table-width-150">
+				<kbd>(formmaker){"id":"{{ formitem.id }}"}</kbd>
 			</div>
 			<div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
 				<a v-attr="href: $url.route(formitem.url)" target="_blank">{{ formitem.url }}</a>
