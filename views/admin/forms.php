@@ -11,7 +11,7 @@
 				<ul class="uk-subnav pk-subnav-icon">
 					<li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}"
 						   data-uk-tooltip="{delay: 500}" v-on="click: removeForms"
-						   v-confirm="'Delete form? All values will be deleted from the formmakers.' | trans"></a>
+						   v-confirm="'Delete form? All values will be deleted from the database.' | trans"></a>
 					</li>
 				</ul>
 			</div>
