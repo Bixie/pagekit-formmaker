@@ -22,6 +22,7 @@ module.exports = [
             "node-formmaker": "./app/components/node-formmaker.vue",
             "link-formmaker": "./app/components/link-formmaker.vue",
             "widget-formmaker": "./app/components/widget-formmaker.vue",
+            "widget-siteform": "./app/components/widget-siteform.vue",
             /*fields*/
             "formmaker-checkbox": "./app/fields/checkbox.vue",
             "formmaker-dob": "./app/fields/dob.vue",

@@ -35,6 +35,12 @@ return [
 
 	],
 
+	'widgets' => [
+
+		'widgets/siteform.php'
+
+	],
+
 	'resources' => [
 
 		'formmaker:' => ''
