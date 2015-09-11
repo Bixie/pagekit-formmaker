@@ -46,13 +46,13 @@ var Forms =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(77)
-	module.exports.template = __webpack_require__(78)
+	module.exports = __webpack_require__(78)
+	module.exports.template = __webpack_require__(79)
 
 
 /***/ },
 
-/***/ 67:
+/***/ 68:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -90,10 +90,10 @@ var Forms =
 
 /***/ },
 
-/***/ 77:
+/***/ 78:
 /***/ function(module, exports, __webpack_require__) {
 
-	var formmakerfieldMixin = __webpack_require__(67);
+	var formmakerfieldMixin = __webpack_require__(68);
 
 	    module.exports = {
 
@@ -117,7 +117,7 @@ var Forms =
 
 /***/ },
 
-/***/ 78:
+/***/ 79:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-repeat=\"option: field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"radio\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n        </div>\r\n    </div>";

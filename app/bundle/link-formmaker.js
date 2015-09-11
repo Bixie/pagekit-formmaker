@@ -46,13 +46,13 @@ var Forms =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(83)
-	module.exports.template = __webpack_require__(84)
+	module.exports = __webpack_require__(84)
+	module.exports.template = __webpack_require__(85)
 
 
 /***/ },
 
-/***/ 83:
+/***/ 84:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -104,7 +104,7 @@ var Forms =
 
 /***/ },
 
-/***/ 84:
+/***/ 85:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\" options=\"formOptions\"></select>\n        </div>\n    </div>";

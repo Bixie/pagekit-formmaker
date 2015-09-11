@@ -103,7 +103,7 @@ var Forms =
 	    },
 
 	    components: {
-	        recaptcha: __webpack_require__(63)
+	        recaptcha: __webpack_require__(64)
 	    }
 
 	};
@@ -117,16 +117,16 @@ var Forms =
 
 /***/ },
 
-/***/ 63:
+/***/ 64:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(64)
-	module.exports.template = __webpack_require__(65)
+	module.exports = __webpack_require__(65)
+	module.exports.template = __webpack_require__(66)
 
 
 /***/ },
 
-/***/ 64:
+/***/ 65:
 /***/ function(module, exports) {
 
 	window.grecacapthaCallback = function () {
@@ -161,7 +161,7 @@ var Forms =
 
 /***/ },
 
-/***/ 65:
+/***/ 66:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row\">\r\n\r\n        <span class=\"uk-form-label\" v-show=\"formitem.data.recaptcha_label\">{{ formitem.data.recaptcha_label | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <div id=\"grecaptcha_el\"></div>\r\n        </div>\r\n\r\n    </div>";
