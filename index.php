@@ -97,14 +97,6 @@ return [
 
 	'events' => [
 
-		'uninstall.formmaker' => function () use ($app) {
-			// downgrade all migrations
-			$app['migrator']->create('formmaker:migrations', $this->config('version'))->run(0);
-
-			// remove the config
-			$app['config']->remove($this->name);
-		},
-
 		'view.scripts' => function ($event, $scripts) use ($app) {
 			if ($app['user']->hasAccess('formmaker: manage submissions')) {
 				$scripts->register('widget-formmaker', 'formmaker:app/bundle/widget-formmaker.js', ['~dashboard']);

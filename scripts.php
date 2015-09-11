@@ -63,6 +63,10 @@ return [
         if ($util->tableExists('@formmaker_submission')) {
             $util->dropTable('@formmaker_submission');
         }
-    }
+
+		// remove the config
+		$app['config']->remove('formmaker');
+
+	}
 
 ];
