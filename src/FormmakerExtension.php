@@ -3,6 +3,7 @@
 namespace Pagekit\Formmaker;
 
 use Pagekit\Application as App;
+use Pagekit\Formmaker\Plugin\FormmakerPlugin;
 use Pagekit\Module\Module;
 use Pagekit\Formmaker\Model\Form;
 use Pagekit\Formmaker\Model\Field;
@@ -17,6 +18,10 @@ class FormmakerExtension extends Module {
 	 * {@inheritdoc}
 	 */
 	public function main (App $app) {
+		$app->subscribe(
+			new FormmakerPlugin()
+		);
+
 		$app['field'] = function ($app) {
 			if ($id = $app['request']->attributes->get('_field') and $field = Form::find($id)) {
 				return $field;
@@ -86,6 +91,17 @@ class FormmakerExtension extends Module {
 	 */
 	public function registerType ($package) {
 		$this->types[$package['id']] = $package;
+	}
+
+	public function typeStyles ($styles) {
+		//todo this should be prettier
+		foreach ($this->getTypes() as $type) {
+			if (isset($type['style'])) {
+				foreach ($type['style'] as $name => $source) {
+					$styles->add($name, $source);
+				}
+			}
+		}
 	}
 
 	/**
