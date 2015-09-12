@@ -8,7 +8,7 @@ Info and demo: [http://formmaker.bixie.org](http://formmaker.bixie.org).
 
 ## Installation
 
-Please install Formmaker via the built-in Marketplace in your Pagikit Installation.
+Please install Formmaker via the built-in Marketplace in your Pagekit Installation.
 
 ![image](http://formmaker.bixie.org/storage/marketplace.jpg)
 
