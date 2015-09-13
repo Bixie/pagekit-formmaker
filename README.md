@@ -1,6 +1,6 @@
 # Pagekit Formmaker
 
-Bixie's Formmaker for Pagekit extension enables you to add forms to your website in a breeze.
+Bixies Formmaker for Pagekit extension enables you to add forms to your website in a breeze.
 
 Choose from the different field types and create your own forms. Manage submissions from the administrator panel.
 
