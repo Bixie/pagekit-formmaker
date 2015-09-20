@@ -16,6 +16,7 @@ class FormApiController {
 	 * @Route("/", methods="GET")
 	 */
 	public function indexAction () {
+		//TODO pagination/filter
 		$query = Form::query();
 		return array_values($query->related('fields')->get());
 	}
