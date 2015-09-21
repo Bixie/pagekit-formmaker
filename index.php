@@ -108,7 +108,6 @@ return [
 				$scripts->register('widget-formmaker', 'bixie/formmaker:app/bundle/widget-formmaker.js', ['~dashboard']);
 			}
 			$scripts->register('formmaker-settings', 'bixie/formmaker:app/bundle/settings.js', '~extensions');
-			$scripts->register('node-formmaker', 'bixie/formmaker:app/bundle/node-formmaker.js', '~site-edit');
 			$scripts->register('link-formmaker', 'bixie/formmaker:app/bundle/link-formmaker.js', '~panel-link');
 			//register fields
 			$scripts->register('formmaker-formmakerfields', 'bixie/formmaker:app/bundle/formmaker-formmakerfields.js', 'vue');

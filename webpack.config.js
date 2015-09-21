@@ -19,7 +19,6 @@ module.exports = [
         entry: {
             /*pagekit addons*/
             "settings": "./app/components/settings.vue",
-            "node-formmaker": "./app/components/node-formmaker.vue",
             "link-formmaker": "./app/components/link-formmaker.vue",
             "widget-formmaker": "./app/components/widget-formmaker.vue",
             "widget-siteform": "./app/components/widget-siteform.vue",
