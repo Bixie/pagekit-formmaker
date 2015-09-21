@@ -71,7 +71,7 @@
 
             save: function () {
                 this.$http.post('admin/system/settings/config', {
-                    name: 'formmaker',
+                    name: 'bixie/formmaker',
                     config: this.package.config
                 }, function () {
                     this.$notify('Settings saved.', '');

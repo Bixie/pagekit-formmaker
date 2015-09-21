@@ -67,6 +67,16 @@ return [
 		// remove the config
 		$app['config']->remove('bixie/formmaker');
 
-	}
+	},
+
+	'updates' => [
+
+		'1.1.0' => function ($app) {
+			//convert config to new module name
+			$app['config']->set('bixie/formmaker', $app->config('formmaker')->toArray());
+			$app['config']->remove('formmaker');
+		}
+
+	]
 
 ];
