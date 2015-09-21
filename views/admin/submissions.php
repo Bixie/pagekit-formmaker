@@ -1,4 +1,4 @@
-<?php $view->script('form-submissions', 'formmaker:app/bundle/form-submissions.js', ['vue', 'formmaker-formmakerfields']) ?>
+<?php $view->script('form-submissions', 'bixie/formmaker:app/bundle/form-submissions.js', ['vue', 'formmaker-formmakerfields']) ?>
 
 <div id="formmaker-submissions" class="uk-form uk-form-horizontal" v-cloak>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Formmaker\Model;
+namespace Bixie\Formmaker\Model;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
@@ -25,7 +25,7 @@ trait FieldModelTrait {
 	 * @Saving
 	 */
 	public static function saving ($event, Field $field) {
-		$formmaker = App::module('formmaker');
+		$formmaker = App::module('bixie/formmaker');
 
 		if (!$type = $formmaker->getType($field->type)) {
 			throw new Exception(__('Field type not found.'));

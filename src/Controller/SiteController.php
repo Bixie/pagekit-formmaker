@@ -1,9 +1,9 @@
 <?php
 
-namespace Pagekit\Formmaker\Controller;
+namespace Bixie\Formmaker\Controller;
 
 use Pagekit\Application as App;
-use Pagekit\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Form;
 
 class SiteController {
 
@@ -29,10 +29,10 @@ class SiteController {
 		return [
 			'$view' => [
 				'title' => __($form->title),
-				'name' => 'formmaker:views/form.php'
+				'name' => 'bixie/formmaker/form.php'
 			],
 			'$formmaker' => [
-				'config' => App::module('formmaker')->publicConfig(),
+				'config' => App::module('bixie/formmaker')->publicConfig(),
 				'formitem' => $form,
 				'fields' => array_values($form->fields)
 			]

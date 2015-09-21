@@ -1,10 +1,10 @@
 <?php
 
-namespace Pagekit\Formmaker\Controller;
+namespace Bixie\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
-use Pagekit\Formmaker\Model\Field;
+use Bixie\Formmaker\Model\Field;
 use Pagekit\User\Model\Role;
 
 /**
@@ -58,7 +58,7 @@ class FieldApiController {
 	 * @Request({"id"})
 	 */
 	public function editAction ($id = '') {
-		$formmaker = App::module('formmaker');
+		$formmaker = App::module('bixie/formmaker');
 
 		if (is_numeric($id)) {
 			$field = Field::find($id);

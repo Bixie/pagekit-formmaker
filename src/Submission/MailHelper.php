@@ -1,10 +1,10 @@
 <?php
 
-namespace Pagekit\Formmaker\Submission;
+namespace Bixie\Formmaker\Submission;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
-use Pagekit\Formmaker\Model\Submission;
+use Bixie\Formmaker\Model\Submission;
 
 class MailHelper {
 
@@ -35,12 +35,12 @@ class MailHelper {
 		try {
 
 			$mail = App::mailer()->create();
-			$mail->setTo($adminMail)->setSubject($mailSubject)->setBody(App::view('formmaker:views/mails/template.php', compact('mailBody')), 'text/html')->send();
+			$mail->setTo($adminMail)->setSubject($mailSubject)->setBody(App::view('bixie/formmaker/mails/template.php', compact('mailBody')), 'text/html')->send();
 
 			if ($this->submission->email) {
 
 				$mail = App::mailer()->create();
-				$mail->setTo($this->submission->email)->setSubject($mailSubject)->setBody(App::view('formmaker:views/mails/template.php', compact('mailBody')), 'text/html')->send();
+				$mail->setTo($this->submission->email)->setSubject($mailSubject)->setBody(App::view('bixie/formmaker/mails/template.php', compact('mailBody')), 'text/html')->send();
 			}
 
 		} catch (\Exception $e) {

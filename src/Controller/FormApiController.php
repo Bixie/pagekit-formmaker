@@ -1,11 +1,11 @@
 <?php
 
-namespace Pagekit\Formmaker\Controller;
+namespace Bixie\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
-use Pagekit\Formmaker\Model\Form;
-use Pagekit\Formmaker\Model\Field;
+use Bixie\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Field;
 
 /**
  * @Route("form", name="form")

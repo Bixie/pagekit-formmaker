@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Formmaker\Console\Commands;
+namespace Bixie\Formmaker\Console\Commands;
 
 use Pagekit\Application\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;

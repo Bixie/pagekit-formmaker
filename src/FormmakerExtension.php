@@ -1,12 +1,12 @@
 <?php
 
-namespace Pagekit\Formmaker;
+namespace Bixie\Formmaker;
 
 use Pagekit\Application as App;
-use Pagekit\Formmaker\Plugin\FormmakerPlugin;
+use Bixie\Formmaker\Plugin\FormmakerPlugin;
 use Pagekit\Module\Module;
-use Pagekit\Formmaker\Model\Form;
-use Pagekit\Formmaker\Model\Field;
+use Bixie\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Field;
 
 class FormmakerExtension extends Module {
 	/**
@@ -49,7 +49,7 @@ class FormmakerExtension extends Module {
 		if (!$this->types) {
 
 			$this->types = [];
-			$paths = glob(App::locator()->get('formmaker:app/fields') . '/*.php', GLOB_NOSORT) ?: [];
+			$paths = glob(App::locator()->get('bixie/formmaker:app/fields') . '/*.php', GLOB_NOSORT) ?: [];
 
 			foreach ($paths as $p) {
 				$package = array_merge([

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Formmaker\Model;
+namespace Bixie\Formmaker\Model;
 
 use Pagekit\Application as App;
 use Pagekit\Database\ORM\ModelTrait;

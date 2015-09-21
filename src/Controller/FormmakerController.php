@@ -1,10 +1,10 @@
 <?php
 
-namespace Pagekit\Formmaker\Controller;
+namespace Bixie\Formmaker\Controller;
 
 use Pagekit\Application as App;
-use Pagekit\Formmaker\Model\Form;
-use Pagekit\Formmaker\Model\Submission;
+use Bixie\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Submission;
 
 /**
  * @Access(admin=true)
@@ -19,10 +19,10 @@ class FormmakerController {
 		return [
 			'$view' => [
 				'title' => __('Formmaker'),
-				'name' => 'formmaker:views/admin/forms.php'
+				'name' => 'bixie/formmaker/admin/forms.php'
 			],
 			'$data' => [
-				'config' => App::module('formmaker')->config()
+				'config' => App::module('bixie/formmaker')->config()
 			]
 		];
 	}
@@ -36,7 +36,7 @@ class FormmakerController {
 		return [
 			'$view' => [
 				'title' => __('Submissions'),
-				'name' => 'formmaker:views/admin/submissions.php'
+				'name' => 'bixie/formmaker/admin/submissions.php'
 			],
 			'$data' => [
 				'forms' => array_values(Form::query()->get()),

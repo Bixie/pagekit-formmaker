@@ -1,11 +1,11 @@
 <?php
 
-namespace Pagekit\Formmaker\Plugin;
+namespace Bixie\Formmaker\Plugin;
 
 use Pagekit\Application as App;
 use Pagekit\Content\Event\ContentEvent;
 use Pagekit\Event\EventSubscriberInterface;
-use Pagekit\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Form;
 
 class FormmakerPlugin implements EventSubscriberInterface
 {
@@ -33,7 +33,7 @@ class FormmakerPlugin implements EventSubscriberInterface
         }
 
 		$user = App::user();
-		$formmaker = App::module('formmaker');
+		$formmaker = App::module('bixie/formmaker');
 
 		if (!$form = Form::where(['id = ?'], [$options['id']])->where(function ($query) use ($user) {
 			if (!$user->isAdministrator()) $query->where('status = 1');
@@ -58,7 +58,7 @@ class FormmakerPlugin implements EventSubscriberInterface
 			$formmaker->typeStyles($styles);
 		});
 
-		return App::view('formmaker:views/form.php');
+		return App::view('bixie/formmaker/form.php');
     }
 
     /**

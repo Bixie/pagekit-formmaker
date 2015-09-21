@@ -1,10 +1,10 @@
 <?php
 
-namespace Pagekit\Formmaker\Model;
+namespace Bixie\Formmaker\Model;
 
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
-use Pagekit\Formmaker\Model\Submission;
+use Bixie\Formmaker\Model\Submission;
 
 /**
  * @Entity(tableClass="@formmaker_form")

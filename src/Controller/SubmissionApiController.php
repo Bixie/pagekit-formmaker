@@ -1,15 +1,15 @@
 <?php
 
-namespace Pagekit\Formmaker\Controller;
+namespace Bixie\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Pagekit\Util\ArrObject;
-use Pagekit\Formmaker\Model\Form;
-use Pagekit\Formmaker\Model\Field;
-use Pagekit\Formmaker\Model\Submission;
-use Pagekit\Formmaker\Submission\MailHelper;
-use Pagekit\Formmaker\Submission\CsvHelper;
+use Bixie\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Field;
+use Bixie\Formmaker\Model\Submission;
+use Bixie\Formmaker\Submission\MailHelper;
+use Bixie\Formmaker\Submission\CsvHelper;
 use ReCaptcha\ReCaptcha;
 
 /**
@@ -51,7 +51,7 @@ class SubmissionApiController {
 		}
 
 
-		$limit = (int)$limit ?: App::module('formmaker')->config('submissions_per_page');
+		$limit = (int)$limit ?: App::module('bixie/formmaker')->config('submissions_per_page');
 		$count = $query->count();
 		$pages = ceil($count / $limit);
 		$page = max(0, min($pages - 1, $page));
@@ -87,7 +87,7 @@ class SubmissionApiController {
 		$submission->form = $form;
 
 		if ($form->get('recaptcha') && $id == 0) {
-			$resp = (new ReCaptcha(App::module('formmaker')->config('recaptha_secret_key')))->verify($gRecaptchaResponse, App::request()->server->get('REMOTE_ADDR'));
+			$resp = (new ReCaptcha(App::module('bixie/formmaker')->config('recaptha_secret_key')))->verify($gRecaptchaResponse, App::request()->server->get('REMOTE_ADDR'));
 			if (!$resp->isSuccess()) {
 				$errors = $resp->getErrorCodes();
 				App::abort(403, $errors[0]);

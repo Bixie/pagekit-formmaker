@@ -1,6 +1,6 @@
 <?php
 
-namespace Pagekit\Formmaker\Model;
+namespace Bixie\Formmaker\Model;
 
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
@@ -83,7 +83,7 @@ class Field implements \JsonSerializable {
 	public function prepareValue () {
 
 		$value = $this->get('value');
-		$type = App::module('formmaker')->getType($this->type);
+		$type = App::module('bixie/formmaker')->getType($this->type);
 
 		if (is_callable($type['prepareValue'])) {
 

@@ -1,4 +1,4 @@
-<?php $view->script('forms-formmaker', 'formmaker:app/bundle/forms.js', ['vue', 'uikit-nestable']) ?>
+<?php $view->script('forms-formmaker', 'bixie/formmaker:app/bundle/forms.js', ['vue', 'uikit-nestable']) ?>
 
 <div id="formmaker-forms" class="uk-form uk-form-horizontal" v-cloak>
 

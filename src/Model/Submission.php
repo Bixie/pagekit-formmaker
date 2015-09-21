@@ -1,12 +1,12 @@
 <?php
 
-namespace Pagekit\Formmaker\Model;
+namespace Bixie\Formmaker\Model;
 
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
 use Pagekit\Database\ORM\ModelTrait;
-use Pagekit\Formmaker\Submission\Fieldsubmission;
-use Pagekit\Formmaker\Submission\MailHelper;
+use Bixie\Formmaker\Submission\Fieldsubmission;
+use Bixie\Formmaker\Submission\MailHelper;
 
 /**
  * @Entity(tableClass="@formmaker_submission")

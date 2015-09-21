@@ -1,5 +1,5 @@
 <?php
-$view->script('formmaker', 'formmaker:app/bundle/formmaker.js', ['vue', 'formmaker-formmakerfields']);
+$view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['vue', 'formmaker-formmakerfields']);
 ?>
 
 <form id="formmaker-form" class="uk-form {{ formitem.data.formStyle }} {{ formitem.data.classSfx }}"

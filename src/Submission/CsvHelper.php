@@ -1,11 +1,11 @@
 <?php
 
-namespace Pagekit\Formmaker\Submission;
+namespace Bixie\Formmaker\Submission;
 
 use Pagekit\Application as App;
 use Pagekit\Util\ArrObject;
-use Pagekit\Formmaker\Model\Form;
-use Pagekit\Formmaker\Model\Submission;
+use Bixie\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Submission;
 
 class CsvHelper {
 

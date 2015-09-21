@@ -1,10 +1,10 @@
 <?php
 
-namespace Pagekit\Formmaker\Submission;
+namespace Bixie\Formmaker\Submission;
 
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
-use Pagekit\Formmaker\Model\Field;
+use Bixie\Formmaker\Model\Field;
 
 class Fieldsubmission {
 
@@ -25,7 +25,7 @@ class Fieldsubmission {
 	public function __construct (Field $field, $data) {
 		$this->field = $field;
 		$this->data = $data;
-		$this->type = App::module('formmaker')->getType($field->type);
+		$this->type = App::module('bixie/formmaker')->getType($field->type);
 	}
 
 	public function toFormattedArray () {

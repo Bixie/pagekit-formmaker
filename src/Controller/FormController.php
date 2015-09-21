@@ -1,10 +1,10 @@
 <?php
 
-namespace Pagekit\Formmaker\Controller;
+namespace Bixie\Formmaker\Controller;
 
 use Pagekit\Application as App;
 use Pagekit\Kernel\Exception\NotFoundException;
-use Pagekit\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Form;
 
 /**
  * @Access("formmaker: manage forms", admin=true)
@@ -17,7 +17,7 @@ class FormController {
 	 * @Request({"id": "int"})
 	 */
 	public function editAction ($id = 0) {
-		$formmaker = App::module('formmaker');
+		$formmaker = App::module('bixie/formmaker');
 
 		if (!$form = Form::find($id)) {
 
@@ -32,7 +32,7 @@ class FormController {
 		return [
 			'$view' => [
 				'title' => __('Form'),
-				'name' => 'formmaker:views/admin/edit.php'
+				'name' => 'bixie/formmaker/admin/edit.php'
 			],
 			'$data' => [
 				'config' => $formmaker->config(),

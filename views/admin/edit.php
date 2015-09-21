@@ -1,4 +1,4 @@
-<?php  $view->style('codemirror'); $view->script('form-edit', 'formmaker:app/bundle/form-edit.js', ['vue', 'editor', 'formmaker-formmakerfields', 'uikit-nestable']); ?>
+<?php  $view->style('codemirror'); $view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['vue', 'editor', 'formmaker-formmakerfields', 'uikit-nestable']); ?>
 
 <div id="form-edit" v-cloak>
 	<form class="uk-form" name="form" v-on="valid: save">

@@ -1,6 +1,6 @@
 <?php
 
-use Pagekit\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Form;
 
 return [
 
@@ -11,7 +11,7 @@ return [
     'events' => [
 
         'view.scripts' => function ($event, $scripts) use ($app) {
-            $scripts->register('widget-siteform', 'formmaker:app/bundle/widget-siteform.js', ['~widgets']);
+            $scripts->register('widget-siteform', 'bixie/formmaker:app/bundle/widget-siteform.js', ['~widgets']);
         }
 
     ],
@@ -20,7 +20,7 @@ return [
 
 		$id = $widget->get('form_id');
 		$user = $app->user();
-		$formmaker = $app->module('formmaker');
+		$formmaker = $app->module('bixie/formmaker');
 
 		if (!$form = Form::where(['id = ?'], [$id])->where(function ($query) use ($user) {
 			if (!$user->isAdministrator()) $query->where('status = 1');
@@ -46,7 +46,7 @@ return [
 			$formmaker->typeStyles($styles);
 		});
 
-		return $app->view('formmaker:views/form.php');
+		return $app->view('bixie/formmaker/form.php');
     }
 
 ];

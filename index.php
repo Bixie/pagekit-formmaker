@@ -2,15 +2,15 @@
 
 return [
 
-	'name' => 'formmaker',
+	'name' => 'bixie/formmaker',
 
 	'type' => 'extension',
 
-	'main' => 'Pagekit\\Formmaker\\FormmakerExtension',
+	'main' => 'Bixie\\Formmaker\\FormmakerExtension',
 
 	'autoload' => [
 
-		'Pagekit\\Formmaker\\' => 'src'
+		'Bixie\\Formmaker\\' => 'src'
 
 	],
 
@@ -19,17 +19,17 @@ return [
 		'/formmaker' => [
 			'name' => '@formmaker',
 			'controller' => [
-				'Pagekit\\Formmaker\\Controller\\FormmakerController',
-				'Pagekit\\Formmaker\\Controller\\FormController',
-				'Pagekit\\Formmaker\\Controller\\SiteController'
+				'Bixie\\Formmaker\\Controller\\FormmakerController',
+				'Bixie\\Formmaker\\Controller\\FormController',
+				'Bixie\\Formmaker\\Controller\\SiteController'
 			]
 		],
 		'/api/formmaker' => [
 			'name' => '@formmaker/api',
 			'controller' => [
-				'Pagekit\\Formmaker\\Controller\\FieldApiController',
-				'Pagekit\\Formmaker\\Controller\\FormApiController',
-				'Pagekit\\Formmaker\\Controller\\SubmissionApiController'
+				'Bixie\\Formmaker\\Controller\\FieldApiController',
+				'Bixie\\Formmaker\\Controller\\FormApiController',
+				'Bixie\\Formmaker\\Controller\\SubmissionApiController'
 			]
 		]
 
@@ -43,7 +43,7 @@ return [
 
 	'resources' => [
 
-		'formmaker:' => ''
+		'bixie/formmaker:' => ''
 
 	],
 
@@ -105,17 +105,17 @@ return [
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
 			if ($app['user']->hasAccess('formmaker: manage submissions')) {
-				$scripts->register('widget-formmaker', 'formmaker:app/bundle/widget-formmaker.js', ['~dashboard']);
+				$scripts->register('widget-formmaker', 'bixie/formmaker:app/bundle/widget-formmaker.js', ['~dashboard']);
 			}
-			$scripts->register('formmaker-settings', 'formmaker:app/bundle/settings.js', '~extensions');
-			$scripts->register('node-formmaker', 'formmaker:app/bundle/node-formmaker.js', '~site-edit');
-			$scripts->register('link-formmaker', 'formmaker:app/bundle/link-formmaker.js', '~panel-link');
+			$scripts->register('formmaker-settings', 'bixie/formmaker:app/bundle/settings.js', '~extensions');
+			$scripts->register('node-formmaker', 'bixie/formmaker:app/bundle/node-formmaker.js', '~site-edit');
+			$scripts->register('link-formmaker', 'bixie/formmaker:app/bundle/link-formmaker.js', '~panel-link');
 			//register fields
-			$scripts->register('formmaker-formmakerfields', 'formmaker:app/bundle/formmaker-formmakerfields.js', 'vue');
-			$formmaker = $app->module('formmaker');
+			$scripts->register('formmaker-formmakerfields', 'bixie/formmaker:app/bundle/formmaker-formmakerfields.js', 'vue');
+			$formmaker = $app->module('bixie/formmaker');
 			foreach ($formmaker->getTypes() as $type) {
 				$scripts->register(
-					'formmaker-' . $type['id'], 'formmaker:app/bundle/formmaker-' . $type['id'] . '.js',
+					'formmaker-' . $type['id'], 'bixie/formmaker:app/bundle/formmaker-' . $type['id'] . '.js',
 					array_merge(['~formmaker-formmakerfields'], $type['dependancies'])
 				);
 			}
@@ -124,13 +124,13 @@ return [
 		'view.styles' => function ($event, $styles) use ($app) {
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@formmaker') === 0) {
-				$app->module('formmaker')->typeStyles($styles);
+				$app->module('bixie/formmaker')->typeStyles($styles);
 			}
 		},
 
         'console.init' => function ($event, $console) {
 
-			$console->add(new \Pagekit\Formmaker\Console\Commands\FormmakerTranslateCommand());
+			$console->add(new \Bixie\Formmaker\Console\Commands\FormmakerTranslateCommand());
 
 		}
 	]

@@ -65,7 +65,7 @@ return [
         }
 
 		// remove the config
-		$app['config']->remove('formmaker');
+		$app['config']->remove('bixie/formmaker');
 
 	}
 
