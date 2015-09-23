@@ -46,13 +46,13 @@ var Forms =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(72)
-	module.exports.template = __webpack_require__(73)
+	module.exports = __webpack_require__(71)
+	module.exports.template = __webpack_require__(72)
 
 
 /***/ },
 
-/***/ 68:
+/***/ 67:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -90,10 +90,10 @@ var Forms =
 
 /***/ },
 
-/***/ 72:
+/***/ 71:
 /***/ function(module, exports, __webpack_require__) {
 
-	var formmakerfieldMixin = __webpack_require__(68);
+	var formmakerfieldMixin = __webpack_require__(67);
 
 	    module.exports = {
 
@@ -123,7 +123,7 @@ var Forms =
 
 /***/ },
 
-/***/ 73:
+/***/ 72:
 /***/ function(module, exports) {
 
 	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span class=\"uk-form-label\">{{ 'Submission email' | trans }}</span>\n\n        <div class=\"uk-form-controls uk-form-controls-text\">\n            <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.user_email\">\n                {{ 'Send submission confirmation to this address' | trans }}</label>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <label for=\"{{ fieldid }}\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"email\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-attr=\"name: fieldid, id: fieldid\"\n                   v-model=\"dataObject.value\"\n                   v-valid=\"required: fieldRequired\"/>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";

@@ -46,13 +46,13 @@ var Forms =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(74)
-	module.exports.template = __webpack_require__(75)
+	module.exports = __webpack_require__(73)
+	module.exports.template = __webpack_require__(74)
 
 
 /***/ },
 
-/***/ 68:
+/***/ 67:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -90,10 +90,10 @@ var Forms =
 
 /***/ },
 
-/***/ 74:
+/***/ 73:
 /***/ function(module, exports, __webpack_require__) {
 
-	var formmakerfieldMixin = __webpack_require__(68);
+	var formmakerfieldMixin = __webpack_require__(67);
 
 	    module.exports = {
 
@@ -117,7 +117,7 @@ var Forms =
 
 /***/ },
 
-/***/ 75:
+/***/ 74:
 /***/ function(module, exports) {
 
 	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n\n        <div class=\"uk-form-row\">\n            <v-editor id=\"{{ fieldid }}-html\" value=\"{{@ dataObject.value }}\" options=\"{{ {markdown : field.data.markdown} }}\"></v-editor>\n            <p>\n                <label><input type=\"checkbox\" v-model=\"field.data.markdown\"> {{ 'Enable Markdown' | trans }}</label>\n            </p>\n        </div>\n\n    </div>\n\n    <div v-if=\"!isAdmin\" class=\"uk-form-row {{field.data.classSfx || ''}}\">\n\n        {{{ dataObject.prepared }}}\n\n    </div>";
