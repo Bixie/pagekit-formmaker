@@ -58,9 +58,7 @@ var Forms =
 	module.exports = {
 
 	        section: {
-	            label: 'Settings',
-	            active: 'bixie/siteform',
-	            priority: 0
+	            label: 'Settings'
 	        },
 
 	        replace: false,
@@ -95,7 +93,7 @@ var Forms =
 	        }
 	    };
 
-	    window.Widgets.components['widget-siteform'] = module.exports;
+	    window.Widgets.components['bixie-siteform:settings'] = module.exports;
 
 /***/ },
 
