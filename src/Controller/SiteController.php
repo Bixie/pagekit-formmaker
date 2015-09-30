@@ -35,7 +35,8 @@ class SiteController {
 				'config' => App::module('bixie/formmaker')->publicConfig(),
 				'formitem' => $form,
 				'fields' => array_values($form->fields)
-			]
+			],
+			'node' => App::node()
 		];
 
 	}
