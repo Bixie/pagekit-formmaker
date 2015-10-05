@@ -38,12 +38,12 @@
             <textarea v-if="minLength || maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
                    v-model="dataObject.value"
-                   v-valid="required: fieldRequired, minLength: minLength, maxLength: maxLength"></textarea>
+                   v-validate="required: fieldRequired, minLength: minLength, maxLength: maxLength"></textarea>
 
             <textarea v-if="!minLength && !maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
                    v-model="dataObject.value"
-                   v-valid="required: fieldRequired"></textarea>
+                   v-validate="required: fieldRequired"></textarea>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>

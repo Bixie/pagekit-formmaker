@@ -19,13 +19,13 @@
                     options="field.options"
                     v-attr="name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false"
                     v-model="dataObject.value"
-                    v-valid="required: fieldRequired"></select>
+                    v-validate="required: fieldRequired"></select>
 
             <select v-if="!field.data.multiple" class="uk-form-width-large"
                     options="field.options"
                     v-attr="name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false"
                     v-model="dataObject.value"
-                    v-valid="required: fieldRequired"></select>
+                    v-validate="required: fieldRequired"></select>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please select a value' | trans }}</p>

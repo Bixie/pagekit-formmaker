@@ -20,7 +20,7 @@
 
             <div class="uk-form-controls">
                 <input id="form-mail-address" class="uk-form-width-large" type="text" name="fromAddress"
-                       v-model="package.config.from_address" v-valid="email">
+                       v-model="package.config.from_address" v-validate="email">
             </div>
         </div>
 

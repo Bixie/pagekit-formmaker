@@ -16,7 +16,7 @@
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-attr="name: fieldid, id: fieldid"
                    v-model="dataObject.value"
-                   v-valid="required: fieldRequired"/>
+                   v-validate="required: fieldRequired"/>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>
