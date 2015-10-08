@@ -6,7 +6,7 @@ return [
 
 	'type' => 'extension',
 
-	'main' => 'Bixie\\Formmaker\\FormmakerExtension',
+	'main' => 'Bixie\\Formmaker\\FormmakerModule',
 
 	'autoload' => [
 

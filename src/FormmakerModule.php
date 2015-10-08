@@ -8,7 +8,7 @@ use Pagekit\Module\Module;
 use Bixie\Formmaker\Model\Form;
 use Bixie\Formmaker\Model\Field;
 
-class FormmakerExtension extends Module {
+class FormmakerModule extends Module {
 	/**
 	 * @var array
 	 */
