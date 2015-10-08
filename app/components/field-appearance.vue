@@ -36,9 +36,7 @@
 
     module.exports = {
 
-        inherit: true,
-
-        props: ['field']
+        props: ['field', 'form']
 
     };
 

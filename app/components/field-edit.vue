@@ -1,6 +1,6 @@
 <template>
     <div class="uk-modal-spinner" v-if="!loaded"></div>
-    <form id="field-edit" class="uk-form" name="fieldform" v-on="valid: save" v-show="loaded">
+    <form id="field-edit" class="uk-form" name="fieldform" v-validator="form" v-on="submit: save | valid" v-show="loaded">
 
         <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
             <div data-uk-margin>
@@ -29,13 +29,13 @@
 
         <div class="uk-switcher uk-margin" v-el="content">
             <div>
-                <fieldbasic field="{{@ field }}" type="{{@ type }}"></fieldbasic>
+                <fieldbasic field="{{@ field }}" type="{{@ type }}" form=fieldform"></fieldbasic>
             </div>
             <div>
-                <fieldoptions v-show="type.hasOptions" field="{{@ field }}"></fieldoptions>
+                <fieldoptions v-show="type.hasOptions" field="{{@ field }}" form=fieldform"></fieldoptions>
             </div>
             <div>
-                <appearance field="{{@ field }}"></appearance>
+                <appearance field="{{@ field }}" form=fieldform"></appearance>
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 <?php  $view->style('codemirror'); $view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['vue', 'editor', 'formmaker-formmakerfields', 'uikit-nestable']); ?>
 
 <div id="form-edit" v-cloak>
-	<form class="uk-form" name="form" v-on="submit: save | valid">
+	<form class="uk-form" name="form" v-validator="form" v-on="submit: save | valid">
 
 		<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
 			<div data-uk-margin>
