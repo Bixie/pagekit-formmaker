@@ -3,7 +3,7 @@ $view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['vue', 'f
 ?>
 
 <form id="formmaker-form" class="uk-form {{ formitem.data.formStyle }} {{ formitem.data.classSfx }}"
-	  name="form" v-on="valid: submit" v-cloak>
+	  name="form" v-validator="form" v-on="submit: save | valid" v-cloak>
 
 	<h1 class="uk-article-title" v-if="!formitem.data.hide_title">{{ formitem.title }}</h1>
 

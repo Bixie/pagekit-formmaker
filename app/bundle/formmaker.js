@@ -77,7 +77,7 @@ var Forms =
 
 	    methods: {
 
-	        submit: function (e) {
+	        save: function (e) {
 	            e.preventDefault();
 
 	            var vm = this, data = {submission: this.submission};
