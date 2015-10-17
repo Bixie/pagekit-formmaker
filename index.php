@@ -129,7 +129,7 @@ return [
 
         'console.init' => function ($event, $console) {
 
-			$console->add(new \Bixie\Formmaker\Console\Commands\FormmakerTranslateCommand());
+			$console->add(new \Bixie\Formmaker\Console\Commands\TranslateCommand());
 
 		}
 	]

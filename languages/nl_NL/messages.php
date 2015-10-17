@@ -123,7 +123,7 @@
   'Formmaker' => 'Formmaker',
   'Form not found!' => 'Formulier niet gevonden!',
   'Field type not found.' => 'Veldtype niet gevonden.',
-  'Unable to send confirmation mail.' => 'Niet mogeijk bevestiginsmail te verzenden.',
+  'Unable to send confirmation mail.' => 'Niet mogelijk bevestigingsmail te verzenden.',
   'Edit form' => 'Bewerk formulier',
   'Preview form' => 'Bekijk form',
   'Add form' => 'Voeg formulier toe',
