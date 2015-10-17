@@ -53,7 +53,7 @@ class FormmakerTranslateCommand extends Command
 		preg_match_all($pattern, $potString, $matches);
 
 		//create translations
-		$translations = [];
+		$translations = include($this->container->path() . '/packages/bixie/'.$extension.'/languages/base.php');
 		foreach ($matches[1] as $string) {
 			$string = str_replace('_QQ_', '"', $string);
 			if (!$string || isset($system[$string])) continue;

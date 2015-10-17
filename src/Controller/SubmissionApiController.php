@@ -110,7 +110,7 @@ class SubmissionApiController {
 			}
 		}
 
-		return ['message' => 'Submission successfull', 'submission' => $submission];
+		return ['message' => 'Submission successful', 'submission' => $submission];
 	}
 
 	/**

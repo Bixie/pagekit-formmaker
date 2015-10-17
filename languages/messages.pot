@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pagekit UNKNOWN (bixie/formmaker, messages)\n"
-"POT-Creation-Date: 2015-09-10 11:29+0000\n"
+"POT-Creation-Date: 2015-10-17 10:14+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,16 +9,13 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Forms"
-msgstr ""
-
-msgid "Submissions"
-msgstr ""
-
 msgid "Label"
 msgstr ""
 
 msgid "Manage options"
+msgstr ""
+
+msgid "%type% saved."
 msgstr ""
 
 msgid "Title"
@@ -39,6 +36,48 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+msgid "Thank you for your submission"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Show Thank you message"
+msgstr ""
+
+msgid "Redirect to page"
+msgstr ""
+
+msgid "Form %title% saved."
+msgstr ""
+
+msgid "- Style -"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "- Type -"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "- Size -"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Compact"
+msgstr ""
+
 msgid "Submission for form \"%formtitle%\""
 msgstr ""
 
@@ -48,7 +87,64 @@ msgstr ""
 msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
 msgstr ""
 
+msgid "Status"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Filter by"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Select form"
+msgstr ""
+
+msgid "Form submitted"
+msgstr ""
+
 msgid "Date format"
+msgstr ""
+
+msgid "Month"
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "February"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "April"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "October"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "December"
 msgstr ""
 
 msgid "Placeholder"
@@ -58,9 +154,6 @@ msgid "Enable Markdown"
 msgstr ""
 
 msgid "Size"
-msgstr ""
-
-msgid "Form"
 msgstr ""
 
 msgid "Formmaker Settings"
@@ -136,9 +229,6 @@ msgid "reCAPTCHA setup"
 msgstr ""
 
 msgid "Please enter a title"
-msgstr ""
-
-msgid "Status"
 msgstr ""
 
 msgid "Disabled"
@@ -267,9 +357,6 @@ msgstr ""
 msgid "Submission data"
 msgstr ""
 
-msgid "Show all"
-msgstr ""
-
 msgid "Done submissions"
 msgstr ""
 
@@ -283,6 +370,15 @@ msgid "Number of submissions"
 msgstr ""
 
 msgid "{0} Submissions|{1} Submission|]1,Inf[ Submissions"
+msgstr ""
+
+msgid "Title cannot be blank."
+msgstr ""
+
+msgid "Form title"
+msgstr ""
+
+msgid "Hide form title"
 msgstr ""
 
 msgid "Checkboxes"
@@ -381,6 +477,15 @@ msgstr ""
 msgid "Submission"
 msgstr ""
 
+msgid "Plugin code"
+msgstr ""
+
+msgid "Add this code to any Pagekit content to show the form."
+msgstr ""
+
+msgid "Optionally, you can hide the title of the form."
+msgstr ""
+
 msgid "Url"
 msgstr ""
 
@@ -402,107 +507,3 @@ msgstr ""
 msgid "No submissions found."
 msgstr ""
 
-msgid "%type% saved."
-msgstr ""
-
-msgid "- Style -"
-msgstr ""
-
-msgid "Light"
-msgstr ""
-
-msgid "Dark"
-msgstr ""
-
-msgid "- Type -"
-msgstr ""
-
-msgid "Image"
-msgstr ""
-
-msgid "Audio"
-msgstr ""
-
-msgid "- Size -"
-msgstr ""
-
-msgid "Normal"
-msgstr ""
-
-msgid "Compact"
-msgstr ""
-
-msgid "Select form"
-msgstr ""
-
-msgid "Day"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Year"
-msgstr ""
-
-msgid "January"
-msgstr ""
-
-msgid "February"
-msgstr ""
-
-msgid "March"
-msgstr ""
-
-msgid "April"
-msgstr ""
-
-msgid "May"
-msgstr ""
-
-msgid "June"
-msgstr ""
-
-msgid "July"
-msgstr ""
-
-msgid "August"
-msgstr ""
-
-msgid "September"
-msgstr ""
-
-msgid "October"
-msgstr ""
-
-msgid "November"
-msgstr ""
-
-msgid "December"
-msgstr ""
-
-msgid "Submit"
-msgstr ""
-
-msgid "Thank you for your submission"
-msgstr ""
-
-msgid "Show Thank you message"
-msgstr ""
-
-msgid "Redirect to page"
-msgstr ""
-
-msgid "Form %title% saved."
-msgstr ""
-
-msgid "Status"
-msgstr ""
-
-msgid "Show all"
-msgstr ""
-
-msgid "Filter by"
-msgstr ""
-
-msgid "Form"
-msgstr ""
