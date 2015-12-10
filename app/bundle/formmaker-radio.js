@@ -47,8 +47,20 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(77)
-	module.exports.template = __webpack_require__(78)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(78)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\fields\\radio.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
@@ -93,27 +105,54 @@ var Forms =
 /***/ 77:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-form-row {{field.data.classSfx || ''}}">
+
+	//         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
+
+	//         <div class="uk-form-controls uk-form-controls-text">
+
+	//             <p v-repeat="option: field.options" class="uk-form-controls-condensed">
+
+	//                 <label><input type="radio" value="{{ option.value }}"
+
+	//                               v-model="dataObject.value"> {{ option.text }}</label>
+
+	//             </p>
+
+	//         </div>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
 	var formmakerfieldMixin = __webpack_require__(67);
 
-	    module.exports = {
+	module.exports = {
 
-	        inherit: true,
+	    inherit: true,
 
-	        mixins: [formmakerfieldMixin],
+	    mixins: [formmakerfieldMixin],
 
-	        data: function () {
-	            return {
-	                fieldid: _.uniqueId('formmakerfield_')
-	            };
-	        },
+	    data: function data() {
+	        return {
+	            fieldid: _.uniqueId('formmakerfield_')
+	        };
+	    },
 
-	        created: function () {
-	            this.$set('dataObject', this.getDataObject(this.field.data.value || []));
-	        }
+	    created: function created() {
+	        this.$set('dataObject', this.getDataObject(this.field.data.value || []));
+	    }
 
-	    };
+	};
 
-	    window.Formmakerfields.components['radio'] = module.exports;
+	window.Formmakerfields.components['radio'] = module.exports;
+
+	// </script>
 
 /***/ },
 

@@ -47,8 +47,20 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(81)
-	module.exports.template = __webpack_require__(82)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(82)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\fields\\textbox.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
@@ -93,40 +105,99 @@ var Forms =
 /***/ 81:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div v-if="isAdmin" class="uk-form-row">
+	//         <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
+
+	//         <div class="uk-form-controls">
+	//             <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
+	//         </div>
+	//     </div>
+
+	//     <div v-show="isAdmin" class="uk-form-row">
+	//         <label for="form-rows" class="uk-form-label">{{ 'Rows textarea' | trans }}</label>
+
+	//         <div class="uk-form-controls">
+	//             <input id="form-rows" class="uk-form-width-small uk-text-right" type="number"
+	//                    min="2" v-model="field.data.rows" number>
+	//         </div>
+	//     </div>
+
+	//     <div v-show="isAdmin" class="uk-form-row">
+	//         <span class="uk-form-label">{{ 'Min / Max length input' | trans }}</span>
+
+	//         <div class="uk-form-controls uk-flex uk-flex-middle uk-flex-space-between">
+	//             <label for="form-min-length">{{ 'Min' | trans }}</label>
+	//             <input id="form-min-length" class="uk-form-width-small uk-text-right" type="number"
+	//                    min="0" v-model="field.data.minLength" number>
+	//             <label for="form-max-length">{{ 'Max' | trans }}</label>
+	//             <input id="form-max-length" class="uk-form-width-small uk-text-right" type="number"
+	//                    min="0" v-model="field.data.maxLength" number>
+	//         </div>
+	//     </div>
+
+	//     <div class="uk-form-row {{field.data.classSfx || ''}}">
+	//         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+	//             }}</label>
+
+	//         <div class="uk-form-controls">
+	//             <textarea v-if="minLength || maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+	//                    v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
+	//                    v-model="dataObject.value"
+	//                    v-validate="required: fieldRequired, minLength: minLength, maxLength: maxLength"></textarea>
+
+	//             <textarea v-if="!minLength && !maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+	//                    v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
+	//                    v-model="dataObject.value"
+	//                    v-validate="required: fieldRequired"></textarea>
+
+	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
+	//                 'Please enter a value' | trans }}</p>
+	//         </div>
+	//     </div>
+
+	// </template>
+
+	// <script>
 	var formmakerfieldMixin = __webpack_require__(67);
 
-	    module.exports = {
+	module.exports = {
 
-	        inherit: true,
+	    inherit: true,
 
-	        mixins: [formmakerfieldMixin],
+	    mixins: [formmakerfieldMixin],
 
-	        data: function () {
-	            return {
-	                fieldid: _.uniqueId('formmakerfield_')
-	            };
+	    data: function data() {
+	        return {
+	            fieldid: _.uniqueId('formmakerfield_')
+	        };
+	    },
+
+	    created: function created() {
+	        this.$set('dataObject', this.getDataObject(this.field.data.value || ''));
+	        //defaults admin
+	        this.field.data.rows = this.field.data.rows || 4;
+	        this.field.data.minLength = this.field.data.minLength || 0;
+	        this.field.data.maxLength = this.field.data.maxLength || 0;
+	    },
+
+	    computed: {
+	        minLength: function minLength() {
+	            return this.field.data.minLength && !this.isAdmin ? this.field.data.minLength : false;
 	        },
-
-	        created: function () {
-	            this.$set('dataObject', this.getDataObject(this.field.data.value || ''));
-	            //defaults admin
-	            this.field.data.rows = this.field.data.rows || 4;
-	            this.field.data.minLength = this.field.data.minLength || 0;
-	            this.field.data.maxLength = this.field.data.maxLength || 0;
-	        },
-
-	        computed: {
-	            minLength: function () {
-	                return this.field.data.minLength && !this.isAdmin ? this.field.data.minLength : false;
-	            },
-	            maxLength: function () {
-	                return this.field.data.maxLength && !this.isAdmin ? this.field.data.maxLength : false;
-	            }
+	        maxLength: function maxLength() {
+	            return this.field.data.maxLength && !this.isAdmin ? this.field.data.maxLength : false;
 	        }
+	    }
 
-	    };
+	};
 
-	    window.Formmakerfields.components['textbox'] = module.exports;
+	window.Formmakerfields.components['textbox'] = module.exports;
+
+	// </script>
 
 /***/ },
 

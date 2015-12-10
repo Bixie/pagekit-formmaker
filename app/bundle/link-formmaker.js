@@ -47,60 +47,89 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(83)
-	module.exports.template = __webpack_require__(84)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(84)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\components\\link-formmaker.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 83:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-form-row">
+	//         <label for="form-link-formmaker" class="uk-form-label">{{ 'Form' | trans }}</label>
+	//         <div class="uk-form-controls">
+	//             <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid" options="formOptions"></select>
+	//         </div>
+	//     </div>
+
+	// </template>
+
+	// <script>
+
 	module.exports = {
 
-	        link: {
-	            label: 'Formmaker'
-	        },
+	    link: {
+	        label: 'Formmaker'
+	    },
 
-	        props: ['link'],
+	    props: ['link'],
 
-	        data: function () {
-	            return {
-	                forms: [],
-	                formid: ''
+	    data: function data() {
+	        return {
+	            forms: [],
+	            formid: ''
+	        };
+	    },
+
+	    created: function created() {
+	        //TODO don't retrieve entire form objects
+	        this.$resource('api/formmaker/form').get(function (forms) {
+	            this.forms = forms;
+	            if (forms.length) {
+	                this.formid = forms[0].id;
 	            }
-	        },
+	        });
+	    },
 
-	        created: function () {
-	            //TODO don't retrieve entire form objects
-	            this.$resource('api/formmaker/form').get(function (forms) {
-	                this.forms = forms;
-	                if (forms.length) {
-	                    this.formid = forms[0].id;
-	                }
-	            });
-	        },
+	    watch: {
 
-	        watch: {
-
-	            formid: function (formid) {
-	                this.link = '@formmaker/form/front?id=' + formid;
-	            }
-
-	        },
-
-	        computed: {
-
-	            formOptions: function () {
-	                return _.map(this.forms, function (form) {
-	                    return {text: form.title, value: form.id};
-	                });
-	            }
-
+	        formid: function formid(_formid) {
+	            this.link = '@formmaker/form/front?id=' + _formid;
 	        }
 
-	    };
+	    },
 
-	    window.Links.components['formmaker'] = module.exports;
+	    computed: {
+
+	        formOptions: function formOptions() {
+	            return _.map(this.forms, function (form) {
+	                return { text: form.title, value: form.id };
+	            });
+	        }
+
+	    }
+
+	};
+
+	window.Links.components['formmaker'] = module.exports;
+
+	// </script>
 
 /***/ },
 

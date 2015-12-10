@@ -235,58 +235,154 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(58)
-	module.exports.template = __webpack_require__(59)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(59)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\components\\submission-detail.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 58:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-modal-spinner" v-if="!loaded"></div>
+
+	//     <div v-show="loaded">
+
+	//         <div class="uk-grid">
+
+	//             <div class="uk-width-medium-3-4">
+
+	//                 <h2 class="uk-margin-top-remove">{{ 'Submission for form "%formtitle%"' | trans {formtitle:submission.form_title} }}</h2>
+
+	//                 <dl class="uk-description-list uk-description-list-horizontal">
+
+	//                     <dt>{{ 'Submission date' | trans }}</dt><dd>{{ submission.created | datetime }}</dd>
+
+	//                     <dt>{{ 'Submission status' | trans }}</dt><dd v-class="uk-text-danger: submission.status == 0,
+
+	// 							  uk-text-primary: submission.status == 1,
+
+	// 							  uk-text-success: submission.status == 2">{{ getStatusText(submission) | trans }}</dd>
+
+	//                     <dt>{{ 'Remote IP address' | trans }}</dt><dd>{{ submission.ip }}</dd>
+
+	//                     <dt>{{ 'Email sent to' | trans }}</dt>
+
+	//                     <dd>
+
+	//                         <a v-if="submission.email" href="mailto:{{ submission.email }}">{{ submission.email }}</a>
+
+	//                         <span v-if="!submission.email">{{ 'No email provided' | trans }}</span>
+
+	//                     </dd>
+
+	//                 </dl>
+
+	//                 <h3>{{ 'Submission data' | trans }}</h3>
+
+	//                 <dl class="uk-description-list uk-description-list-horizontal">
+
+	//                     <template v-repeat="fieldsubmission: submission.fieldsubmissions">
+
+	//                         <dt>{{ fieldsubmission.field.label}}</dt>
+
+	//                         <dd v-repeat="fieldsubmission.value">{{ $value }}</dd>
+
+	//                     </template>
+
+	//                 </dl>
+
+	//             </div>
+
+	//             <div class="uk-width-medium-1-4 uk-form">
+
+	//                <div class="uk-form-row">
+
+	//                     <label for="form-status" class="uk-form-label">{{ 'Status' | trans }}</label>
+
+	//                     <div class="uk-form-controls">
+
+	//                         <select id="form-status" class="uk-width-1-1" options="submissionStatuses" v-model="submission.status" number></select>
+
+	//                     </div>
+
+	//                 </div>
+
+	//             </div>
+
+	//         </div>
+
+	//     </div>
+
+	//     <div class="uk-modal-footer uk-text-right">
+
+	//         <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans }}</button>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
+
 	module.exports = {
-	        data: function () {
-	            return {
-	                submission: {status: null},
-	                loaded: false
-	            };
-	        },
+	    data: function data() {
+	        return {
+	            submission: { status: null },
+	            loaded: false
+	        };
+	    },
 
-	        inherit: true,
+	    inherit: true,
 
-	        props: ['submissionid'],
+	    props: ['submissionid'],
 
-	        created: function () {
+	    created: function created() {
 
-	            this.resource.query({id: 'detail', submission_id: this.submissionid}, function (data) {
-	                this.$set('submission', data);
-	                this.loaded = true;
-	            }.bind(this));
+	        this.resource.query({ id: 'detail', submission_id: this.submissionid }, (function (data) {
+	            this.$set('submission', data);
+	            this.loaded = true;
+	        }).bind(this));
+	    },
 
-	        },
+	    beforeDestroy: function beforeDestroy() {
+	        this.$dispatch('close.submissionmodal');
+	    },
 
-	        beforeDestroy: function () {
-	            this.$dispatch('close.submissionmodal');
-	        },
+	    computed: {
+	        submissionStatuses: function submissionStatuses() {
 
-	        computed: {
-	            submissionStatuses: function () {
+	            return _.map(this.statuses, function (status, id) {
+	                return { text: status, value: id };
+	            });
+	        }
+	    },
 
-	                return _.map(this.statuses, function (status, id) {
-	                    return { text: status, value: id };
-	                });
-
-	            }
-	        },
-
-	        watch: {
-	            'submission.status': function (value, oldValue) {
-	                if (oldValue !== null && oldValue !== value) {
-	                    this.status(value, [this.submission])
-	                }
+	    watch: {
+	        'submission.status': function submissionStatus(value, oldValue) {
+	            if (oldValue !== null && oldValue !== value) {
+	                this.status(value, [this.submission]);
 	            }
 	        }
+	    }
 
-	    };
+	};
+
+	// </script>
 
 /***/ },
 
@@ -301,108 +397,339 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(61)
-	module.exports.template = __webpack_require__(62)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(62)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\components\\submission-csv.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 61:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-modal-header">
+
+	//         <h2>{{ 'Export submissions as CSV file' | trans }}</h2>
+
+	//     </div>
+
+	//     <div class="uk-margin uk-form uk-form-stacked">
+
+	//         <div class="uk-modal-spinner" v-if="!loaded"></div>
+
+	//         <div v-show="loaded">
+
+	//             <div class="uk-grid">
+
+	//                 <div class="uk-width-medium-1-2">
+
+	//                     <select class="uk-width-1-1" v-model="options.form_id" options="forms | formsList" number></select>
+
+	//                 </div>
+
+	//                 <div class="uk-width-medium-1-2">
+
+	//                     <div class="uk-form-controls uk-form-controls-text uk-flex uk-margin-small-top">
+
+	//                         <div class="uk-width-1-3">
+
+	//                             <label><input type="checkbox" value="0"v-on="click: load" v-checkbox="options.status" number> {{ 'Archived' | trans
+
+	//                                 }}</label>
+
+	//                         </div>
+
+	//                         <div class="uk-width-1-3">
+
+	//                             <label><input type="checkbox" value="1"v-on="click: load" v-checkbox="options.status" number> {{ 'Active' | trans
+
+	//                                 }}</label>
+
+	//                         </div>
+
+	//                         <div class="uk-width-1-3">
+
+	//                             <label><input type="checkbox" value="2"v-on="click: load" v-checkbox="options.status" number> {{ 'Done' | trans
+
+	//                                 }}</label>
+
+	//                         </div>
+
+	//                     </div>
+
+	//                 </div>
+
+	//             </div>
+
+	//             <div class="uk-grid" v-if="formLoaded">
+
+	//                 <div class="uk-width-medium-2-3">
+
+	//                     <div class="uk-grid">
+
+	//                         <div class="uk-width-medium-1-2">
+
+	//                             <div class="uk-form-row">
+
+	//                                 <span class="uk-form-label">{{ 'Data to export' | trans }}</span>
+
+	//                                 <div class="uk-form-controls uk-form-controls-text">
+
+	//                                     <p class="uk-form-controls-condensed">
+
+	//                                         <label><input type="checkbox" value="id" v-checkbox="options.datafields"> {{ 'Id' | trans
+
+	//                                             }}</label>
+
+	//                                     </p>
+
+	//                                     <p class="uk-form-controls-condensed">
+
+	//                                         <label><input type="checkbox" value="status" v-checkbox="options.datafields"> {{ 'Status' | trans
+
+	//                                             }}</label>
+
+	//                                     </p>
+
+	//                                     <p class="uk-form-controls-condensed">
+
+	//                                         <label><input type="checkbox" value="email" v-checkbox="options.datafields"> {{ 'Email' | trans
+
+	//                                             }}</label>
+
+	//                                     </p>
+
+	//                                     <p class="uk-form-controls-condensed">
+
+	//                                         <label><input type="checkbox" value="ip" v-checkbox="options.datafields"> {{ 'IP address' | trans
+
+	//                                             }}</label>
+
+	//                                     </p>
+
+	//                                     <p class="uk-form-controls-condensed">
+
+	//                                         <label><input type="checkbox" value="created" v-checkbox="options.datafields"> {{ 'Created' | trans
+
+	//                                             }}</label>
+
+	//                                     </p>
+
+	//                                 </div>
+
+	//                             </div>
+
+	//                         </div>
+
+	//                         <div class="uk-width-medium-1-2">
+
+	//                             <div class="uk-form-row">
+
+	//                                 <span class="uk-form-label">{{ 'Fields to export' | trans }}</span>
+
+	//                                 <div class="uk-form-controls uk-form-controls-text">
+
+	//                                     <p v-repeat="field: formitem.fields" class="uk-form-controls-condensed">
+
+	//                                         <label><input type="checkbox" value="{{ field.id }}" v-checkbox="options.field_ids" number> {{ field.label | trans
+
+	//                                             }}</label>
+
+	//                                     </p>
+
+	//                                 </div>
+
+	//                             </div>
+
+	//                         </div>
+
+	//                     </div>
+
+	//                 </div>
+
+	//                 <div class="uk-width-medium-1-3">
+
+	//                     <div class="uk-panel uk-panel-box">
+
+	//                         <div class="uk-form-row">
+
+	//                             <label for="form-filename" class="uk-form-label">{{ 'Filename' | trans }}</label>
+
+	//                             <div class="uk-form-controls">
+
+	//                                 <input id="form-filename" class="uk-width-1-1" type="text" v-model="options.filename">
+
+	//                             </div>
+
+	//                         </div>
+
+	//                         <div class="uk-form-row">
+
+	//                             <span class="uk-form-label">{{ 'Archive' | trans }}</span>
+
+	//                             <div class="uk-form-controls uk-form-controls-text">
+
+	//                                 <label><input type="checkbox" value="archived" v-model="options.mark_archived"> {{ 'Mark exported as "Archived"' | trans
+
+	//                                     }}</label>
+
+	//                             </div>
+
+	//                         </div>
+
+	//                         <div class="uk-badge uk-badge-success uk-margin">
+
+	//                             {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported' | transChoice count}}
+
+	//                         </div>
+
+	//                     </div>
+
+	//                 </div>
+
+	//             </div>
+
+	//         </div>
+
+	//     </div>
+
+	//     <div class="uk-modal-footer uk-text-right">
+
+	//         <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans }}</button>
+
+	//         <button type="button" class="uk-button uk-button-primary"
+
+	//                 v-show="!csvLink" v-on="click: doExport" v-el="export"
+
+	//                 v-attr="disabled: !formLoaded">
+
+	//             <i v-show="exporting" class="uk-icon-spinner uk-icon-spin"></i>
+
+	//             <span v-show="!exporting">{{ 'Export' | trans }}</span>
+
+	//         </button>
+
+	//         <!-- //todo downloadname is buggy-->
+
+	//         <a v-attr="href: csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
+
+	//                v-show="csvLink" v-el="exportlink"><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
+
 	module.exports = {
-	        data: function () {
-	            return {
-	                options: {
-	                    form_id: 0,
-	                    mark_archived: true,
-	                    status: [1, 2],
-	                    field_ids: [],
-	                    datafields: ['id', 'status', 'email', 'ip', 'created']
-	                },
-	                forms: [],
-	                formitem: {
-	                    id: 0,
-	                    fields: []
-	                },
-	                csvLink: '',
-	                exporting: false,
-	                loaded: false
-	            };
-	        },
-
-	        inherit: true,
-
-	        created: function () {
-	            this.load();
-	        },
-
-	        beforeDestroy: function () {
-	            this.$dispatch('close.csvmodal');
-	        },
-
-	        filters: {
-	            formsList: function (value) {
-	                var vm = this, options = [{value: 0, text: vm.$trans('Select form')}];
-	                 value.forEach(function (form) {
-	                    options.push({value: form.id, text: vm.$trans(form.title)});
-	                });
-	                return options;
-	            }
-	        },
-
-	        computed: {
-	            formLoaded: function () {
-	                return this.options.form_id && this.options.form_id == this.formitem.id;
-	            }
-	        },
-
-	        methods: {
-	            load: function () {
-	                this.resource.query({id: 'csv', options: this.options}, function (data) {
-	                    this.$set('options', data.options);
-	                    if (data.forms.length) {
-	                        this.$set('count', 0);
-	                        this.$set('forms', data.forms);
-	                    }
-	                    if (data.formitem.id) {
-	                        this.$set('formitem', data.formitem);
-	                        this.$set('formitem.fields', data.fields);
-	                        this.$set('count', data.count);
-	                        this.options.filename = 'export_' + this.formitem.slug + '.csv'
-	                    }
-	                    this.loaded = true;
-	                }.bind(this));
-
+	    data: function data() {
+	        return {
+	            options: {
+	                form_id: 0,
+	                mark_archived: true,
+	                status: [1, 2],
+	                field_ids: [],
+	                datafields: ['id', 'status', 'email', 'ip', 'created']
 	            },
+	            forms: [],
+	            formitem: {
+	                id: 0,
+	                fields: []
+	            },
+	            csvLink: '',
+	            exporting: false,
+	            loaded: false
+	        };
+	    },
 
-	            doExport: function () {
+	    inherit: true,
 
-	                if (this.exporting || !this.options.form_id || this.formitem.id !== this.options.form_id) {
-	                    return false;
+	    created: function created() {
+	        this.load();
+	    },
+
+	    beforeDestroy: function beforeDestroy() {
+	        this.$dispatch('close.csvmodal');
+	    },
+
+	    filters: {
+	        formsList: function formsList(value) {
+	            var vm = this,
+	                options = [{ value: 0, text: vm.$trans('Select form') }];
+	            value.forEach(function (form) {
+	                options.push({ value: form.id, text: vm.$trans(form.title) });
+	            });
+	            return options;
+	        }
+	    },
+
+	    computed: {
+	        formLoaded: function formLoaded() {
+	            return this.options.form_id && this.options.form_id == this.formitem.id;
+	        }
+	    },
+
+	    methods: {
+	        load: function load() {
+	            this.resource.query({ id: 'csv', options: this.options }, (function (data) {
+	                this.$set('options', data.options);
+	                if (data.forms.length) {
+	                    this.$set('count', 0);
+	                    this.$set('forms', data.forms);
 	                }
-	                this.exporting = true;
-	                this.resource.export({options: this.options}, function (data) {
-	                    if (data.csv) {
-	                        var $url = window.URL || window.webkitURL;
-	                        this.csvLink = $url.createObjectURL(new Blob([data.csv], {type: "application/force-download"}));
-	                        this.exporting = false;
-	                    }
-	                }.bind(this));
-	            }
+	                if (data.formitem.id) {
+	                    this.$set('formitem', data.formitem);
+	                    this.$set('formitem.fields', data.fields);
+	                    this.$set('count', data.count);
+	                    this.options.filename = 'export_' + this.formitem.slug + '.csv';
+	                }
+	                this.loaded = true;
+	            }).bind(this));
 	        },
 
-	        watch: {
-	            'options': {handler: function (value) {
-	                this.csvLink = '';
-	            }, deep: true},
+	        doExport: function doExport() {
 
-	            'options.form_id': function (value) {
-	                this.load();
+	            if (this.exporting || !this.options.form_id || this.formitem.id !== this.options.form_id) {
+	                return false;
 	            }
+	            this.exporting = true;
+	            this.resource.export({ options: this.options }, (function (data) {
+	                if (data.csv) {
+	                    var $url = window.URL || window.webkitURL;
+	                    this.csvLink = $url.createObjectURL(new Blob([data.csv], { type: "application/force-download" }));
+	                    this.exporting = false;
+	                }
+	            }).bind(this));
 	        }
+	    },
 
+	    watch: {
+	        'options': { handler: function handler(value) {
+	                this.csvLink = '';
+	            }, deep: true },
 
-	    };
+	        'options.form_id': function optionsForm_id(value) {
+	            this.load();
+	        }
+	    }
+
+	};
+
+	// </script>
 
 /***/ },
 

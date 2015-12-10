@@ -121,43 +121,75 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(64)
-	module.exports.template = __webpack_require__(65)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(65)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\components\\recaptcha.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 64:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-form-row">
+
+	//         <span class="uk-form-label" v-show="formitem.data.recaptcha_label">{{ formitem.data.recaptcha_label | trans }}</span>
+
+	//         <div class="uk-form-controls uk-form-controls-text">
+
+	//             <div id="grecaptcha_el"></div>
+
+	//         </div>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
 	window.grecacapthaCallback = function () {
-	        window.Formmaker.$.grecaptcha.grecaptchaCallback(grecaptcha)
-	    };
+	    window.Formmaker.$.grecaptcha.grecaptchaCallback(grecaptcha);
+	};
 
-	    module.exports = {
+	module.exports = {
 
-	        props: ['sitekey', 'formitem'],
+	    props: ['sitekey', 'formitem'],
 
-	        ready: function () {
+	    ready: function ready() {
 
+	        this.$on('submit', function (data) {
+	            data['g-recaptcha-response'] = grecaptcha.getResponse();
+	        });
+	    },
 
-	            this.$on('submit', function (data) {
-	                data['g-recaptcha-response'] = grecaptcha.getResponse();
+	    methods: {
+	        grecaptchaCallback: function grecaptchaCallback(grecaptcha) {
+	            grecaptcha.render('grecaptcha_el', {
+	                'sitekey': this.sitekey,
+	                'theme': this.formitem.data.recaptcha_theme || 'light',
+	                'type': this.formitem.data.recaptcha_type || 'image',
+	                'size': this.formitem.data.recaptcha_size || 'normal'
 	            });
-	        },
-
-	        methods: {
-	            grecaptchaCallback: function (grecaptcha) {
-	                grecaptcha.render('grecaptcha_el', {
-	                    'sitekey' : this.sitekey,
-	                    'theme' : this.formitem.data.recaptcha_theme || 'light',
-	                    'type' : this.formitem.data.recaptcha_type || 'image',
-	                    'size' : this.formitem.data.recaptcha_size || 'normal'
-	                });
-	            }
-
 	        }
 
-	    };
+	    }
+
+	};
+
+	// </script>
 
 /***/ },
 
