@@ -50,7 +50,7 @@ class FormmakerModule extends Module {
 
 			$this->types = [];
 			$paths = glob(App::locator()->get('bixie/formmaker:app/fields') . '/*.php', GLOB_NOSORT) ?: [];
-
+			$app = App::getInstance(); //available for type.php files
 			foreach ($paths as $p) {
 				$package = array_merge([
 					'id' => '',
@@ -63,7 +63,7 @@ class FormmakerModule extends Module {
 						return $value;
 					},
 					'formatValue' => function (Field $field, $value) {
-						if (count($field->options)) {
+						if (count($field->getOptions())) {
 							$options = $field->getOptionsRef();
 							if (is_array($value) && count($value)) {
 								return array_map(function ($val) use ($options) {
