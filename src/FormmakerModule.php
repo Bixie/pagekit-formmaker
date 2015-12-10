@@ -59,6 +59,7 @@ class FormmakerModule extends Module {
 					'multiple' => 0,
 					'dependancies' => [],
 					'style' => [],
+					'getOptions' => false,
 					'prepareValue' => function (Field $field, $value) {
 						return $value;
 					},
