@@ -7,21 +7,21 @@
                 <h2 class="uk-margin-top-remove">{{ 'Submission for form "%formtitle%"' | trans {formtitle:submission.form_title} }}</h2>
                 <dl class="uk-description-list uk-description-list-horizontal">
                     <dt>{{ 'Submission date' | trans }}</dt><dd>{{ submission.created | datetime }}</dd>
-                    <dt>{{ 'Submission status' | trans }}</dt><dd v-class="uk-text-danger: submission.status == 0,
-							  uk-text-primary: submission.status == 1,
-							  uk-text-success: submission.status == 2">{{ getStatusText(submission) | trans }}</dd>
+                    <dt>{{ 'Submission status' | trans }}</dt><dd :class="{'uk-text-danger': submission.status == 0,
+							  'uk-text-primary': submission.status == 1,
+							  'uk-text-success': submission.status == 2}">{{ $root.getStatusText(submission) | trans }}</dd>
                     <dt>{{ 'Remote IP address' | trans }}</dt><dd>{{ submission.ip }}</dd>
                     <dt>{{ 'Email sent to' | trans }}</dt>
                     <dd>
                         <a v-if="submission.email" href="mailto:{{ submission.email }}">{{ submission.email }}</a>
-                        <span v-if="!submission.email">{{ 'No email provided' | trans }}</span>
+                        <span v-else>{{ 'No email provided' | trans }}</span>
                     </dd>
                 </dl>
                 <h3>{{ 'Submission data' | trans }}</h3>
                 <dl class="uk-description-list uk-description-list-horizontal">
-                    <template v-repeat="fieldsubmission: submission.fieldsubmissions">
+                    <template v-for="fieldsubmission in submission.fieldsubmissions">
                         <dt>{{ fieldsubmission.field.label}}</dt>
-                        <dd v-repeat="fieldsubmission.value">{{ $value }}</dd>
+                        <dd v-for="value in fieldsubmission.value">{{ value }}</dd>
                     </template>
                 </dl>
 
@@ -32,7 +32,9 @@
                     <label for="form-status" class="uk-form-label">{{ 'Status' | trans }}</label>
 
                     <div class="uk-form-controls">
-                        <select id="form-status" class="uk-width-1-1" options="submissionStatuses" v-model="submission.status" number></select>
+                        <select id="form-status" class="uk-width-1-1" v-model="submission.status" number>
+                            <option v-for="option in $root.statuses" :value="$key">{{ option }}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -57,13 +59,11 @@
             };
         },
 
-        inherit: true,
-
         props: ['submissionid'],
 
         created: function () {
 
-            this.resource.query({id: 'detail', submission_id: this.submissionid}, function (data) {
+            this.$root.resource.query({id: 'detail', submission_id: this.submissionid}, function (data) {
                 this.$set('submission', data);
                 this.loaded = true;
             }.bind(this));
@@ -74,24 +74,13 @@
             this.$dispatch('close.submissionmodal');
         },
 
-        computed: {
-            submissionStatuses: function () {
-
-                return _.map(this.statuses, function (status, id) {
-                    return { text: status, value: id };
-                });
-
-            }
-        },
-
         watch: {
             'submission.status': function (value, oldValue) {
                 if (oldValue !== null && oldValue !== value) {
-                    this.status(value, [this.submission])
+                    this.$root.status(value, [this.submission])
                 }
             }
         }
-
     };
 
 </script>

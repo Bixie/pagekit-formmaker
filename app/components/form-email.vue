@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="uk-form-row">
-                    <v-editor id="formitem-emailbody" value="{{@ formitem.data.email_body }}"
-                              options="{{ {markdown : formitem.data.email_body_markdown} }}"></v-editor>
+                    <v-editor id="formitem-emailbody" :value.sync="formitem.data.email_body"
+                              :options="{markdown : formitem.data.email_body_markdown}"></v-editor>
                     <p>
                         <label><input type="checkbox" v-model="formitem.data.email_body_markdown"> {{ 'Enable Markdown' | trans }}</label>
                     </p>
@@ -42,7 +42,7 @@
             </div>
             <div class="uk-width-medium-1-4">
 
-                <formfieldslist fields="{{ formfields }}"></formfieldslist>
+                <formfieldslist :fields="formfields"></formfieldslist>
 
             </div>
         </div>
@@ -55,7 +55,11 @@
 
     module.exports = {
 
-        inherit: true
+        props: ['formitem', 'formfields', 'form'],
+
+        components: {
+            formfieldslist: require('./form-fieldslist.vue')
+        }
 
     };
 

@@ -3,7 +3,9 @@
     <div class="uk-form-row">
         <label for="form-link-formmaker" class="uk-form-label">{{ 'Form' | trans }}</label>
         <div class="uk-form-controls">
-            <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid" options="formOptions"></select>
+            <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid">
+                <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
+            </select>
         </div>
     </div>
 
@@ -40,16 +42,6 @@
 
             formid: function (formid) {
                 this.link = '@formmaker/form/front?id=' + formid;
-            }
-
-        },
-
-        computed: {
-
-            formOptions: function () {
-                return _.map(this.forms, function (form) {
-                    return {text: form.title, value: form.id};
-                });
             }
 
         }

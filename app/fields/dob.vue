@@ -4,8 +4,9 @@
         <span for="form-date-format" class="uk-form-label">{{ 'Date format' | trans }}</span>
 
         <div class="uk-form-controls">
-            <select class="uk-form-width-medium" id="form-date-format"
-                    options="dateFormats" v-model="field.data.dateFormat"></select>
+            <select class="uk-form-width-medium" id="form-date-format" v-model="field.data.dateFormat">
+                <option v-for="option in dateFormats" :value="option.value">{{ option.text }}</option>
+            </select>
         </div>
     </div>
 
@@ -13,8 +14,9 @@
         <span for="form-min-age" class="uk-form-label">{{ 'Minimum age' | trans }}</span>
 
         <div class="uk-form-controls">
-            <select class="uk-form-width-small" id="form-min-age"
-                    options="numbersList(1,120)"  v-model="field.data.minAge"></select>
+            <select class="uk-form-width-small" id="form-min-age" options="numbersList(1,120)" v-model="field.data.minAge">
+                <option v-for="option in numbersList(1,120)" :value="option.value">{{ option.text }}</option>
+            </select>
         </div>
     </div>
 
@@ -22,14 +24,15 @@
         <span for="form-max-age" class="uk-form-label">{{ 'Maximum age' | trans }}</span>
 
         <div class="uk-form-controls">
-            <select class="uk-form-width-small" id="form-max-age"
-                    options="numbersList(1,120)"  v-model="field.data.maxAge"></select>
+            <select class="uk-form-width-small" id="form-max-age" v-model="field.data.maxAge">
+                <option v-for="option in numbersList(1,120)" :value="option.value">{{ option.text }}</option>
+            </select>
         </div>
     </div>
 
-    <div v-if="!isAdmin" v-el="dob" class="uk-form-row {{field.data.classSfx || ''}}">
-        <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-            }}</span>
+    <div v-if="!isAdmin" v-el:dob class="uk-form-row {{field.data.classSfx}}">
+    <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+        }}</span>
 
         <div class="uk-form-controls uk-flex">
             <div class="uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1">
@@ -37,21 +40,27 @@
                 <div>
                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
                         <i class="uk-icon-caret-down uk-margin-left"></i>
-                        <select class="" options="months" v-model="month"></select>
+                        <select class="" v-model="month">
+                            <option v-for="option in months" :value="option.value">{{ option.text }}</option>
+                        </select>
                     </div>
                 </div>
 
-                <div v-class="uk-flex-order-first: field.data.dateFormat == 'DD-MM-YYYY'">
+                <div :class="{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}">
                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
                         <i class="uk-icon-caret-down uk-margin-left"></i>
-                        <select class="" options="numbersList(1,31, 'Day')" v-model="day"></select>
+                        <select class="" options="numbersList(1,31, 'Day')" v-model="day">
+                            <option v-for="option in numbersList(1,31, 'Day')" :value="option.value">{{ option.text }}</option>
+                        </select>
                     </div>
                 </div>
 
                 <div>
                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
                         <i class="uk-icon-caret-down uk-margin-left"></i>
-                        <select class="" options="years" v-model="year"></select>
+                        <select class="" options="years" v-model="year">
+                            <option v-for="option in years" :value="option.value">{{ option.text }}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -66,13 +75,12 @@
 
     module.exports = {
 
-        inherit: true,
-
         mixins: [formmakerfieldMixin],
 
         data: function () {
             return {
-                fieldid: _.uniqueId('formmakerfield_'),
+                dataObject: {},
+                fieldid: _.uniqueId('profilefield_'),
                 dobDate: false,
                 day: '',
                 month: '',
@@ -96,7 +104,7 @@
         },
 
         ready: function () {
-            UIkit.init(this.$$.dob);
+            UIkit.init(this.$els.dob);
         },
 
         computed: {

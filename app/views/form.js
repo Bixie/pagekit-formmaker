@@ -1,5 +1,7 @@
 module.exports = {
 
+    el: '#formmaker-form',
+
     data: _.extend({
         formitem: {},
         fields: [],
@@ -10,7 +12,8 @@ module.exports = {
             form_id: 0,
             status: 1,
             data: {}
-        }
+        },
+        form: {}
     }, window.$formmaker),
 
     created: function () {
@@ -29,8 +32,7 @@ module.exports = {
 
     methods: {
 
-        save: function (e) {
-            e.preventDefault();
+        save: function () {
 
             var vm = this, data = {submission: this.submission};
 
@@ -60,8 +62,6 @@ module.exports = {
 
 };
 
-$(function () {
-
-    window.Formmaker = new Vue(module.exports).$mount('#formmaker-form');
-
+Vue.ready(function () {
+    window.Formmaker = new Vue(module.exports);
 });

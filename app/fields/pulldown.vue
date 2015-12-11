@@ -10,22 +10,24 @@
     </div>
 
     <div class="uk-form-row {{field.data.classSfx || ''}}">
-        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</label>
 
         <div class="uk-form-controls">
 
             <select v-if="field.data.multiple" class="uk-form-width-large" multiple="multiple"
-                    options="field.options"
-                    v-attr="name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false"
+                    v-bind="{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}"
                     v-model="dataObject.value"
-                    v-validate="required: fieldRequired"></select>
+                    :required="fieldRequired">
+                <option v-for="option in field.options" :value="option.value">{{ option.text }}</option>
+            </select>
 
-            <select v-if="!field.data.multiple" class="uk-form-width-large"
-                    options="field.options"
-                    v-attr="name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false"
+            <select v-else class="uk-form-width-large"
+                    v-bind="{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}"
                     v-model="dataObject.value"
-                    v-validate="required: fieldRequired"></select>
+                    :required="fieldRequired">
+                <option v-for="option in field.options" :value="option.value">{{ option.text }}</option>
+            </select>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please select a value' | trans }}</p>
@@ -39,12 +41,11 @@
 
     module.exports = {
 
-        inherit: true,
-
         mixins: [formmakerfieldMixin],
 
         data: function () {
             return {
+                dataObject: {},
                 fieldid: _.uniqueId('formmakerfield_')
             };
         },

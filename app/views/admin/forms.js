@@ -1,5 +1,7 @@
 module.exports = {
 
+    el: '#formmaker-forms',
+
     data: function () {
         return _.merge({
             forms: false,
@@ -71,7 +73,8 @@ module.exports = {
 
         formitem: {
 
-            inherit: true,
+            props: ['formitem'],
+
             template: '#formitem',
 
             computed: {
@@ -91,7 +94,7 @@ module.exports = {
             var vm = this;
 
             // TODO this is still buggy
-            UIkit.nestable(this.$$.nestable, {
+            UIkit.nestable(this.$els.nestable, {
                 maxDepth: 1,
                 group: 'formmaker.forms'
             }).off('change.uk.nestable').on('change.uk.nestable', function (e, nestable, el, type) {
@@ -121,9 +124,5 @@ module.exports = {
 
 };
 
-$(function () {
-
-    new Vue(module.exports).$mount('#formmaker-forms');
-
-});
+Vue.ready(module.exports);
 

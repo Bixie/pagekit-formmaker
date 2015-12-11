@@ -12,7 +12,7 @@ class SiteController {
 	 */
 	public function formAction ($id = 0) {
 		$user = App::user();
-
+		/** @var Form $form */
 		if (!$form = Form::where(['id = ?'], [$id])->where(function ($query) use ($user) {
 			if (!$user->isAdministrator()) $query->where('status = 1');
 		})->related('fields')->first()

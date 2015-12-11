@@ -37,8 +37,7 @@
                 <label v-show="config.recaptha_sitekey && config.recaptha_secret_key">
                     <input type="checkbox" value="hide-title" v-model="formitem.data.recaptcha"> {{ 'Use reCAPTCHA' |
                     trans }}</label>
-                <a  v-show="!(config.recaptha_sitekey && config.recaptha_secret_key)"
-                    class="uk-link-muted" v-attr="href: $url.route('admin/system/package/extensions')">{{ 'Enter reCAPTCHA keys in the extension settings' | trans }}</a>
+                <a  v-else class="uk-link-muted" :href="$url.route('admin/system/package/extensions')">{{ 'Enter reCAPTCHA keys in the extension settings' | trans }}</a>
             </div>
         </div>
 
@@ -50,7 +49,7 @@
 
     module.exports = {
 
-        inherit: true
+        props: ['formitem', 'config', 'form']
 
     };
 

@@ -14,7 +14,10 @@
             <div class="uk-form-row">
                 <label for="form-link-formmaker" class="uk-form-label">{{ 'Form' | trans }}</label>
                 <div class="uk-form-controls">
-                    <select id="form-link-formmaker" class="uk-form-width-large" v-model="widget.data.form_id" options="formOptions"></select>                </div>
+                    <select id="form-link-formmaker" class="uk-form-width-large" v-model="widget.data.form_id">
+                        <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
+                    </select>
+                </div>
             </div>
 
             <div class="uk-form-row">
@@ -31,9 +34,10 @@
                 <label for="form-formstyle" class="uk-form-label">{{ 'Form style' | trans }}</label>
 
                 <div class="uk-form-controls">
-                    <select id="form-formstyle" class="uk-form-width-large"
-                            options="['uk-form-stacked', 'uk-form-horizontal']"
-                            v-model="widget.data.formStyle"></select>
+                    <select id="form-formstyle" class="uk-form-width-large" v-model="widget.data.formStyle">
+                        <option value="uk-form-stacked">{{ 'Form stacked' | trans }}</option>
+                        <option value="uk-form-horizontal">{{ 'Form horizontal' | trans }}</option>
+                    </select>
                 </div>
             </div>
 
@@ -75,16 +79,6 @@
                 }
             });
             this.widget.data = _.assign({form_id: 0, formStyle: 'uk-form-stacked'}, this.widget.data);
-        },
-
-        computed: {
-
-            formOptions: function () {
-                return _.map(this.forms, function (form) {
-                    return {text: form.title, value: form.id};
-                });
-            }
-
         }
     };
 

@@ -47,8 +47,20 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(73)
-	module.exports.template = __webpack_require__(74)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(74)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\fields\\htmlcode.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
@@ -57,7 +69,7 @@ var Forms =
 
 	module.exports = {
 
-	    props: ['isAdmin'],
+	    props: ['isAdmin', 'submission', 'field', 'form'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -72,7 +84,7 @@ var Forms =
 	            return this.submission.data[this.field.id];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid].invalid;
+	            return form[this.fieldid] ? form[this.fieldid].invalid : false;
 	        }
 
 	    },
@@ -93,27 +105,52 @@ var Forms =
 /***/ 73:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div v-if="isAdmin" class="uk-form-row">
+
+	//         <div class="uk-form-row">
+	//             <v-editor id="{{ fieldid }}-html" value="{{@ dataObject.value }}" options="{{ {markdown : field.data.markdown} }}"></v-editor>
+	//             <p>
+	//                 <label><input type="checkbox" v-model="field.data.markdown"> {{ 'Enable Markdown' | trans }}</label>
+	//             </p>
+	//         </div>
+
+	//     </div>
+
+	//     <div v-if="!isAdmin" class="uk-form-row {{field.data.classSfx || ''}}">
+
+	//         {{{ dataObject.prepared }}}
+
+	//     </div>
+
+	// </template>
+
+	// <script>
 	var formmakerfieldMixin = __webpack_require__(67);
 
-	    module.exports = {
+	module.exports = {
 
-	        inherit: true,
+	    mixins: [formmakerfieldMixin],
 
-	        mixins: [formmakerfieldMixin],
+	    data: function data() {
+	        return {
+	            dataObject: {},
+	            fieldid: _.uniqueId('formmakerfield_')
+	        };
+	    },
 
-	        data: function () {
-	            return {
-	                fieldid: _.uniqueId('formmakerfield_')
-	            };
-	        },
+	    created: function created() {
+	        this.$set('dataObject', this.getDataObject(this.field.data.value || ''));
+	    }
 
-	        created: function () {
-	            this.$set('dataObject', this.getDataObject(this.field.data.value || ''));
-	        }
+	};
 
-	    };
+	window.Formmakerfields.components['htmlcode'] = module.exports;
 
-	    window.Formmakerfields.components['htmlcode'] = module.exports;
+	// </script>
 
 /***/ },
 

@@ -13,19 +13,21 @@
 
 <script>
     window.grecacapthaCallback = function () {
-        window.Formmaker.$.grecaptcha.grecaptchaCallback(grecaptcha)
+        Vue.ready(function () {
+            window.Formmaker.$refs.grecaptcha.grecaptchaCallback(grecaptcha)
+        });
     };
 
     module.exports = {
 
         props: ['sitekey', 'formitem'],
 
-        ready: function () {
-
-
-            this.$on('submit', function (data) {
-                data['g-recaptcha-response'] = grecaptcha.getResponse();
-            });
+        events: {
+            'submit': function (data) {
+                if (window.grecaptcha) {
+                    data['g-recaptcha-response'] = grecaptcha.getResponse();
+                }
+            }
         },
 
         methods: {

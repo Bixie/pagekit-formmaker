@@ -1,5 +1,7 @@
 module.exports = {
 
+    el: '#formmaker-submissions',
+
     data: function () {
         return _.merge({
             submissions: false,
@@ -13,16 +15,18 @@ module.exports = {
     created: function () {
         this.resource = this.$resource('api/formmaker/submission/:id', {}, {'export': {method: 'post', url: 'api/formmaker/submission/csv'}});
         this.config.filter = _.extend({ status: '', form: '', order: 'created desc'}, this.config.filter);
-        this.$on('close.submissionmodal', function () {
+    },
+
+    events: {
+        'close.submissionmodal': function () {
             if (this.$url.current.hash) {
                 window.history.replaceState({}, '', this.$url.current.href.replace('#' + this.$url.current.hash, ''));
                 this.$url.current.hash = '';
             }
-        });
-        this.$on('close.csvmodal', function () {
+        },
+        'close.csvmodal': function () {
             this.load();
-        });
-
+        }
     },
 
     watch: {
@@ -40,7 +44,7 @@ module.exports = {
 
         statusOptions: function () {
 
-            var options = _.map(this.$data.statuses, function (status, id) {
+            var options = _.map(this.statuses, function (status, id) {
                 return { text: status, value: id };
             });
 
@@ -49,7 +53,7 @@ module.exports = {
 
         formOptions: function () {
 
-            var options = _.map(this.$data.forms, function (form) {
+            var options = _.map(this.forms, function (form) {
                 return { text: form.title, value: form.id };
             });
 
@@ -131,7 +135,7 @@ module.exports = {
             window.history.replaceState({}, '', this.$url.current.href.replace('#' + this.$url.current.hash, '') + '#' + submission.id);
             this.$url.current.hash = '#' + submission.id;
             this.submissionID = submission.id;
-            this.$.submissionmodal.open();
+            this.$refs.submissionmodal.open();
         },
 
         formatValue: function (fieldvalue) {
@@ -153,9 +157,5 @@ module.exports = {
 
 require('../../lib/filters')(Vue);
 
-$(function () {
-
-    new Vue(module.exports).$mount('#formmaker-submissions');
-
-});
+Vue.ready(module.exports);
 

@@ -48,6 +48,8 @@ var Forms =
 
 	module.exports = {
 
+	    el: '#formmaker-form',
+
 	    data: _.extend({
 	        formitem: {},
 	        fields: [],
@@ -58,7 +60,8 @@ var Forms =
 	            form_id: 0,
 	            status: 1,
 	            data: {}
-	        }
+	        },
+	        form: {}
 	    }, window.$formmaker),
 
 	    created: function () {
@@ -77,8 +80,7 @@ var Forms =
 
 	    methods: {
 
-	        save: function (e) {
-	            e.preventDefault();
+	        save: function () {
 
 	            var vm = this, data = {submission: this.submission};
 
@@ -108,10 +110,8 @@ var Forms =
 
 	};
 
-	$(function () {
-
-	    window.Formmaker = new Vue(module.exports).$mount('#formmaker-form');
-
+	Vue.ready(function () {
+	    window.Formmaker = new Vue(module.exports);
 	});
 
 
@@ -121,43 +121,78 @@ var Forms =
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(64)
-	module.exports.template = __webpack_require__(65)
 
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(65)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\components\\recaptcha.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
 
 /***/ },
 
 /***/ 64:
 /***/ function(module, exports) {
 
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-form-row">
+
+	//         <span class="uk-form-label" v-show="formitem.data.recaptcha_label">{{ formitem.data.recaptcha_label | trans }}</span>
+
+	//         <div class="uk-form-controls uk-form-controls-text">
+
+	//             <div id="grecaptcha_el"></div>
+
+	//         </div>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
 	window.grecacapthaCallback = function () {
-	        window.Formmaker.$.grecaptcha.grecaptchaCallback(grecaptcha)
-	    };
+	    Vue.ready(function () {
+	        window.Formmaker.$refs.grecaptcha.grecaptchaCallback(grecaptcha);
+	    });
+	};
 
-	    module.exports = {
+	module.exports = {
 
-	        props: ['sitekey', 'formitem'],
+	    props: ['sitekey', 'formitem'],
 
-	        ready: function () {
-
-
-	            this.$on('submit', function (data) {
+	    events: {
+	        'submit': function submit(data) {
+	            if (window.grecaptcha) {
 	                data['g-recaptcha-response'] = grecaptcha.getResponse();
-	            });
-	        },
-
-	        methods: {
-	            grecaptchaCallback: function (grecaptcha) {
-	                grecaptcha.render('grecaptcha_el', {
-	                    'sitekey' : this.sitekey,
-	                    'theme' : this.formitem.data.recaptcha_theme || 'light',
-	                    'type' : this.formitem.data.recaptcha_type || 'image',
-	                    'size' : this.formitem.data.recaptcha_size || 'normal'
-	                });
 	            }
+	        }
+	    },
 
+	    methods: {
+	        grecaptchaCallback: function grecaptchaCallback(grecaptcha) {
+	            grecaptcha.render('grecaptcha_el', {
+	                'sitekey': this.sitekey,
+	                'theme': this.formitem.data.recaptcha_theme || 'light',
+	                'type': this.formitem.data.recaptcha_type || 'image',
+	                'size': this.formitem.data.recaptcha_size || 'normal'
+	            });
 	        }
 
-	    };
+	    }
+
+	};
+
+	// </script>
 
 /***/ },
 

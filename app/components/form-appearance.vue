@@ -15,9 +15,10 @@
             <label for="form-formstyle" class="uk-form-label">{{ 'Form style' | trans }}</label>
 
             <div class="uk-form-controls">
-                <select id="form-formstyle" class="uk-form-width-large"
-                        options="['uk-form-stacked', 'uk-form-horizontal']"
-                        v-model="formitem.data.formStyle"></select>
+                <select id="form-formstyle" class="uk-form-width-large" v-model="formitem.data.formStyle">
+                    <option value="uk-form-stacked">{{ 'Form stacked' | trans }}</option>
+                    <option value="uk-form-horizontal">{{ 'Form horizontal' | trans }}</option>
+                </select>
             </div>
         </div>
 
@@ -60,9 +61,15 @@
                 <label for="form-recaptcha_label" class="uk-form-label">{{ 'reCAPTCHA setup' | trans }}</label>
 
                 <div class="uk-form-controls">
-                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_theme" options="recaptcha_themes"></select>
-                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_type" options="recaptcha_types"></select>
-                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_size" options="recaptcha_sizes"></select>
+                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_theme">
+                        <option v-for="option in recaptcha_themes" :value="option.value">{{ option.text }}</option>
+                    </select>
+                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_type">
+                        <option v-for="option in recaptcha_types" :value="option.value">{{ option.text }}</option>
+                    </select>
+                    <select class="uk-form-width-small" v-model="formitem.data.recaptcha_size">
+                        <option v-for="option in recaptcha" :value="option.value">{{ option.text }}</option>
+                    </select>
                 </div>
             </div>
 
@@ -76,7 +83,7 @@
 
     module.exports = {
 
-        inherit: true,
+        props: ['formitem', 'form'],
 
         data: function () {
             return {

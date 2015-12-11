@@ -7,10 +7,10 @@
 
             <div class="uk-form-controls uk-form-controls-text">
                 <p class="uk-form-controls-condensed">
-                    <label><input type="checkbox" value="all" v-checkbox="widget.form"> {{ 'Show all' | trans }}</label>
+                    <label><input type="checkbox" value="all" v-model="widget.form"> {{ 'Show all' | trans }}</label>
                 </p>
-                <p v-repeat="form: forms" class="uk-form-controls-condensed">
-                    <label><input type="checkbox" value="{{ form.id }}" v-checkbox="widget.form"> {{ form.title }}</label>
+                <p v-for="form in forms" class="uk-form-controls-condensed">
+                    <label><input type="checkbox" :value="form.id" v-model="widget.form"> {{ form.title }}</label>
                 </p>
             </div>
         </div>
@@ -47,15 +47,15 @@
 
     <h3 class="uk-panel-title" v-show="!widget.done">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions' | transChoice count}}</h3>
 
-    <h3 class="uk-panel-title" v-show="widget.done">{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>
+    <h3 class="uk-panel-title" v-else>{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>
 
     <ul v-show="submissions.length" class="uk-list uk-list-line">
-        <li class="" v-repeat="submission: submissions | orderBy 'status ASC, created DESC'">
-            <span class="uk-float-right" v-class="pk-icon-circle-danger: !submission.status,
-							  pk-icon-circle-primary: submission.status == 1,
-							  pk-icon-circle-success: submission.status == 2"></span>
+        <li class="" v-for="submission in submissions | orderBy 'status ASC, created DESC'">
+            <span class="uk-float-right" :class="{'pk-icon-circle-danger': !submission.status,
+							  'pk-icon-circle-primary': submission.status == 1,
+							  'pk-icon-circle-success': submission.status == 2}"></span>
 
-            <a href="{{ $url.route('admin/formmaker/submissions#' + submission.id ) }}">{{ submission.created | datetime }}</a>
+            <a :href="$url.route('admin/formmaker/submissions#' + submission.id )">{{ submission.created | datetime }}</a>
             <div class="uk-text-truncate uk-text-muted">
                 {{ submission.form_title }}<span v-if="submission.email"> | {{ submission.email }}</span>
             </div>

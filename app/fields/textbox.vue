@@ -31,19 +31,21 @@
     </div>
 
     <div class="uk-form-row {{field.data.classSfx || ''}}">
-        <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
             }}</label>
 
         <div class="uk-form-controls">
             <textarea v-if="minLength || maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-                   v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
+                   v-bind="{name: fieldid, id: fieldid, rows: field.data.rows}"
                    v-model="dataObject.value"
-                   v-validate="required: fieldRequired, minLength: minLength, maxLength: maxLength"></textarea>
+                   :required="fieldRequired"
+                   v-validate:minLength="minLength"
+                   v-validate:max="max"></textarea>
 
-            <textarea v-if="!minLength && !maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-                   v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
+            <textarea v-else class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+                   v-bind="{name: fieldid, id: fieldid, rows: field.data.rows}"
                    v-model="dataObject.value"
-                   v-validate="required: fieldRequired"></textarea>
+                   :required="fieldRequired"></textarea>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>
@@ -57,12 +59,11 @@
 
     module.exports = {
 
-        inherit: true,
-
         mixins: [formmakerfieldMixin],
 
         data: function () {
             return {
+                dataObject: {},
                 fieldid: _.uniqueId('formmakerfield_')
             };
         },

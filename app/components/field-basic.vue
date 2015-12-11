@@ -22,7 +22,12 @@
                     </div>
                 </div>
 
-                <formmakerfields v-show="!type.hasOptions || field.options.length" edit-field="{{@ field.type }}"></formmakerfields>
+                <div class="uk-margin" v-show="!type.hasOptions || field.options.length">
+                    <formmakerfields :edit-field.sync="field.type"
+                                     :field="field"
+                                     :form="form"></formmakerfields>
+                </div>
+
 
             </div>
             <div class="uk-width-medium-1-4 uk-form-stacked">
@@ -49,9 +54,8 @@
                     <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
 
                     <div class="uk-form-controls uk-form-controls-text">
-                        <p v-repeat="role: roles" class="uk-form-controls-condensed">
-                            <label><input type="checkbox" value="{{ role.id }}" v-checkbox="field.roles" number> {{ role.name
-                                }}</label>
+                        <p v-for="role in roles" class="uk-form-controls-condensed">
+                            <label><input type="checkbox" :value="role.id" v-model="field.roles" number> {{ role.name }}</label>
                         </p>
                     </div>
                 </div>
@@ -66,7 +70,7 @@
 
     module.exports = {
 
-        props: ['field', 'type', 'form']
+        props: ['field', 'type', 'roles', 'form']
 
     };
 

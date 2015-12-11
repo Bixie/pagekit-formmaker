@@ -1,6 +1,6 @@
 module.exports = {
 
-    props: ['isAdmin'],
+    props: ['isAdmin', 'submission', 'field', 'form'],
 
     methods: {
         getDataObject: function (defaultValue) {
@@ -15,7 +15,7 @@ module.exports = {
             return this.submission.data[this.field.id];
         },
         fieldInvalid: function (form) {
-            return form[this.fieldid].invalid;
+            return form[this.fieldid] ? form[this.fieldid].invalid : false;
         }
 
     },

@@ -1,4 +1,6 @@
-module.exports = Vue.extend({
+module.exports = {
+
+    el: '#form-edit',
 
     data: function () {
         return _.merge({
@@ -15,38 +17,31 @@ module.exports = Vue.extend({
                     formStyle: 'uk-form-stacked'
                 }
             },
-            editid: ''
+            editid: '',
+            form: {}
         }, window.$data);
     },
 
-    created: function () {
-        this.$on('close.editmodal', function () {
-            this.$.formfields.load();
-        });
+    events: {
+        'close.editmodal': function () {
+            this.$refs.formfields.load();
+        }
     },
 
     ready: function () {
         this.Forms = this.$resource('api/formmaker/form/:id');
-        this.tab = UIkit.tab(this.$$.tab, {connect: this.$$.content});
+        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
     },
 
     computed: {
-        afterSubmitOptions: function () {
-            return [
-                { value: 'thankyou', text: this.$trans('Show Thank you message')},
-                { value: 'redirect', text: this.$trans('Redirect to page')}
-            ];
-        },
         formfields: function () {
-            return this.$.formfields.fields;
+            return this.$refs.formfields ? this.$refs.formfields.fields : [];
         }
     },
 
     methods: {
 
-        save: function (e) {
-
-            e.preventDefault();
+        save: function () {
 
             var data = {formitem: this.formitem};
 
@@ -55,7 +50,7 @@ module.exports = Vue.extend({
             this.Forms.save({id: this.formitem.id}, data, function (data) {
 
                 if (!this.formitem.id) {
-                    window.history.replaceState({}, '', this.$url.route('admin/formmaker/form/edit', {id: data.formitem.id}))
+                    window.history.replaceState({}, '', this.$url.route('admin/formmaker/form/edit', {id: data.formitem.id}));
                 }
 
                 this.$set('formitem', data.formitem);
@@ -69,7 +64,7 @@ module.exports = Vue.extend({
 
         editFormField: function (id) {
             this.editid = id;
-            this.$.editmodal.open();
+            this.$refs.editmodal.open();
 //                this.$nextTick(function () {
 //                    //todo close dropdown ;~!
 //                    $(this.$.editmodal.$el).find('.uk-modal-dialog').focus();
@@ -81,7 +76,6 @@ module.exports = Vue.extend({
 
         formbasic: require('../../components/form-basic.vue'),
         formfields: require('../../components/form-fields.vue'),
-        formfieldslist: require('../../components/form-fieldslist.vue'),
         appearance: require('../../components/form-appearance.vue'),
         submission: require('../../components/form-submission.vue'),
         emailsettings: require('../../components/form-email.vue'),
@@ -89,12 +83,8 @@ module.exports = Vue.extend({
 
     }
 
-});
+};
 
 require('../../lib/filters')(Vue);
 
-$(function () {
-
-    (new module.exports()).$mount('#form-edit');
-
-});
+Vue.ready(module.exports);

@@ -24,12 +24,11 @@
 
     module.exports = {
 
-        inherit: true,
-
         mixins: [formmakerfieldMixin],
 
         data: function () {
             return {
+                dataObject: {},
                 fieldid: _.uniqueId('formmakerfield_')
             };
         },

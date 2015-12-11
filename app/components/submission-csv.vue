@@ -10,21 +10,24 @@
 
             <div class="uk-grid">
                 <div class="uk-width-medium-1-2">
-                    <select class="uk-width-1-1" v-model="options.form_id" options="forms | formsList" number></select>
+                    <select class="uk-width-1-1" v-model="options.form_id" number>
+                        <option value="">{{ 'Select form' | trans }}</option>
+                        <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
+                    </select>
 
                 </div>
                 <div class="uk-width-medium-1-2">
                     <div class="uk-form-controls uk-form-controls-text uk-flex uk-margin-small-top">
                         <div class="uk-width-1-3">
-                            <label><input type="checkbox" value="0"v-on="click: load" v-checkbox="options.status" number> {{ 'Archived' | trans
+                            <label><input type="checkbox" value="0" @click="load" v-model="options.status" number> {{ 'Archived' | trans
                                 }}</label>
                         </div>
                         <div class="uk-width-1-3">
-                            <label><input type="checkbox" value="1"v-on="click: load" v-checkbox="options.status" number> {{ 'Active' | trans
+                            <label><input type="checkbox" value="1" @click="load" v-model="options.status" number> {{ 'Active' | trans
                                 }}</label>
                         </div>
                         <div class="uk-width-1-3">
-                            <label><input type="checkbox" value="2"v-on="click: load" v-checkbox="options.status" number> {{ 'Done' | trans
+                            <label><input type="checkbox" value="2" @click="load" v-model="options.status" number> {{ 'Done' | trans
                                 }}</label>
                         </div>
                     </div>
@@ -42,23 +45,23 @@
 
                                 <div class="uk-form-controls uk-form-controls-text">
                                     <p class="uk-form-controls-condensed">
-                                        <label><input type="checkbox" value="id" v-checkbox="options.datafields"> {{ 'Id' | trans
+                                        <label><input type="checkbox" value="id" v-model="options.datafields"> {{ 'Id' | trans
                                             }}</label>
                                     </p>
                                     <p class="uk-form-controls-condensed">
-                                        <label><input type="checkbox" value="status" v-checkbox="options.datafields"> {{ 'Status' | trans
+                                        <label><input type="checkbox" value="status" v-model="options.datafields"> {{ 'Status' | trans
                                             }}</label>
                                     </p>
                                     <p class="uk-form-controls-condensed">
-                                        <label><input type="checkbox" value="email" v-checkbox="options.datafields"> {{ 'Email' | trans
+                                        <label><input type="checkbox" value="email" v-model="options.datafields"> {{ 'Email' | trans
                                             }}</label>
                                     </p>
                                     <p class="uk-form-controls-condensed">
-                                        <label><input type="checkbox" value="ip" v-checkbox="options.datafields"> {{ 'IP address' | trans
+                                        <label><input type="checkbox" value="ip" v-model="options.datafields"> {{ 'IP address' | trans
                                             }}</label>
                                     </p>
                                     <p class="uk-form-controls-condensed">
-                                        <label><input type="checkbox" value="created" v-checkbox="options.datafields"> {{ 'Created' | trans
+                                        <label><input type="checkbox" value="created" v-model="options.datafields"> {{ 'Created' | trans
                                             }}</label>
                                     </p>
                                 </div>
@@ -71,8 +74,8 @@
                                 <span class="uk-form-label">{{ 'Fields to export' | trans }}</span>
 
                                 <div class="uk-form-controls uk-form-controls-text">
-                                    <p v-repeat="field: formitem.fields" class="uk-form-controls-condensed">
-                                        <label><input type="checkbox" value="{{ field.id }}" v-checkbox="options.field_ids" number> {{ field.label | trans
+                                    <p v-for="field in formitem.fields" class="uk-form-controls-condensed">
+                                        <label><input type="checkbox" value="{{ field.id }}" v-model="options.field_ids" number> {{ field.label | trans
                                             }}</label>
                                     </p>
                                 </div>
@@ -118,14 +121,14 @@
     <div class="uk-modal-footer uk-text-right">
         <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans }}</button>
         <button type="button" class="uk-button uk-button-primary"
-                v-show="!csvLink" v-on="click: doExport" v-el="export"
-                v-attr="disabled: !formLoaded">
+                v-show="!csvLink" @click="doExport" v-el:export
+                :disabled="!formLoaded">
             <i v-show="exporting" class="uk-icon-spinner uk-icon-spin"></i>
-            <span v-show="!exporting">{{ 'Export' | trans }}</span>
+            <span v-else>{{ 'Export' | trans }}</span>
         </button>
         <!-- //todo downloadname is buggy-->
-        <a v-attr="href: csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
-               v-show="csvLink" v-el="exportlink"><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
+        <a :href="csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
+               v-show="csvLink" v-el:exportlink><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
     </div>
 
 </template>
@@ -133,6 +136,9 @@
 <script>
 
     module.exports = {
+
+        props: ['forms'],
+
         data: function () {
             return {
                 options: {
@@ -149,11 +155,10 @@
                 },
                 csvLink: '',
                 exporting: false,
+                count: 0,
                 loaded: false
             };
         },
-
-        inherit: true,
 
         created: function () {
             this.load();
@@ -161,16 +166,6 @@
 
         beforeDestroy: function () {
             this.$dispatch('close.csvmodal');
-        },
-
-        filters: {
-            formsList: function (value) {
-                var vm = this, options = [{value: 0, text: vm.$trans('Select form')}];
-                 value.forEach(function (form) {
-                    options.push({value: form.id, text: vm.$trans(form.title)});
-                });
-                return options;
-            }
         },
 
         computed: {
@@ -181,7 +176,7 @@
 
         methods: {
             load: function () {
-                this.resource.query({id: 'csv', options: this.options}, function (data) {
+                this.$root.resource.query({id: 'csv', options: this.options}, function (data) {
                     this.$set('options', data.options);
                     if (data.forms.length) {
                         this.$set('count', 0);
@@ -204,7 +199,7 @@
                     return false;
                 }
                 this.exporting = true;
-                this.resource.export({options: this.options}, function (data) {
+                this.$root.resource.export({options: this.options}, function (data) {
                     if (data.csv) {
                         var $url = window.URL || window.webkitURL;
                         this.csvLink = $url.createObjectURL(new Blob([data.csv], {type: "application/force-download"}));
