@@ -41,6 +41,8 @@ return [
 
 	],
 
+	'formmakerfields' => 'fields',
+
 	'resources' => [
 
 		'bixie/formmaker:' => ''
