@@ -25,7 +25,7 @@
                     <div class="uk-dropdown uk-dropdown-small uk-dropdown-flip">
                         <ul class="uk-nav uk-nav-dropdown">
                             <li v-for="type in types | orderBy 'label'">
-                                <a @click.prevent="editFormField(type.id)">{{ type.label }}</a></li>
+                                <a @click.prevent="$root.editFormField(type.id)">{{ type.label }}</a></li>
                         </ul>
                     </div>
                 </div>
