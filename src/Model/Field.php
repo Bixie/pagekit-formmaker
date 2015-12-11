@@ -53,6 +53,13 @@ class Field implements \JsonSerializable {
 	 * @return mixed
 	 */
 	public function getOptions () {
+		$type = App::module('bixie/formmaker')->getType($this->type);
+
+		if (is_callable($type['getOptions'])) {
+
+			return call_user_func($type['getOptions'], $this);
+
+		}
 		return $this->options ?: [];
 	}
 
@@ -70,7 +77,7 @@ class Field implements \JsonSerializable {
 	 */
 	public function getOptionsRef () {
 		$options = [];
-		foreach ($this->options as $option) {
+		foreach ($this->getOptions() as $option) {
 			$options[$option['value']] = $option['text'];
 		}
 		return $options;

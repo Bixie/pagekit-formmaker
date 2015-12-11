@@ -69,7 +69,7 @@ var Forms =
 
 	module.exports = {
 
-	    props: ['isAdmin', 'submission', 'field', 'form'],
+	    props: ['isAdmin'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -84,7 +84,7 @@ var Forms =
 	            return this.submission.data[this.field.id];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid] ? form[this.fieldid].invalid : false;
+	            return form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -113,9 +113,8 @@ var Forms =
 	//         <span for="form-date-format" class="uk-form-label">{{ 'Date format' | trans }}</span>
 
 	//         <div class="uk-form-controls">
-	//             <select class="uk-form-width-medium" id="form-date-format" v-model="field.data.dateFormat">
-	//                 <option v-for="option in dateFormats" :value="option.value">{{ option.text }}</option>
-	//             </select>
+	//             <select class="uk-form-width-medium" id="form-date-format"
+	//                     options="dateFormats" v-model="field.data.dateFormat"></select>
 	//         </div>
 	//     </div>
 
@@ -123,9 +122,8 @@ var Forms =
 	//         <span for="form-min-age" class="uk-form-label">{{ 'Minimum age' | trans }}</span>
 
 	//         <div class="uk-form-controls">
-	//             <select class="uk-form-width-small" id="form-min-age" options="numbersList(1,120)" v-model="field.data.minAge">
-	//                 <option v-for="option in numbersList(1,120)" :value="option.value">{{ option.text }}</option>
-	//             </select>
+	//             <select class="uk-form-width-small" id="form-min-age"
+	//                     options="numbersList(1,120)"  v-model="field.data.minAge"></select>
 	//         </div>
 	//     </div>
 
@@ -133,15 +131,14 @@ var Forms =
 	//         <span for="form-max-age" class="uk-form-label">{{ 'Maximum age' | trans }}</span>
 
 	//         <div class="uk-form-controls">
-	//             <select class="uk-form-width-small" id="form-max-age" v-model="field.data.maxAge">
-	//                 <option v-for="option in numbersList(1,120)" :value="option.value">{{ option.text }}</option>
-	//             </select>
+	//             <select class="uk-form-width-small" id="form-max-age"
+	//                     options="numbersList(1,120)"  v-model="field.data.maxAge"></select>
 	//         </div>
 	//     </div>
 
-	//     <div v-if="!isAdmin" v-el:dob class="uk-form-row {{field.data.classSfx}}">
-	//     <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-	//         }}</span>
+	//     <div v-if="!isAdmin" v-el="dob" class="uk-form-row {{field.data.classSfx || ''}}">
+	//         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+	//             }}</span>
 
 	//         <div class="uk-form-controls uk-flex">
 	//             <div class="uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1">
@@ -149,27 +146,21 @@ var Forms =
 	//                 <div>
 	//                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
 	//                         <i class="uk-icon-caret-down uk-margin-left"></i>
-	//                         <select class="" v-model="month">
-	//                             <option v-for="option in months" :value="option.value">{{ option.text }}</option>
-	//                         </select>
+	//                         <select class="" options="months" v-model="month"></select>
 	//                     </div>
 	//                 </div>
 
-	//                 <div :class="{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}">
+	//                 <div v-class="uk-flex-order-first: field.data.dateFormat == 'DD-MM-YYYY'">
 	//                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
 	//                         <i class="uk-icon-caret-down uk-margin-left"></i>
-	//                         <select class="" options="numbersList(1,31, 'Day')" v-model="day">
-	//                             <option v-for="option in numbersList(1,31, 'Day')" :value="option.value">{{ option.text }}</option>
-	//                         </select>
+	//                         <select class="" options="numbersList(1,31, 'Day')" v-model="day"></select>
 	//                     </div>
 	//                 </div>
 
 	//                 <div>
 	//                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
 	//                         <i class="uk-icon-caret-down uk-margin-left"></i>
-	//                         <select class="" options="years" v-model="year">
-	//                             <option v-for="option in years" :value="option.value">{{ option.text }}</option>
-	//                         </select>
+	//                         <select class="" options="years" v-model="year"></select>
 	//                     </div>
 	//                 </div>
 
@@ -184,12 +175,13 @@ var Forms =
 
 	module.exports = {
 
+	    inherit: true,
+
 	    mixins: [formmakerfieldMixin],
 
 	    data: function data() {
 	        return {
-	            dataObject: {},
-	            fieldid: _.uniqueId('profilefield_'),
+	            fieldid: _.uniqueId('formmakerfield_'),
 	            dobDate: false,
 	            day: '',
 	            month: '',
@@ -213,7 +205,7 @@ var Forms =
 	    },
 
 	    ready: function ready() {
-	        UIkit.init(this.$els.dob);
+	        UIkit.init(this.$$.dob);
 	    },
 
 	    computed: {
@@ -281,7 +273,7 @@ var Forms =
 /***/ 70:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span for=\"form-date-format\" class=\"uk-form-label\">{{ 'Date format' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-medium\" id=\"form-date-format\" v-model=\"field.data.dateFormat\">\n                <option v-for=\"option in dateFormats\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span for=\"form-min-age\" class=\"uk-form-label\">{{ 'Minimum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-min-age\" options=\"numbersList(1,120)\" v-model=\"field.data.minAge\">\n                <option v-for=\"option in numbersList(1,120)\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span for=\"form-max-age\" class=\"uk-form-label\">{{ 'Maximum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-max-age\" v-model=\"field.data.maxAge\">\n                <option v-for=\"option in numbersList(1,120)\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n        </div>\n    </div>\n\n    <div v-if=\"!isAdmin\" v-el:dob class=\"uk-form-row {{field.data.classSfx}}\">\n    <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n        }}</span>\n\n        <div class=\"uk-form-controls uk-flex\">\n            <div class=\"uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1\">\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" v-model=\"month\">\n                            <option v-for=\"option in months\" :value=\"option.value\">{{ option.text }}</option>\n                        </select>\n                    </div>\n                </div>\n\n                <div :class=\"{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}\">\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"numbersList(1,31, 'Day')\" v-model=\"day\">\n                            <option v-for=\"option in numbersList(1,31, 'Day')\" :value=\"option.value\">{{ option.text }}</option>\n                        </select>\n                    </div>\n                </div>\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"years\" v-model=\"year\">\n                            <option v-for=\"option in years\" :value=\"option.value\">{{ option.text }}</option>\n                        </select>\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>";
+	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span for=\"form-date-format\" class=\"uk-form-label\">{{ 'Date format' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-medium\" id=\"form-date-format\"\n                    options=\"dateFormats\" v-model=\"field.data.dateFormat\"></select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span for=\"form-min-age\" class=\"uk-form-label\">{{ 'Minimum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-min-age\"\n                    options=\"numbersList(1,120)\"  v-model=\"field.data.minAge\"></select>\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span for=\"form-max-age\" class=\"uk-form-label\">{{ 'Maximum age' | trans }}</span>\n\n        <div class=\"uk-form-controls\">\n            <select class=\"uk-form-width-small\" id=\"form-max-age\"\n                    options=\"numbersList(1,120)\"  v-model=\"field.data.maxAge\"></select>\n        </div>\n    </div>\n\n    <div v-if=\"!isAdmin\" v-el=\"dob\" class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</span>\n\n        <div class=\"uk-form-controls uk-flex\">\n            <div class=\"uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1\">\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"months\" v-model=\"month\"></select>\n                    </div>\n                </div>\n\n                <div v-class=\"uk-flex-order-first: field.data.dateFormat == 'DD-MM-YYYY'\">\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"numbersList(1,31, 'Day')\" v-model=\"day\"></select>\n                    </div>\n                </div>\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" options=\"years\" v-model=\"year\"></select>\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>";
 
 /***/ }
 

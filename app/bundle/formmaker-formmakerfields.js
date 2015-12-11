@@ -70,25 +70,19 @@ var Formmakerfields =
 
 	// <template>
 
-	//     <component v-if="!isAdmin" v-for="field in fields | orderBy 'priority'"
-	//                :is="field.type"
-	//                :submission="submission"
-	//                :field="field"
-	//                :form="form"></component>
+	//     <component v-show="!isAdmin" v-repeat="field: fields | orderBy 'priority'" is="{{ field.type }}"></component>
 
-	//     <component v-if="isAdmin" :is="editField"
-	//                :is-admin="true"
-	//                :editField="editField"
-	//                :field="field"
-	//                :form="form"></component>
+	//     <component v-if="isAdmin" is="{{ editField }}" is-admin="true"></component>
 
 	// </template>
 
 	// <script>
-	var fieldOptions; //??
+	var fieldOptions;
 	window.Formmakerfields = module.exports = {
 
-	    props: ['fields', 'field', 'submission', 'editField', 'form'],
+	    props: ['fields', 'editField'],
+
+	    inherit: true,
 
 	    components: {},
 
@@ -110,7 +104,7 @@ var Formmakerfields =
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = "<component v-if=\"!isAdmin\" v-for=\"field in fields | orderBy 'priority'\"\n               :is=\"field.type\"\n               :submission=\"submission\"\n               :field=\"field\"\n               :form=\"form\"></component>\n\n    <component v-if=\"isAdmin\" :is=\"editField\"\n               :is-admin=\"true\"\n               :editField=\"editField\"\n               :field=\"field\"\n               :form=\"form\"></component>";
+	module.exports = "<component v-show=\"!isAdmin\" v-repeat=\"field: fields | orderBy 'priority'\" is=\"{{ field.type }}\"></component>\n\n    <component v-if=\"isAdmin\" is=\"{{ editField }}\" is-admin=\"true\"></component>";
 
 /***/ }
 /******/ ]);

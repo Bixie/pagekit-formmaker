@@ -69,7 +69,7 @@ var Forms =
 
 	module.exports = {
 
-	    props: ['isAdmin', 'submission', 'field', 'form'],
+	    props: ['isAdmin'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -84,7 +84,7 @@ var Forms =
 	            return this.submission.data[this.field.id];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid] ? form[this.fieldid].invalid : false;
+	            return form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -140,21 +140,19 @@ var Forms =
 	//     </div>
 
 	//     <div class="uk-form-row {{field.data.classSfx || ''}}">
-	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+	//         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
 	//             }}</label>
 
 	//         <div class="uk-form-controls">
 	//             <textarea v-if="minLength || maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-	//                    v-bind="{name: fieldid, id: fieldid, rows: field.data.rows}"
+	//                    v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
 	//                    v-model="dataObject.value"
-	//                    :required="fieldRequired"
-	//                    v-validate:minLength="minLength"
-	//                    v-validate:max="max"></textarea>
+	//                    v-validate="required: fieldRequired, minLength: minLength, maxLength: maxLength"></textarea>
 
-	//             <textarea v-else class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-	//                    v-bind="{name: fieldid, id: fieldid, rows: field.data.rows}"
+	//             <textarea v-if="!minLength && !maxLength" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+	//                    v-attr="name: fieldid, id: fieldid, rows: field.data.rows"
 	//                    v-model="dataObject.value"
-	//                    :required="fieldRequired"></textarea>
+	//                    v-validate="required: fieldRequired"></textarea>
 
 	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
 	//                 'Please enter a value' | trans }}</p>
@@ -168,11 +166,12 @@ var Forms =
 
 	module.exports = {
 
+	    inherit: true,
+
 	    mixins: [formmakerfieldMixin],
 
 	    data: function data() {
 	        return {
-	            dataObject: {},
 	            fieldid: _.uniqueId('formmakerfield_')
 	        };
 	    },
@@ -205,7 +204,7 @@ var Forms =
 /***/ 82:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div v-show=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-rows\" class=\"uk-form-label\">{{ 'Rows textarea' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-rows\" class=\"uk-form-width-small uk-text-right\" type=\"number\"\n                   min=\"2\" v-model=\"field.data.rows\" number>\n        </div>\n    </div>\n\n    <div v-show=\"isAdmin\" class=\"uk-form-row\">\n        <span class=\"uk-form-label\">{{ 'Min / Max length input' | trans }}</span>\n\n        <div class=\"uk-form-controls uk-flex uk-flex-middle uk-flex-space-between\">\n            <label for=\"form-min-length\">{{ 'Min' | trans }}</label>\n            <input id=\"form-min-length\" class=\"uk-form-width-small uk-text-right\" type=\"number\"\n                   min=\"0\" v-model=\"field.data.minLength\" number>\n            <label for=\"form-max-length\">{{ 'Max' | trans }}</label>\n            <input id=\"form-max-length\" class=\"uk-form-width-small uk-text-right\" type=\"number\"\n                   min=\"0\" v-model=\"field.data.maxLength\" number>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <textarea v-if=\"minLength || maxLength\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-bind=\"{name: fieldid, id: fieldid, rows: field.data.rows}\"\n                   v-model=\"dataObject.value\"\n                   :required=\"fieldRequired\"\n                   v-validate:minLength=\"minLength\"\n                   v-validate:max=\"max\"></textarea>\n\n            <textarea v-else class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-bind=\"{name: fieldid, id: fieldid, rows: field.data.rows}\"\n                   v-model=\"dataObject.value\"\n                   :required=\"fieldRequired\"></textarea>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div v-show=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-rows\" class=\"uk-form-label\">{{ 'Rows textarea' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-rows\" class=\"uk-form-width-small uk-text-right\" type=\"number\"\n                   min=\"2\" v-model=\"field.data.rows\" number>\n        </div>\n    </div>\n\n    <div v-show=\"isAdmin\" class=\"uk-form-row\">\n        <span class=\"uk-form-label\">{{ 'Min / Max length input' | trans }}</span>\n\n        <div class=\"uk-form-controls uk-flex uk-flex-middle uk-flex-space-between\">\n            <label for=\"form-min-length\">{{ 'Min' | trans }}</label>\n            <input id=\"form-min-length\" class=\"uk-form-width-small uk-text-right\" type=\"number\"\n                   min=\"0\" v-model=\"field.data.minLength\" number>\n            <label for=\"form-max-length\">{{ 'Max' | trans }}</label>\n            <input id=\"form-max-length\" class=\"uk-form-width-small uk-text-right\" type=\"number\"\n                   min=\"0\" v-model=\"field.data.maxLength\" number>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <label for=\"{{ fieldid }}\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <textarea v-if=\"minLength || maxLength\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-attr=\"name: fieldid, id: fieldid, rows: field.data.rows\"\n                   v-model=\"dataObject.value\"\n                   v-validate=\"required: fieldRequired, minLength: minLength, maxLength: maxLength\"></textarea>\n\n            <textarea v-if=\"!minLength && !maxLength\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-attr=\"name: fieldid, id: fieldid, rows: field.data.rows\"\n                   v-model=\"dataObject.value\"\n                   v-validate=\"required: fieldRequired\"></textarea>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
 
 /***/ }
 

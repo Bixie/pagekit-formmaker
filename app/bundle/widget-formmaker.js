@@ -94,67 +94,42 @@ var Forms =
 	//     <form class="pk-panel-teaser uk-form uk-form-stacked" v-if="editing">
 
 	//         <div class="uk-form-row ">
-
 	//             <span class="uk-form-label">{{ 'Filter forms' | trans }}</span>
 
 	//             <div class="uk-form-controls uk-form-controls-text">
-
 	//                 <p class="uk-form-controls-condensed">
-
-	//                     <label><input type="checkbox" value="all" v-model="widget.form"> {{ 'Show all' | trans }}</label>
-
+	//                     <label><input type="checkbox" value="all" v-checkbox="widget.form"> {{ 'Show all' | trans }}</label>
 	//                 </p>
-
-	//                 <p v-for="form in forms" class="uk-form-controls-condensed">
-
-	//                     <label><input type="checkbox" :value="form.id" v-model="widget.form"> {{ form.title }}</label>
-
+	//                 <p v-repeat="form: forms" class="uk-form-controls-condensed">
+	//                     <label><input type="checkbox" value="{{ form.id }}" v-checkbox="widget.form"> {{ form.title }}</label>
 	//                 </p>
-
 	//             </div>
-
 	//         </div>
 
 	//         <div class="uk-form-row">
-
 	//             <span class="uk-form-label">{{ 'Done submissions' | trans }}</span>
 
 	//             <div class="uk-form-controls uk-form-controls-text">
-
 	//                 <p class="uk-form-controls-condensed">
-
 	//                     <label><input type="radio" value="1" v-model="widget.done"> {{ 'Show' | trans }}</label>
-
 	//                 </p>
 
 	//                 <p class="uk-form-controls-condensed">
-
 	//                     <label><input type="radio" value="" v-model="widget.done"> {{ 'Hide' | trans }}</label>
-
 	//                 </p>
-
 	//             </div>
-
 	//         </div>
 
 	//         <div class="uk-form-row">
-
 	//             <label class="uk-form-label" for="form-submissions-number">{{ 'Number of submissions' | trans }}</label>
 
 	//             <div class="uk-form-controls">
-
 	//                 <select id="form-submissions-number" class="uk-width-1-1" v-model="widget.count" number>
-
 	//                     <option value="6">6</option>
-
 	//                     <option value="12">12</option>
-
 	//                     <option value="18">16</option>
-
 	//                 </select>
-
 	//             </div>
-
 	//         </div>
 
 	//     </form>
@@ -163,28 +138,19 @@ var Forms =
 
 	//     <h3 class="uk-panel-title" v-show="!widget.done">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions' | transChoice count}}</h3>
 
-	//     <h3 class="uk-panel-title" v-else>{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>
+	//     <h3 class="uk-panel-title" v-show="widget.done">{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>
 
 	//     <ul v-show="submissions.length" class="uk-list uk-list-line">
+	//         <li class="" v-repeat="submission: submissions | orderBy 'status ASC, created DESC'">
+	//             <span class="uk-float-right" v-class="pk-icon-circle-danger: !submission.status,
+	// 							  pk-icon-circle-primary: submission.status == 1,
+	// 							  pk-icon-circle-success: submission.status == 2"></span>
 
-	//         <li class="" v-for="submission in submissions | orderBy 'status ASC, created DESC'">
-
-	//             <span class="uk-float-right" :class="{'pk-icon-circle-danger': !submission.status,
-
-	// 							  'pk-icon-circle-primary': submission.status == 1,
-
-	// 							  'pk-icon-circle-success': submission.status == 2}"></span>
-
-	//             <a :href="$url.route('admin/formmaker/submissions#' + submission.id )">{{ submission.created | datetime }}</a>
-
+	//             <a href="{{ $url.route('admin/formmaker/submissions#' + submission.id ) }}">{{ submission.created | datetime }}</a>
 	//             <div class="uk-text-truncate uk-text-muted">
-
 	//                 {{ submission.form_title }}<span v-if="submission.email"> | {{ submission.email }}</span>
-
 	//             </div>
-
 	//         </li>
-
 	//     </ul>
 
 	// </template>
@@ -272,7 +238,7 @@ var Forms =
 /***/ 88:
 /***/ function(module, exports) {
 
-	module.exports = "<form class=\"pk-panel-teaser uk-form uk-form-stacked\" v-if=\"editing\">\r\n\r\n        <div class=\"uk-form-row \">\r\n            <span class=\"uk-form-label\">{{ 'Filter forms' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <p class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"checkbox\" value=\"all\" v-model=\"widget.form\"> {{ 'Show all' | trans }}</label>\r\n                </p>\r\n                <p v-for=\"form in forms\" class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"checkbox\" :value=\"form.id\" v-model=\"widget.form\"> {{ form.title }}</label>\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Done submissions' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <p class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"radio\" value=\"1\" v-model=\"widget.done\"> {{ 'Show' | trans }}</label>\r\n                </p>\r\n\r\n                <p class=\"uk-form-controls-condensed\">\r\n                    <label><input type=\"radio\" value=\"\" v-model=\"widget.done\"> {{ 'Hide' | trans }}</label>\r\n                </p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label class=\"uk-form-label\" for=\"form-submissions-number\">{{ 'Number of submissions' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select id=\"form-submissions-number\" class=\"uk-width-1-1\" v-model=\"widget.count\" number>\r\n                    <option value=\"6\">6</option>\r\n                    <option value=\"12\">12</option>\r\n                    <option value=\"18\">16</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n    </form>\r\n\r\n    <div class=\"pk-text-large\">{{ count }}</div>\r\n\r\n    <h3 class=\"uk-panel-title\" v-show=\"!widget.done\">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions' | transChoice count}}</h3>\r\n\r\n    <h3 class=\"uk-panel-title\" v-else>{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>\r\n\r\n    <ul v-show=\"submissions.length\" class=\"uk-list uk-list-line\">\r\n        <li class=\"\" v-for=\"submission in submissions | orderBy 'status ASC, created DESC'\">\r\n            <span class=\"uk-float-right\" :class=\"{'pk-icon-circle-danger': !submission.status,\r\n\t\t\t\t\t\t\t  'pk-icon-circle-primary': submission.status == 1,\r\n\t\t\t\t\t\t\t  'pk-icon-circle-success': submission.status == 2}\"></span>\r\n\r\n            <a :href=\"$url.route('admin/formmaker/submissions#' + submission.id )\">{{ submission.created | datetime }}</a>\r\n            <div class=\"uk-text-truncate uk-text-muted\">\r\n                {{ submission.form_title }}<span v-if=\"submission.email\"> | {{ submission.email }}</span>\r\n            </div>\r\n        </li>\r\n    </ul>";
+	module.exports = "<form class=\"pk-panel-teaser uk-form uk-form-stacked\" v-if=\"editing\">\n\n        <div class=\"uk-form-row \">\n            <span class=\"uk-form-label\">{{ 'Filter forms' | trans }}</span>\n\n            <div class=\"uk-form-controls uk-form-controls-text\">\n                <p class=\"uk-form-controls-condensed\">\n                    <label><input type=\"checkbox\" value=\"all\" v-checkbox=\"widget.form\"> {{ 'Show all' | trans }}</label>\n                </p>\n                <p v-repeat=\"form: forms\" class=\"uk-form-controls-condensed\">\n                    <label><input type=\"checkbox\" value=\"{{ form.id }}\" v-checkbox=\"widget.form\"> {{ form.title }}</label>\n                </p>\n            </div>\n        </div>\n\n        <div class=\"uk-form-row\">\n            <span class=\"uk-form-label\">{{ 'Done submissions' | trans }}</span>\n\n            <div class=\"uk-form-controls uk-form-controls-text\">\n                <p class=\"uk-form-controls-condensed\">\n                    <label><input type=\"radio\" value=\"1\" v-model=\"widget.done\"> {{ 'Show' | trans }}</label>\n                </p>\n\n                <p class=\"uk-form-controls-condensed\">\n                    <label><input type=\"radio\" value=\"\" v-model=\"widget.done\"> {{ 'Hide' | trans }}</label>\n                </p>\n            </div>\n        </div>\n\n        <div class=\"uk-form-row\">\n            <label class=\"uk-form-label\" for=\"form-submissions-number\">{{ 'Number of submissions' | trans }}</label>\n\n            <div class=\"uk-form-controls\">\n                <select id=\"form-submissions-number\" class=\"uk-width-1-1\" v-model=\"widget.count\" number>\n                    <option value=\"6\">6</option>\n                    <option value=\"12\">12</option>\n                    <option value=\"18\">16</option>\n                </select>\n            </div>\n        </div>\n\n    </form>\n\n    <div class=\"pk-text-large\">{{ count }}</div>\n\n    <h3 class=\"uk-panel-title\" v-show=\"!widget.done\">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions' | transChoice count}}</h3>\n\n    <h3 class=\"uk-panel-title\" v-show=\"widget.done\">{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>\n\n    <ul v-show=\"submissions.length\" class=\"uk-list uk-list-line\">\n        <li class=\"\" v-repeat=\"submission: submissions | orderBy 'status ASC, created DESC'\">\n            <span class=\"uk-float-right\" v-class=\"pk-icon-circle-danger: !submission.status,\n\t\t\t\t\t\t\t  pk-icon-circle-primary: submission.status == 1,\n\t\t\t\t\t\t\t  pk-icon-circle-success: submission.status == 2\"></span>\n\n            <a href=\"{{ $url.route('admin/formmaker/submissions#' + submission.id ) }}\">{{ submission.created | datetime }}</a>\n            <div class=\"uk-text-truncate uk-text-muted\">\n                {{ submission.form_title }}<span v-if=\"submission.email\"> | {{ submission.email }}</span>\n            </div>\n        </li>\n    </ul>";
 
 /***/ }
 

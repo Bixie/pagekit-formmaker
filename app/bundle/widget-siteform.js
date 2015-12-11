@@ -95,13 +95,7 @@ var Forms =
 
 	//                 <div class="uk-form-controls">
 
-	//                     <select id="form-link-formmaker" class="uk-form-width-large" v-model="widget.data.form_id">
-
-	//                         <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
-
-	//                     </select>
-
-	//                 </div>
+	//                     <select id="form-link-formmaker" class="uk-form-width-large" v-model="widget.data.form_id" options="formOptions"></select>                </div>
 
 	//             </div>
 
@@ -125,13 +119,11 @@ var Forms =
 
 	//                 <div class="uk-form-controls">
 
-	//                     <select id="form-formstyle" class="uk-form-width-large" v-model="widget.data.formStyle">
+	//                     <select id="form-formstyle" class="uk-form-width-large"
 
-	//                         <option value="uk-form-stacked">{{ 'Form stacked' | trans }}</option>
+	//                             options="['uk-form-stacked', 'uk-form-horizontal']"
 
-	//                         <option value="uk-form-horizontal">{{ 'Form horizontal' | trans }}</option>
-
-	//                     </select>
+	//                             v-model="widget.data.formStyle"></select>
 
 	//                 </div>
 
@@ -176,6 +168,16 @@ var Forms =
 	            }
 	        });
 	        this.widget.data = _.assign({ form_id: 0, formStyle: 'uk-form-stacked' }, this.widget.data);
+	    },
+
+	    computed: {
+
+	        formOptions: function formOptions() {
+	            return _.map(this.forms, function (form) {
+	                return { text: form.title, value: form.id };
+	            });
+	        }
+
 	    }
 	};
 
@@ -188,7 +190,7 @@ var Forms =
 /***/ 90:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-grid pk-grid-large\" data-uk-grid-margin>\r\n        <div class=\"uk-flex-item-1 uk-form-horizontal\">\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-title\" class=\"uk-form-label\">{{ 'Title' | trans }}</label>\r\n                <div class=\"uk-form-controls\">\r\n                    <input id=\"form-title\" class=\"uk-form-width-large\" type=\"text\" name=\"title\" v-model=\"widget.title\" v-validate=\"required\">\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.title.invalid\">{{ 'Title cannot be blank.' | trans }}</p>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\r\n                <div class=\"uk-form-controls\">\r\n                    <select id=\"form-link-formmaker\" class=\"uk-form-width-large\" v-model=\"widget.data.form_id\">\r\n                        <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"uk-form-row\">\r\n                <span class=\"uk-form-label\">{{ 'Form title' | trans }}</span>\r\n\r\n                <div class=\"uk-form-controls uk-form-controls-text\">\r\n                    <label><input type=\"checkbox\" value=\"hide-title\" v-model=\"widget.data.hide_title\"> {{ 'Hide form title' |\r\n                        trans }}</label>\r\n                </div>\r\n            </div>\r\n\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'Form style' | trans }}</label>\r\n\r\n                <div class=\"uk-form-controls\">\r\n                    <select id=\"form-formstyle\" class=\"uk-form-width-large\" v-model=\"widget.data.formStyle\">\r\n                        <option value=\"uk-form-stacked\">{{ 'Form stacked' | trans }}</option>\r\n                        <option value=\"uk-form-horizontal\">{{ 'Form horizontal' | trans }}</option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"pk-width-sidebar pk-width-sidebar-large\">\r\n\r\n            <partial name=\"settings\"></partial>\r\n\r\n        </div>\r\n    </div>";
+	module.exports = "<div class=\"uk-grid pk-grid-large\" data-uk-grid-margin>\r\n        <div class=\"uk-flex-item-1 uk-form-horizontal\">\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-title\" class=\"uk-form-label\">{{ 'Title' | trans }}</label>\r\n                <div class=\"uk-form-controls\">\r\n                    <input id=\"form-title\" class=\"uk-form-width-large\" type=\"text\" name=\"title\" v-model=\"widget.title\" v-validate=\"required\">\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.title.invalid\">{{ 'Title cannot be blank.' | trans }}</p>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\r\n                <div class=\"uk-form-controls\">\r\n                    <select id=\"form-link-formmaker\" class=\"uk-form-width-large\" v-model=\"widget.data.form_id\" options=\"formOptions\"></select>                </div>\r\n            </div>\r\n\r\n            <div class=\"uk-form-row\">\r\n                <span class=\"uk-form-label\">{{ 'Form title' | trans }}</span>\r\n\r\n                <div class=\"uk-form-controls uk-form-controls-text\">\r\n                    <label><input type=\"checkbox\" value=\"hide-title\" v-model=\"widget.data.hide_title\"> {{ 'Hide form title' |\r\n                        trans }}</label>\r\n                </div>\r\n            </div>\r\n\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'Form style' | trans }}</label>\r\n\r\n                <div class=\"uk-form-controls\">\r\n                    <select id=\"form-formstyle\" class=\"uk-form-width-large\"\r\n                            options=\"['uk-form-stacked', 'uk-form-horizontal']\"\r\n                            v-model=\"widget.data.formStyle\"></select>\r\n                </div>\r\n            </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"pk-width-sidebar pk-width-sidebar-large\">\r\n\r\n            <partial name=\"settings\"></partial>\r\n\r\n        </div>\r\n    </div>";
 
 /***/ }
 

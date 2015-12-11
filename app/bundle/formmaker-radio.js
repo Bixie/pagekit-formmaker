@@ -69,7 +69,7 @@ var Forms =
 
 	module.exports = {
 
-	    props: ['isAdmin', 'submission', 'field', 'form'],
+	    props: ['isAdmin'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -84,7 +84,7 @@ var Forms =
 	            return this.submission.data[this.field.id];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid] ? form[this.fieldid].invalid : false;
+	            return form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -115,7 +115,7 @@ var Forms =
 
 	//         <div class="uk-form-controls uk-form-controls-text">
 
-	//             <p v-for="option in field.options" class="uk-form-controls-condensed">
+	//             <p v-repeat="option: field.options" class="uk-form-controls-condensed">
 
 	//                 <label><input type="radio" value="{{ option.value }}"
 
@@ -134,11 +134,12 @@ var Forms =
 
 	module.exports = {
 
+	    inherit: true,
+
 	    mixins: [formmakerfieldMixin],
 
 	    data: function data() {
 	        return {
-	            dataObject: {},
 	            fieldid: _.uniqueId('formmakerfield_')
 	        };
 	    },
@@ -158,7 +159,7 @@ var Forms =
 /***/ 78:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-for=\"option in field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"radio\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n        </div>\r\n    </div>";
+	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-repeat=\"option: field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"radio\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n        </div>\r\n    </div>";
 
 /***/ }
 

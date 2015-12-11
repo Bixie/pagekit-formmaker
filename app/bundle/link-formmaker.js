@@ -74,9 +74,7 @@ var Forms =
 	//     <div class="uk-form-row">
 	//         <label for="form-link-formmaker" class="uk-form-label">{{ 'Form' | trans }}</label>
 	//         <div class="uk-form-controls">
-	//             <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid">
-	//                 <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
-	//             </select>
+	//             <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid" options="formOptions"></select>
 	//         </div>
 	//     </div>
 
@@ -115,6 +113,16 @@ var Forms =
 	            this.link = '@formmaker/form/front?id=' + _formid;
 	        }
 
+	    },
+
+	    computed: {
+
+	        formOptions: function formOptions() {
+	            return _.map(this.forms, function (form) {
+	                return { text: form.title, value: form.id };
+	            });
+	        }
+
 	    }
 
 	};
@@ -128,7 +136,7 @@ var Forms =
 /***/ 84:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\">\n                <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\n            </select>\n        </div>\n    </div>";
+	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\" options=\"formOptions\"></select>\n        </div>\n    </div>";
 
 /***/ }
 

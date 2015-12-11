@@ -69,7 +69,7 @@ var Forms =
 
 	module.exports = {
 
-	    props: ['isAdmin', 'submission', 'field', 'form'],
+	    props: ['isAdmin'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -84,7 +84,7 @@ var Forms =
 	            return this.submission.data[this.field.id];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid] ? form[this.fieldid].invalid : false;
+	            return form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -133,11 +133,12 @@ var Forms =
 
 	module.exports = {
 
+	    inherit: true,
+
 	    mixins: [formmakerfieldMixin],
 
 	    data: function data() {
 	        return {
-	            dataObject: {},
 	            fieldid: _.uniqueId('formmakerfield_')
 	        };
 	    },

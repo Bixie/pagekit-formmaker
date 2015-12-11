@@ -69,7 +69,7 @@ var Forms =
 
 	module.exports = {
 
-	    props: ['isAdmin', 'submission', 'field', 'form'],
+	    props: ['isAdmin'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -84,7 +84,7 @@ var Forms =
 	            return this.submission.data[this.field.id];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid] ? form[this.fieldid].invalid : false;
+	            return form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -127,14 +127,14 @@ var Forms =
 	//     </div>
 
 	//     <div class="uk-form-row {{field.data.classSfx || ''}}">
-	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
+	//         <label for="{{ fieldid }}" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
 	//             }}</label>
 
 	//         <div class="uk-form-controls">
 	//             <input type="email" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-	//                    v-bind="{name: fieldid, id: fieldid}"
+	//                    v-attr="name: fieldid, id: fieldid"
 	//                    v-model="dataObject.value"
-	//                    :required="fieldRequired"/>
+	//                    v-validate="required: fieldRequired"/>
 
 	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
 	//                 'Please enter a value' | trans }}</p>
@@ -148,11 +148,12 @@ var Forms =
 
 	module.exports = {
 
+	    inherit: true,
+
 	    mixins: [formmakerfieldMixin],
 
 	    data: function data() {
 	        return {
-	            dataObject: {},
 	            fieldid: _.uniqueId('formmakerfield_')
 	        };
 	    },
@@ -178,7 +179,7 @@ var Forms =
 /***/ 72:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span class=\"uk-form-label\">{{ 'Submission email' | trans }}</span>\n\n        <div class=\"uk-form-controls uk-form-controls-text\">\n            <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.user_email\">\n                {{ 'Send submission confirmation to this address' | trans }}</label>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"email\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-bind=\"{name: fieldid, id: fieldid}\"\n                   v-model=\"dataObject.value\"\n                   :required=\"fieldRequired\"/>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <label for=\"form-placeholder\" class=\"uk-form-label\">{{ 'Placeholder' | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input id=\"form-placeholder\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.data.placeholder\">\n        </div>\n    </div>\n\n    <div v-if=\"isAdmin\" class=\"uk-form-row\">\n        <span class=\"uk-form-label\">{{ 'Submission email' | trans }}</span>\n\n        <div class=\"uk-form-controls uk-form-controls-text\">\n            <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.user_email\">\n                {{ 'Send submission confirmation to this address' | trans }}</label>\n        </div>\n    </div>\n\n    <div class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <label for=\"{{ fieldid }}\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans\n            }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"email\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-attr=\"name: fieldid, id: fieldid\"\n                   v-model=\"dataObject.value\"\n                   v-validate=\"required: fieldRequired\"/>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
 
 /***/ }
 

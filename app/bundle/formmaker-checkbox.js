@@ -77,11 +77,11 @@ var Forms =
 
 	//         <div class="uk-form-controls uk-form-controls-text">
 
-	//             <p v-for="option in field.options" class="uk-form-controls-condensed">
+	//             <p v-repeat="option: field.options" class="uk-form-controls-condensed">
 
 	//                 <label><input type="checkbox" value="{{ option.value }}"
 
-	//                               v-model="dataObject.value"> {{ option.text }}</label>
+	//                               v-checkbox="dataObject.value"> {{ option.text }}</label>
 
 	//             </p>
 
@@ -100,11 +100,12 @@ var Forms =
 
 	module.exports = {
 
+	    inherit: true,
+
 	    mixins: [formmakerfieldMixin],
 
 	    data: function data() {
 	        return {
-	            dataObject: {},
 	            fieldid: _.uniqueId('formmakerfield_')
 	        };
 	    },
@@ -126,7 +127,7 @@ var Forms =
 
 	module.exports = {
 
-	    props: ['isAdmin', 'submission', 'field', 'form'],
+	    props: ['isAdmin'],
 
 	    methods: {
 	        getDataObject: function (defaultValue) {
@@ -141,7 +142,7 @@ var Forms =
 	            return this.submission.data[this.field.id];
 	        },
 	        fieldInvalid: function (form) {
-	            return form[this.fieldid] ? form[this.fieldid].invalid : false;
+	            return form[this.fieldid].invalid;
 	        }
 
 	    },
@@ -162,7 +163,7 @@ var Forms =
 /***/ 68:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-for=\"option in field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"checkbox\" value=\"{{ option.value }}\"\r\n                              v-model=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\r\n                'Please select a value' | trans }}</p>\r\n        </div>\r\n    </div>";
+	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <p v-repeat=\"option: field.options\" class=\"uk-form-controls-condensed\">\r\n                <label><input type=\"checkbox\" value=\"{{ option.value }}\"\r\n                              v-checkbox=\"dataObject.value\"> {{ option.text }}</label>\r\n            </p>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\r\n                'Please select a value' | trans }}</p>\r\n        </div>\r\n    </div>";
 
 /***/ }
 
