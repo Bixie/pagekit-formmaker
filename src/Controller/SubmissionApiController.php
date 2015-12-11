@@ -86,8 +86,10 @@ class SubmissionApiController {
 		}
 		$submission->form = $form;
 
-		if ($form->get('recaptcha') && $id == 0) {
-			$resp = (new ReCaptcha(App::module('bixie/formmaker')->config('recaptha_secret_key')))->verify($gRecaptchaResponse, App::request()->server->get('REMOTE_ADDR'));
+		if ($form->get('recaptcha')
+			and $id == 0
+			and ($recaptha_secret_key = App::module('bixie/formmaker')->config('recaptha_secret_key'))) {
+			$resp = (new ReCaptcha($recaptha_secret_key))->verify($gRecaptchaResponse, App::request()->server->get('REMOTE_ADDR'));
 			if (!$resp->isSuccess()) {
 				$errors = $resp->getErrorCodes();
 				App::abort(403, $errors[0]);
