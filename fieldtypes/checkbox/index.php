@@ -6,6 +6,5 @@ return [
 		'hasOptions' => 1,
 		'required' => 0,
 		'multiple' => 1,
-	],
-	'dependancies' => []
+	]
 ];
