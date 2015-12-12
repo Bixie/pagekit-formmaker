@@ -1,16 +1,7 @@
 <template>
 
-    <div v-if="isAdmin" class="uk-form-row">
-        <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
-
-        <div class="uk-form-controls">
-            <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
-        </div>
-    </div>
-
     <div class="uk-form-row {{field.data.classSfx || ''}}">
-        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-            }}</label>
+        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
@@ -26,16 +17,24 @@
 </template>
 
 <script>
-    var formmakerfieldMixin = require('../mixins/formmakerfield.js');
 
     module.exports = {
 
-        inherit: true,
+        mixins: [FormmakerfieldMixin],
 
-        mixins: [formmakerfieldMixin],
+        settings: {
+            'placeholder': {
+                type: 'text',
+                label: 'Placeholder',
+                attrs: {'class': 'uk-form-width-large'}
+            }
+        },
+
+        appearance: {},
 
         data: function () {
             return {
+                dataObject: {},
                 fieldid: _.uniqueId('formmakerfield_')
             };
         },

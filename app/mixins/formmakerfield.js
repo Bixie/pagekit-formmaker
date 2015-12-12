@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = window.FormmakerfieldMixin = {
 
     props: ['isAdmin', 'submission', 'field', 'form'],
 
@@ -15,7 +15,7 @@ module.exports = {
             return this.submission.data[this.field.id];
         },
         fieldInvalid: function (form) {
-            return form[this.fieldid] ? form[this.fieldid].invalid : false;
+            return form && form[this.fieldid] ? form[this.fieldid].invalid : false;
         }
 
     },

@@ -1,4 +1,3 @@
-var Forms =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -46,15 +45,15 @@ var Forms =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(73)
+	module.exports = __webpack_require__(15)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(74)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(16)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\app\\fields\\htmlcode.vue"
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\fieldtypes\\htmlcode\\htmlcode.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -64,63 +63,14 @@ var Forms =
 
 /***/ },
 
-/***/ 67:
-/***/ function(module, exports) {
-
-	module.exports = {
-
-	    props: ['isAdmin'],
-
-	    methods: {
-	        getDataObject: function (defaultValue) {
-	            if (this.isAdmin) {
-	                this.field.data.value = this.field.data.value || defaultValue;
-	                return this.field.data;
-	            }
-	            this.submission.data[this.field.id].type = this.field.type;
-	            this.submission.data[this.field.id].label = this.field.label;
-	            this.submission.data[this.field.id].value = defaultValue;
-	            this.submission.data[this.field.id].prepared = this.field.prepared;
-	            return this.submission.data[this.field.id];
-	        },
-	        fieldInvalid: function (form) {
-	            return form[this.fieldid].invalid;
-	        }
-
-	    },
-
-	    computed: {
-	        fieldRequired: function () {
-	            return this.field.data.required && !this.isAdmin ? true : false;
-	        },
-	        fieldLabel: function () {
-	            return this.isAdmin ? 'Default value' : this.field.label;
-	        }
-	    }
-
-	};
-
-/***/ },
-
-/***/ 73:
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	// <template>
 
-	//     <div v-if="isAdmin" class="uk-form-row">
-
-	//         <div class="uk-form-row">
-	//             <v-editor id="{{ fieldid }}-html" value="{{@ dataObject.value }}" options="{{ {markdown : field.data.markdown} }}"></v-editor>
-	//             <p>
-	//                 <label><input type="checkbox" v-model="field.data.markdown"> {{ 'Enable Markdown' | trans }}</label>
-	//             </p>
-	//         </div>
-
-	//     </div>
-
-	//     <div v-if="!isAdmin" class="uk-form-row {{field.data.classSfx || ''}}">
+	//     <div :class="['uk-form-row', isAdmin ? 'uk-hidden' : '', field.data.classSfx || '']">
 
 	//         {{{ dataObject.prepared }}}
 
@@ -129,16 +79,18 @@ var Forms =
 	// </template>
 
 	// <script>
-	var formmakerfieldMixin = __webpack_require__(67);
 
 	module.exports = {
 
-	    inherit: true,
+	    mixins: [FormmakerfieldMixin],
 
-	    mixins: [formmakerfieldMixin],
+	    settings: __webpack_require__(26),
+
+	    appearance: {},
 
 	    data: function data() {
 	        return {
+	            dataObject: {},
 	            fieldid: _.uniqueId('formmakerfield_')
 	        };
 	    },
@@ -155,10 +107,75 @@ var Forms =
 
 /***/ },
 
-/***/ 74:
+/***/ 16:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-if=\"isAdmin\" class=\"uk-form-row\">\n\n        <div class=\"uk-form-row\">\n            <v-editor id=\"{{ fieldid }}-html\" value=\"{{@ dataObject.value }}\" options=\"{{ {markdown : field.data.markdown} }}\"></v-editor>\n            <p>\n                <label><input type=\"checkbox\" v-model=\"field.data.markdown\"> {{ 'Enable Markdown' | trans }}</label>\n            </p>\n        </div>\n\n    </div>\n\n    <div v-if=\"!isAdmin\" class=\"uk-form-row {{field.data.classSfx || ''}}\">\n\n        {{{ dataObject.prepared }}}\n\n    </div>";
+	module.exports = "<div :class=\"['uk-form-row', isAdmin ? 'uk-hidden' : '', field.data.classSfx || '']\">\n\n        {{{ dataObject.prepared }}}\n\n    </div>";
+
+/***/ },
+
+/***/ 26:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(27)
+
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(28)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "C:\\BixieProjects\\pagekit\\pagekit\\packages\\bixie\\formmaker\\fieldtypes\\htmlcode\\components\\settings.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
+
+/***/ },
+
+/***/ 27:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	// <template>
+
+	//     <div class="uk-form-row">
+
+	//         <v-editor :value.sync="field.data.value" :options="{markdown : field.data.markdown}"></v-editor>
+
+	//         <p>
+
+	//             <label><input type="checkbox" v-model="field.data.markdown"> {{ 'Enable Markdown' | trans }}</label>
+
+	//         </p>
+
+	//     </div>
+
+	// </template>
+
+	// <script>
+
+	module.exports = {
+
+	    created: function created() {
+	        this.field.data = _.merge({
+	            'markdown': false
+	        }, this.field.data);
+	    }
+
+	};
+
+	// </script>
+
+/***/ },
+
+/***/ 28:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"uk-form-row\">\r\n\r\n        <v-editor :value.sync=\"field.data.value\" :options=\"{markdown : field.data.markdown}\"></v-editor>\r\n        <p>\r\n            <label><input type=\"checkbox\" v-model=\"field.data.markdown\"> {{ 'Enable Markdown' | trans }}</label>\r\n        </p>\r\n\r\n    </div>";
 
 /***/ }
 

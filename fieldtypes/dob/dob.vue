@@ -1,38 +1,8 @@
 <template>
 
-    <div v-if="isAdmin" class="uk-form-row">
-        <span for="form-date-format" class="uk-form-label">{{ 'Date format' | trans }}</span>
-
-        <div class="uk-form-controls">
-            <select class="uk-form-width-medium" id="form-date-format" v-model="field.data.dateFormat">
-                <option v-for="option in dateFormats" :value="option.value">{{ option.text }}</option>
-            </select>
-        </div>
-    </div>
-
-    <div v-if="isAdmin" class="uk-form-row">
-        <span for="form-min-age" class="uk-form-label">{{ 'Minimum age' | trans }}</span>
-
-        <div class="uk-form-controls">
-            <select class="uk-form-width-small" id="form-min-age" options="numbersList(1,120)" v-model="field.data.minAge">
-                <option v-for="option in numbersList(1,120)" :value="option.value">{{ option.text }}</option>
-            </select>
-        </div>
-    </div>
-
-    <div v-if="isAdmin" class="uk-form-row">
-        <span for="form-max-age" class="uk-form-label">{{ 'Maximum age' | trans }}</span>
-
-        <div class="uk-form-controls">
-            <select class="uk-form-width-small" id="form-max-age" v-model="field.data.maxAge">
-                <option v-for="option in numbersList(1,120)" :value="option.value">{{ option.text }}</option>
-            </select>
-        </div>
-    </div>
-
     <div v-if="!isAdmin" v-el:dob class="uk-form-row {{field.data.classSfx}}">
-    <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-        }}</span>
+
+        <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
 
         <div class="uk-form-controls uk-flex">
             <div class="uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1">
@@ -49,8 +19,8 @@
                 <div :class="{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}">
                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
                         <i class="uk-icon-caret-down uk-margin-left"></i>
-                        <select class="" options="numbersList(1,31, 'Day')" v-model="day">
-                            <option v-for="option in numbersList(1,31, 'Day')" :value="option.value">{{ option.text }}</option>
+                        <select class="" v-model="day">
+                            <option v-for="option in days" :value="option">{{ $key }}</option>
                         </select>
                     </div>
                 </div>
@@ -58,8 +28,8 @@
                 <div>
                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
                         <i class="uk-icon-caret-down uk-margin-left"></i>
-                        <select class="" options="years" v-model="year">
-                            <option v-for="option in years" :value="option.value">{{ option.text }}</option>
+                        <select class="" v-model="year">
+                            <option v-for="option in years" :value="option">{{ $key }}</option>
                         </select>
                     </div>
                 </div>
@@ -71,11 +41,44 @@
 </template>
 
 <script>
-    var formmakerfieldMixin = require('../mixins/formmakerfield.js');
+
+    var numbersList = function (start, end, first) {
+        var nrs = {};
+        if (first) nrs[first] = '';
+        for (var i = start; i <= end ; i++) nrs[String(i)] = i;
+        return nrs;
+    };
 
     module.exports = {
 
-        mixins: [formmakerfieldMixin],
+        mixins: [FormmakerfieldMixin],
+
+        settings: {
+            'minAge': {
+                type: 'select',
+                label: 'Minimum age',
+                options: numbersList(1,120),
+                attrs: {'class': 'uk-form-width-medium'}
+            },
+            'maxAge': {
+                type: 'select',
+                label: 'Maximum age',
+                options: numbersList(1,120),
+                attrs: {'class': 'uk-form-width-medium'}
+            }
+        },
+
+        appearance: {
+            'dateFormat': {
+                type: 'select',
+                label: 'Date format',
+                options: {
+                    'MM-DD-YYYY': 'MM-DD-YYYY',
+                    'DD-MM-YYYY': 'DD-MM-YYYY'
+                },
+                attrs: {'class': 'uk-form-width-medium'}
+            }
+        },
 
         data: function () {
             return {
@@ -84,8 +87,7 @@
                 dobDate: false,
                 day: '',
                 month: '',
-                year: '',
-                dateFormats: ['MM-DD-YYYY', 'DD-MM-YYYY']
+                year: ''
             };
         },
 
@@ -125,9 +127,12 @@
                     {value: '11', text: this.$trans('December')}
                 ];
             },
+            days: function () {
+                return numbersList(1,31, this.$trans('Day'));
+            },
             years: function () {
                 var now = UIkit.Utils.moment();
-                return this.numbersList(now.year() - this.field.data.maxAge, now.year() - this.field.data.minAge, 'Year');
+                return numbersList(now.year() - this.field.data.maxAge, now.year() - this.field.data.minAge, this.$trans('Year'));
             }
         },
 
@@ -147,11 +152,6 @@
                 } else {
                     this.dataObject.value = '';
                 }
-            },
-            numbersList: function (start, end, first) {
-                var nrs = first ? [{value: "", text: this.$trans(first)}] : [];
-                for (var i = start; i <= end ; i++) nrs.push({value: i + "", text: i});
-                return nrs;
             }
         },
         watch: {

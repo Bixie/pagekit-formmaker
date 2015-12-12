@@ -41,7 +41,7 @@ return [
 
 	],
 
-	'formmakerfields' => 'fields',
+	'formmakerfields' => 'fieldtypes',
 
 	'resources' => [
 
@@ -112,20 +112,19 @@ return [
 			$scripts->register('formmaker-settings', 'bixie/formmaker:app/bundle/settings.js', '~extensions');
 			$scripts->register('link-formmaker', 'bixie/formmaker:app/bundle/link-formmaker.js', '~panel-link');
 			//register fields
-			$scripts->register('formmaker-formmakerfields', 'bixie/formmaker:app/bundle/formmaker-formmakerfields.js', 'vue');
-			$formmaker = $app->module('bixie/formmaker');
-			foreach ($formmaker->getTypes() as $type) {
-				$scripts->register(
-					'formmaker-' . $type['id'], 'bixie/formmaker:app/bundle/formmaker-' . $type['id'] . '.js',
-					array_merge(['~formmaker-formmakerfields'], $type['dependancies'])
-				);
+			$scripts->register('formmaker-formmakerfieldmixin', 'bixie/formmaker:app/bundle/formmaker-formmakerfieldmixin.js', 'vue');
+			$scripts->register('formmaker-formmakerfields', 'bixie/formmaker:app/bundle/formmaker-formmakerfields.js', ['vue', 'formmaker-formmakerfieldmixin']);
+			foreach ($app->module('bixie/formmaker')->getTypes() as $type) {
+				$type->registerScripts($scripts);
 			}
 		},
 
 		'view.styles' => function ($event, $styles) use ($app) {
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@formmaker') === 0) {
-				$app->module('bixie/formmaker')->typeStyles($styles);
+				foreach ($app->module('bixie/formmaker')->getTypes() as $type) {
+					$type->addStyles($styles);
+				}
 			}
 		},
 

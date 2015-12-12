@@ -1,17 +1,7 @@
 <template>
 
-    <div v-show="isAdmin && field.data.multiple" class="uk-form-row">
-        <label for="form-size" class="uk-form-label">{{ 'Size' | trans }}</label>
-
-        <div class="uk-form-controls">
-            <input id="form-size" class="uk-form-width-small uk-text-right" type="number" min="1"
-                   v-model="field.data.size" number>
-        </div>
-    </div>
-
     <div class="uk-form-row {{field.data.classSfx || ''}}">
-        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-            }}</label>
+        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
         <div class="uk-form-controls">
 
@@ -37,11 +27,20 @@
 </template>
 
 <script>
-    var formmakerfieldMixin = require('../mixins/formmakerfield.js');
 
     module.exports = {
 
-        mixins: [formmakerfieldMixin],
+        mixins: [FormmakerfieldMixin],
+
+        settings: {},
+
+        appearance: {
+            'size': {
+                type: 'number',
+                label: 'Size',
+                attrs: {'class': 'uk-form-width-small uk-text-right', 'min': 1}
+            }
+        },
 
         data: function () {
             return {

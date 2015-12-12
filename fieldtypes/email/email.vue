@@ -1,25 +1,7 @@
 <template>
 
-    <div v-if="isAdmin" class="uk-form-row">
-        <label for="form-placeholder" class="uk-form-label">{{ 'Placeholder' | trans }}</label>
-
-        <div class="uk-form-controls">
-            <input id="form-placeholder" class="uk-form-width-large" type="text" v-model="field.data.placeholder">
-        </div>
-    </div>
-
-    <div v-if="isAdmin" class="uk-form-row">
-        <span class="uk-form-label">{{ 'Submission email' | trans }}</span>
-
-        <div class="uk-form-controls uk-form-controls-text">
-            <label><input type="checkbox" value="required" v-model="field.data.user_email">
-                {{ 'Send submission confirmation to this address' | trans }}</label>
-        </div>
-    </div>
-
     <div class="uk-form-row {{field.data.classSfx || ''}}">
-        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans
-            }}</label>
+        <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
         <div class="uk-form-controls">
             <input type="email" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
@@ -35,11 +17,26 @@
 </template>
 
 <script>
-    var formmakerfieldMixin = require('../mixins/formmakerfield.js');
 
     module.exports = {
 
-        mixins: [formmakerfieldMixin],
+        mixins: [FormmakerfieldMixin],
+
+        settings: {
+            'placeholder': {
+                type: 'text',
+                label: 'Placeholder',
+                attrs: {'class': 'uk-form-width-large'}
+            },
+            'user_email': {
+                type: 'checkbox',
+                label: 'User email',
+                optionlabel: 'Send submission confirmation to this address'
+            }
+
+        },
+
+        appearance: {},
 
         data: function () {
             return {

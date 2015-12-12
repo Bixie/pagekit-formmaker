@@ -1,4 +1,3 @@
-var Forms =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -46,10 +45,10 @@ var Forms =
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(83)
+	module.exports = __webpack_require__(60)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(84)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(61)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -64,7 +63,7 @@ var Forms =
 
 /***/ },
 
-/***/ 83:
+/***/ 60:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -74,7 +73,9 @@ var Forms =
 	//     <div class="uk-form-row">
 	//         <label for="form-link-formmaker" class="uk-form-label">{{ 'Form' | trans }}</label>
 	//         <div class="uk-form-controls">
-	//             <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid" options="formOptions"></select>
+	//             <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid">
+	//                 <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
+	//             </select>
 	//         </div>
 	//     </div>
 
@@ -113,16 +114,6 @@ var Forms =
 	            this.link = '@formmaker/form/front?id=' + _formid;
 	        }
 
-	    },
-
-	    computed: {
-
-	        formOptions: function formOptions() {
-	            return _.map(this.forms, function (form) {
-	                return { text: form.title, value: form.id };
-	            });
-	        }
-
 	    }
 
 	};
@@ -133,10 +124,10 @@ var Forms =
 
 /***/ },
 
-/***/ 84:
+/***/ 61:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\" options=\"formOptions\"></select>\n        </div>\n    </div>";
+	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\">\n                <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\n            </select>\n        </div>\n    </div>";
 
 /***/ }
 

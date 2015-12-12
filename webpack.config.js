@@ -1,4 +1,29 @@
+
+var glob = require("glob");
+var path = require("path");
+var fieldtypes = {};
+
+glob.sync(path.join(__dirname, 'fieldtypes/**/*.vue')).forEach(function (file) {
+    var type = path.basename(file, '.vue');
+    fieldtypes['formmaker-' + type] = './fieldtypes/' + type + '/' + type + '.vue';
+});
+
 module.exports = [
+
+    {
+        entry: {
+            "formmaker-formmakerfieldmixin": "./app/mixins/formmakerfield.js"
+        },
+        output: {
+            filename: "./app/bundle/[name].js",
+            library: "FormmakerfieldMixin"
+        },
+        module: {
+            loaders: [
+                { test: /\.vue$/, loader: "vue" }
+            ]
+        }
+    },
 
     {
         entry: {
@@ -16,21 +41,24 @@ module.exports = [
     },
 
     {
+        entry: fieldtypes,
+        output: {
+            filename: "./app/bundle/[name].js"
+        },
+        module: {
+            loaders: [
+                { test: /\.vue$/, loader: "vue" }
+            ]
+        }
+    },
+
+    {
         entry: {
             /*pagekit addons*/
             "settings": "./app/components/settings.vue",
             "link-formmaker": "./app/components/link-formmaker.vue",
             "widget-formmaker": "./app/components/widget-formmaker.vue",
             "widget-siteform": "./app/components/widget-siteform.vue",
-            /*fields*/
-            "formmaker-checkbox": "./app/fields/checkbox.vue",
-            "formmaker-dob": "./app/fields/dob.vue",
-            "formmaker-email": "./app/fields/email.vue",
-            "formmaker-htmlcode": "./app/fields/htmlcode.vue",
-            "formmaker-pulldown": "./app/fields/pulldown.vue",
-            "formmaker-radio": "./app/fields/radio.vue",
-            "formmaker-text": "./app/fields/text.vue",
-            "formmaker-textbox": "./app/fields/textbox.vue",
             /*frontpage views*/
             "formmaker": "./app/views/form.js",
             /*admin views*/
@@ -39,8 +67,7 @@ module.exports = [
             "forms": "./app/views/admin/forms.js"
         },
         output: {
-            filename: "./app/bundle/[name].js",
-            library: "Forms"
+            filename: "./app/bundle/[name].js"
         },
         externals: {
             "lodash": "_",
@@ -50,9 +77,11 @@ module.exports = [
         },
         module: {
             loaders: [
-                {test: /\.vue$/, loader: "vue"}
+                {test: /\.vue$/, loader: "vue"},
+                {test: /\.html$/, loader: "vue-html"}
             ]
         }
+
     }
 
 ];

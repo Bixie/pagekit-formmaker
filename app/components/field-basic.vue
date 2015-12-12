@@ -22,12 +22,22 @@
                     </div>
                 </div>
 
-                <div class="uk-margin" v-show="!type.hasOptions || field.options.length">
-                    <formmakerfields :edit-field.sync="field.type"
-                                     :field="field"
-                                     :form="form"></formmakerfields>
+                <div class="uk-margin" v-if="fieldSettings">
+                    <fields :config="fieldSettings" :model.sync="field.data" template="formrow"></fields>
                 </div>
 
+
+                <formmakerfields class="uk-margin" v-show="!type.hasOptions || field.options.length"
+                                 v-ref:formmakerfields
+                                 :edit-type="field.type"
+                                 :fields="[field]"
+                                 :field.sync="field"
+                                 :form="form"></formmakerfields>
+
+                <div id="type-settings" class="uk-margin"
+                     :data-object.sync="field.data"
+                     :field.sync="field"
+                     :form="form"></div>
 
             </div>
             <div class="uk-width-medium-1-4 uk-form-stacked">
@@ -70,8 +80,27 @@
 
     module.exports = {
 
-        props: ['field', 'type', 'roles', 'form']
+        props: ['field', 'type', 'roles', 'form'],
+
+        computed: {
+            fieldSettings: function () {
+                var settings = this.field.type ? Formmakerfields.components[this.field.type].options.settings : {},
+                        parent = this;
+                 if (settings.template !== undefined) {
+                     new Vue(_.merge({
+                         'el': '#type-settings',
+                         'name': 'type-settings',
+                         'parent': parent,
+                         'data':  _.merge({
+                                     'field': parent.field,
+                                     'form': parent.form
+                                 }, settings.data),
+                     }, settings));
+                     return false;
+                }
+                return settings;
+            }
+        }
 
     };
-
 </script>

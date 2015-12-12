@@ -1,0 +1,10 @@
+<div v-for="field in fields" :class="{'uk-form-row': !field.raw}">
+    <label v-if="field.label" class="uk-form-label">
+        <i v-if="field.tip" class="uk-icon-info uk-icon-hover uk-margin-small-right" data-uk-tooltip="{delay: 100}" :title="field.tip"></i>
+        {{ field.label | trans }}
+    </label>
+    <div v-if="!field.raw" class="uk-form-controls" :class="{'uk-form-controls-text': ['checkbox', 'radio'].indexOf(field.type)>-1}">
+        <field :config="field" :values.sync="values"></field>
+    </div>
+    <field v-else :config="field" :values.sync="values"></field>
+</div>

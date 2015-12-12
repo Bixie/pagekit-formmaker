@@ -1,4 +1,3 @@
-var Forms =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -105,7 +104,7 @@ var Forms =
 	    },
 
 	    components: {
-	        recaptcha: __webpack_require__(63)
+	        recaptcha: __webpack_require__(57)
 	    }
 
 	};
@@ -117,13 +116,13 @@ var Forms =
 
 /***/ },
 
-/***/ 63:
+/***/ 57:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(64)
+	module.exports = __webpack_require__(58)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(65)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(59)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -138,7 +137,7 @@ var Forms =
 
 /***/ },
 
-/***/ 64:
+/***/ 58:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -196,7 +195,7 @@ var Forms =
 
 /***/ },
 
-/***/ 65:
+/***/ 59:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row\">\r\n\r\n        <span class=\"uk-form-label\" v-show=\"formitem.data.recaptcha_label\">{{ formitem.data.recaptcha_label | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <div id=\"grecaptcha_el\"></div>\r\n        </div>\r\n\r\n    </div>";

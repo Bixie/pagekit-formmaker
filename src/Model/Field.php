@@ -42,10 +42,21 @@ class Field implements \JsonSerializable {
 	];
 
 	/**
-	 * @param mixed $type
+	 * @param string $type
 	 */
 	public function setType ($type) {
 		$this->type = $type;
+	}
+
+	/**
+	 * Prepare default value before displaying form
+	 * @return array
+	 */
+	public function prepareValue () {
+		/** @var \Bixie\Formmaker\Type\Type $type */
+		$type = App::module('bixie/formmaker')->getType($this->type);
+
+		return $type->prepareValue($this, $this->get('value'));
 	}
 
 	/**
@@ -53,14 +64,11 @@ class Field implements \JsonSerializable {
 	 * @return mixed
 	 */
 	public function getOptions () {
+
+		/** @var \Bixie\Formmaker\Type\Type $type */
 		$type = App::module('bixie/formmaker')->getType($this->type);
 
-		if (is_callable($type['getOptions'])) {
-
-			return call_user_func($type['getOptions'], $this);
-
-		}
-		return $this->options ?: [];
+		return $type->getOptions($this);
 	}
 
 	/**
@@ -81,24 +89,6 @@ class Field implements \JsonSerializable {
 			$options[$option['value']] = $option['text'];
 		}
 		return $options;
-	}
-
-	/**
-	 * Prepare default value before displaying form
-	 * @return array
-	 */
-	public function prepareValue () {
-
-		$value = $this->get('value');
-		$type = App::module('bixie/formmaker')->getType($this->type);
-
-		if (is_callable($type['prepareValue'])) {
-
-			return call_user_func($type['prepareValue'], $this, $value);
-
-		}
-
-		return $value;
 	}
 
 	/**

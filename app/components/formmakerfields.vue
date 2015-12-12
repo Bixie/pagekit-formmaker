@@ -1,16 +1,13 @@
 <template>
 
-    <component v-if="!isAdmin" v-for="field in fields | orderBy 'priority'"
-               :is="field.type"
-               :submission="submission"
-               :field="field"
-               :form="form"></component>
-
-    <component v-if="isAdmin" :is="editField"
-               :is-admin="true"
-               :editField="editField"
-               :field="field"
-               :form="form"></component>
+    <div>
+        <component v-for="field in fields | orderBy 'priority'"
+                   :is="field.type"
+                   :is-admin="isAdmin"
+                   :submission="submission"
+                   :field="field"
+                   :form="form"></component>
+    </div>
 
 </template>
 
@@ -18,15 +15,15 @@
 var fieldOptions;//??
 window.Formmakerfields = module.exports = {
 
-    props: ['fields', 'field', 'submission', 'editField', 'form'],
-
-    components: {},
+    props: ['fields', 'field', 'submission', 'editType', 'form'],
 
     computed: {
         isAdmin: function () {
-            return !!this.editField
+            return !!this.editType
         }
-    }
+    },
+
+    components: {}
 
 };
 

@@ -7,6 +7,7 @@ use Bixie\Formmaker\Plugin\FormmakerPlugin;
 use Pagekit\Module\Module;
 use Bixie\Formmaker\Model\Form;
 use Bixie\Formmaker\Model\Field;
+use Bixie\Formmaker\Type\TypeBase;
 
 class FormmakerModule extends Module {
 	/**
@@ -33,7 +34,7 @@ class FormmakerModule extends Module {
 
 	/**
 	 * @param  string $type
-	 * @return array
+	 * @return TypeBase
 	 */
 	public function getType ($type) {
 		$types = $this->getTypes();
@@ -54,36 +55,25 @@ class FormmakerModule extends Module {
 
 			foreach (App::module() as $module) {
 				if ($module->get('formmakerfields')) {
-					$paths = array_merge($paths, glob(sprintf('%s/%s/*.php', $module->path, $module->get('formmakerfields')), GLOB_NOSORT) ?: []);
+					$paths = array_merge($paths, glob(sprintf('%s/%s/*/index.php', $module->path, $module->get('formmakerfields')), GLOB_NOSORT) ?: []);
 				}
 			}
 
 			foreach ($paths as $p) {
 				$package = array_merge([
 					'id' => '',
-					'hasOptions' => 0,
-					'required' => 0,
-					'multiple' => 0,
+					'class' => '\Bixie\Formmaker\Type\Type',
+					'resource' => 'bixie/formmaker:app/bundle',
+					'config' => [
+						'hasOptions' => 0,
+						'required' => 0,
+						'multiple' => 0,
+					],
 					'dependancies' => [],
-					'style' => [],
-					'getOptions' => false,
-					'prepareValue' => function (Field $field, $value) {
-						return $value;
-					},
-					'formatValue' => function (Field $field, $value) {
-						if (count($field->getOptions())) {
-							$options = $field->getOptionsRef();
-							if (is_array($value) && count($value)) {
-								return array_map(function ($val) use ($options) {
-									return isset($options[$val]) ? $options[$val] : $val;
-								}, $value);
-							} else {
-								return $value ? isset($options[$value]) ? [$options[$value]] : [$value] : ['-'];
-							}
-						} else {
-							return is_array($value) ? count($value) ? $value : ['-'] : [$value ?: '-'];
-						}
-					}
+					'styles' => [],
+					'getOptions' => '',
+					'prepareValue' => '',
+					'formatValue' => ''
 				], include($p));
 				$this->registerType($package);
 			}
@@ -98,18 +88,7 @@ class FormmakerModule extends Module {
 	 * @param array $package
 	 */
 	public function registerType ($package) {
-		$this->types[$package['id']] = $package;
-	}
-
-	public function typeStyles ($styles) {
-		//todo this should be prettier
-		foreach ($this->getTypes() as $type) {
-			if (isset($type['style'])) {
-				foreach ($type['style'] as $name => $source) {
-					$styles->add($name, $source);
-				}
-			}
-		}
+		$this->types[$package['id']] = new $package['class']($package);
 	}
 
 	/**

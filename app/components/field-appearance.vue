@@ -28,6 +28,8 @@
             </div>
         </div>
 
+        <fields :config="appearanceSettings" :model.sync="field.data" template="formrow"></fields>
+
     </div>
 
 </template>
@@ -36,7 +38,13 @@
 
     module.exports = {
 
-        props: ['field', 'form']
+        props: ['field', 'form'],
+
+        computed: {
+            appearanceSettings: function () {
+                return this.field.type ? Formmakerfields.components[this.field.type].options.appearance : {};
+            }
+        }
 
     };
 

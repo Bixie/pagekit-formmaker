@@ -14,11 +14,14 @@
 </template>
 
 <script>
-    var formmakerfieldMixin = require('../mixins/formmakerfield.js');
 
     module.exports = {
 
-        mixins: [formmakerfieldMixin],
+        mixins: [FormmakerfieldMixin],
+
+        settings: {},
+
+        appearance: {},
 
         data: function () {
             return {
