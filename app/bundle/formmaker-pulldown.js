@@ -70,7 +70,7 @@
 
 	// <template>
 
-	//     <div class="uk-form-row {{field.data.classSfx || ''}}">
+	//     <div :class="classes(['uk-form-row'], field.data.classSfx)">
 	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
 	//         <div class="uk-form-controls">
@@ -135,7 +135,7 @@
 /***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row {{field.data.classSfx || ''}}\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n\n            <select v-if=\"field.data.multiple\" class=\"uk-form-width-large\" multiple=\"multiple\"\n                    v-bind=\"{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}\"\n                    v-model=\"dataObject.value\"\n                    :required=\"fieldRequired\">\n                <option v-for=\"option in field.options\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n\n            <select v-else class=\"uk-form-width-large\"\n                    v-bind=\"{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}\"\n                    v-model=\"dataObject.value\"\n                    :required=\"fieldRequired\">\n                <option v-for=\"option in field.options\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please select a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div :class=\"classes(['uk-form-row'], field.data.classSfx)\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n\n            <select v-if=\"field.data.multiple\" class=\"uk-form-width-large\" multiple=\"multiple\"\n                    v-bind=\"{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}\"\n                    v-model=\"dataObject.value\"\n                    :required=\"fieldRequired\">\n                <option v-for=\"option in field.options\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n\n            <select v-else class=\"uk-form-width-large\"\n                    v-bind=\"{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}\"\n                    v-model=\"dataObject.value\"\n                    :required=\"fieldRequired\">\n                <option v-for=\"option in field.options\" :value=\"option.value\">{{ option.text }}</option>\n            </select>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please select a value' | trans }}</p>\n        </div>\n    </div>";
 
 /***/ }
 
