@@ -16,6 +16,9 @@ module.exports = window.FormmakerfieldMixin = {
         },
         fieldInvalid: function (form) {
             return form && form[this.fieldid] ? form[this.fieldid].invalid : false;
+        },
+        classes: function (classes_array, classes_string) {
+            return (classes_array || []).concat(String(classes_string || '').split(' '));
         }
 
     },

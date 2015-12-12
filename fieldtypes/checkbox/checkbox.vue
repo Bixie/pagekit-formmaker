@@ -1,6 +1,6 @@
 <template>
 
-    <div class="uk-form-row {{field.data.classSfx || ''}}">
+    <div :class="classes(['uk-form-row'], field.data.classSfx)">
         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
 
         <div class="uk-form-controls uk-form-controls-text">

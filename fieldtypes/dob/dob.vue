@@ -1,6 +1,6 @@
 <template>
 
-    <div v-el:dob :class="['uk-form-row', isAdmin ? 'uk-hidden' : '', field.data.classSfx || '']">
+    <div v-el:dob :class="classes(['uk-form-row', (isAdmin ? 'uk-hidden' : '')], field.data.classSfx)">
 
         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
 
