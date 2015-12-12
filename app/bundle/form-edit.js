@@ -1403,7 +1403,7 @@
 
 	    computed: {
 	        fieldSettings: function fieldSettings() {
-	            var settings = this.field.type ? Formmakerfields.components[this.field.type].options.settings : {},
+	            var settings = this.field.type ? Formmakerfields.components[this.field.type].settings || Formmakerfields.components[this.field.type].options.settings : {},
 	                parent = this;
 	            if (settings.template !== undefined) {
 	                new Vue(_.merge({
@@ -1666,7 +1666,7 @@
 
 	    computed: {
 	        appearanceSettings: function appearanceSettings() {
-	            return this.field.type ? Formmakerfields.components[this.field.type].options.appearance : {};
+	            return this.field.type ? Formmakerfields.components[this.field.type].appearance || Formmakerfields.components[this.field.type].options.appearance : {};
 	        }
 	    }
 

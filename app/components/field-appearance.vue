@@ -42,7 +42,7 @@
 
         computed: {
             appearanceSettings: function () {
-                return this.field.type ? Formmakerfields.components[this.field.type].options.appearance : {};
+                return this.field.type ? Formmakerfields.components[this.field.type].appearance || Formmakerfields.components[this.field.type].options.appearance : {};
             }
         }
 
