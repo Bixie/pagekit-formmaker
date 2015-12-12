@@ -97,13 +97,7 @@
 	            type: 'text',
 	            label: 'Placeholder',
 	            attrs: { 'class': 'uk-form-width-large' }
-	        },
-	        'user_email': {
-	            type: 'checkbox',
-	            label: 'User email',
-	            optionlabel: 'Send submission confirmation to this address'
 	        }
-
 	    },
 
 	    appearance: {},

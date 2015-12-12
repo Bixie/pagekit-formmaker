@@ -4,6 +4,16 @@
 
         <div class="uk-grid">
             <div class="uk-width-medium-3-4">
+                <div class="uk-form-row">
+                    <label for="form-user_email_field" class="uk-form-label">{{ 'User email field' | trans }}</label>
+
+                    <div class="uk-form-controls">
+                        <select id="form-user_email_field" class="uk-form-width-medium" v-model="formitem.data.user_email_field">
+                            <option value="">{{ 'Select a field' | trans }}</option>
+                            <option v-for="field in formfields | filterBy 'email' in 'type'" :value="field.slug">{{ field.label }}</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="uk-alert" v-show="formitem.data.user_email_field">
                     {{ 'Email address from field "%field%" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>
@@ -11,7 +21,7 @@
                     {{ 'No email field is selected for user confirmation mail.' | trans }}</div>
 
                 <div class="uk-form-row">
-                    <label for="form-submitemail" class="uk-form-label">{{ 'Email submission to' | trans }}</label>
+                    <label for="form-submitemail" class="uk-form-label">{{ 'Email copy of submission to' | trans }}</label>
 
                     <div class="uk-form-controls">
                         <input id="form-submitemail" class="uk-form-width-large" type="text" name="submitemail"
