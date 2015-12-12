@@ -8,6 +8,7 @@ return [
 		'hasOptions' => 0,
 		'required' => 0,
 		'multiple' => 0,
+		'markdown' => ''
 	],
 	'dependancies' => ['editor'],
 	'prepareValue' => function ($field, $value) {

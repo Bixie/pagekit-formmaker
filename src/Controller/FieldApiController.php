@@ -2,6 +2,7 @@
 
 namespace Bixie\Formmaker\Controller;
 
+use Bixie\Formmaker\Type\Type;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Bixie\Formmaker\Model\Field;
@@ -58,6 +59,7 @@ class FieldApiController {
 	 * @Request({"id"})
 	 */
 	public function editAction ($id = '') {
+		/** @var \Bixie\Formmaker\FormmakerModule $formmaker */
 		$formmaker = App::module('bixie/formmaker');
 
 		if (is_numeric($id)) {
@@ -73,6 +75,12 @@ class FieldApiController {
 
 		if (!$type = $formmaker->getType($field->type)) {
 			App::abort(404, __('Type not found.'));
+		}
+		//default values
+		if (!$field->id) {
+			foreach ($type->getConfig() as $key => $value) {
+				$field->set($key, $value);
+			}
 		}
 		//check fixed value
 		foreach (['multiple', 'required'] as $key) {

@@ -6,5 +6,6 @@ return [
 		'hasOptions' => 0,
 		'required' => -1,
 		'multiple' => 0,
+		'placeholder' => ''
 	]
 ];
