@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pagekit UNKNOWN (bixie/formmaker, messages)\n"
-"POT-Creation-Date: 2015-10-17 10:14+0000\n"
+"POT-Creation-Date: 2015-12-12 20:48+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,31 +21,148 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Please enter a title"
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Google reCAPTCHA"
+msgstr ""
+
+msgid "Enter reCAPTCHA keys in the extension settings"
+msgstr ""
+
 msgid "Save form before adding fields."
 msgstr ""
 
-msgid "Available variables"
+msgid "Delete"
+msgstr ""
+
+msgid "Add Field"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "No fields found."
+msgstr ""
+
+msgid "Form style"
+msgstr ""
+
+msgid "Form stacked"
+msgstr ""
+
+msgid "Form horizontal"
+msgstr ""
+
+msgid "Class suffix"
+msgstr ""
+
+msgid "Text submit button"
+msgstr ""
+
+msgid "Required error message"
+msgstr ""
+
+msgid "reCAPTCHA label"
+msgstr ""
+
+msgid "Empty for no label"
+msgstr ""
+
+msgid "reCAPTCHA setup"
 msgstr ""
 
 msgid "After submit"
-msgstr ""
-
-msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
-msgstr ""
-
-msgid "Edit"
-msgstr ""
-
-msgid "Thank you for your submission"
-msgstr ""
-
-msgid "Submit"
 msgstr ""
 
 msgid "Show Thank you message"
 msgstr ""
 
 msgid "Redirect to page"
+msgstr ""
+
+msgid "Enable Markdown"
+msgstr ""
+
+msgid "Redirect"
+msgstr ""
+
+msgid "Available variables"
+msgstr ""
+
+msgid "User email field"
+msgstr ""
+
+msgid "Select a field"
+msgstr ""
+
+msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
+msgstr ""
+
+msgid "No email field is selected for user confirmation mail."
+msgstr ""
+
+msgid "Email copy of submission to"
+msgstr ""
+
+msgid "Please enter valid email address"
+msgstr ""
+
+msgid "Email subject"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Please enter a label"
+msgstr ""
+
+msgid "Field required"
+msgstr ""
+
+msgid "Multiple values"
+msgstr ""
+
+msgid "Multiple"
+msgstr ""
+
+msgid "Restrict Access"
+msgstr ""
+
+msgid "Add option"
+msgstr ""
+
+msgid "Thank you for your submission"
+msgstr ""
+
+msgid "Submit"
 msgstr ""
 
 msgid "Form %title% saved."
@@ -81,13 +198,79 @@ msgstr ""
 msgid "Submission for form \"%formtitle%\""
 msgstr ""
 
+msgid "Submission date"
+msgstr ""
+
+msgid "Submission status"
+msgstr ""
+
+msgid "Remote IP address"
+msgstr ""
+
+msgid "Email sent to"
+msgstr ""
+
+msgid "No email provided"
+msgstr ""
+
+msgid "Submission data"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Submission for form \\"%formtitle%\\""
+msgstr ""
+
 msgid "Export submissions as CSV file"
 msgstr ""
 
-msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
+msgid "Select form"
 msgstr ""
 
-msgid "Status"
+msgid "Archived"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Data to export"
+msgstr ""
+
+msgid "Id"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "IP address"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Fields to export"
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "Mark exported as \"Archived\""
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
 msgstr ""
 
 msgid "Show all"
@@ -99,13 +282,7 @@ msgstr ""
 msgid "Form"
 msgstr ""
 
-msgid "Select form"
-msgstr ""
-
 msgid "Form submitted"
-msgstr ""
-
-msgid "Date format"
 msgstr ""
 
 msgid "Month"
@@ -147,133 +324,13 @@ msgstr ""
 msgid "December"
 msgstr ""
 
-msgid "Placeholder"
+msgid "Day"
 msgstr ""
 
-msgid "Enable Markdown"
-msgstr ""
-
-msgid "Size"
+msgid "Year"
 msgstr ""
 
 msgid "Formmaker Settings"
-msgstr ""
-
-msgid "Filter forms"
-msgstr ""
-
-msgid "{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions"
-msgstr ""
-
-msgid "Hide Label"
-msgstr ""
-
-msgid "Class suffix"
-msgstr ""
-
-msgid "Required error message"
-msgstr ""
-
-msgid "Please enter a label"
-msgstr ""
-
-msgid "Slug"
-msgstr ""
-
-msgid "Field required"
-msgstr ""
-
-msgid "Required"
-msgstr ""
-
-msgid "Multiple values"
-msgstr ""
-
-msgid "Multiple"
-msgstr ""
-
-msgid "Restrict Access"
-msgstr ""
-
-msgid "Add"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "Options"
-msgstr ""
-
-msgid "Appearance"
-msgstr ""
-
-msgid "Add option"
-msgstr ""
-
-msgid "Hide Title"
-msgstr ""
-
-msgid "Form style"
-msgstr ""
-
-msgid "Text submit button"
-msgstr ""
-
-msgid "reCAPTCHA label"
-msgstr ""
-
-msgid "Empty for no label"
-msgstr ""
-
-msgid "reCAPTCHA setup"
-msgstr ""
-
-msgid "Please enter a title"
-msgstr ""
-
-msgid "Disabled"
-msgstr ""
-
-msgid "Enabled"
-msgstr ""
-
-msgid "Google reCAPTCHA"
-msgstr ""
-
-msgid "Use reCAPTCHA"
-msgstr ""
-
-msgid "Enter reCAPTCHA keys in the extension settings"
-msgstr ""
-
-msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
-msgstr ""
-
-msgid "No email field is selected for user confirmation mail."
-msgstr ""
-
-msgid "Email submission to"
-msgstr ""
-
-msgid "Please enter valid email address"
-msgstr ""
-
-msgid "Email subject"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-msgid "Add Field"
-msgstr ""
-
-msgid "Type"
-msgstr ""
-
-msgid "No fields found."
-msgstr ""
-
-msgid "Redirect"
 msgstr ""
 
 msgid "Default mail address"
@@ -291,70 +348,7 @@ msgstr ""
 msgid "Submissions per page"
 msgstr ""
 
-msgid "Archived"
-msgstr ""
-
-msgid "Active"
-msgstr ""
-
-msgid "Done"
-msgstr ""
-
-msgid "Data to export"
-msgstr ""
-
-msgid "Id"
-msgstr ""
-
-msgid "Email"
-msgstr ""
-
-msgid "IP address"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Fields to export"
-msgstr ""
-
-msgid "Filename"
-msgstr ""
-
-msgid "Archive"
-msgstr ""
-
-msgid "Mark exported as \"Archived\""
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "Export"
-msgstr ""
-
-msgid "Download"
-msgstr ""
-
-msgid "Submission for form \"%formtitle%\""
-msgstr ""
-
-msgid "Submission date"
-msgstr ""
-
-msgid "Submission status"
-msgstr ""
-
-msgid "Remote IP address"
-msgstr ""
-
-msgid "Email sent to"
-msgstr ""
-
-msgid "No email provided"
-msgstr ""
-
-msgid "Submission data"
+msgid "Filter forms"
 msgstr ""
 
 msgid "Done submissions"
@@ -369,6 +363,9 @@ msgstr ""
 msgid "Number of submissions"
 msgstr ""
 
+msgid "{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions"
+msgstr ""
+
 msgid "{0} Submissions|{1} Submission|]1,Inf[ Submissions"
 msgstr ""
 
@@ -376,6 +373,15 @@ msgid "Title cannot be blank."
 msgstr ""
 
 msgid "Form title"
+msgstr ""
+
+msgid "Hide Label"
+msgstr ""
+
+msgid "Hide Title"
+msgstr ""
+
+msgid "Use reCAPTCHA"
 msgstr ""
 
 msgid "Hide form title"
@@ -387,19 +393,7 @@ msgstr ""
 msgid "Date of birth"
 msgstr ""
 
-msgid "Minimum age"
-msgstr ""
-
-msgid "Maximum age"
-msgstr ""
-
 msgid "Email field"
-msgstr ""
-
-msgid "Submission email"
-msgstr ""
-
-msgid "Send submission confirmation to this address"
 msgstr ""
 
 msgid "Html code"
@@ -415,18 +409,6 @@ msgid "Textfield"
 msgstr ""
 
 msgid "Text area"
-msgstr ""
-
-msgid "Rows textarea"
-msgstr ""
-
-msgid "Min / Max length input"
-msgstr ""
-
-msgid "Min"
-msgstr ""
-
-msgid "Max"
 msgstr ""
 
 msgid "Invalid slug."
@@ -462,9 +444,6 @@ msgstr ""
 msgid "Edit form"
 msgstr ""
 
-msgid "Preview form"
-msgstr ""
-
 msgid "Add form"
 msgstr ""
 
@@ -484,6 +463,9 @@ msgid "Add this code to any Pagekit content to show the form."
 msgstr ""
 
 msgid "Optionally, you can hide the title of the form."
+msgstr ""
+
+msgid "Forms"
 msgstr ""
 
 msgid "Url"
