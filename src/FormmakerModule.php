@@ -6,7 +6,6 @@ use Pagekit\Application as App;
 use Bixie\Formmaker\Plugin\FormmakerPlugin;
 use Pagekit\Module\Module;
 use Bixie\Formmaker\Model\Form;
-use Bixie\Formmaker\Model\Field;
 use Bixie\Formmaker\Type\TypeBase;
 
 class FormmakerModule extends Module {
@@ -89,6 +88,33 @@ class FormmakerModule extends Module {
 	 */
 	public function registerType ($package) {
 		$this->types[$package['id']] = new $package['class']($package);
+	}
+
+	public function renderForm (App $app, $form_id, $options = [], $view = null) {
+
+		$user = $app->user();
+		/** @var Form $form */
+		if (!$form = Form::where(['id = ?'], [$form_id])->where(function ($query) use ($user) {
+			if (!$user->isAdministrator()) $query->where('status = 1');
+		})->related('fields')->first()
+		) {
+			throw new App\Exception('Form not found', 404) ;
+		}
+		foreach ($options as $key => $value) {
+			$form->set($key, $value);
+		}
+
+		$form->prepareView($app, $this);
+		$formmaker = $this;
+		$app->on('view.data', function ($event, $data) use ($form, $formmaker) {
+			$data->add('$formmaker', [
+				'config' => $this->publicConfig(),
+				'formitem' => $form,
+				'fields' => array_values($form->fields)
+			]);
+		});
+
+		return $app->view($view ?: 'bixie/formmaker/form.php');
 	}
 
 	/**

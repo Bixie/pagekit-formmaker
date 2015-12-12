@@ -23,8 +23,10 @@ class SiteController {
 		if (!App::node()->hasAccess(App::user())) {
 			App::abort(403, __('Insufficient User Rights.'));
 		}
+		$formmaker = App::module('bixie/formmaker');
+		$app = App::getInstance();
 
-		$form->prepareView();
+		$form->prepareView($app, $formmaker);
 
 		return [
 			'$view' => [
@@ -32,7 +34,7 @@ class SiteController {
 				'name' => 'bixie/formmaker/form.php'
 			],
 			'$formmaker' => [
-				'config' => App::module('bixie/formmaker')->publicConfig(),
+				'config' => $formmaker->publicConfig(),
 				'formitem' => $form,
 				'fields' => array_values($form->fields)
 			],

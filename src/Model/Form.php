@@ -59,13 +59,21 @@ class Form implements \JsonSerializable {
 
 	/**
 	 * Prepare form for display
+	 * @param App $app
+	 * @param \Bixie\Formmaker\FormmakerModule $formmaker
 	 */
-	public function prepareView () {
-		if ($this->get('recaptcha') && App::module('bixie/formmaker')->config('recaptha_secret_key')) {
-			App::view()->on('footer', function ($event) {
+	public function prepareView ($app, $formmaker) {
+		if ($this->get('recaptcha') && $formmaker->config('recaptha_secret_key')) {
+			$app->on('view.footer', function ($event) {
 				$event->addResult('<script src="https://www.google.com/recaptcha/api.js?onload=grecacapthaCallback&render=explicit" async defer></script>');
 			});
 		}
+		$app->on('view.styles', function ($event, $styles) use ($formmaker) {
+			foreach ($this->getFields() as $field) {
+				$formmaker->getType($field->type)->addStyles($styles);
+			}
+		});
+
 
 	}
 	/**
