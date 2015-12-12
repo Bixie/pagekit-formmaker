@@ -3,7 +3,7 @@ var glob = require("glob");
 var path = require("path");
 var fieldtypes = {};
 
-glob.sync(path.join(__dirname, 'fieldtypes/**/*.vue')).forEach(function (file) {
+glob.sync(path.join(__dirname, 'fieldtypes/*/*.vue')).forEach(function (file) {
     var type = path.basename(file, '.vue');
     fieldtypes['formmaker-' + type] = './fieldtypes/' + type + '/' + type + '.vue';
 });
