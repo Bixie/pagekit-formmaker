@@ -59,12 +59,13 @@ class FormmakerModule extends Module {
 			}
 
 			foreach ($paths as $p) {
-				$package = array_merge([
+				$package = array_merge ([
 					'id' => '',
 					'class' => '\Bixie\Formmaker\Type\Type',
 					'resource' => 'bixie/formmaker:app/bundle',
 					'config' => [
 						'hasOptions' => 0,
+						'readonlyOptions' => 0,
 						'required' => 0,
 						'multiple' => 0,
 					],
