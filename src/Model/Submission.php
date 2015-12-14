@@ -9,7 +9,7 @@ use Bixie\Formmaker\Submission\Fieldsubmission;
 use Bixie\Formmaker\Submission\MailHelper;
 
 /**
- * @Entity(tableClass="@formmaker_submission",eventPrefix="formmaker")
+ * @Entity(tableClass="@formmaker_submission",eventPrefix="formmaker_submission")
  */
 class Submission implements \JsonSerializable {
 	use DataModelTrait, ModelTrait;

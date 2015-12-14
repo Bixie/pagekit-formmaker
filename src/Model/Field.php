@@ -7,7 +7,7 @@ use Pagekit\System\Model\DataModelTrait;
 use Pagekit\User\Model\AccessModelTrait;
 
 /**
- * @Entity(tableClass="@formmaker_field",eventPrefix="formmaker")
+ * @Entity(tableClass="@formmaker_field",eventPrefix="formmaker_field")
  */
 class Field implements \JsonSerializable {
 	use  AccessModelTrait, DataModelTrait, FieldModelTrait;
