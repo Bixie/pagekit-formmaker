@@ -92,7 +92,7 @@ class SubmissionApiController {
 			$resp = (new ReCaptcha($recaptha_secret_key))->verify($gRecaptchaResponse, App::request()->server->get('REMOTE_ADDR'));
 			if (!$resp->isSuccess()) {
 				$errors = $resp->getErrorCodes();
-				App::abort(403, $errors[0]);
+				App::abort(403, (isset($errors[0]) ? $errors[0] : 'Error in reCaptcha'));
 			}
 		}
 
