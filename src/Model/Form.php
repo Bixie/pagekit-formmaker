@@ -7,7 +7,7 @@ use Pagekit\System\Model\DataModelTrait;
 use Bixie\Formmaker\Model\Submission;
 
 /**
- * @Entity(tableClass="@formmaker_form")
+ * @Entity(tableClass="@formmaker_form",eventPrefix="formmaker")
  */
 class Form implements \JsonSerializable {
 	use DataModelTrait, FormModelTrait;
