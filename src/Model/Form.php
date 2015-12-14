@@ -39,7 +39,17 @@ class Form implements \JsonSerializable {
 
 	public function getFields () {
 		if (!isset($this->fields)) {
-			$this->fields = Field::query(['form_id' => $this->id])->orderBy('priority', 'ASC')->get();
+			$fields = Field::query(['form_id' => $this->id])->orderBy('priority', 'ASC')->get();
+		} else {
+			$fields = $this->fields;
+		}
+		//make sure type exists
+		$formmaker = App::module('bixie/formmaker');
+		$this->fields = [];
+		foreach ($fields as $field) {
+			if ($formmaker->getType($field->type)) {
+				$this->fields[] = $field;
+			}
 		}
 		return $this->fields;
 	}

@@ -36,7 +36,7 @@ class SiteController {
 			'$formmaker' => [
 				'config' => $formmaker->publicConfig(),
 				'formitem' => $form,
-				'fields' => array_values($form->fields)
+				'fields' => array_values($form->getFields())
 			],
 			'node' => App::node()
 		];
