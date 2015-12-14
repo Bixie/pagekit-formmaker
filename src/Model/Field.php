@@ -54,9 +54,10 @@ class Field implements \JsonSerializable {
 	 */
 	public function prepareValue () {
 		/** @var \Bixie\Formmaker\Type\Type $type */
-		$type = App::module('bixie/formmaker')->getType($this->type);
-
-		return $type->prepareValue($this, $this->get('value'));
+		if ($type = App::module('bixie/formmaker')->getType($this->type)) {
+			return $type->prepareValue($this, $this->get('value'));
+		}
+		return $this->get('value');
 	}
 
 	/**
@@ -66,9 +67,10 @@ class Field implements \JsonSerializable {
 	public function getOptions () {
 
 		/** @var \Bixie\Formmaker\Type\Type $type */
-		$type = App::module('bixie/formmaker')->getType($this->type);
-
-		return $type->getOptions($this);
+		if ($type = App::module('bixie/formmaker')->getType($this->type)) {
+			return $type->getOptions($this);
+		}
+		return [];
 	}
 
 	/**

@@ -111,7 +111,7 @@ class FormmakerModule extends Module {
 			$data->add('$formmaker', [
 				'config' => $this->publicConfig(),
 				'formitem' => $form,
-				'fields' => array_values($form->fields)
+				'fields' => array_values($form->getFields())
 			]);
 		});
 

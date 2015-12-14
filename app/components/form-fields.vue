@@ -65,8 +65,9 @@
                     <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"
                                                                @click="toggleSelect(field)"></div>
                     <div class="pk-table-min-width-100">
-                        <a @click.prevent="$root.editFormField(field.id)">{{ field.label }}</a><br/>
-                        <small class="uk-text-muted">{{ field.slug }}</small>
+                        <a v-if="type" @click.prevent="$root.editFormField(field.id)">{{ field.label }}</a>
+                        <span v-else>{{ field.label }}</span>
+                        <br/><small class="uk-text-muted">{{ field.slug }}</small>
                     </div>
                     <div class="pk-table-width-100 uk-text-center">
                         <td class="uk-text-center">
@@ -75,7 +76,8 @@
                         </td>
                     </div>
                     <div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-                        {{ type.label }}
+                        <span v-if="type">{{ type.label }}</span>
+                        <span v-else class="uk-text-danger">{{ field.type }}: {{ 'type not found!' | trans}}</span>
                     </div>
                 </div>
 
