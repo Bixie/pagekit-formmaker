@@ -39,7 +39,7 @@ class Form implements \JsonSerializable {
 
 	public function getFields () {
 		if (!isset($this->fields)) {
-			$fields = Field::query(['form_id' => $this->id])->orderBy('priority', 'ASC')->get();
+			$fields = Field::where(['form_id' => $this->id])->orderBy('priority', 'ASC')->get();
 		} else {
 			$fields = $this->fields;
 		}
@@ -48,7 +48,7 @@ class Form implements \JsonSerializable {
 		$this->fields = [];
 		foreach ($fields as $field) {
 			if ($formmaker->getType($field->type)) {
-				$this->fields[] = $field;
+				$this->fields[$field->id] = $field;
 			}
 		}
 		return $this->fields;
