@@ -5,9 +5,9 @@
 
         <div class="uk-form-controls">
             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
-                   :attr="{name: fieldid, id: fieldid}"
+                   :name="fieldid" :id="fieldid"
                    v-model="dataObject.value"
-                   :required="fieldRequired">
+                   v-validate:required="fieldRequired">
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>

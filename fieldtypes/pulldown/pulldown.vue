@@ -6,16 +6,18 @@
         <div class="uk-form-controls">
 
             <select v-if="field.data.multiple" class="uk-form-width-large" multiple="multiple"
-                    v-bind="{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}"
+                    :name="fieldid"
+                    v-bind="{id: fieldid, size:field.data.size > 1 ? field.data.size : false}"
                     v-model="dataObject.value"
-                    :required="fieldRequired">
+                    v-validate:required="fieldRequired">
                 <option v-for="option in field.options" :value="option.value">{{ option.text }}</option>
             </select>
 
             <select v-else class="uk-form-width-large"
-                    v-bind="{name: fieldid, id: fieldid, size:field.data.size > 1 ? field.data.size : false}"
+                    :name="fieldid"
+                    v-bind="{id: fieldid, size:field.data.size > 1 ? field.data.size : false}"
                     v-model="dataObject.value"
-                    :required="fieldRequired">
+                    v-validate:required="fieldRequired">
                 <option v-for="option in field.options" :value="option.value">{{ option.text }}</option>
             </select>
 

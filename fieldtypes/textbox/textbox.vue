@@ -6,17 +6,18 @@
         <div class="uk-form-controls">
             <textarea v-if="minLength || maxLength" class="uk-form-width-large"
                    placeholder="{{ field.data.placeholder || '' | trans }}"
-                   v-bind="{name: fieldid, id: fieldid, rows: field.data.rows}"
+                   :name="fieldid"
+                   v-bind="{id: fieldid, rows: field.data.rows}"
                    v-model="dataObject.value"
-                   :required="fieldRequired"
-                   v-validate:minLength="minLength"
-                   v-validate:max="max"></textarea>
+                      v-validate:required="fieldRequired"
+                      v-validate:minLength="minLength"
+                      v-validate:maxLength="maxLength"></textarea>
 
             <textarea v-else class="uk-form-width-large"
                    placeholder="{{ field.data.placeholder || '' | trans }}"
                    v-bind="{name: fieldid, id: fieldid, rows: field.data.rows}"
                    v-model="dataObject.value"
-                   :required="fieldRequired"></textarea>
+                   v-validate:required="fieldRequired"></textarea>
 
             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
                 'Please enter a value' | trans }}</p>

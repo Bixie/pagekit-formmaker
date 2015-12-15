@@ -21,7 +21,7 @@ $view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['vue', 'f
 						 :field="field"
 						 :form="form"></formmakerfields>
 
-		<recaptcha v-ref:grecaptcha v-if="formitem.data.recaptcha" :sitekey="config.recaptha_sitekey" :formitem="formitem"></recaptcha>
+		<recaptcha v-ref:grecaptcha v-if="formitem.data.recaptcha" :sitekey="config.recaptha_sitekey" :formitem="formitem" class="uk-margin"></recaptcha>
 
 		<div class="uk-margin">
 			<button class="uk-button uk-button-primary" type="submit">{{ formitem.data.submitButton | trans }}</button>
