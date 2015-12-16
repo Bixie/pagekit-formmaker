@@ -7,7 +7,7 @@
 
             <div class="uk-form-controls">
                 <input id="form-title" class="uk-form-width-large" type="text" name="title"
-                       v-model="formitem.title" v-validate="required">
+                       v-model="formitem.title" v-validate:required>
             </div>
             <p class="uk-form-help-block uk-text-danger" v-show="form.title.invalid">{{ 'Please enter a title' | trans }}</p>
         </div>

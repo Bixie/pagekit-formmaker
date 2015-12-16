@@ -9,7 +9,7 @@
 
                     <div class="uk-form-controls">
                         <input id="form-label" class="uk-form-width-large" type="text" name="label"
-                               v-model="field.label" v-validate="required" required>
+                               v-model="field.label" v-validate:required>
                     </div>
                     <!-- //todo fix req message form is added to VModel Vue, not the actual parent-->
                     <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
