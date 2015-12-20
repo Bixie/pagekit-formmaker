@@ -57,13 +57,18 @@ class CsvHelper {
 			}
 			$arrData = $submission->toArray();
 			$data = [];
-			//todo error checking
+			//todo error checking and cleaning values
 			foreach ($this->options->get('datafields', []) as $datafield) {
 				$data[] = $arrData[$datafield];
 			}
 			foreach ($this->options->get('field_ids', []) as $field_id) {
-				$slug = $this->form->fields[$field_id]->slug;
-				$data[] = implode(self::CSV_VALUESEP, isset($arrData['fieldsubmissions'][$slug]) ? $arrData['fieldsubmissions'][$slug]['value'] : []);
+				if (isset($this->form->fields[$field_id])) {
+					$slug = $this->form->fields[$field_id]->slug;
+					$data[] = implode(self::CSV_VALUESEP, isset($arrData['fieldsubmissions'][$slug]) ? $arrData['fieldsubmissions'][$slug]['value'] : []);
+				} else {
+					//try to add data non-existing fieldtype
+					$data[] = implode(self::CSV_VALUESEP, $submission->get($field_id) ?: []);
+				}
 			}
 
 			$output[] = $this->csvString($data);
@@ -82,7 +87,7 @@ class CsvHelper {
 		}
 		//todo error checking
 		foreach ($this->options->get('field_ids', []) as $field_id) {
-			$headers[] = __($this->form->fields[$field_id]->label);
+			$headers[] = isset($this->form->fields[$field_id]) ? __($this->form->fields[$field_id]->label) : "Field $field_id";
 		}
 		return $this->csvString($headers);
 	}
