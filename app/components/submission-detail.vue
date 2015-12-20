@@ -63,8 +63,8 @@
 
         created: function () {
 
-            this.$root.resource.query({id: 'detail', submission_id: this.submissionid}, function (data) {
-                this.$set('submission', data);
+            this.$root.resource.query({id: 'detail', submission_id: this.submissionid}).then(function (res) {
+                this.$set('submission', res.data);
                 this.loaded = true;
             }.bind(this));
 

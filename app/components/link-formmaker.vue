@@ -30,10 +30,10 @@
 
         created: function () {
             //TODO don't retrieve entire form objects
-            this.$resource('api/formmaker/form').get(function (forms) {
-                this.forms = forms;
-                if (forms.length) {
-                    this.formid = forms[0].id;
+            this.$resource('api/formmaker/form').get().then(function (res) {
+                this.forms = res.data;
+                if (res.data.length) {
+                    this.formid = res.data[0].id;
                 }
             });
         },

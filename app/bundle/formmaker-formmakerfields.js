@@ -71,12 +71,19 @@ var Formmakerfields =
 	// <template>
 
 	//     <div>
+
 	//         <component v-for="field in fields | orderBy 'priority'"
+
 	//                    :is="field.type"
+
 	//                    :is-admin="isAdmin"
+
 	//                    :submission="submission"
+
 	//                    :field="field"
+
 	//                    :form="form"></component>
+
 	//     </div>
 
 	// </template>
@@ -107,7 +114,7 @@ var Formmakerfields =
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n        <component v-for=\"field in fields | orderBy 'priority'\"\n                   :is=\"field.type\"\n                   :is-admin=\"isAdmin\"\n                   :submission=\"submission\"\n                   :field=\"field\"\n                   :form=\"form\"></component>\n    </div>";
+	module.exports = "<div>\r\n        <component v-for=\"field in fields | orderBy 'priority'\"\r\n                   :is=\"field.type\"\r\n                   :is-admin=\"isAdmin\"\r\n                   :submission=\"submission\"\r\n                   :field=\"field\"\r\n                   :form=\"form\"></component>\r\n    </div>";
 
 /***/ }
 /******/ ]);

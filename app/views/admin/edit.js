@@ -48,8 +48,8 @@ module.exports = {
 
             this.$broadcast('save', data);
 
-            this.Forms.save({id: this.formitem.id}, data, function (data) {
-
+            this.Forms.save({id: this.formitem.id}, data).then(function (res) {
+                data = res.data;
                 if (!this.formitem.id) {
                     window.history.replaceState({}, '', this.$url.route('admin/formmaker/form/edit', {id: data.formitem.id}));
                 }

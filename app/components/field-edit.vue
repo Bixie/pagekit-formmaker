@@ -73,10 +73,10 @@
         },
 
         ready: function () {
-            this.Fields.query({id: this.fieldid}, function (data) {
-                this.$set('field', data.field);
-                this.$set('type', data.type);
-                this.$set('roles', data.roles);
+            this.Fields.query({id: this.fieldid}).then(function (res) {
+                this.$set('field',res.data.field);
+                this.$set('type', res.data.type);
+                this.$set('roles', res.data.roles);
                 this.field.form_id = this.formitem.id;
 
                 UIkit.tab(this.$els.tab, {connect: this.$els.content});
@@ -98,9 +98,9 @@
 
                 this.$broadcast('save', data);
 
-                this.Field.save({id: this.field.id}, data, function (data) {
+                this.Field.save({id: this.field.id}, data).then(function (res) {
 
-                    this.$set('field', data.field);
+                    this.$set('field', res.data.field);
 
                     this.$notify(this.$trans('%type% saved.', {type: this.type.label}));
 

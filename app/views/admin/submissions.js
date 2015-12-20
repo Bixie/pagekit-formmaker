@@ -68,10 +68,10 @@ module.exports = {
 
             page = page !== undefined ? page : this.config.page;
 
-            this.resource.query({ filter: this.config.filter, page: page }, function (data) {
-                this.$set('submissions', data.submissions);
-                this.$set('pages', data.pages);
-                this.$set('count', data.count);
+            this.resource.query({ filter: this.config.filter, page: page }).then(function (res) {
+                this.$set('submissions', res.data.submissions);
+                this.$set('pages', res.data.pages);
+                this.$set('count', res.data.count);
                 this.$set('config.page', page);
                 this.$set('selected', []);
                 this.checkDetailHash();
@@ -109,7 +109,7 @@ module.exports = {
                 submission.status = status;
             });
 
-            this.resource.save({id: 'bulk'}, {submissions: submissions}, function (data) {
+            this.resource.save({id: 'bulk'}, {submissions: submissions}).then(function () {
                 this.load();
                 this.$notify('Submission(s) saved.');
             });
@@ -117,7 +117,7 @@ module.exports = {
 
         toggleStatus: function (submission) {
             submission.status = submission.status === 2 ? 0 : submission.status + 1;
-            this.resource.save({id: submission.id}, {submission: submission}, function (data) {
+            this.resource.save({id: submission.id}, {submission: submission}).then(function () {
                 this.load();
                 this.$notify('Submission saved.');
             });
@@ -125,7 +125,7 @@ module.exports = {
 
         removeSubmissions: function () {
 
-            this.resource.delete({id: 'bulk'}, {ids: this.selected}, function () {
+            this.resource.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
                 this.load();
                 this.$notify('Submission(s) deleted.');
             });

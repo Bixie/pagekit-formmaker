@@ -120,10 +120,10 @@
                     filter['status'] = '';
                 }
 
-                this.$resource('api/formmaker/submission/:id').query({filter: filter}, function (data) {
+                this.$resource('api/formmaker/submission/:id').query({filter: filter}).then(function (res) {
 
-                    this.$set('count', data.count);
-                    this.$set('submissions', data.submissions);
+                    this.$set('count', res.data.count);
+                    this.$set('submissions', res.data.submissions);
 
                 });
             },
@@ -131,8 +131,8 @@
             loadForms: function (editing) {
                 if (editing && !this.$get('forms')) {
 
-                    this.$resource('api/formmaker/form/:id').query(function (data) {
-                        this.$set('forms', data);
+                    this.$resource('api/formmaker/form/:id').query().then(function (res) {
+                        this.$set('forms', res.data);
                     });
 
                 }

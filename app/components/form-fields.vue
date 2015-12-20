@@ -112,8 +112,8 @@
         methods: {
 
             load: function () {
-                return this.Fields.query({form_id: this.formitem.id}, function (data) {
-                    this.$set('fields', data);
+                return this.Fields.query({form_id: this.formitem.id}).then(function (res) {
+                    this.$set('fields', res.data);
                     this.$set('selected', []);
                 });
             },
@@ -122,7 +122,7 @@
 
                 field.data.required = field.data.required ? 0 : 1;
 
-                this.Fields.save({id: field.id}, {field: field}, function () {
+                this.Fields.save({id: field.id}, {field: field}).then(function () {
                     this.load();
                     this.$notify('Field saved.');
                 }, function (message) {
@@ -158,7 +158,7 @@
 
             removeFields: function () {
 
-                this.Fields.delete({id: 'bulk'}, {ids: this.selected}, function () {
+                this.Fields.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
                     this.load();
                     this.$notify('Field(s) deleted.');
                 });
