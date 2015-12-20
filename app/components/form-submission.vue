@@ -26,7 +26,7 @@
                 <div class="uk-form-row" v-show="formitem.data.afterSubmit == 'redirect'">
                     <label class="uk-form-label">{{ 'Redirect' | trans }}</label>
                     <div class="uk-form-controls">
-                        <input-link class="uk-form-width-large" link="{{@ formitem.data.redirect}}"></input-link>
+                        <input-link class="uk-form-width-large" :link.sync="formitem.data.redirect"></input-link>
                     </div>
                 </div>
 
