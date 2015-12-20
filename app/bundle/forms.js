@@ -66,8 +66,8 @@
 	    methods: {
 
 	        load: function () {
-	            return this.Forms.query(function (data) {
-	                this.$set('forms', data);
+	            return this.Forms.query().then(function (res) {
+	                this.$set('forms', res.data);
 	            });
 	        },
 
@@ -75,7 +75,7 @@
 
 	            formitem.status = formitem.status ? 0 : 1;
 
-	            this.Forms.save({id: formitem.id}, {formitem: formitem}, function () {
+	            this.Forms.save({id: formitem.id}, {formitem: formitem}).then(function () {
 	                this.load();
 	                this.$notify('Form saved.');
 	            }, function (message) {
@@ -107,7 +107,7 @@
 
 	        removeForms: function () {
 
-	            this.Forms.delete({id: 'bulk'}, {ids: this.selected}, function () {
+	            this.Forms.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
 	                this.load();
 	                this.$notify('Forms(s) deleted.');
 	            });
@@ -147,7 +147,7 @@
 
 	                if (type && type !== 'removed') {
 
-	                    vm.Forms.save({id: 'updateOrder'}, {forms: nestable.list()}, function () {
+	                    vm.Forms.save({id: 'updateOrder'}, {forms: nestable.list()}).then(function () {
 
 	                        // @TODO reload everything on reorder really needed?
 	                        vm.load().success(function () {
@@ -160,7 +160,7 @@
 	                            }
 	                        });
 
-	                    }).error(function () {
+	                    }, function () {
 	                        this.$notify('Reorder failed.', 'danger');
 	                    });
 	                }

@@ -71,27 +71,43 @@
 	// <template>
 
 	//     <div :class="classes(['uk-form-row'], field.data.classSfx)">
+
 	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
 	//         <div class="uk-form-controls">
+
 	//             <textarea v-if="minLength || maxLength" class="uk-form-width-large"
+
 	//                    placeholder="{{ field.data.placeholder || '' | trans }}"
+
 	//                    :name="fieldid"
+
 	//                    v-bind="{id: fieldid, rows: field.data.rows}"
+
 	//                    v-model="dataObject.value"
+
 	//                       v-validate:required="fieldRequired"
+
 	//                       v-validate:minLength="minLength"
+
 	//                       v-validate:maxLength="maxLength"></textarea>
 
 	//             <textarea v-else class="uk-form-width-large"
+
 	//                    placeholder="{{ field.data.placeholder || '' | trans }}"
+
 	//                    v-bind="{name: fieldid, id: fieldid, rows: field.data.rows}"
+
 	//                    v-model="dataObject.value"
+
 	//                    v-validate:required="fieldRequired"></textarea>
 
 	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
+
 	//                 'Please enter a value' | trans }}</p>
+
 	//         </div>
+
 	//     </div>
 
 	// </template>
@@ -164,7 +180,7 @@
 /***/ 28:
 /***/ function(module, exports) {
 
-	module.exports = "<div :class=\"classes(['uk-form-row'], field.data.classSfx)\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <textarea v-if=\"minLength || maxLength\" class=\"uk-form-width-large\"\n                   placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   :name=\"fieldid\"\n                   v-bind=\"{id: fieldid, rows: field.data.rows}\"\n                   v-model=\"dataObject.value\"\n                      v-validate:required=\"fieldRequired\"\n                      v-validate:minLength=\"minLength\"\n                      v-validate:maxLength=\"maxLength\"></textarea>\n\n            <textarea v-else class=\"uk-form-width-large\"\n                   placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   v-bind=\"{name: fieldid, id: fieldid, rows: field.data.rows}\"\n                   v-model=\"dataObject.value\"\n                   v-validate:required=\"fieldRequired\"></textarea>\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div :class=\"classes(['uk-form-row'], field.data.classSfx)\">\r\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</label>\r\n\r\n        <div class=\"uk-form-controls\">\r\n            <textarea v-if=\"minLength || maxLength\" class=\"uk-form-width-large\"\r\n                   placeholder=\"{{ field.data.placeholder || '' | trans }}\"\r\n                   :name=\"fieldid\"\r\n                   v-bind=\"{id: fieldid, rows: field.data.rows}\"\r\n                   v-model=\"dataObject.value\"\r\n                      v-validate:required=\"fieldRequired\"\r\n                      v-validate:minLength=\"minLength\"\r\n                      v-validate:maxLength=\"maxLength\"></textarea>\r\n\r\n            <textarea v-else class=\"uk-form-width-large\"\r\n                   placeholder=\"{{ field.data.placeholder || '' | trans }}\"\r\n                   v-bind=\"{name: fieldid, id: fieldid, rows: field.data.rows}\"\r\n                   v-model=\"dataObject.value\"\r\n                   v-validate:required=\"fieldRequired\"></textarea>\r\n\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\r\n                'Please enter a value' | trans }}</p>\r\n        </div>\r\n    </div>";
 
 /***/ }
 

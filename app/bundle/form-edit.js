@@ -94,8 +94,8 @@
 
 	            this.$broadcast('save', data);
 
-	            this.Forms.save({id: this.formitem.id}, data, function (data) {
-
+	            this.Forms.save({id: this.formitem.id}, data).then(function (res) {
+	                data = res.data;
 	                if (!this.formitem.id) {
 	                    window.history.replaceState({}, '', this.$url.route('admin/formmaker/form/edit', {id: data.formitem.id}));
 	                }
@@ -470,8 +470,8 @@
 	    methods: {
 
 	        load: function load() {
-	            return this.Fields.query({ form_id: this.formitem.id }, function (data) {
-	                this.$set('fields', data);
+	            return this.Fields.query({ form_id: this.formitem.id }).then(function (res) {
+	                this.$set('fields', res.data);
 	                this.$set('selected', []);
 	            });
 	        },
@@ -480,7 +480,7 @@
 
 	            field.data.required = field.data.required ? 0 : 1;
 
-	            this.Fields.save({ id: field.id }, { field: field }, function () {
+	            this.Fields.save({ id: field.id }, { field: field }).then(function () {
 	                this.load();
 	                this.$notify('Field saved.');
 	            }, function (message) {
@@ -516,7 +516,7 @@
 
 	        removeFields: function removeFields() {
 
-	            this.Fields.delete({ id: 'bulk' }, { ids: this.selected }, function () {
+	            this.Fields.delete({ id: 'bulk' }, { ids: this.selected }).then(function () {
 	                this.load();
 	                this.$notify('Field(s) deleted.');
 	            });
@@ -838,7 +838,7 @@
 
 	//                     <div class="uk-form-controls">
 
-	//                         <input-link class="uk-form-width-large" link="{{@ formitem.data.redirect}}"></input-link>
+	//                         <input-link class="uk-form-width-large" :link.sync="formitem.data.redirect"></input-link>
 
 	//                     </div>
 
@@ -935,7 +935,7 @@
 /* 32 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4\">\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'After submit' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <select id=\"form-formstyle\" class=\"uk-form-width-large\" v-model=\"formitem.data.afterSubmit\">\r\n                            <option value=\"thankyou\">{{ 'Show Thank you message' | trans }}</option>\r\n                            <option value=\"redirect\">{{ 'Redirect to page' | trans }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'thankyou'\">\r\n                    <v-editor id=\"formitem-thankyou\" :value.sync=\"formitem.data.thankyou\" :options=\"{markdown : formitem.data.thankyou_markdown}\"></v-editor>\r\n                    <p>\r\n                        <label><input type=\"checkbox\" v-model=\"formitem.data.thankyou_markdown\"> {{ 'Enable Markdown' | trans }}</label>\r\n                    </p>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'redirect'\">\r\n                    <label class=\"uk-form-label\">{{ 'Redirect' | trans }}</label>\r\n                    <div class=\"uk-form-controls\">\r\n                        <input-link class=\"uk-form-width-large\" link=\"{{@ formitem.data.redirect}}\"></input-link>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4\">\r\n\r\n                <formfieldslist :fields=\"formfields\"></formfieldslist>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4\">\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'After submit' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <select id=\"form-formstyle\" class=\"uk-form-width-large\" v-model=\"formitem.data.afterSubmit\">\r\n                            <option value=\"thankyou\">{{ 'Show Thank you message' | trans }}</option>\r\n                            <option value=\"redirect\">{{ 'Redirect to page' | trans }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'thankyou'\">\r\n                    <v-editor id=\"formitem-thankyou\" :value.sync=\"formitem.data.thankyou\" :options=\"{markdown : formitem.data.thankyou_markdown}\"></v-editor>\r\n                    <p>\r\n                        <label><input type=\"checkbox\" v-model=\"formitem.data.thankyou_markdown\"> {{ 'Enable Markdown' | trans }}</label>\r\n                    </p>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'redirect'\">\r\n                    <label class=\"uk-form-label\">{{ 'Redirect' | trans }}</label>\r\n                    <div class=\"uk-form-controls\">\r\n                        <input-link class=\"uk-form-width-large\" :link.sync=\"formitem.data.redirect\"></input-link>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4\">\r\n\r\n                <formfieldslist :fields=\"formfields\"></formfieldslist>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
 
 /***/ },
 /* 33 */
@@ -1202,10 +1202,10 @@
 	    },
 
 	    ready: function ready() {
-	        this.Fields.query({ id: this.fieldid }, function (data) {
-	            this.$set('field', data.field);
-	            this.$set('type', data.type);
-	            this.$set('roles', data.roles);
+	        this.Fields.query({ id: this.fieldid }).then(function (res) {
+	            this.$set('field', res.data.field);
+	            this.$set('type', res.data.type);
+	            this.$set('roles', res.data.roles);
 	            this.field.form_id = this.formitem.id;
 
 	            UIkit.tab(this.$els.tab, { connect: this.$els.content });
@@ -1225,9 +1225,9 @@
 
 	            this.$broadcast('save', data);
 
-	            this.Field.save({ id: this.field.id }, data, function (data) {
+	            this.Field.save({ id: this.field.id }, data).then(function (res) {
 
-	                this.$set('field', data.field);
+	                this.$set('field', res.data.field);
 
 	                this.$notify(this.$trans('%type% saved.', { type: this.type.label }));
 	            }, function (data) {

@@ -115,10 +115,10 @@
 
 	            page = page !== undefined ? page : this.config.page;
 
-	            this.resource.query({ filter: this.config.filter, page: page }, function (data) {
-	                this.$set('submissions', data.submissions);
-	                this.$set('pages', data.pages);
-	                this.$set('count', data.count);
+	            this.resource.query({ filter: this.config.filter, page: page }).then(function (res) {
+	                this.$set('submissions', res.data.submissions);
+	                this.$set('pages', res.data.pages);
+	                this.$set('count', res.data.count);
 	                this.$set('config.page', page);
 	                this.$set('selected', []);
 	                this.checkDetailHash();
@@ -156,7 +156,7 @@
 	                submission.status = status;
 	            });
 
-	            this.resource.save({id: 'bulk'}, {submissions: submissions}, function (data) {
+	            this.resource.save({id: 'bulk'}, {submissions: submissions}).then(function () {
 	                this.load();
 	                this.$notify('Submission(s) saved.');
 	            });
@@ -164,7 +164,7 @@
 
 	        toggleStatus: function (submission) {
 	            submission.status = submission.status === 2 ? 0 : submission.status + 1;
-	            this.resource.save({id: submission.id}, {submission: submission}, function (data) {
+	            this.resource.save({id: submission.id}, {submission: submission}).then(function () {
 	                this.load();
 	                this.$notify('Submission saved.');
 	            });
@@ -172,7 +172,7 @@
 
 	        removeSubmissions: function () {
 
-	            this.resource.delete({id: 'bulk'}, {ids: this.selected}, function () {
+	            this.resource.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
 	                this.load();
 	                this.$notify('Submission(s) deleted.');
 	            });
@@ -354,8 +354,8 @@
 
 	    created: function created() {
 
-	        this.$root.resource.query({ id: 'detail', submission_id: this.submissionid }, (function (data) {
-	            this.$set('submission', data);
+	        this.$root.resource.query({ id: 'detail', submission_id: this.submissionid }).then((function (res) {
+	            this.$set('submission', res.data);
 	            this.loaded = true;
 	        }).bind(this));
 	    },
@@ -412,175 +412,63 @@
 
 	// <template>
 
-	//     <div class="uk-modal-header">
+	//     <div>
 
-	//         <h2>{{ 'Export submissions as CSV file' | trans }}</h2>
+	//         <div class="uk-modal-header">
 
-	//     </div>
+	//             <h2>{{ 'Export submissions as CSV file' | trans }}</h2>
 
-	//     <div class="uk-margin uk-form uk-form-stacked">
+	//         </div>
 
-	//         <div class="uk-modal-spinner" v-if="!loaded"></div>
+	//         <div class="uk-margin uk-form uk-form-stacked">
 
-	//         <div v-show="loaded">
+	//             <div class="uk-modal-spinner" v-if="!loaded"></div>
 
-	//             <div class="uk-grid">
+	//             <div v-show="loaded">
 
-	//                 <div class="uk-width-medium-1-2">
+	//                 <div class="uk-grid">
 
-	//                     <select class="uk-width-1-1" v-model="options.form_id" number>
+	//                     <div class="uk-width-medium-1-2">
 
-	//                         <option value="">{{ 'Select form' | trans }}</option>
+	//                         <select class="uk-width-1-1" v-model="options.form_id" number>
 
-	//                         <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
+	//                             <option value="">{{ 'Select form' | trans }}</option>
 
-	//                     </select>
+	//                             <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
 
-	//                 </div>
-
-	//                 <div class="uk-width-medium-1-2">
-
-	//                     <div class="uk-form-controls uk-form-controls-text uk-flex uk-margin-small-top">
-
-	//                         <div class="uk-width-1-3">
-
-	//                             <label><input type="checkbox" value="0" @click="load" v-model="options.status" number> {{ 'Archived' | trans
-
-	//                                 }}</label>
-
-	//                         </div>
-
-	//                         <div class="uk-width-1-3">
-
-	//                             <label><input type="checkbox" value="1" @click="load" v-model="options.status" number> {{ 'Active' | trans
-
-	//                                 }}</label>
-
-	//                         </div>
-
-	//                         <div class="uk-width-1-3">
-
-	//                             <label><input type="checkbox" value="2" @click="load" v-model="options.status" number> {{ 'Done' | trans
-
-	//                                 }}</label>
-
-	//                         </div>
+	//                         </select>
 
 	//                     </div>
 
-	//                 </div>
+	//                     <div class="uk-width-medium-1-2">
 
-	//             </div>
+	//                         <div class="uk-form-controls uk-form-controls-text uk-flex uk-margin-small-top">
 
-	//             <div class="uk-grid" v-if="formLoaded">
+	//                             <div class="uk-width-1-3">
 
-	//                 <div class="uk-width-medium-2-3">
+	//                                 <label><input type="checkbox" :value="0" v-model="options.status" number>
 
-	//                     <div class="uk-grid">
+	//                                     {{ 'Archived' | trans
 
-	//                         <div class="uk-width-medium-1-2">
-
-	//                             <div class="uk-form-row">
-
-	//                                 <span class="uk-form-label">{{ 'Data to export' | trans }}</span>
-
-	//                                 <div class="uk-form-controls uk-form-controls-text">
-
-	//                                     <p class="uk-form-controls-condensed">
-
-	//                                         <label><input type="checkbox" value="id" v-model="options.datafields"> {{ 'Id' | trans
-
-	//                                             }}</label>
-
-	//                                     </p>
-
-	//                                     <p class="uk-form-controls-condensed">
-
-	//                                         <label><input type="checkbox" value="status" v-model="options.datafields"> {{ 'Status' | trans
-
-	//                                             }}</label>
-
-	//                                     </p>
-
-	//                                     <p class="uk-form-controls-condensed">
-
-	//                                         <label><input type="checkbox" value="email" v-model="options.datafields"> {{ 'Email' | trans
-
-	//                                             }}</label>
-
-	//                                     </p>
-
-	//                                     <p class="uk-form-controls-condensed">
-
-	//                                         <label><input type="checkbox" value="ip" v-model="options.datafields"> {{ 'IP address' | trans
-
-	//                                             }}</label>
-
-	//                                     </p>
-
-	//                                     <p class="uk-form-controls-condensed">
-
-	//                                         <label><input type="checkbox" value="created" v-model="options.datafields"> {{ 'Created' | trans
-
-	//                                             }}</label>
-
-	//                                     </p>
-
-	//                                 </div>
+	//                                     }}</label>
 
 	//                             </div>
 
-	//                         </div>
+	//                             <div class="uk-width-1-3">
 
-	//                         <div class="uk-width-medium-1-2">
+	//                                 <label><input type="checkbox" :value="1" v-model="options.status" number>
 
-	//                             <div class="uk-form-row">
+	//                                     {{ 'Active' | trans
 
-	//                                 <span class="uk-form-label">{{ 'Fields to export' | trans }}</span>
-
-	//                                 <div class="uk-form-controls uk-form-controls-text">
-
-	//                                     <p v-for="field in formitem.fields" class="uk-form-controls-condensed">
-
-	//                                         <label><input type="checkbox" value="{{ field.id }}" v-model="options.field_ids" number> {{ field.label | trans
-
-	//                                             }}</label>
-
-	//                                     </p>
-
-	//                                 </div>
+	//                                     }}</label>
 
 	//                             </div>
 
-	//                         </div>
+	//                             <div class="uk-width-1-3">
 
-	//                     </div>
+	//                                 <label><input type="checkbox" :value="2" v-model="options.status" number>
 
-	//                 </div>
-
-	//                 <div class="uk-width-medium-1-3">
-
-	//                     <div class="uk-panel uk-panel-box">
-
-	//                         <div class="uk-form-row">
-
-	//                             <label for="form-filename" class="uk-form-label">{{ 'Filename' | trans }}</label>
-
-	//                             <div class="uk-form-controls">
-
-	//                                 <input id="form-filename" class="uk-width-1-1" type="text" v-model="options.filename">
-
-	//                             </div>
-
-	//                         </div>
-
-	//                         <div class="uk-form-row">
-
-	//                             <span class="uk-form-label">{{ 'Archive' | trans }}</span>
-
-	//                             <div class="uk-form-controls uk-form-controls-text">
-
-	//                                 <label><input type="checkbox" value="archived" v-model="options.mark_archived"> {{ 'Mark exported as "Archived"' | trans
+	//                                     {{ 'Done' | trans
 
 	//                                     }}</label>
 
@@ -588,9 +476,149 @@
 
 	//                         </div>
 
-	//                         <div class="uk-badge uk-badge-success uk-margin">
+	//                     </div>
 
-	//                             {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported' | transChoice count}}
+	//                 </div>
+
+	//                 <div class="uk-grid" v-if="formLoaded">
+
+	//                     <div class="uk-width-medium-2-3">
+
+	//                         <div class="uk-grid">
+
+	//                             <div class="uk-width-medium-1-2">
+
+	//                                 <div class="uk-form-row">
+
+	//                                     <span class="uk-form-label">{{ 'Data to export' | trans }}</span>
+
+	//                                     <div class="uk-form-controls uk-form-controls-text">
+
+	//                                         <p class="uk-form-controls-condensed">
+
+	//                                             <label><input type="checkbox" value="id" v-model="options.datafields"> {{
+
+	//                                                 'Id' | trans
+
+	//                                                 }}</label>
+
+	//                                         </p>
+
+	//                                         <p class="uk-form-controls-condensed">
+
+	//                                             <label><input type="checkbox" value="status" v-model="options.datafields">
+
+	//                                                 {{ 'Status' | trans
+
+	//                                                 }}</label>
+
+	//                                         </p>
+
+	//                                         <p class="uk-form-controls-condensed">
+
+	//                                             <label><input type="checkbox" value="email" v-model="options.datafields"> {{
+
+	//                                                 'Email' | trans
+
+	//                                                 }}</label>
+
+	//                                         </p>
+
+	//                                         <p class="uk-form-controls-condensed">
+
+	//                                             <label><input type="checkbox" value="ip" v-model="options.datafields"> {{
+
+	//                                                 'IP address' | trans
+
+	//                                                 }}</label>
+
+	//                                         </p>
+
+	//                                         <p class="uk-form-controls-condensed">
+
+	//                                             <label><input type="checkbox" value="created" v-model="options.datafields">
+
+	//                                                 {{ 'Created' | trans
+
+	//                                                 }}</label>
+
+	//                                         </p>
+
+	//                                     </div>
+
+	//                                 </div>
+
+	//                             </div>
+
+	//                             <div class="uk-width-medium-1-2">
+
+	//                                 <div class="uk-form-row">
+
+	//                                     <span class="uk-form-label">{{ 'Fields to export' | trans }}</span>
+
+	//                                     <div class="uk-form-controls uk-form-controls-text">
+
+	//                                         <p v-for="field in formitem.fields" class="uk-form-controls-condensed">
+
+	//                                             <label><input type="checkbox" value="{{ field.id }}"
+
+	//                                                           v-model="options.field_ids" number> {{ field.label | trans
+
+	//                                                 }}</label>
+
+	//                                         </p>
+
+	//                                     </div>
+
+	//                                 </div>
+
+	//                             </div>
+
+	//                         </div>
+
+	//                     </div>
+
+	//                     <div class="uk-width-medium-1-3">
+
+	//                         <div class="uk-panel uk-panel-box">
+
+	//                             <div class="uk-form-row">
+
+	//                                 <label for="form-filename" class="uk-form-label">{{ 'Filename' | trans }}</label>
+
+	//                                 <div class="uk-form-controls">
+
+	//                                     <input id="form-filename" class="uk-width-1-1" type="text"
+
+	//                                            v-model="options.filename">
+
+	//                                 </div>
+
+	//                             </div>
+
+	//                             <div class="uk-form-row">
+
+	//                                 <span class="uk-form-label">{{ 'Archive' | trans }}</span>
+
+	//                                 <div class="uk-form-controls uk-form-controls-text">
+
+	//                                     <label><input type="checkbox" value="archived" v-model="options.mark_archived"> {{
+
+	//                                         'Mark exported as "Archived"' | trans
+
+	//                                         }}</label>
+
+	//                                 </div>
+
+	//                             </div>
+
+	//                             <div class="uk-badge uk-badge-success uk-margin">
+
+	//                                 {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[
+
+	//                                 submissions to be exported' | transChoice count}}
+
+	//                             </div>
 
 	//                         </div>
 
@@ -602,29 +630,29 @@
 
 	//         </div>
 
-	//     </div>
+	//         <div class="uk-modal-footer uk-text-right">
 
-	//     <div class="uk-modal-footer uk-text-right">
+	//             <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans }}</button>
 
-	//         <button type="button" class="uk-button uk-modal-close">{{ 'Close' | trans }}</button>
+	//             <button type="button" class="uk-button uk-button-primary"
 
-	//         <button type="button" class="uk-button uk-button-primary"
+	//                     v-show="!csvLink" @click="doExport" v-el:export
 
-	//                 v-show="!csvLink" @click="doExport" v-el:export
+	//                     :disabled="!formLoaded">
 
-	//                 :disabled="!formLoaded">
+	//                 <i v-show="exporting" class="uk-icon-spinner uk-icon-spin"></i>
 
-	//             <i v-show="exporting" class="uk-icon-spinner uk-icon-spin"></i>
+	//                 <span v-else>{{ 'Export' | trans }}</span>
 
-	//             <span v-else>{{ 'Export' | trans }}</span>
+	//             </button>
 
-	//         </button>
+	//             <a :href="csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
 
-	//         <!-- //todo downloadname is buggy-->
+	//                v-show="csvLink" v-el:exportlink><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' |
 
-	//         <a :href="csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
+	//                 trans }}</a>
 
-	//                v-show="csvLink" v-el:exportlink><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
+	//         </div>
 
 	//     </div>
 
@@ -640,12 +668,12 @@
 	        return {
 	            options: {
 	                form_id: 0,
+	                filename: 'csv-export.csv',
 	                mark_archived: true,
 	                status: [1, 2],
 	                field_ids: [],
 	                datafields: ['id', 'status', 'email', 'ip', 'created']
 	            },
-	            forms: [],
 	            formitem: {
 	                id: 0,
 	                fields: []
@@ -673,8 +701,10 @@
 
 	    methods: {
 	        load: function load() {
-	            this.$root.resource.query({ id: 'csv', options: this.options }, (function (data) {
-	                this.$set('options', data.options);
+	            this.$root.resource.query({ id: 'csv', options: this.options }).then((function (res) {
+	                var data = res.data;
+	                this.$set('options.field_ids', data.options.field_ids);
+	                this.$set('options.filename', data.options.filename);
 	                if (data.forms.length) {
 	                    this.$set('count', 0);
 	                    this.$set('forms', data.forms);
@@ -695,10 +725,10 @@
 	                return false;
 	            }
 	            this.exporting = true;
-	            this.$root.resource.export({ options: this.options }, (function (data) {
-	                if (data.csv) {
+	            this.$root.resource.export({ options: this.options }).then((function (res) {
+	                if (res.data.csv) {
 	                    var $url = window.URL || window.webkitURL;
-	                    this.csvLink = $url.createObjectURL(new Blob([data.csv], { type: "application/force-download" }));
+	                    this.csvLink = $url.createObjectURL(new Blob([res.data.csv], { type: "application/force-download" }));
 	                    this.exporting = false;
 	                }
 	            }).bind(this));
@@ -710,7 +740,7 @@
 	                this.csvLink = '';
 	            }, deep: true },
 
-	        'options.form_id': function optionsForm_id(value) {
+	        'options.form_id,options.status': function optionsForm_idOptionsStatus(value) {
 	            this.load();
 	        }
 	    }
@@ -724,7 +754,7 @@
 /***/ 56:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-modal-header\">\r\n        <h2>{{ 'Export submissions as CSV file' | trans }}</h2>\r\n    </div>\r\n\r\n    <div class=\"uk-margin uk-form uk-form-stacked\">\r\n        <div class=\"uk-modal-spinner\" v-if=\"!loaded\"></div>\r\n        <div v-show=\"loaded\">\r\n\r\n            <div class=\"uk-grid\">\r\n                <div class=\"uk-width-medium-1-2\">\r\n                    <select class=\"uk-width-1-1\" v-model=\"options.form_id\" number>\r\n                        <option value=\"\">{{ 'Select form' | trans }}</option>\r\n                        <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\r\n                    </select>\r\n\r\n                </div>\r\n                <div class=\"uk-width-medium-1-2\">\r\n                    <div class=\"uk-form-controls uk-form-controls-text uk-flex uk-margin-small-top\">\r\n                        <div class=\"uk-width-1-3\">\r\n                            <label><input type=\"checkbox\" value=\"0\" @click=\"load\" v-model=\"options.status\" number> {{ 'Archived' | trans\r\n                                }}</label>\r\n                        </div>\r\n                        <div class=\"uk-width-1-3\">\r\n                            <label><input type=\"checkbox\" value=\"1\" @click=\"load\" v-model=\"options.status\" number> {{ 'Active' | trans\r\n                                }}</label>\r\n                        </div>\r\n                        <div class=\"uk-width-1-3\">\r\n                            <label><input type=\"checkbox\" value=\"2\" @click=\"load\" v-model=\"options.status\" number> {{ 'Done' | trans\r\n                                }}</label>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"uk-grid\" v-if=\"formLoaded\">\r\n                <div class=\"uk-width-medium-2-3\">\r\n\r\n                    <div class=\"uk-grid\">\r\n                        <div class=\"uk-width-medium-1-2\">\r\n\r\n                            <div class=\"uk-form-row\">\r\n                                <span class=\"uk-form-label\">{{ 'Data to export' | trans }}</span>\r\n\r\n                                <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                    <p class=\"uk-form-controls-condensed\">\r\n                                        <label><input type=\"checkbox\" value=\"id\" v-model=\"options.datafields\"> {{ 'Id' | trans\r\n                                            }}</label>\r\n                                    </p>\r\n                                    <p class=\"uk-form-controls-condensed\">\r\n                                        <label><input type=\"checkbox\" value=\"status\" v-model=\"options.datafields\"> {{ 'Status' | trans\r\n                                            }}</label>\r\n                                    </p>\r\n                                    <p class=\"uk-form-controls-condensed\">\r\n                                        <label><input type=\"checkbox\" value=\"email\" v-model=\"options.datafields\"> {{ 'Email' | trans\r\n                                            }}</label>\r\n                                    </p>\r\n                                    <p class=\"uk-form-controls-condensed\">\r\n                                        <label><input type=\"checkbox\" value=\"ip\" v-model=\"options.datafields\"> {{ 'IP address' | trans\r\n                                            }}</label>\r\n                                    </p>\r\n                                    <p class=\"uk-form-controls-condensed\">\r\n                                        <label><input type=\"checkbox\" value=\"created\" v-model=\"options.datafields\"> {{ 'Created' | trans\r\n                                            }}</label>\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <div class=\"uk-width-medium-1-2\">\r\n\r\n                            <div class=\"uk-form-row\">\r\n                                <span class=\"uk-form-label\">{{ 'Fields to export' | trans }}</span>\r\n\r\n                                <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                    <p v-for=\"field in formitem.fields\" class=\"uk-form-controls-condensed\">\r\n                                        <label><input type=\"checkbox\" value=\"{{ field.id }}\" v-model=\"options.field_ids\" number> {{ field.label | trans\r\n                                            }}</label>\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n                <div class=\"uk-width-medium-1-3\">\r\n                    <div class=\"uk-panel uk-panel-box\">\r\n\r\n                        <div class=\"uk-form-row\">\r\n                            <label for=\"form-filename\" class=\"uk-form-label\">{{ 'Filename' | trans }}</label>\r\n\r\n                            <div class=\"uk-form-controls\">\r\n                                <input id=\"form-filename\" class=\"uk-width-1-1\" type=\"text\" v-model=\"options.filename\">\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div class=\"uk-form-row\">\r\n                            <span class=\"uk-form-label\">{{ 'Archive' | trans }}</span>\r\n\r\n                            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                <label><input type=\"checkbox\" value=\"archived\" v-model=\"options.mark_archived\"> {{ 'Mark exported as \"Archived\"' | trans\r\n                                    }}</label>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"uk-badge uk-badge-success uk-margin\">\r\n                            {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported' | transChoice count}}\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"uk-modal-footer uk-text-right\">\r\n        <button type=\"button\" class=\"uk-button uk-modal-close\">{{ 'Close' | trans }}</button>\r\n        <button type=\"button\" class=\"uk-button uk-button-primary\"\r\n                v-show=\"!csvLink\" @click=\"doExport\" v-el:export\r\n                :disabled=\"!formLoaded\">\r\n            <i v-show=\"exporting\" class=\"uk-icon-spinner uk-icon-spin\"></i>\r\n            <span v-else>{{ 'Export' | trans }}</span>\r\n        </button>\r\n        <!-- //todo downloadname is buggy-->\r\n        <a :href=\"csvLink\" class=\"uk-button uk-button-success\" download=\"{{ options.filename }}\"\r\n               v-show=\"csvLink\" v-el:exportlink><i class=\"uk-icon-download uk-margin-small-right\"></i>{{ 'Download' | trans }}</a>\r\n    </div>";
+	module.exports = "<div>\r\n        <div class=\"uk-modal-header\">\r\n            <h2>{{ 'Export submissions as CSV file' | trans }}</h2>\r\n        </div>\r\n\r\n        <div class=\"uk-margin uk-form uk-form-stacked\">\r\n            <div class=\"uk-modal-spinner\" v-if=\"!loaded\"></div>\r\n            <div v-show=\"loaded\">\r\n\r\n                <div class=\"uk-grid\">\r\n                    <div class=\"uk-width-medium-1-2\">\r\n                        <select class=\"uk-width-1-1\" v-model=\"options.form_id\" number>\r\n                            <option value=\"\">{{ 'Select form' | trans }}</option>\r\n                            <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\r\n                        </select>\r\n\r\n                    </div>\r\n                    <div class=\"uk-width-medium-1-2\">\r\n                        <div class=\"uk-form-controls uk-form-controls-text uk-flex uk-margin-small-top\">\r\n                            <div class=\"uk-width-1-3\">\r\n                                <label><input type=\"checkbox\" :value=\"0\" v-model=\"options.status\" number>\r\n                                    {{ 'Archived' | trans\r\n                                    }}</label>\r\n                            </div>\r\n                            <div class=\"uk-width-1-3\">\r\n                                <label><input type=\"checkbox\" :value=\"1\" v-model=\"options.status\" number>\r\n                                    {{ 'Active' | trans\r\n                                    }}</label>\r\n                            </div>\r\n                            <div class=\"uk-width-1-3\">\r\n                                <label><input type=\"checkbox\" :value=\"2\" v-model=\"options.status\" number>\r\n                                    {{ 'Done' | trans\r\n                                    }}</label>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-grid\" v-if=\"formLoaded\">\r\n                    <div class=\"uk-width-medium-2-3\">\r\n\r\n                        <div class=\"uk-grid\">\r\n                            <div class=\"uk-width-medium-1-2\">\r\n\r\n                                <div class=\"uk-form-row\">\r\n                                    <span class=\"uk-form-label\">{{ 'Data to export' | trans }}</span>\r\n\r\n                                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"id\" v-model=\"options.datafields\"> {{\r\n                                                'Id' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"status\" v-model=\"options.datafields\">\r\n                                                {{ 'Status' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"email\" v-model=\"options.datafields\"> {{\r\n                                                'Email' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"ip\" v-model=\"options.datafields\"> {{\r\n                                                'IP address' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"created\" v-model=\"options.datafields\">\r\n                                                {{ 'Created' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n\r\n                            </div>\r\n                            <div class=\"uk-width-medium-1-2\">\r\n\r\n                                <div class=\"uk-form-row\">\r\n                                    <span class=\"uk-form-label\">{{ 'Fields to export' | trans }}</span>\r\n\r\n                                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                        <p v-for=\"field in formitem.fields\" class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"{{ field.id }}\"\r\n                                                          v-model=\"options.field_ids\" number> {{ field.label | trans\r\n                                                }}</label>\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n\r\n                            </div>\r\n                        </div>\r\n\r\n                    </div>\r\n                    <div class=\"uk-width-medium-1-3\">\r\n                        <div class=\"uk-panel uk-panel-box\">\r\n\r\n                            <div class=\"uk-form-row\">\r\n                                <label for=\"form-filename\" class=\"uk-form-label\">{{ 'Filename' | trans }}</label>\r\n\r\n                                <div class=\"uk-form-controls\">\r\n                                    <input id=\"form-filename\" class=\"uk-width-1-1\" type=\"text\"\r\n                                           v-model=\"options.filename\">\r\n                                </div>\r\n                            </div>\r\n\r\n\r\n                            <div class=\"uk-form-row\">\r\n                                <span class=\"uk-form-label\">{{ 'Archive' | trans }}</span>\r\n\r\n                                <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                    <label><input type=\"checkbox\" value=\"archived\" v-model=\"options.mark_archived\"> {{\r\n                                        'Mark exported as \"Archived\"' | trans\r\n                                        }}</label>\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div class=\"uk-badge uk-badge-success uk-margin\">\r\n                                {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[\r\n                                submissions to be exported' | transChoice count}}\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"uk-modal-footer uk-text-right\">\r\n            <button type=\"button\" class=\"uk-button uk-modal-close\">{{ 'Close' | trans }}</button>\r\n            <button type=\"button\" class=\"uk-button uk-button-primary\"\r\n                    v-show=\"!csvLink\" @click=\"doExport\" v-el:export\r\n                    :disabled=\"!formLoaded\">\r\n                <i v-show=\"exporting\" class=\"uk-icon-spinner uk-icon-spin\"></i>\r\n                <span v-else>{{ 'Export' | trans }}</span>\r\n            </button>\r\n            <a :href=\"csvLink\" class=\"uk-button uk-button-success\" download=\"{{ options.filename }}\"\r\n               v-show=\"csvLink\" v-el:exportlink><i class=\"uk-icon-download uk-margin-small-right\"></i>{{ 'Download' |\r\n                trans }}</a>\r\n        </div>\r\n    </div>";
 
 /***/ }
 

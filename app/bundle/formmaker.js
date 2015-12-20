@@ -88,17 +88,19 @@
 
 	            this.$broadcast('submit', data);
 
-	            this.$http.post('api/formmaker/submission', data, function (data) {
-	                this.message = data.message;
-	                if (data.submission.thankyou) {
-	                    vm.$set('thankyou', data.submission.thankyou);
-	                }
-	                if (data.submission.redirect) {
-	                    window.location.replace(data.submission.redirect);
-	                }
-	            }).error(function (error) {
-	                this.error = this.$trans(error);
-	            });
+	            this.$http.post('api/formmaker/submission', data)
+	                .then(function (res) {
+	                    data = res.data;
+	                    this.message = data.message;
+	                    if (data.submission.thankyou) {
+	                        vm.$set('thankyou', data.submission.thankyou);
+	                    }
+	                    if (data.submission.redirect) {
+	                        window.location.replace(data.submission.redirect);
+	                    }
+	                }, function (error) {
+	                    this.error = this.$trans(error);
+	                });
 	        }
 
 	    },

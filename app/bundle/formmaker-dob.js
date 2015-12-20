@@ -75,37 +75,61 @@
 	//         <span class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</span>
 
 	//         <div class="uk-form-controls uk-flex">
+
 	//             <div class="uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1">
 
 	//                 <div>
+
 	//                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
+
 	//                         <i class="uk-icon-caret-down uk-margin-left"></i>
+
 	//                         <select class="" v-model="month">
+
 	//                             <option v-for="option in months" :value="option.value">{{ option.text }}</option>
+
 	//                         </select>
+
 	//                     </div>
+
 	//                 </div>
 
 	//                 <div :class="{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}">
+
 	//                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
+
 	//                         <i class="uk-icon-caret-down uk-margin-left"></i>
+
 	//                         <select class="" v-model="day">
+
 	//                             <option v-for="option in days" :value="option">{{ $key }}</option>
+
 	//                         </select>
+
 	//                     </div>
+
 	//                 </div>
 
 	//                 <div>
+
 	//                     <div class="uk-button uk-width-1-1 uk-form-select" data-uk-form-select><span></span>
+
 	//                         <i class="uk-icon-caret-down uk-margin-left"></i>
+
 	//                         <select class="" v-model="year">
+
 	//                             <option v-for="option in years" :value="option">{{ $key }}</option>
+
 	//                         </select>
+
 	//                     </div>
+
 	//                 </div>
 
 	//             </div>
+
 	//         </div>
+
 	//     </div>
 
 	// </template>
@@ -242,7 +266,7 @@
 /***/ 13:
 /***/ function(module, exports) {
 
-	module.exports = "<div v-el:dob :class=\"classes(['uk-form-row', (isAdmin ? 'uk-hidden' : '')], field.data.classSfx)\">\n\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\n\n        <div class=\"uk-form-controls uk-flex\">\n            <div class=\"uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1\">\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" v-model=\"month\">\n                            <option v-for=\"option in months\" :value=\"option.value\">{{ option.text }}</option>\n                        </select>\n                    </div>\n                </div>\n\n                <div :class=\"{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}\">\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" v-model=\"day\">\n                            <option v-for=\"option in days\" :value=\"option\">{{ $key }}</option>\n                        </select>\n                    </div>\n                </div>\n\n                <div>\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\n                        <select class=\"\" v-model=\"year\">\n                            <option v-for=\"option in years\" :value=\"option\">{{ $key }}</option>\n                        </select>\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    </div>";
+	module.exports = "<div v-el:dob :class=\"classes(['uk-form-row', (isAdmin ? 'uk-hidden' : '')], field.data.classSfx)\">\r\n\r\n        <span class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-flex\">\r\n            <div class=\"uk-grid uk-grid-small uk-grid-width-1-3 uk-width-1-1\">\r\n\r\n                <div>\r\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\r\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\r\n                        <select class=\"\" v-model=\"month\">\r\n                            <option v-for=\"option in months\" :value=\"option.value\">{{ option.text }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div :class=\"{'uk-flex-order-first': field.data.dateFormat == 'DD-MM-YYYY'}\">\r\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\r\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\r\n                        <select class=\"\" v-model=\"day\">\r\n                            <option v-for=\"option in days\" :value=\"option\">{{ $key }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div>\r\n                    <div class=\"uk-button uk-width-1-1 uk-form-select\" data-uk-form-select><span></span>\r\n                        <i class=\"uk-icon-caret-down uk-margin-left\"></i>\r\n                        <select class=\"\" v-model=\"year\">\r\n                            <option v-for=\"option in years\" :value=\"option\">{{ $key }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>";
 
 /***/ }
 

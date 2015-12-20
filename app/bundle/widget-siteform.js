@@ -168,10 +168,10 @@
 
 	    created: function created() {
 	        //TODO don't retrieve entire form objects
-	        this.$resource('api/formmaker/form').get(function (forms) {
-	            this.forms = forms;
-	            if (forms.length) {
-	                this.widget.data.form_id = this.widget.data.form_id || forms[0].id;
+	        this.$resource('api/formmaker/form').get().then(function (res) {
+	            this.forms = res.data;
+	            if (res.data.length) {
+	                this.widget.data.form_id = this.widget.data.form_id || res.data[0].id;
 	            }
 	        });
 	        this.widget.data = _.assign({ form_id: 0, formStyle: 'uk-form-stacked' }, this.widget.data);

@@ -71,17 +71,25 @@
 	// <template>
 
 	//     <div :class="classes(['uk-form-row'], field.data.classSfx)">
+
 	//         <label :for="fieldid" class="uk-form-label" v-show="!field.data.hide_label">{{ fieldLabel | trans }}</label>
 
 	//         <div class="uk-form-controls">
+
 	//             <input type="text" class="uk-form-width-large" placeholder="{{ field.data.placeholder || '' | trans }}"
+
 	//                    :name="fieldid" :id="fieldid"
+
 	//                    v-model="dataObject.value"
+
 	//                    v-validate:required="fieldRequired">
 
 	//             <p class="uk-form-help-block uk-text-danger" v-show="fieldInvalid(form)">{{ field.data.requiredError ||
+
 	//                 'Please enter a value' | trans }}</p>
+
 	//         </div>
+
 	//     </div>
 
 	// </template>
@@ -124,7 +132,7 @@
 /***/ 26:
 /***/ function(module, exports) {
 
-	module.exports = "<div :class=\"classes(['uk-form-row'], field.data.classSfx)\">\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</label>\n\n        <div class=\"uk-form-controls\">\n            <input type=\"text\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\n                   :name=\"fieldid\" :id=\"fieldid\"\n                   v-model=\"dataObject.value\"\n                   v-validate:required=\"fieldRequired\">\n\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\n                'Please enter a value' | trans }}</p>\n        </div>\n    </div>";
+	module.exports = "<div :class=\"classes(['uk-form-row'], field.data.classSfx)\">\r\n        <label :for=\"fieldid\" class=\"uk-form-label\" v-show=\"!field.data.hide_label\">{{ fieldLabel | trans }}</label>\r\n\r\n        <div class=\"uk-form-controls\">\r\n            <input type=\"text\" class=\"uk-form-width-large\" placeholder=\"{{ field.data.placeholder || '' | trans }}\"\r\n                   :name=\"fieldid\" :id=\"fieldid\"\r\n                   v-model=\"dataObject.value\"\r\n                   v-validate:required=\"fieldRequired\">\r\n\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"fieldInvalid(form)\">{{ field.data.requiredError ||\r\n                'Please enter a value' | trans }}</p>\r\n        </div>\r\n    </div>";
 
 /***/ }
 
