@@ -73,7 +73,7 @@ class FieldApiController {
 			App::abort(404, __('Field not found.'));
 		}
 
-		if (!$type = $formmaker->getType($field->type)) {
+		if (!$type = $formmaker->getFieldType($field->type)) {
 			App::abort(404, __('Type not found.'));
 		}
 		//default values
@@ -90,7 +90,11 @@ class FieldApiController {
 			}
 		}
 
-		return ['field' => $field, 'type' => $type, 'roles' => array_values(Role::findAll())];
+		return [
+			'field' => $field,
+			'type' => $type,
+			'roles' => array_values(Role::findAll())
+		];
 	}
 
 	/**

@@ -47,7 +47,7 @@ class Form implements \JsonSerializable {
 		$formmaker = App::module('bixie/formmaker');
 		$this->fields = [];
 		foreach ($fields as $field) {
-			if ($formmaker->getType($field->type)) {
+			if ($formmaker->getFieldType($field->type)) {
 				$this->fields[$field->id] = $field;
 			}
 		}
@@ -80,7 +80,7 @@ class Form implements \JsonSerializable {
 		}
 		$app->on('view.styles', function ($event, $styles) use ($formmaker) {
 			foreach ($this->getFields() as $field) {
-				$formmaker->getType($field->type)->addStyles($styles);
+				$formmaker->getFieldType($field->type)->addStyles($styles);
 			}
 		});
 

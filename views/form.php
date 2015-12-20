@@ -1,5 +1,5 @@
 <?php
-$view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['vue', 'formmaker-formmakerfields']);
+$view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['bixie-fieldtypes']);
 ?>
 
 <form id="formmaker-form" class="uk-form {{ formitem.data.formStyle }} {{ formitem.data.classSfx }}"
@@ -16,10 +16,9 @@ $view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['vue', 'f
 
 
 	<div v-if="!thankyou">
-		<formmakerfields :fields.sync="fields"
-						 :submission="submission"
-						 :field="field"
-						 :form="form"></formmakerfields>
+		<fieldtypes :fields="fields"
+					:model.sync="submission.data"
+					:form="form"></fieldtypes>
 
 		<recaptcha v-ref:grecaptcha v-if="formitem.data.recaptcha" :sitekey="config.recaptha_sitekey" :formitem="formitem" class="uk-margin"></recaptcha>
 

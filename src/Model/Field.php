@@ -2,6 +2,7 @@
 
 namespace Bixie\Formmaker\Model;
 
+use Bixie\Framework\Field\FieldBase;
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
 use Pagekit\User\Model\AccessModelTrait;
@@ -9,7 +10,7 @@ use Pagekit\User\Model\AccessModelTrait;
 /**
  * @Entity(tableClass="@formmaker_field",eventPrefix="formmaker_field")
  */
-class Field implements \JsonSerializable {
+class Field extends FieldBase implements \JsonSerializable {
 	use  AccessModelTrait, DataModelTrait, FieldModelTrait;
 
 	/** @Column(type="integer") @Id */
@@ -54,7 +55,7 @@ class Field implements \JsonSerializable {
 	 */
 	public function prepareValue () {
 		/** @var \Bixie\Formmaker\Type\Type $type */
-		if ($type = App::module('bixie/formmaker')->getType($this->type)) {
+		if ($type = App::module('bixie/formmaker')->getFieldType($this->type)) {
 			return $type->prepareValue($this, $this->get('value'));
 		}
 		return $this->get('value');
@@ -67,7 +68,7 @@ class Field implements \JsonSerializable {
 	public function getOptions () {
 
 		/** @var \Bixie\Formmaker\Type\Type $type */
-		if ($type = App::module('bixie/formmaker')->getType($this->type)) {
+		if ($type = App::module('bixie/formmaker')->getFieldType($this->type)) {
 			return $type->getOptions($this);
 		}
 		return [];

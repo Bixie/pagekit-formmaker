@@ -27,12 +27,12 @@
                 </div>
 
 
-                <formmakerfields class="uk-margin" v-show="!type.hasOptions || field.options.length"
-                                 v-ref:formmakerfields
+                <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
+                                 v-ref:fieldtypes
                                  :edit-type="field.type"
                                  :fields="[field]"
                                  :field.sync="field"
-                                 :form="form"></formmakerfields>
+                                 :form="form"></fieldtypes>
 
                 <div id="type-settings" class="uk-margin"
                      :data-object.sync="field.data"
@@ -84,7 +84,7 @@
 
         computed: {
             fieldSettings: function () {
-                var settings = this.field.type ? Formmakerfields.components[this.field.type].settings || Formmakerfields.components[this.field.type].options.settings : {},
+                var settings = this.field.type ? BixieFieldtypes.components[this.field.type].settings || BixieFieldtypes.components[this.field.type].options.settings : {},
                         parent = this;
                  if (settings.template !== undefined) {
                      new Vue(_.merge({

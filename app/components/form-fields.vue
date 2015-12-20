@@ -152,7 +152,7 @@
                 }
             },
 
-            getType: function (field) {
+            getFieldType: function (field) {
                 return _.find(this.types, 'id', field.type);
             },
 
@@ -177,7 +177,7 @@
 
                 computed: {
                     type: function () {
-                        return this.$parent.getType(this.field);
+                        return this.$parent.getFieldType(this.field);
                     }
 
                 }
@@ -220,7 +220,7 @@
             }
         },
 
-        mixins: [window.Formmakerfields]
+        mixins: [window.BixieFieldtypes]
 
     };
 

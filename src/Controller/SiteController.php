@@ -11,6 +11,10 @@ class SiteController {
 	 * @Route("/{id}", name="form/front")
 	 */
 	public function formAction ($id = 0) {
+		if (!$formmaker = App::module('bixie/formmaker')) {
+			return 'Formmaker extension is disabled!';
+		}
+
 		$user = App::user();
 		/** @var Form $form */
 		if (!$form = Form::where(['id = ?'], [$id])->where(function ($query) use ($user) {
@@ -23,7 +27,6 @@ class SiteController {
 		if (!App::node()->hasAccess(App::user())) {
 			App::abort(403, __('Insufficient User Rights.'));
 		}
-		$formmaker = App::module('bixie/formmaker');
 		$app = App::getInstance();
 
 		$form->prepareView($app, $formmaker);

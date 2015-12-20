@@ -27,9 +27,9 @@ class Fieldsubmission {
 		$formmaker = App::module('bixie/formmaker');
 		$this->field = $field;
 		$this->data = $data;
-		$this->type = $formmaker->getType($field->type);
+		$this->type = $formmaker->getFieldType($field->type);
 		if (!$this->type) { //default text field for inactive/deleted fieldtypes
-			$this->type = $formmaker->getType('text');
+			$this->type = $formmaker->getFieldType('text');
 		}
 	}
 

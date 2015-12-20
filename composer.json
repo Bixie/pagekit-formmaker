@@ -17,7 +17,14 @@
     "icon": "icon.svg",
     "scripts": "scripts.php"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/Bixie/pagekit-framework"
+    }
+  ],
   "require": {
+    "bixie/pagekit-framework": "~0.1",
     "google/recaptcha": "~1.1"
   }
 }

@@ -27,7 +27,7 @@ trait FieldModelTrait {
 	public static function saving ($event, Field $field) {
 		$formmaker = App::module('bixie/formmaker');
 
-		if (!$type = $formmaker->getType($field->type)) {
+		if (!$type = $formmaker->getFieldType($field->type)) {
 			throw new Exception(__('Field type not found.'));
 		}
 

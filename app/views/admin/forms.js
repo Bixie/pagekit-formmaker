@@ -55,7 +55,7 @@ module.exports = {
             return this.selected.indexOf(field.id) !== -1;
         },
 
-        getType: function (field) {
+        getFieldType: function (field) {
             return _.find(this.types, 'id', field.type);
         },
 
@@ -79,7 +79,7 @@ module.exports = {
 
             computed: {
                 type: function () {
-                    return this.getType(this.field);
+                    return this.getFieldType(this.field);
                 }
 
             }

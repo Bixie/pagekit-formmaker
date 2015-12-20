@@ -36,7 +36,7 @@ class FormController {
 			],
 			'$data' => [
 				'config' => $formmaker->config(),
-				'types' => $formmaker->getTypes(),
+				'types' => $formmaker->getFieldTypes(),
 				'formitem' => $form
 			]
 		];
