@@ -46,7 +46,7 @@
 					<input-filter :title="$trans('Status')" :value.sync="config.filter.status" :options="statusOptions"></input-filter>
 				</th>
 				<th class="pk-table-width-100">
-					<input-filter :title="$trans('Form')" :value.sync="config.filter.status" :options="formOptions"></input-filter>
+					<input-filter :title="$trans('Form')" :value.sync="config.filter.form" :options="formOptions"></input-filter>
 				</th>
 			</tr>
 			</thead>
