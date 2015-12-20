@@ -24,9 +24,13 @@ class Fieldsubmission {
 	 * Fieldsubmission constructor.
 	 */
 	public function __construct (Field $field, $data) {
+		$formmaker = App::module('bixie/formmaker');
 		$this->field = $field;
 		$this->data = $data;
-		$this->type = App::module('bixie/formmaker')->getType($field->type);
+		$this->type = $formmaker->getType($field->type);
+		if (!$this->type) { //default text field for inactive/deleted fieldtypes
+			$this->type = $formmaker->getType('text');
+		}
 	}
 
 	/**
