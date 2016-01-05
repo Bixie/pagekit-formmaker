@@ -26,21 +26,6 @@ module.exports = [
     },
 
     {
-        entry: {
-            "formmaker-formmakerfields": "./app/components/formmakerfields.vue"
-        },
-        output: {
-            filename: "./app/bundle/[name].js",
-            library: "Formmakerfields"
-        },
-        module: {
-            loaders: [
-                { test: /\.vue$/, loader: "vue" }
-            ]
-        }
-    },
-
-    {
         entry: fieldtypes,
         output: {
             filename: "./app/bundle/[name].js"
