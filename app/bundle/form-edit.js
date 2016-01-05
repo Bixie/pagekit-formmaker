@@ -510,7 +510,7 @@
 	            }
 	        },
 
-	        getType: function getType(field) {
+	        getFieldType: function getFieldType(field) {
 	            return _.find(this.types, 'id', field.type);
 	        },
 
@@ -534,7 +534,7 @@
 
 	            computed: {
 	                type: function type() {
-	                    return this.$parent.getType(this.field);
+	                    return this.$parent.getFieldType(this.field);
 	                }
 
 	            }
@@ -576,7 +576,7 @@
 	        }
 	    },
 
-	    mixins: [window.Formmakerfields]
+	    mixins: [window.BixieFieldtypes]
 
 	};
 
@@ -1323,9 +1323,9 @@
 
 	//                 </div>
 
-	//                 <formmakerfields class="uk-margin" v-show="!type.hasOptions || field.options.length"
+	//                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
 
-	//                                  v-ref:formmakerfields
+	//                                  v-ref:fieldtypes
 
 	//                                  :edit-type="field.type"
 
@@ -1333,7 +1333,7 @@
 
 	//                                  :field.sync="field"
 
-	//                                  :form="form"></formmakerfields>
+	//                                  :form="form"></fieldtypes>
 
 	//                 <div id="type-settings" class="uk-margin"
 
@@ -1407,7 +1407,7 @@
 
 	    computed: {
 	        fieldSettings: function fieldSettings() {
-	            var settings = this.field.type ? Formmakerfields.components[this.field.type].settings || Formmakerfields.components[this.field.type].options.settings : {},
+	            var settings = this.field.type ? BixieFieldtypes.components[this.field.type].settings || BixieFieldtypes.components[this.field.type].options.settings : {},
 	                parent = this;
 	            if (settings.template !== undefined) {
 	                new Vue(_.merge({
@@ -1432,7 +1432,7 @@
 /* 40 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                               v-model=\"field.label\" v-validate:required>\r\n                    </div>\r\n                    <!-- //todo fix req message form is added to VModel Vue, not the actual parent-->\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n                </div>\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-slug\" class=\"uk-form-label\">{{ 'Slug' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-slug\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.slug\">\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-margin\" v-if=\"fieldSettings\">\r\n                    <fields :config=\"fieldSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n                </div>\r\n\r\n\r\n                <formmakerfields class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                                 v-ref:formmakerfields\r\n                                 :edit-type=\"field.type\"\r\n                                 :fields=\"[field]\"\r\n                                 :field.sync=\"field\"\r\n                                 :form=\"form\"></formmakerfields>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                            <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>";
+	module.exports = "<div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                               v-model=\"field.label\" v-validate:required>\r\n                    </div>\r\n                    <!-- //todo fix req message form is added to VModel Vue, not the actual parent-->\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n                </div>\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-slug\" class=\"uk-form-label\">{{ 'Slug' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-slug\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.slug\">\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-margin\" v-if=\"fieldSettings\">\r\n                    <fields :config=\"fieldSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n                </div>\r\n\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                                 v-ref:fieldtypes\r\n                                 :edit-type=\"field.type\"\r\n                                 :fields=\"[field]\"\r\n                                 :field.sync=\"field\"\r\n                                 :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                            <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>";
 
 /***/ },
 /* 41 */
@@ -1682,7 +1682,7 @@
 
 	    computed: {
 	        appearanceSettings: function appearanceSettings() {
-	            return this.field.type ? Formmakerfields.components[this.field.type].appearance || Formmakerfields.components[this.field.type].options.appearance : {};
+	            return this.field.type ? BixieFieldtypes.components[this.field.type].appearance || BixieFieldtypes.components[this.field.type].options.appearance : {};
 	        }
 	    }
 

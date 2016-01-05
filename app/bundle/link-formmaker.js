@@ -71,12 +71,19 @@
 	// <template>
 
 	//     <div class="uk-form-row">
+
 	//         <label for="form-link-formmaker" class="uk-form-label">{{ 'Form' | trans }}</label>
+
 	//         <div class="uk-form-controls">
+
 	//             <select id="form-link-formmaker" class="uk-width-1-1" v-model="formid">
+
 	//                 <option v-for="form in forms" :value="form.id">{{ form.title }}</option>
+
 	//             </select>
+
 	//         </div>
+
 	//     </div>
 
 	// </template>
@@ -127,7 +134,7 @@
 /***/ 61:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row\">\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\n        <div class=\"uk-form-controls\">\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\">\n                <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\n            </select>\n        </div>\n    </div>";
+	module.exports = "<div class=\"uk-form-row\">\r\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\r\n        <div class=\"uk-form-controls\">\r\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\">\r\n                <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\r\n            </select>\r\n        </div>\r\n    </div>";
 
 /***/ }
 
