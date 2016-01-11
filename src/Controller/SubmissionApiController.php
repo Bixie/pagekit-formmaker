@@ -100,7 +100,7 @@ class SubmissionApiController {
 
 		$submission->email = $submission->getUserEmail();
 
-		if ($id == 0 && $submission->email) {
+		if ($id == 0) {
 			try {
 
 				(new MailHelper($submission))->sendMail();

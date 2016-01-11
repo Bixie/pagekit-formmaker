@@ -25,11 +25,15 @@
 
                     <div class="uk-form-controls">
                         <input id="form-submitemail" class="uk-form-width-large" type="text" name="submitemail"
-                               v-model="formitem.data.submitEmail" v-validate:email>
-                    </div>
+                               v-model="formitem.data.submitEmail" v-validate:email v-validate:required="!!formitem.data.user_email_field">
                     <!-- //todo fix req message -->
-                    <p class="uk-form-help-block uk-text-danger" v-show="formform.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
+                    <p class="uk-form-help-block uk-text-danger" v-show="form.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
+
+                    <p class="uk-form-help-block uk-text-danger" v-show="formitem.data.user_email_field && !formitem.data.submitEmail">
+                        {{ 'No email will be sent to the user when no address is entered here!' | trans }}</p>
                 </div>
+            </div>
+
 
                 <div class="uk-form-row">
                     <label for="form-emailsubject" class="uk-form-label">{{ 'Email subject' | trans }}</label>
