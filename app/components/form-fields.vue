@@ -109,6 +109,27 @@
             this.load();
         },
 
+        ready: function () {
+
+            var vm = this;
+
+            UIkit.nestable(this.$els.nestable, {
+                maxDepth: 20,
+                group: 'formmaker.fields'
+            }).on('change.uk.nestable', function (e, nestable, el, type) {
+
+                if (type && type !== 'removed') {
+
+                    vm.Fields.save({id: 'updateOrder'}, {
+                        fields: nestable.list()
+                    }).then(vm.load, function () {
+                        this.$notify('Reorder failed.', 'danger');
+                    });
+                }
+            });
+
+        },
+
         methods: {
 
             load: function () {
@@ -125,9 +146,9 @@
                 this.Fields.save({id: field.id}, {field: field}).then(function () {
                     this.load();
                     this.$notify('Field saved.');
-                }, function (message) {
+                }, function (res) {
                     this.load();
-                    this.$notify(message, 'danger');
+                    this.$notify(res.data, 'danger');
                 });
             },
 
@@ -183,41 +204,6 @@
                 }
             }
 
-        },
-
-        watch: {
-
-            fields: function () {
-
-                var vm = this;
-
-                // TODO this is still buggy
-                UIkit.nestable(this.$els.nestable, {
-                    maxDepth: 1,
-                    group: 'userprofile.fields'
-                }).off('change.uk.nestable').on('change.uk.nestable', function (e, nestable, el, type) {
-
-                    if (type && type !== 'removed') {
-
-                        vm.Fields.save({id: 'updateOrder'}, {fields: nestable.list()}, function () {
-
-                            // @TODO reload everything on reorder really needed?
-                            vm.load().success(function () {
-
-                                // hack for weird flickr bug
-                                if (el.parent()[0] === nestable.element[0]) {
-                                    setTimeout(function () {
-                                        el.remove();
-                                    }, 50);
-                                }
-                            });
-
-                        }).error(function () {
-                            this.$notify('Reorder failed.', 'danger');
-                        });
-                    }
-                });
-            }
         },
 
         mixins: [window.BixieFieldtypes]
