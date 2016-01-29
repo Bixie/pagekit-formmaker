@@ -2,10 +2,11 @@
 
 namespace Bixie\Formmaker\Controller;
 
-use Bixie\Formmaker\Type\Type;
+use Bixie\Formmaker\Model\Form;
+use Bixie\Formmaker\Model\Field;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
-use Bixie\Formmaker\Model\Field;
+use Pagekit\Kernel\Exception\NotFoundException;
 use Pagekit\User\Model\Role;
 
 /**
@@ -22,8 +23,11 @@ class FieldApiController {
 		if (!$form_id) {
 			return [];
 		}
-		$query = Field::where(['form_id = ?'], [$form_id]);
-		return array_values($query->get());
+		if (!$form = Form::find($form_id)) {
+
+			throw new NotFoundException(__('Form not found.'));
+		}
+		return array_values($form->getFields());
 	}
 
 	/**
@@ -66,7 +70,7 @@ class FieldApiController {
 			$field = Field::find($id);
 		} else {
 			$field = Field::create();
-			$field->setType($id);
+			$field->setFieldType($id);
 		}
 
 		if (!$field) {

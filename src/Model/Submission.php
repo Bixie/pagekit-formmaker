@@ -106,7 +106,7 @@ class Submission implements \JsonSerializable {
 
 					//field might be deleted from form
 					$field = Field::create();
-					$field->setType($submissionvalue['type']);
+					$field->setFieldType($submissionvalue['type']);
 				}
 
 				$this->fieldsubmissions[$field->slug] = (new Fieldsubmission($field, $submissionvalue))->toFormattedArray();

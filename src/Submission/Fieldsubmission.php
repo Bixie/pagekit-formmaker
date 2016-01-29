@@ -15,22 +15,35 @@ class Fieldsubmission {
 	 * @var Field
 	 */
 	public $field;
+
 	/**
-	 * @var TypeBase
+	 * @var \Bixie\Framework\FieldType\FieldTypeBase
 	 */
-	public $type;
+	protected $fieldType;
 
 	/**
 	 * Fieldsubmission constructor.
+	 * @param Field $field
+	 * @param array $data
 	 */
 	public function __construct (Field $field, $data) {
 		$formmaker = App::module('bixie/formmaker');
 		$this->field = $field;
 		$this->data = $data;
-		$this->type = $formmaker->getFieldType($field->type);
-		if (!$this->type) { //default text field for inactive/deleted fieldtypes
-			$this->type = $formmaker->getFieldType('text');
+		$this->fieldType = $formmaker->getFieldType($field->type);
+		if (!$this->fieldType) { //default text field for inactive/deleted fieldtypes
+			$this->fieldType = $formmaker->getFieldType('text');
 		}
+	}
+
+	/**
+	 * @return \Bixie\Framework\FieldType\FieldTypeBase
+	 */
+	public function getFieldType () {
+		if (!isset($this->fieldType)) {
+			$this->fieldType = App::module('bixie/framework')->getFieldType($this->field->type);
+		}
+		return $this->fieldType;
 	}
 
 	/**
@@ -40,7 +53,7 @@ class Fieldsubmission {
 		return [
 			'field' => $this->field->toArray(),
 			'slug' => $this->field->slug,
-			'type' => $this->type->toArray(),
+			'type' => $this->getFieldType()->toArray(),
 			'label' => $this->field->label,
 			'value' => $this->formatValue()
 		];
@@ -51,7 +64,7 @@ class Fieldsubmission {
 	 */
 	public function formatValue () {
 
-		$value = $this->type->formatValue($this->field, $this->get('value'));
+		$value = $this->getFieldType()->formatValue($this->field, $this->get('value'));
 
 		return is_array($value) ? $value : [$value];
 	}

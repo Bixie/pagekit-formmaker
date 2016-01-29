@@ -21,7 +21,7 @@
                 <dl class="uk-description-list uk-description-list-horizontal">
                     <template v-for="fieldsubmission in submission.fieldsubmissions">
                         <dt>{{ fieldsubmission.field.label}}</dt>
-                        <dd v-for="value in fieldsubmission.value">{{ value }}</dd>
+                        <dd v-for="value in fieldsubmission.value">{{{ value }}}</dd>
                     </template>
                 </dl>
 
