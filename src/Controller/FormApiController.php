@@ -49,23 +49,6 @@ class FormApiController {
 	}
 
 	/**
-	 * @Route("/updateOrder", methods="POST")
-	 * @Request({"forms": "array"}, csrf=true)
-	 */
-	public function updateOrderAction ($fields = []) {
-		foreach ($fields as $data) {
-			if ($field = Form::find($data['id'])) {
-
-				$field->priority = $data['order'];
-
-				$field->save();
-			}
-		}
-
-		return ['message' => 'success'];
-	}
-
-	/**
 	 * @Route("/{id}", methods="DELETE", requirements={"id"="\d+"})
 	 * @Request({"id": "int"}, csrf=true)
 	 */

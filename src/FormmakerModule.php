@@ -6,7 +6,6 @@ use Pagekit\Application as App;
 use Bixie\Formmaker\Plugin\FormmakerPlugin;
 use Pagekit\Module\Module;
 use Bixie\Formmaker\Model\Form;
-use Bixie\Formmaker\Type\TypeBase;
 
 class FormmakerModule extends Module {
 	/**
@@ -34,18 +33,11 @@ class FormmakerModule extends Module {
 			new FormmakerPlugin()
 		);
 
-//		$app['field'] = function ($app) {
-//			if ($id = $app['request']->attributes->get('_field') and $field = Form::find($id)) {
-//				return $field;
-//			}
-//
-//			return new Form;
-//		};
 	}
 
 	/**
 	 * @param  string $type
-	 * @return TypeBase
+	 * @return \Bixie\Framework\FieldType\FieldTypeBase
 	 */
 	public function getFieldType ($type) {
 		$types = $this->getFieldTypes();

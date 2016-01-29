@@ -1,7 +1,5 @@
 <?php
 
-use Bixie\Formmaker\Model\Form;
-
 return [
 
     'name' => 'bixie/siteform',

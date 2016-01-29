@@ -5,7 +5,6 @@ namespace Bixie\Formmaker\Plugin;
 use Pagekit\Application as App;
 use Pagekit\Content\Event\ContentEvent;
 use Pagekit\Event\EventSubscriberInterface;
-use Bixie\Formmaker\Model\Form;
 
 class FormmakerPlugin implements EventSubscriberInterface
 {
@@ -24,7 +23,7 @@ class FormmakerPlugin implements EventSubscriberInterface
      * Defines the plugins callback.
      *
      * @param  array $options
-     * @return string
+     * @return string|null
      */
     public function applyPlugin(array $options)
     {

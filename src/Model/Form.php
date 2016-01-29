@@ -4,7 +4,6 @@ namespace Bixie\Formmaker\Model;
 
 use Pagekit\Application as App;
 use Pagekit\System\Model\DataModelTrait;
-use Bixie\Formmaker\Model\Submission;
 
 /**
  * @Entity(tableClass="@formmaker_form",eventPrefix="formmaker_form")

@@ -219,7 +219,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-msgid "Submission for form \\"%formtitle%\\""
+msgid "Submission for form \"%formtitle%\""
 msgstr ""
 
 msgid "Export submissions as CSV file"

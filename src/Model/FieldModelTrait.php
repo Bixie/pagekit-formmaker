@@ -43,7 +43,7 @@ trait FieldModelTrait {
 		$id = $field->id;
 
 		if (!$field->slug) {
-			$field->slug = $field->title;
+			$field->slug = $field->label;
 		}
 
 		while (self::where(['slug = ?', 'form_id = ?'], [$field->slug, $field->form_id])->where(function ($query) use ($id) {
