@@ -15,7 +15,7 @@ class FormmakerModule extends Module {
 	/**
 	 * @var array
 	 */
-	protected $types;
+	protected $fieldTypes;
 
 	/**
 	 * {@inheritdoc}
@@ -49,11 +49,11 @@ class FormmakerModule extends Module {
 	 * @return array
 	 */
 	public function getFieldTypes () {
-		if (!$this->types) {
-			$this->types = $this->framework->getFieldTypes();
+		if (!$this->fieldTypes) {
+			$this->fieldTypes = $this->framework->getFieldTypes('bixie/formmaker');
 		}
 
-		return $this->types;
+		return $this->fieldTypes;
 	}
 
 	public function renderForm (App $app, $form_id, $options = [], $view = null) {
