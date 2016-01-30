@@ -67,12 +67,14 @@
 	        //prepare submission
 	        this.submission.form_id = this.formitem.id;
 	        this.fields.forEach(function (field) {
-	            this.submission.data[field.id] = {
+	            this.submission.data[field.slug] = {
 	                field_id: field.id,
 	                slug: field.slug,
 	                type: field.type,
-	                label: null,
-	                value: null
+	                label: field.label,
+	                value: null,
+	                field: field,
+	                data: {value: null}
 	            };
 	        }.bind(this));
 	    },
