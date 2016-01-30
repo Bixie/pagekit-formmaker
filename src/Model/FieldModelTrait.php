@@ -9,18 +9,6 @@ use Pagekit\Database\ORM\ModelTrait;
 trait FieldModelTrait {
 	use ModelTrait;
 
-	public static function getFormmakerfields () {
-		$user = App::user();
-		$data = [];
-		foreach (self::query()->get() as $field) {
-			if ($field->hasAccess($user)) {
-				$data[] = $field;
-			}
-		}
-		return $data;
-
-	}
-
 	/**
 	 * @Saving
 	 */

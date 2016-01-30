@@ -11,21 +11,6 @@ glob.sync(path.join(__dirname, 'fieldtypes/*/*.vue')).forEach(function (file) {
 module.exports = [
 
     {
-        entry: {
-            "formmaker-formmakerfieldmixin": "./app/mixins/formmakerfield.js"
-        },
-        output: {
-            filename: "./app/bundle/[name].js",
-            library: "FormmakerfieldMixin"
-        },
-        module: {
-            loaders: [
-                { test: /\.vue$/, loader: "vue" }
-            ]
-        }
-    },
-
-    {
         entry: fieldtypes,
         output: {
             filename: "./app/bundle/[name].js"

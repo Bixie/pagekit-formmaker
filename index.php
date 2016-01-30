@@ -111,12 +111,6 @@ return [
 			}
 			$scripts->register('formmaker-settings', 'bixie/formmaker:app/bundle/settings.js', '~extensions');
 			$scripts->register('link-formmaker', 'bixie/formmaker:app/bundle/link-formmaker.js', '~panel-link');
-			//register fields
-			$scripts->register('formmaker-formmakerfieldmixin', 'bixie/formmaker:app/bundle/formmaker-formmakerfieldmixin.js', 'vue');
-			$scripts->register('formmaker-formmakerfields', 'bixie/formmaker:app/bundle/formmaker-formmakerfields.js', ['vue', 'formmaker-formmakerfieldmixin']);
-			foreach ($app->module('bixie/formmaker')->getFieldTypes() as $type) {
-				$type->registerScripts($scripts);
-			}
 		},
 
 		'view.styles' => function ($event, $styles) use ($app) {
