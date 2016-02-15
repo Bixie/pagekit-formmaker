@@ -145,6 +145,7 @@ class SubmissionApiController {
 	}
 
 	/**
+	 * @Access("formmaker: manage submissions")
 	 * @Route("/{id}", methods="DELETE", requirements={"id"="\d+"})
 	 * @Request({"id": "int"}, csrf=true)
 	 */
@@ -158,6 +159,7 @@ class SubmissionApiController {
 	}
 
 	/**
+	 * @Access("formmaker: manage submissions")
 	 * @Route("/bulk", methods="DELETE")
 	 * @Request({"ids": "array"}, csrf=true)
 	 */
@@ -170,6 +172,7 @@ class SubmissionApiController {
 	}
 
 	/**
+	 * @Access("formmaker: manage submissions")
 	 * @Route("/csv", methods="GET")
 	 * @Request({"options": "array"}, csrf=true)
 	 */
@@ -199,6 +202,7 @@ class SubmissionApiController {
 	}
 
 	/**
+	 * @Access("formmaker: manage submissions")
 	 * @Route("/csv", methods="POST")
 	 * @Request({"options": "array"}, csrf=true)
 	 */
