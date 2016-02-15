@@ -41,7 +41,7 @@ return [
 
 	],
 
-	'formmakerfields' => 'fieldtypes',
+	'fieldtypes' => 'fieldtypes',
 
 	'resources' => [
 
