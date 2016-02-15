@@ -2,6 +2,7 @@
 
 namespace Bixie\Formmaker\Controller;
 
+use Bixie\Framework\FieldValue\FieldValue;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Pagekit\Util\ArrObject;
@@ -62,6 +63,22 @@ class SubmissionApiController {
 
 	}
 
+	/**
+	 * @Route("/ajax", methods="POST")
+	 * @Request({"field_id": "int", "action": "string"})
+	 */
+	public function ajaxAction ($field_id, $action) {
+
+		if (!$field = Field::find($field_id)) {
+			App::abort(400, __('Field not found.'));
+		}
+		$fieldValue = new FieldValue($field, []);
+		$fieldType = $fieldValue->getFieldType();
+		if (method_exists($fieldType, $action)) {
+			return call_user_func([$fieldType,$action], $fieldValue);
+		}
+		return 'No response';
+	}
 
 	/**
 	 * @Route("/", methods="POST")
