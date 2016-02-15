@@ -135,17 +135,6 @@
 
 	__webpack_require__(48)(Vue);
 
-	Vue.field.templates.formrow = __webpack_require__(49);
-	Vue.field.templates.raw = __webpack_require__(50);
-	Vue.field.types.text = '<input type="text" v-bind="attrs" v-model="value">';
-	Vue.field.types.textarea = '<textarea v-bind="attrs" v-model="value"></textarea>';
-	Vue.field.types.select = '<select v-bind="attrs" v-model="value"><option v-for="option in options" :value="option">{{ $key }}</option></select>';
-	Vue.field.types.radio = '<p class="uk-form-controls-condensed"><label v-for="option in options"><input type="radio" :value="option" v-model="value"> {{ $key | trans }}</label></p>';
-	Vue.field.types.checkbox = '<p class="uk-form-controls-condensed"><label><input type="checkbox" v-bind="attrs" v-model="value" v-bind:true-value="1" v-bind:false-value="0" number> {{ optionlabel | trans }}</label></p>';
-	Vue.field.types.number = '<input type="number" v-bind="attrs" v-model="value" number>';
-	Vue.field.types.title = '<h3 v-bind="attrs">{{ title | trans }}</h3>';
-	Vue.field.types.editor = '<v-editor :value.sync="value" :options="{markdown : field.markdown}" v-bind="attrs"></v-editor>';
-
 	Vue.ready(module.exports);
 
 
@@ -1710,18 +1699,6 @@
 	    });
 
 	};
-
-/***/ },
-/* 49 */
-/***/ function(module, exports) {
-
-	module.exports = "<div v-for=\"field in fields\" :class=\"{'uk-form-row': !field.raw}\">\r\n    <label v-if=\"field.label\" class=\"uk-form-label\">\r\n        <i v-if=\"field.tip\" class=\"uk-icon-info uk-icon-hover uk-margin-small-right\" data-uk-tooltip=\"{delay: 100}\" :title=\"field.tip\"></i>\r\n        {{ field.label | trans }}\r\n    </label>\r\n    <div v-if=\"!field.raw\" class=\"uk-form-controls\" :class=\"{'uk-form-controls-text': ['checkbox', 'radio'].indexOf(field.type)>-1}\">\r\n        <field :config=\"field\" :values.sync=\"values\"></field>\r\n    </div>\r\n    <field v-else :config=\"field\" :values.sync=\"values\"></field>\r\n</div>\r\n";
-
-/***/ },
-/* 50 */
-/***/ function(module, exports) {
-
-	module.exports = "<template v-for=\"field in fields\">\r\n    <field :config=\"field\" :values.sync=\"values\"></field>\r\n</template>\r\n";
 
 /***/ }
 /******/ ]);

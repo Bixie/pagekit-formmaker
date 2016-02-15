@@ -45,10 +45,10 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(60)
+	module.exports = __webpack_require__(58)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(61)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(59)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -63,7 +63,7 @@
 
 /***/ },
 
-/***/ 60:
+/***/ 58:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -131,7 +131,7 @@
 
 /***/ },
 
-/***/ 61:
+/***/ 59:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row\">\r\n        <label for=\"form-link-formmaker\" class=\"uk-form-label\">{{ 'Form' | trans }}</label>\r\n        <div class=\"uk-form-controls\">\r\n            <select id=\"form-link-formmaker\" class=\"uk-width-1-1\" v-model=\"formid\">\r\n                <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\r\n            </select>\r\n        </div>\r\n    </div>";

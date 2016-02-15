@@ -196,8 +196,8 @@
 	    },
 
 	    components: {
-	        'submissiondetail': __webpack_require__(51),
-	        'submissioncsv': __webpack_require__(54)
+	        'submissiondetail': __webpack_require__(49),
+	        'submissioncsv': __webpack_require__(52)
 	    }
 
 	};
@@ -230,13 +230,13 @@
 
 /***/ },
 
-/***/ 51:
+/***/ 49:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(52)
+	module.exports = __webpack_require__(50)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(53)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(51)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -251,7 +251,7 @@
 
 /***/ },
 
-/***/ 52:
+/***/ 50:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -377,20 +377,20 @@
 
 /***/ },
 
-/***/ 53:
+/***/ 51:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-modal-spinner\" v-if=\"!loaded\"></div>\r\n    <div v-show=\"loaded\">\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4\">\r\n\r\n                <h2 class=\"uk-margin-top-remove\">{{ 'Submission for form \"%formtitle%\"' | trans {formtitle:submission.form_title} }}</h2>\r\n                <dl class=\"uk-description-list uk-description-list-horizontal\">\r\n                    <dt>{{ 'Submission date' | trans }}</dt><dd>{{ submission.created | datetime }}</dd>\r\n                    <dt>{{ 'Submission status' | trans }}</dt><dd :class=\"{'uk-text-danger': submission.status == 0,\r\n\t\t\t\t\t\t\t  'uk-text-primary': submission.status == 1,\r\n\t\t\t\t\t\t\t  'uk-text-success': submission.status == 2}\">{{ $root.getStatusText(submission) | trans }}</dd>\r\n                    <dt>{{ 'Remote IP address' | trans }}</dt><dd>{{ submission.ip }}</dd>\r\n                    <dt>{{ 'Email sent to' | trans }}</dt>\r\n                    <dd>\r\n                        <a v-if=\"submission.email\" href=\"mailto:{{ submission.email }}\">{{ submission.email }}</a>\r\n                        <span v-else>{{ 'No email provided' | trans }}</span>\r\n                    </dd>\r\n                </dl>\r\n                <h3>{{ 'Submission data' | trans }}</h3>\r\n                <dl class=\"uk-description-list uk-description-list-horizontal\">\r\n                    <template v-for=\"fieldsubmission in submission.fieldsubmissions\">\r\n                        <dt>{{ fieldsubmission.field.label}}</dt>\r\n                        <dd v-for=\"value in fieldsubmission.value\">{{{ value }}}</dd>\r\n                    </template>\r\n                </dl>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form\">\r\n\r\n               <div class=\"uk-form-row\">\r\n                    <label for=\"form-status\" class=\"uk-form-label\">{{ 'Status' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <select id=\"form-status\" class=\"uk-width-1-1\" v-model=\"submission.status\" number>\r\n                            <option v-for=\"option in $root.statuses\" :value=\"$key\">{{ option }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"uk-modal-footer uk-text-right\">\r\n        <button type=\"button\" class=\"uk-button uk-modal-close\">{{ 'Close' | trans }}</button>\r\n    </div>";
 
 /***/ },
 
-/***/ 54:
+/***/ 52:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(55)
+	module.exports = __webpack_require__(53)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(56)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(54)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -405,7 +405,7 @@
 
 /***/ },
 
-/***/ 55:
+/***/ 53:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -751,7 +751,7 @@
 
 /***/ },
 
-/***/ 56:
+/***/ 54:
 /***/ function(module, exports) {
 
 	module.exports = "<div>\r\n        <div class=\"uk-modal-header\">\r\n            <h2>{{ 'Export submissions as CSV file' | trans }}</h2>\r\n        </div>\r\n\r\n        <div class=\"uk-margin uk-form uk-form-stacked\">\r\n            <div class=\"uk-modal-spinner\" v-if=\"!loaded\"></div>\r\n            <div v-show=\"loaded\">\r\n\r\n                <div class=\"uk-grid\">\r\n                    <div class=\"uk-width-medium-1-2\">\r\n                        <select class=\"uk-width-1-1\" v-model=\"options.form_id\" number>\r\n                            <option value=\"\">{{ 'Select form' | trans }}</option>\r\n                            <option v-for=\"form in forms\" :value=\"form.id\">{{ form.title }}</option>\r\n                        </select>\r\n\r\n                    </div>\r\n                    <div class=\"uk-width-medium-1-2\">\r\n                        <div class=\"uk-form-controls uk-form-controls-text uk-flex uk-margin-small-top\">\r\n                            <div class=\"uk-width-1-3\">\r\n                                <label><input type=\"checkbox\" :value=\"0\" v-model=\"options.status\" number>\r\n                                    {{ 'Archived' | trans\r\n                                    }}</label>\r\n                            </div>\r\n                            <div class=\"uk-width-1-3\">\r\n                                <label><input type=\"checkbox\" :value=\"1\" v-model=\"options.status\" number>\r\n                                    {{ 'Active' | trans\r\n                                    }}</label>\r\n                            </div>\r\n                            <div class=\"uk-width-1-3\">\r\n                                <label><input type=\"checkbox\" :value=\"2\" v-model=\"options.status\" number>\r\n                                    {{ 'Done' | trans\r\n                                    }}</label>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-grid\" v-if=\"formLoaded\">\r\n                    <div class=\"uk-width-medium-2-3\">\r\n\r\n                        <div class=\"uk-grid\">\r\n                            <div class=\"uk-width-medium-1-2\">\r\n\r\n                                <div class=\"uk-form-row\">\r\n                                    <span class=\"uk-form-label\">{{ 'Data to export' | trans }}</span>\r\n\r\n                                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"id\" v-model=\"options.datafields\"> {{\r\n                                                'Id' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"status\" v-model=\"options.datafields\">\r\n                                                {{ 'Status' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"email\" v-model=\"options.datafields\"> {{\r\n                                                'Email' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"ip\" v-model=\"options.datafields\"> {{\r\n                                                'IP address' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n\r\n                                        <p class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"created\" v-model=\"options.datafields\">\r\n                                                {{ 'Created' | trans\r\n                                                }}</label>\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n\r\n                            </div>\r\n                            <div class=\"uk-width-medium-1-2\">\r\n\r\n                                <div class=\"uk-form-row\">\r\n                                    <span class=\"uk-form-label\">{{ 'Fields to export' | trans }}</span>\r\n\r\n                                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                        <p v-for=\"field in formitem.fields\" class=\"uk-form-controls-condensed\">\r\n                                            <label><input type=\"checkbox\" value=\"{{ field.id }}\"\r\n                                                          v-model=\"options.field_ids\" number> {{ field.label | trans\r\n                                                }}</label>\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n\r\n                            </div>\r\n                        </div>\r\n\r\n                    </div>\r\n                    <div class=\"uk-width-medium-1-3\">\r\n                        <div class=\"uk-panel uk-panel-box\">\r\n\r\n                            <div class=\"uk-form-row\">\r\n                                <label for=\"form-filename\" class=\"uk-form-label\">{{ 'Filename' | trans }}</label>\r\n\r\n                                <div class=\"uk-form-controls\">\r\n                                    <input id=\"form-filename\" class=\"uk-width-1-1\" type=\"text\"\r\n                                           v-model=\"options.filename\">\r\n                                </div>\r\n                            </div>\r\n\r\n\r\n                            <div class=\"uk-form-row\">\r\n                                <span class=\"uk-form-label\">{{ 'Archive' | trans }}</span>\r\n\r\n                                <div class=\"uk-form-controls uk-form-controls-text\">\r\n                                    <label><input type=\"checkbox\" value=\"archived\" v-model=\"options.mark_archived\"> {{\r\n                                        'Mark exported as \"Archived\"' | trans\r\n                                        }}</label>\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div class=\"uk-badge uk-badge-success uk-margin\">\r\n                                {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[\r\n                                submissions to be exported' | transChoice count}}\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"uk-modal-footer uk-text-right\">\r\n            <button type=\"button\" class=\"uk-button uk-modal-close\">{{ 'Close' | trans }}</button>\r\n            <button type=\"button\" class=\"uk-button uk-button-primary\"\r\n                    v-show=\"!csvLink\" @click=\"doExport\" v-el:export\r\n                    :disabled=\"!formLoaded\">\r\n                <i v-show=\"exporting\" class=\"uk-icon-spinner uk-icon-spin\"></i>\r\n                <span v-else>{{ 'Export' | trans }}</span>\r\n            </button>\r\n            <a :href=\"csvLink\" class=\"uk-button uk-button-success\" download=\"{{ options.filename }}\"\r\n               v-show=\"csvLink\" v-el:exportlink><i class=\"uk-icon-download uk-margin-small-right\"></i>{{ 'Download' |\r\n                trans }}</a>\r\n        </div>\r\n    </div>";

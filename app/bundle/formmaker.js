@@ -108,7 +108,7 @@
 	    },
 
 	    components: {
-	        recaptcha: __webpack_require__(57)
+	        recaptcha: __webpack_require__(55)
 	    }
 
 	};
@@ -120,13 +120,13 @@
 
 /***/ },
 
-/***/ 57:
+/***/ 55:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(58)
+	module.exports = __webpack_require__(56)
 
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(59)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(57)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -141,7 +141,7 @@
 
 /***/ },
 
-/***/ 58:
+/***/ 56:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -199,7 +199,7 @@
 
 /***/ },
 
-/***/ 59:
+/***/ 57:
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"uk-form-row\">\r\n\r\n        <span class=\"uk-form-label\" v-show=\"formitem.data.recaptcha_label\">{{ formitem.data.recaptcha_label | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <div id=\"grecaptcha_el\"></div>\r\n        </div>\r\n\r\n    </div>";
