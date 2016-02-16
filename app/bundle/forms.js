@@ -59,7 +59,7 @@
 	    },
 
 	    created: function () {
-	        this.Forms = this.$resource('api/formmaker/form/:id');
+	        this.Forms = this.$resource('api/formmaker/form{/id}');
 	        this.load();
 	    },
 

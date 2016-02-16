@@ -76,7 +76,7 @@
 	    },
 
 	    ready: function () {
-	        this.Forms = this.$resource('api/formmaker/form/:id');
+	        this.Forms = this.$resource('api/formmaker/form{/id}');
 	        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
 	    },
 
@@ -452,7 +452,7 @@
 	    },
 
 	    created: function created() {
-	        this.Fields = this.$resource('api/formmaker/field/:id');
+	        this.Fields = this.$resource('api/formmaker/field{/id}');
 	        this.load();
 	    },
 
@@ -1177,7 +1177,7 @@
 
 	    created: function created() {
 	        this.Fields = this.$resource('api/formmaker/field/edit');
-	        this.Field = this.$resource('api/formmaker/field/:id');
+	        this.Field = this.$resource('api/formmaker/field{/id}');
 	    },
 
 	    ready: function ready() {

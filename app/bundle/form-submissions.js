@@ -60,7 +60,7 @@
 	    },
 
 	    created: function () {
-	        this.resource = this.$resource('api/formmaker/submission/:id', {}, {'export': {method: 'post', url: 'api/formmaker/submission/csv'}});
+	        this.resource = this.$resource('api/formmaker/submission{/id}', {'export': {method: 'post', url: 'api/formmaker/submission/csv'}});
 	        this.config.filter = _.extend({ status: '', form: '', order: 'created desc'}, this.config.filter);
 	    },
 
