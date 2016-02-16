@@ -30,7 +30,7 @@ module.exports = {
     },
 
     ready: function () {
-        this.Forms = this.$resource('api/formmaker/form/:id');
+        this.Forms = this.$resource('api/formmaker/form{/id}');
         this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
     },
 

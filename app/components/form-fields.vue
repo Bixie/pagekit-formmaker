@@ -105,7 +105,7 @@
         },
 
         created: function () {
-            this.Fields = this.$resource('api/formmaker/field/:id');
+            this.Fields = this.$resource('api/formmaker/field{/id}');
             this.load();
         },
 

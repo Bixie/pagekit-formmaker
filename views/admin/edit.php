@@ -51,7 +51,7 @@ $view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['bixie-fi
 				</div>
 			</div>
 			<div>
-				<formfields v-ref:formfields :types="types" :formitem.sync="formitem"></formfields>
+				<formfields v-ref:formfields :types="types" :formitem.sync="formitem" :form="form"></formfields>
 			</div>
 			<div>
 				<appearance :formitem.sync="formitem" :form="form"></appearance>

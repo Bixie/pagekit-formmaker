@@ -69,7 +69,7 @@
 
         created: function () {
             this.Fields = this.$resource('api/formmaker/field/edit');
-            this.Field = this.$resource('api/formmaker/field/:id');
+            this.Field = this.$resource('api/formmaker/field{/id}');
         },
 
         ready: function () {
