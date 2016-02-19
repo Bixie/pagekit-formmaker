@@ -72,7 +72,7 @@ class SubmissionApiController {
 		if (!$field = Field::find($field_id)) {
 			App::abort(400, __('Field not found.'));
 		}
-		$fieldValue = new FieldValue($field, []);
+		$fieldValue = new FieldValue($field, App::request()->get('value', []), App::request()->get('valuedata', []));
 		$fieldType = $fieldValue->getFieldType();
 		if (method_exists($fieldType, $action)) {
 			return call_user_func([$fieldType,$action], $fieldValue);

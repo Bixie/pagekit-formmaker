@@ -26,7 +26,6 @@
                     <fields :config="fieldSettings" :model.sync="field.data" template="formrow"></fields>
                 </div>
 
-
                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
                                  v-ref:fieldtypes
                                  :edit-type="field.type"

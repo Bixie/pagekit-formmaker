@@ -61,6 +61,15 @@ class Submission implements \JsonSerializable {
 		];
 	}
 
+	public static function initData (Form $form) {
+		$data = ['form_id' => $form->id, 'status' => self::STATUS_ACTIVE, 'data' => []];
+		foreach ($form->getFields() as $field) {
+			$data['data'][$field->slug] =
+				(new Fieldsubmission($field, $field->get('value', []), $field->get('data', [])))->toFormattedArray();
+		}
+		return $data;
+	}
+
 	/**
 	 * Constructor.
 	 */
@@ -105,11 +114,11 @@ class Submission implements \JsonSerializable {
 				} else {
 
 					//field might be deleted from form
-					$field = Field::create();
+					$field = Field::create(['slug' => uniqid('rem_')]);
 					$field->setFieldType($submissionvalue['type']);
 				}
 
-				$this->fieldsubmissions[$field->slug] = (new Fieldsubmission($field, $submissionvalue))->toFormattedArray();
+				$this->fieldsubmissions[$field->slug] = (new Fieldsubmission($field, $submissionvalue['value'], @$submissionvalue['data']))->toFormattedArray();
 			}
 		}
 		return $this->fieldsubmissions;

@@ -3,21 +3,26 @@
 namespace Bixie\Formmaker\Submission;
 
 use Bixie\Framework\FieldValue\FieldValueBase;
-use Bixie\Framework\Field\FieldBase;
+use Bixie\Formmaker\Model\Field;
 use Pagekit\Application as App;
 
-class Fieldsubmission extends FieldValueBase{
+class Fieldsubmission extends FieldValueBase {
+	/**
+	 * @var int
+	 */
+	public $field_id;
 
 	/**
-	 * Fieldsubmission constructor.
-	 * @param FieldBase $field
+	 * FieldValue constructor.
+	 * @param Field $field
+	 * @param array $value
 	 * @param array $data
 	 */
-	public function __construct (FieldBase $field, $data) {
-		parent::__construct($field, $data);
-		if (!$this->fieldType) { //default text field for inactive/deleted fieldtypes
-			$this->fieldType = App::module('bixie/framework')->getFieldType('text');
-		}
+	public function __construct (Field $field, $value, $data) {
+		$this->setField($field);
+		$this->field_id = $field->id;
+		$this->value = is_array($value) ? $value : (!empty($value) ? [$value] : []);
+		$this->data = $data;
 	}
 
 }

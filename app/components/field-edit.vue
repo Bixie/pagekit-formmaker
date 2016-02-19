@@ -59,7 +59,10 @@
                     label: '',
                     priority: 0,
                     form_id: 0,
-                    data: {}
+                    data: {
+                        value: [],
+                        data: {}
+                    }
                 },
                 roles: []
             };

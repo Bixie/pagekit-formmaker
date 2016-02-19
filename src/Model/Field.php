@@ -38,17 +38,18 @@ class Field extends FieldBase implements \JsonSerializable {
 
 	/** @var array */
 	protected static $properties = [
-		'prepared' => 'prepareValue'
+		'options' => 'getOptions',
+		'value' => 'getValue',
+		'valuedata' => 'getValuedata',
+		'formatted' => 'formatValue'
 	];
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function jsonSerialize () {
-		$field = $this->toArray();
-
+		$field = $this->toArray([], ['fieldValue', 'fieldType']);
 		$field['options'] = $this->getOptions();
-
 		return $field;
 	}
 

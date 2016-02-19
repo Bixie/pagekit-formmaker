@@ -113,6 +113,15 @@ return [
 			$scripts->register('link-formmaker', 'bixie/formmaker:app/bundle/link-formmaker.js', '~panel-link');
 		},
 
+		'view.data' => function ($event, $data) use ($app) {
+			$route = $app->request()->attributes->get('_route');
+			if (strpos($route, '@formmaker') === 0) {
+				$data->add('$fieldtypes', [
+					'ajax_url' => 'api/formmaker/submission/ajax'
+				]);
+			}
+		},
+
 		'view.styles' => function ($event, $styles) use ($app) {
 			$route = $app->request()->attributes->get('_route');
 			if (strpos($route, '@formmaker') === 0) {

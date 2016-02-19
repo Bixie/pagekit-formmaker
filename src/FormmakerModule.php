@@ -2,6 +2,7 @@
 
 namespace Bixie\Formmaker;
 
+use Bixie\Formmaker\Model\Submission;
 use Pagekit\Application as App;
 use Bixie\Formmaker\Plugin\FormmakerPlugin;
 use Pagekit\Module\Module;
@@ -76,6 +77,7 @@ class FormmakerModule extends Module {
 			$data->add('$formmaker', [
 				'config' => $this->publicConfig(),
 				'formitem' => $form,
+				'submission' => Submission::initData($form),
 				'fields' => array_values($form->getFields())
 			]);
 		});

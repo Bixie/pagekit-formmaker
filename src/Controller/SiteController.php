@@ -2,6 +2,8 @@
 
 namespace Bixie\Formmaker\Controller;
 
+use Bixie\Formmaker\Model\Submission;
+use Bixie\Formmaker\Submission\Fieldsubmission;
 use Pagekit\Application as App;
 use Bixie\Formmaker\Model\Form;
 
@@ -38,6 +40,7 @@ class SiteController {
 			],
 			'$formmaker' => [
 				'config' => $formmaker->publicConfig(),
+				'submission' => Submission::initData($form),
 				'formitem' => $form,
 				'fields' => array_values($form->getFields())
 			],
