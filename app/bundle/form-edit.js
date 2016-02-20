@@ -1167,7 +1167,10 @@
 	                label: '',
 	                priority: 0,
 	                form_id: 0,
-	                data: {}
+	                data: {
+	                    value: [],
+	                    data: {}
+	                }
 	            },
 	            roles: []
 	        };
@@ -1354,6 +1357,44 @@
 
 	//                 </div>
 
+	//                 <div v-if="type.controls < 0" class="uk-form-row">
+
+	//                     <span class="uk-form-label">{{ 'Extra controls' | trans }}</span>
+
+	//                     <div class="uk-form-controls uk-form-controls-text">
+
+	//                         <label><input type="checkbox" value="controls" v-model="field.data.controls"> {{ 'Show controls' | trans
+
+	//                             }}</label>
+
+	//                     </div>
+
+	//                 </div>
+
+	//                 <div v-if="type.repeatable < 0" class="uk-form-row">
+
+	//                     <span class="uk-form-label">{{ 'Field repeat' | trans }}</span>
+
+	//                     <div class="uk-form-controls uk-form-controls-text">
+
+	//                         <label><input type="checkbox" value="repeatable" v-model="field.data.repeatable"> {{ 'Repeatable' | trans
+
+	//                             }}</label>
+
+	//                         <div v-show="field.data.repeatable == 1" class="uk-flex uk-flex-middle uk-margin-left">
+
+	//                             <span class="uk-margin-small-right">{{ 'Maximum' | trans }}</span>
+
+	//                             <input type="number" class="uk-text-right uk-form-small uk-form-width-mini"
+
+	//                                    v-model="field.data.max_repeat" min="1" :max="type.max_repeat" number/>
+
+	//                         </div>
+
+	//                     </div>
+
+	//                 </div>
+
 	//                 <div class="uk-form-row">
 
 	//                     <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
@@ -1411,7 +1452,7 @@
 /* 40 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                               v-model=\"field.label\" v-validate:required>\r\n                    </div>\r\n                    <!-- //todo fix req message form is added to VModel Vue, not the actual parent-->\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n                </div>\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-slug\" class=\"uk-form-label\">{{ 'Slug' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-slug\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.slug\">\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-margin\" v-if=\"fieldSettings\">\r\n                    <fields :config=\"fieldSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n                </div>\r\n\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                                 v-ref:fieldtypes\r\n                                 :edit-type=\"field.type\"\r\n                                 :fields=\"[field]\"\r\n                                 :field.sync=\"field\"\r\n                                 :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                            <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>";
+	module.exports = "<div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-label\" class=\"uk-form-label\">{{ 'Label' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-label\" class=\"uk-form-width-large\" type=\"text\" name=\"label\"\r\n                               v-model=\"field.label\" v-validate:required>\r\n                    </div>\r\n                    <!-- //todo fix req message form is added to VModel Vue, not the actual parent-->\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.label.invalid\">{{ 'Please enter a label' | trans }}</p>\r\n                </div>\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-slug\" class=\"uk-form-label\">{{ 'Slug' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-slug\" class=\"uk-form-width-large\" type=\"text\" v-model=\"field.slug\">\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-margin\" v-if=\"fieldSettings\">\r\n                    <fields :config=\"fieldSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n                </div>\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                                 v-ref:fieldtypes\r\n                                 :edit-type=\"field.type\"\r\n                                 :fields=\"[field]\"\r\n                                 :field.sync=\"field\"\r\n                                 :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <div v-if=\"type.required < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Field required' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"required\" v-model=\"field.data.required\"> {{ 'Required' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div v-if=\"type.multiple < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Multiple values' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"multiple\" v-model=\"field.data.multiple\"> {{ 'Multiple' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div v-if=\"type.controls < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Extra controls' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"controls\" v-model=\"field.data.controls\"> {{ 'Show controls' | trans\r\n                            }}</label>\r\n                    </div>\r\n                </div>\r\n\r\n                <div v-if=\"type.repeatable < 0\" class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Field repeat' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <label><input type=\"checkbox\" value=\"repeatable\" v-model=\"field.data.repeatable\"> {{ 'Repeatable' | trans\r\n                            }}</label>\r\n\r\n                        <div v-show=\"field.data.repeatable == 1\" class=\"uk-flex uk-flex-middle uk-margin-left\">\r\n                            <span class=\"uk-margin-small-right\">{{ 'Maximum' | trans }}</span>\r\n                            <input type=\"number\" class=\"uk-text-right uk-form-small uk-form-width-mini\"\r\n                                   v-model=\"field.data.max_repeat\" min=\"1\" :max=\"type.max_repeat\" number/>\r\n                        </div>\r\n\r\n                    </div>\r\n                </div>\r\n\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <span class=\"uk-form-label\">{{ 'Restrict Access' | trans }}</span>\r\n\r\n                    <div class=\"uk-form-controls uk-form-controls-text\">\r\n                        <p v-for=\"role in roles\" class=\"uk-form-controls-condensed\">\r\n                            <label><input type=\"checkbox\" :value=\"role.id\" v-model=\"field.roles\" number> {{ role.name }}</label>\r\n                        </p>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>";
 
 /***/ },
 /* 41 */

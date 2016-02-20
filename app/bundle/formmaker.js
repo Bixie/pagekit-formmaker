@@ -49,35 +49,15 @@
 
 	    el: '#formmaker-form',
 
-	    data: _.extend({
+	    data: _.assign({
 	        formitem: {},
 	        fields: [],
 	        message: '',
 	        error: '',
 	        thankyou: '',
-	        submission: {
-	            form_id: 0,
-	            status: 1,
-	            data: {}
-	        },
+	        submission: {},
 	        form: {}
 	    }, window.$formmaker),
-
-	    created: function () {
-	        //prepare submission
-	        this.submission.form_id = this.formitem.id;
-	        this.fields.forEach(function (field) {
-	            this.submission.data[field.slug] = {
-	                field_id: field.id,
-	                slug: field.slug,
-	                type: field.type,
-	                label: field.label,
-	                value: null,
-	                field: field,
-	                data: {value: null}
-	            };
-	        }.bind(this));
-	    },
 
 	    methods: {
 
