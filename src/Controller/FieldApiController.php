@@ -81,7 +81,7 @@ class FieldApiController {
 			App::abort(404, __('Type not found.'));
 		}
 		//default values
-		$fixedFields = ['multiple', 'required'];
+		$fixedFields = ['multiple', 'required', 'controls', 'repeatable'];
 		if (!$field->id) {
 			foreach ($type->getConfig() as $key => $value) {
 				if (!in_array($key, $fixedFields)) $field->set($key, $value);
@@ -89,6 +89,7 @@ class FieldApiController {
 		}
 		//check fixed value
 		foreach ($fixedFields as $key) {
+			if (!isset($type[$key])) $type[$key] = 0;
 			if ($type[$key] != -1) {
 				$field->set($key, $type[$key]);
 			}

@@ -59,6 +59,32 @@
                     </div>
                 </div>
 
+                <div v-if="type.controls < 0" class="uk-form-row">
+                    <span class="uk-form-label">{{ 'Extra controls' | trans }}</span>
+
+                    <div class="uk-form-controls uk-form-controls-text">
+                        <label><input type="checkbox" value="controls" v-model="field.data.controls"> {{ 'Show controls' | trans
+                            }}</label>
+                    </div>
+                </div>
+
+                <div v-if="type.repeatable < 0" class="uk-form-row">
+                    <span class="uk-form-label">{{ 'Field repeat' | trans }}</span>
+
+                    <div class="uk-form-controls uk-form-controls-text">
+                        <label><input type="checkbox" value="repeatable" v-model="field.data.repeatable"> {{ 'Repeatable' | trans
+                            }}</label>
+
+                        <div v-show="field.data.repeatable == 1" class="uk-flex uk-flex-middle uk-margin-left">
+                            <span class="uk-margin-small-right">{{ 'Maximum' | trans }}</span>
+                            <input type="number" class="uk-text-right uk-form-small uk-form-width-mini"
+                                   v-model="field.data.max_repeat" min="1" :max="type.max_repeat" number/>
+                        </div>
+
+                    </div>
+                </div>
+
+
                 <div class="uk-form-row">
                     <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
 
