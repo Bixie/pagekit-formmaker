@@ -25,4 +25,9 @@ class Fieldsubmission extends FieldValueBase {
 		$this->data = $data;
 	}
 
+	public function toFormattedArray (array $data = [], array $ignore = []) {
+		$data['field_id'] = $this->field_id;
+		return parent::toFormattedArray($data, $ignore);
+	}
+
 }
