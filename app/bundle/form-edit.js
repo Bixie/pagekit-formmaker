@@ -886,6 +886,16 @@
 
 	//         </li>
 
+	//         <li>
+
+	//             <kbd v-for="key in ['id', 'form_id', 'email', 'ip', 'created']"
+
+	//                  class="uk-display-block uk-margin-small-bottom">
+
+	//                 {{ 'submission' | shortcode key }}</kbd>
+
+	//         </li>
+
 	//     </ul>
 
 	// </template>
@@ -904,7 +914,7 @@
 /* 31 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3>{{ 'Available variables' | trans }}</h3>\r\n    <ul class=\"uk-list uk-list-line\">\r\n        <li v-for=\"field in fields\">\r\n            <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>\r\n            <kbd>{{ field.slug | shortcode 'value' }}</kbd>\r\n        </li>\r\n    </ul>";
+	module.exports = "<h3>{{ 'Available variables' | trans }}</h3>\r\n    <ul class=\"uk-list uk-list-line\">\r\n        <li v-for=\"field in fields\">\r\n            <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>\r\n            <kbd>{{ field.slug | shortcode 'value' }}</kbd>\r\n        </li>\r\n\r\n        <li>\r\n            <kbd v-for=\"key in ['id', 'form_id', 'email', 'ip', 'created']\"\r\n                 class=\"uk-display-block uk-margin-small-bottom\">\r\n                {{ 'submission' | shortcode key }}</kbd>\r\n        </li>\r\n    </ul>";
 
 /***/ },
 /* 32 */
