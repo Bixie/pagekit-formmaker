@@ -56,6 +56,11 @@ class MailHelper {
 		}
 		$string = preg_replace_callback('/\$\$(.+?)\$\$/is', function($matches) use ($arraySeparator) {
 			$placeholder = explode(':', trim($matches[1]), 2);
+			if (!empty($placeholder[1])
+				&& $placeholder[0] == 'submission' && property_exists($this->submission, $placeholder[1])) {
+				$key = $placeholder[1];
+				return $key == 'created' ? $this->submission->$key->format('Y-m-d H:i:s') : $this->submission->$key;
+			}
 			if (empty($placeholder[1])
 				|| !isset($this->submission->fieldsubmissions[$placeholder[0]])
 				|| !isset($this->submission->fieldsubmissions[$placeholder[0]][$placeholder[1]])) {

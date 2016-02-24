@@ -6,6 +6,12 @@
             <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>
             <kbd>{{ field.slug | shortcode 'value' }}</kbd>
         </li>
+
+        <li>
+            <kbd v-for="key in ['id', 'form_id', 'email', 'ip', 'created']"
+                 class="uk-display-block uk-margin-small-bottom">
+                {{ 'submission' | shortcode key }}</kbd>
+        </li>
     </ul>
 
 </template>
