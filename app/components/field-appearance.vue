@@ -2,7 +2,7 @@
 
     <div class="uk-form-horizontal">
 
-        <partial name="field-appearance"></partial>
+        <partial name="fieldtype-appearance"></partial>
 
         <fields :config="appearanceSettings" :model.sync="field.data" template="formrow"></fields>
 

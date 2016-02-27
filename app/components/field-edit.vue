@@ -61,7 +61,8 @@
                     form_id: 0,
                     data: {
                         value: [],
-                        data: {}
+                        data: {},
+                        classSfx: '',
                     }
                 },
                 roles: []

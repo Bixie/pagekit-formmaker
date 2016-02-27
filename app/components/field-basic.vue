@@ -5,7 +5,7 @@
         <div class="uk-grid">
             <div class="uk-width-medium-3-4 uk-form-horizontal">
 
-                <partial name="field-basic"></partial>
+                <partial name="fieldtype-basic"></partial>
 
                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
                             v-ref:fieldtypes
@@ -22,7 +22,7 @@
             </div>
             <div class="uk-width-medium-1-4 uk-form-stacked">
 
-                <partial name="field-settings"></partial>
+                <partial name="fieldtype-settings"></partial>
 
             </div>
         </div>
