@@ -69,7 +69,13 @@ class FieldApiController {
 		if (is_numeric($id)) {
 			$field = Field::find($id);
 		} else {
-			$field = Field::create(['data' => ['value' => [], 'data' => []]]);
+			$field = Field::create(['data' => [
+				'value' => [],
+				'data' => [],
+				'classSfx' => '',
+				'help_text' => '',
+				'help_show' => ''
+			]]);
 			$field->setFieldType($id);
 		}
 

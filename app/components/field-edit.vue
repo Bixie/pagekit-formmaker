@@ -57,12 +57,15 @@
                 },
                 field: {
                     label: '',
+                    type: '',
                     priority: 0,
                     form_id: 0,
                     data: {
                         value: [],
                         data: {},
                         classSfx: '',
+                        help_text: '',
+                        help_show: ''
                     }
                 },
                 roles: []
