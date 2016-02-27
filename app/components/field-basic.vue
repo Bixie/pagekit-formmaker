@@ -4,34 +4,15 @@
 
         <div class="uk-grid">
             <div class="uk-width-medium-3-4 uk-form-horizontal">
-                <div class="uk-form-row">
-                    <label for="form-label" class="uk-form-label">{{ 'Label' | trans }}</label>
 
-                    <div class="uk-form-controls">
-                        <input id="form-label" class="uk-form-width-large" type="text" name="label"
-                               v-model="field.label" v-validate:required>
-                    </div>
-                    <!-- //todo fix req message form is added to VModel Vue, not the actual parent-->
-                    <p class="uk-form-help-block uk-text-danger" v-show="form.label.invalid">{{ 'Please enter a label' | trans }}</p>
-                </div>
-                <div class="uk-form-row">
-                    <label for="form-slug" class="uk-form-label">{{ 'Slug' | trans }}</label>
-
-                    <div class="uk-form-controls">
-                        <input id="form-slug" class="uk-form-width-large" type="text" v-model="field.slug">
-                    </div>
-                </div>
-
-                <div class="uk-margin" v-if="fieldSettings">
-                    <fields :config="fieldSettings" :model.sync="field.data" template="formrow"></fields>
-                </div>
+                <partial name="field-basic"></partial>
 
                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
-                                 v-ref:fieldtypes
-                                 :edit-type="field.type"
-                                 :fields="[field]"
-                                 :field.sync="field"
-                                 :form="form"></fieldtypes>
+                            v-ref:fieldtypes
+                            :edit-type="field.type"
+                            :fields="[field]"
+                            :field.sync="field"
+                            :form="form"></fieldtypes>
 
                 <div id="type-settings" class="uk-margin"
                      :data-object.sync="field.data"
@@ -41,62 +22,11 @@
             </div>
             <div class="uk-width-medium-1-4 uk-form-stacked">
 
-                <div v-if="type.required < 0" class="uk-form-row">
-                    <span class="uk-form-label">{{ 'Field required' | trans }}</span>
-
-                    <div class="uk-form-controls uk-form-controls-text">
-                        <label><input type="checkbox" value="required" v-model="field.data.required"> {{ 'Required' | trans
-                            }}</label>
-                    </div>
-                </div>
-
-                <div v-if="type.multiple < 0" class="uk-form-row">
-                    <span class="uk-form-label">{{ 'Multiple values' | trans }}</span>
-
-                    <div class="uk-form-controls uk-form-controls-text">
-                        <label><input type="checkbox" value="multiple" v-model="field.data.multiple"> {{ 'Multiple' | trans
-                            }}</label>
-                    </div>
-                </div>
-
-                <div v-if="type.controls < 0" class="uk-form-row">
-                    <span class="uk-form-label">{{ 'Extra controls' | trans }}</span>
-
-                    <div class="uk-form-controls uk-form-controls-text">
-                        <label><input type="checkbox" value="controls" v-model="field.data.controls"> {{ 'Show controls' | trans
-                            }}</label>
-                    </div>
-                </div>
-
-                <div v-if="type.repeatable < 0" class="uk-form-row">
-                    <span class="uk-form-label">{{ 'Field repeat' | trans }}</span>
-
-                    <div class="uk-form-controls uk-form-controls-text">
-                        <label><input type="checkbox" value="repeatable" v-model="field.data.repeatable"> {{ 'Repeatable' | trans
-                            }}</label>
-
-                        <div v-show="field.data.repeatable == 1" class="uk-flex uk-flex-middle uk-margin-left">
-                            <span class="uk-margin-small-right">{{ 'Maximum' | trans }}</span>
-                            <input type="number" class="uk-text-right uk-form-small uk-form-width-mini"
-                                   v-model="field.data.max_repeat" min="1" :max="type.max_repeat" number/>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="uk-form-row">
-                    <span class="uk-form-label">{{ 'Restrict Access' | trans }}</span>
-
-                    <div class="uk-form-controls uk-form-controls-text">
-                        <p v-for="role in roles" class="uk-form-controls-condensed">
-                            <label><input type="checkbox" :value="role.id" v-model="field.roles" number> {{ role.name }}</label>
-                        </p>
-                    </div>
-                </div>
+                <partial name="field-settings"></partial>
 
             </div>
         </div>
+
     </div>
 
 </template>
@@ -111,17 +41,17 @@
             fieldSettings: function () {
                 var settings = this.field.type ? BixieFieldtypes.components[this.field.type].settings || BixieFieldtypes.components[this.field.type].options.settings : {},
                         parent = this;
-                 if (settings.template !== undefined) {
-                     new Vue(_.merge({
-                         'el': '#type-settings',
-                         'name': 'type-settings',
-                         'parent': parent,
-                         'data':  _.merge({
-                                     'field': parent.field,
-                                     'form': parent.form
-                                 }, settings.data),
-                     }, settings));
-                     return false;
+                if (settings.template !== undefined) {
+                    new Vue(_.merge({
+                        'el': '#type-settings',
+                        'name': 'type-settings',
+                        'parent': parent,
+                        'data': _.merge({
+                            'field': parent.field,
+                            'form': parent.form
+                        }, settings.data),
+                    }, settings));
+                    return false;
                 }
                 return settings;
             }
