@@ -122,47 +122,32 @@
 
 	    components: {
 
-	        formbasic: __webpack_require__(18),
-	        formfields: __webpack_require__(21),
-	        appearance: __webpack_require__(24),
-	        submission: __webpack_require__(27),
-	        emailsettings: __webpack_require__(33),
-	        fieldedit: __webpack_require__(36)
+	        formbasic: __webpack_require__(1),
+	        formfields: __webpack_require__(4),
+	        appearance: __webpack_require__(7),
+	        submission: __webpack_require__(10),
+	        emailsettings: __webpack_require__(16),
+	        fieldedit: __webpack_require__(19)
 
 	    }
 
 	};
 
-	__webpack_require__(48)(Vue);
+	__webpack_require__(31)(Vue);
 
 	Vue.ready(module.exports);
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(19)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(2)
+	__vue_template__ = __webpack_require__(3)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(20)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -171,88 +156,63 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 19 */
+/* 2 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal uk-margin">
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <label for="form-title" class="uk-form-label">{{ 'Title' | trans }}</label>
-
+	//
 	//             <div class="uk-form-controls">
-
 	//                 <input id="form-title" class="uk-form-width-large" type="text" name="title"
-
 	//                        v-model="formitem.title" v-validate:required>
-
 	//             </div>
-
 	//             <p class="uk-form-help-block uk-text-danger" v-show="form.title.invalid">{{ 'Please enter a title' | trans }}</p>
-
 	//         </div>
-
 	//         <div class="uk-form-row">
-
 	//             <label for="form-slug" class="uk-form-label">{{ 'Slug' | trans }}</label>
-
+	//
 	//             <div class="uk-form-controls">
-
 	//                 <input id="form-slug" class="uk-form-width-large" type="text" v-model="formitem.slug">
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <label for="form-status" class="uk-form-label">{{ 'Status' | trans }}</label>
-
+	//
 	//             <div class="uk-form-controls">
-
 	//                 <select id="form-status" class="uk-form-width-large" v-model="formitem.status" number>
-
 	//                     <option value="0">{{ 'Disabled' | trans }}</option>
-
 	//                     <option value="1">{{ 'Enabled' | trans }}</option>
-
 	//                 </select>
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <span class="uk-form-label">{{ 'Google reCAPTCHA' | trans }}</span>
-
+	//
 	//             <div class="uk-form-controls uk-form-controls-text">
-
 	//                 <label v-show="config.recaptha_sitekey && config.recaptha_secret_key">
-
 	//                     <input type="checkbox" value="hide-title" v-model="formitem.data.recaptcha"> {{ 'Use reCAPTCHA' |
-
 	//                     trans }}</label>
-
 	//                 <a  v-else class="uk-link-muted" :href="$url.route('admin/system/package/extensions')">{{ 'Enter reCAPTCHA keys in the extension settings' | trans }}</a>
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -262,21 +222,24 @@
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 20 */
+/* 3 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-title\" class=\"uk-form-label\">{{ 'Title' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-title\" class=\"uk-form-width-large\" type=\"text\" name=\"title\"\r\n                       v-model=\"formitem.title\" v-validate:required>\r\n            </div>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.title.invalid\">{{ 'Please enter a title' | trans }}</p>\r\n        </div>\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-slug\" class=\"uk-form-label\">{{ 'Slug' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-slug\" class=\"uk-form-width-large\" type=\"text\" v-model=\"formitem.slug\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-status\" class=\"uk-form-label\">{{ 'Status' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select id=\"form-status\" class=\"uk-form-width-large\" v-model=\"formitem.status\" number>\r\n                    <option value=\"0\">{{ 'Disabled' | trans }}</option>\r\n                    <option value=\"1\">{{ 'Enabled' | trans }}</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Google reCAPTCHA' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label v-show=\"config.recaptha_sitekey && config.recaptha_secret_key\">\r\n                    <input type=\"checkbox\" value=\"hide-title\" v-model=\"formitem.data.recaptcha\"> {{ 'Use reCAPTCHA' |\r\n                    trans }}</label>\r\n                <a  v-else class=\"uk-link-muted\" :href=\"$url.route('admin/system/package/extensions')\">{{ 'Enter reCAPTCHA keys in the extension settings' | trans }}</a>\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-title\" class=\"uk-form-label\">{{ 'Title' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-title\" class=\"uk-form-width-large\" type=\"text\" name=\"title\"\r\n                       v-model=\"formitem.title\" v-validate:required>\r\n            </div>\r\n            <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.title.invalid\">{{ 'Please enter a title' | trans }}</p>\r\n        </div>\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-slug\" class=\"uk-form-label\">{{ 'Slug' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-slug\" class=\"uk-form-width-large\" type=\"text\" v-model=\"formitem.slug\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-status\" class=\"uk-form-label\">{{ 'Status' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select id=\"form-status\" class=\"uk-form-width-large\" v-model=\"formitem.status\" number>\r\n                    <option value=\"0\">{{ 'Disabled' | trans }}</option>\r\n                    <option value=\"1\">{{ 'Enabled' | trans }}</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Google reCAPTCHA' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label v-show=\"config.recaptha_sitekey && config.recaptha_secret_key\">\r\n                    <input type=\"checkbox\" value=\"hide-title\" v-model=\"formitem.data.recaptcha\"> {{ 'Use reCAPTCHA' |\r\n                    trans }}</label>\r\n                <a  v-else class=\"uk-link-muted\" :href=\"$url.route('admin/system/package/extensions')\">{{ 'Enter reCAPTCHA keys in the extension settings' | trans }}</a>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ },
-/* 21 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(22)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(5)
+	__vue_template__ = __webpack_require__(6)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(23)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -285,158 +248,108 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 22 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div>
-
 	//         <div class="uk-alert" v-show="!formitem.id">{{ 'Save form before adding fields.' | trans }}</div>
-
+	//
 	//         <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin v-show="formitem.id">
-
 	//             <div class="uk-flex uk-flex-middle uk-flex-wrap" data-uk-margin>
-
+	//
 	//                 <div class="uk-margin-left" v-show="selected.length">
-
 	//                     <ul class="uk-subnav pk-subnav-icon">
-
 	//                         <li><a class="pk-icon-delete pk-icon-hover" title="{{ 'Delete' | trans }}"
-
 	//                                data-uk-tooltip="{delay: 500}" @click="removeFields"
-
 	//                                v-confirm="'Delete field?' | trans"></a>
-
 	//                         </li>
-
 	//                     </ul>
-
 	//                 </div>
-
+	//
 	//             </div>
-
 	//             <div class="uk-position-relative" data-uk-margin>
-
+	//
 	//                 <div data-uk-dropdown="{ mode: 'click' }">
-
 	//                     <a class="uk-button uk-button-primary" @click.prevent="">{{ 'Add Field' | trans
-
 	//                         }}</a>
-
+	//
 	//                     <div class="uk-dropdown uk-dropdown-small uk-dropdown-flip">
-
 	//                         <ul class="uk-nav uk-nav-dropdown">
-
 	//                             <li v-for="type in types | orderBy 'label'">
-
 	//                                 <a @click.prevent="$root.editFormField(type.id)">{{ type.label }}</a></li>
-
 	//                         </ul>
-
 	//                     </div>
-
 	//                 </div>
-
+	//
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-overflow-container">
-
+	//
 	//             <div class="pk-table-fake pk-table-fake-header"
-
 	//                  :class="{'pk-table-fake-border': !fields || !fields.length}">
-
 	//                 <div class="pk-table-width-minimum pk-table-fake-nestable-padding">
-
 	//                     <input type="checkbox" v-check-all:selected.literal="input[name=id]">
-
 	//                 </div>
-
 	//                 <div class="pk-table-min-width-100">{{ 'Label' | trans }}</div>
-
 	//                 <div class="pk-table-width-100 uk-text-center">{{ 'Required' | trans }}</div>
-
 	//                 <div class="pk-table-width-150">{{ 'Type' | trans }}</div>
-
 	//             </div>
-
+	//
 	//             <ul class="uk-nestable uk-margin-remove" v-el:nestable v-show="fields.length">
-
 	//                 <field v-for="field in fields | orderBy 'priority'" :field="field"></field>
-
+	//
 	//             </ul>
-
+	//
 	//         </div>
-
+	//
 	//         <h3 class="uk-h1 uk-text-muted uk-text-center" v-show="fields && !fields.length">{{ 'No fields found.' | trans
-
 	//             }}</h3>
-
+	//
 	//         <script id="field" type="text/template">
-
 	//             <li class="uk-nestable-item" :class="{'uk-active': $parent.isSelected(field)}" data-id="{{ field.id }}">
-
+	//
 	//                 <div class="uk-nestable-panel pk-table-fake uk-form uk-visible-hover">
-
 	//                     <div class="pk-table-width-minimum pk-table-collapse">
-
 	//                         <div class="uk-nestable-toggle" data-nestable-action="toggle"></div>
-
 	//                     </div>
-
 	//                     <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"
-
 	//                                                                @click="toggleSelect(field)"></div>
-
 	//                     <div class="pk-table-min-width-100">
-
 	//                         <a v-if="type" @click.prevent="$root.editFormField(field.id)">{{ field.label }}</a>
-
 	//                         <span v-else>{{ field.label }}</span>
-
 	//                         <br/><small class="uk-text-muted">{{ field.slug }}</small>
-
 	//                     </div>
-
 	//                     <div class="pk-table-width-100 uk-text-center">
-
 	//                         <td class="uk-text-center">
-
 	//                             <a :class="{'pk-icon-circle-danger': !field.data.required, 'pk-icon-circle-success': field.data.required}"
-
 	//                                @click.prevent="$parent.toggleRequired(field)"></a>
-
 	//                         </td>
-
 	//                     </div>
-
 	//                     <div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-
 	//                         <span v-if="type">{{ type.label }}</span>
-
 	//                         <span v-else class="uk-text-danger">{{ field.type }}: {{ 'type not found!' | trans}}</span>
-
 	//                     </div>
-
 	//                 </div>
-
+	//
+	//
 	//             </li>
-
+	//
 	//         </script>
-
 	//     </div>
-
+	//
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -556,21 +469,24 @@
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 23 */
+/* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\r\n        <div class=\"uk-alert\" v-show=\"!formitem.id\">{{ 'Save form before adding fields.' | trans }}</div>\r\n\r\n        <div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin v-show=\"formitem.id\">\r\n            <div class=\"uk-flex uk-flex-middle uk-flex-wrap\" data-uk-margin>\r\n\r\n                <div class=\"uk-margin-left\" v-show=\"selected.length\">\r\n                    <ul class=\"uk-subnav pk-subnav-icon\">\r\n                        <li><a class=\"pk-icon-delete pk-icon-hover\" title=\"{{ 'Delete' | trans }}\"\r\n                               data-uk-tooltip=\"{delay: 500}\" @click=\"removeFields\"\r\n                               v-confirm=\"'Delete field?' | trans\"></a>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-position-relative\" data-uk-margin>\r\n\r\n                <div data-uk-dropdown=\"{ mode: 'click' }\">\r\n                    <a class=\"uk-button uk-button-primary\" @click.prevent=\"\">{{ 'Add Field' | trans\r\n                        }}</a>\r\n\r\n                    <div class=\"uk-dropdown uk-dropdown-small uk-dropdown-flip\">\r\n                        <ul class=\"uk-nav uk-nav-dropdown\">\r\n                            <li v-for=\"type in types | orderBy 'label'\">\r\n                                <a @click.prevent=\"$root.editFormField(type.id)\">{{ type.label }}</a></li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-overflow-container\">\r\n\r\n            <div class=\"pk-table-fake pk-table-fake-header\"\r\n                 :class=\"{'pk-table-fake-border': !fields || !fields.length}\">\r\n                <div class=\"pk-table-width-minimum pk-table-fake-nestable-padding\">\r\n                    <input type=\"checkbox\" v-check-all:selected.literal=\"input[name=id]\">\r\n                </div>\r\n                <div class=\"pk-table-min-width-100\">{{ 'Label' | trans }}</div>\r\n                <div class=\"pk-table-width-100 uk-text-center\">{{ 'Required' | trans }}</div>\r\n                <div class=\"pk-table-width-150\">{{ 'Type' | trans }}</div>\r\n            </div>\r\n\r\n            <ul class=\"uk-nestable uk-margin-remove\" v-el:nestable v-show=\"fields.length\">\r\n                <field v-for=\"field in fields | orderBy 'priority'\" :field=\"field\"></field>\r\n\r\n            </ul>\r\n\r\n        </div>\r\n\r\n        <h3 class=\"uk-h1 uk-text-muted uk-text-center\" v-show=\"fields && !fields.length\">{{ 'No fields found.' | trans\r\n            }}</h3>\r\n\r\n        <script id=\"field\" type=\"text/template\">\r\n            <li class=\"uk-nestable-item\" :class=\"{'uk-active': $parent.isSelected(field)}\" data-id=\"{{ field.id }}\">\r\n\r\n                <div class=\"uk-nestable-panel pk-table-fake uk-form uk-visible-hover\">\r\n                    <div class=\"pk-table-width-minimum pk-table-collapse\">\r\n                        <div class=\"uk-nestable-toggle\" data-nestable-action=\"toggle\"></div>\r\n                    </div>\r\n                    <div class=\"pk-table-width-minimum\"><input type=\"checkbox\" name=\"id\" value=\"{{ field.id }}\"\r\n                                                               @click=\"toggleSelect(field)\"></div>\r\n                    <div class=\"pk-table-min-width-100\">\r\n                        <a v-if=\"type\" @click.prevent=\"$root.editFormField(field.id)\">{{ field.label }}</a>\r\n                        <span v-else>{{ field.label }}</span>\r\n                        <br/><small class=\"uk-text-muted\">{{ field.slug }}</small>\r\n                    </div>\r\n                    <div class=\"pk-table-width-100 uk-text-center\">\r\n                        <td class=\"uk-text-center\">\r\n                            <a :class=\"{'pk-icon-circle-danger': !field.data.required, 'pk-icon-circle-success': field.data.required}\"\r\n                               @click.prevent=\"$parent.toggleRequired(field)\"></a>\r\n                        </td>\r\n                    </div>\r\n                    <div class=\"pk-table-width-150 pk-table-max-width-150 uk-text-truncate\">\r\n                        <span v-if=\"type\">{{ type.label }}</span>\r\n                        <span v-else class=\"uk-text-danger\">{{ field.type }}: {{ 'type not found!' | trans}}</span>\r\n                    </div>\r\n                </div>\r\n\r\n\r\n            </li>\r\n\r\n        </script>\r\n    </div>";
+	module.exports = "\r\n\r\n    <div>\r\n        <div class=\"uk-alert\" v-show=\"!formitem.id\">{{ 'Save form before adding fields.' | trans }}</div>\r\n\r\n        <div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin v-show=\"formitem.id\">\r\n            <div class=\"uk-flex uk-flex-middle uk-flex-wrap\" data-uk-margin>\r\n\r\n                <div class=\"uk-margin-left\" v-show=\"selected.length\">\r\n                    <ul class=\"uk-subnav pk-subnav-icon\">\r\n                        <li><a class=\"pk-icon-delete pk-icon-hover\" title=\"{{ 'Delete' | trans }}\"\r\n                               data-uk-tooltip=\"{delay: 500}\" @click=\"removeFields\"\r\n                               v-confirm=\"'Delete field?' | trans\"></a>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-position-relative\" data-uk-margin>\r\n\r\n                <div data-uk-dropdown=\"{ mode: 'click' }\">\r\n                    <a class=\"uk-button uk-button-primary\" @click.prevent=\"\">{{ 'Add Field' | trans\r\n                        }}</a>\r\n\r\n                    <div class=\"uk-dropdown uk-dropdown-small uk-dropdown-flip\">\r\n                        <ul class=\"uk-nav uk-nav-dropdown\">\r\n                            <li v-for=\"type in types | orderBy 'label'\">\r\n                                <a @click.prevent=\"$root.editFormField(type.id)\">{{ type.label }}</a></li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-overflow-container\">\r\n\r\n            <div class=\"pk-table-fake pk-table-fake-header\"\r\n                 :class=\"{'pk-table-fake-border': !fields || !fields.length}\">\r\n                <div class=\"pk-table-width-minimum pk-table-fake-nestable-padding\">\r\n                    <input type=\"checkbox\" v-check-all:selected.literal=\"input[name=id]\">\r\n                </div>\r\n                <div class=\"pk-table-min-width-100\">{{ 'Label' | trans }}</div>\r\n                <div class=\"pk-table-width-100 uk-text-center\">{{ 'Required' | trans }}</div>\r\n                <div class=\"pk-table-width-150\">{{ 'Type' | trans }}</div>\r\n            </div>\r\n\r\n            <ul class=\"uk-nestable uk-margin-remove\" v-el:nestable v-show=\"fields.length\">\r\n                <field v-for=\"field in fields | orderBy 'priority'\" :field=\"field\"></field>\r\n\r\n            </ul>\r\n\r\n        </div>\r\n\r\n        <h3 class=\"uk-h1 uk-text-muted uk-text-center\" v-show=\"fields && !fields.length\">{{ 'No fields found.' | trans\r\n            }}</h3>\r\n\r\n        <script id=\"field\" type=\"text/template\">\r\n            <li class=\"uk-nestable-item\" :class=\"{'uk-active': $parent.isSelected(field)}\" data-id=\"{{ field.id }}\">\r\n\r\n                <div class=\"uk-nestable-panel pk-table-fake uk-form uk-visible-hover\">\r\n                    <div class=\"pk-table-width-minimum pk-table-collapse\">\r\n                        <div class=\"uk-nestable-toggle\" data-nestable-action=\"toggle\"></div>\r\n                    </div>\r\n                    <div class=\"pk-table-width-minimum\"><input type=\"checkbox\" name=\"id\" value=\"{{ field.id }}\"\r\n                                                               @click=\"toggleSelect(field)\"></div>\r\n                    <div class=\"pk-table-min-width-100\">\r\n                        <a v-if=\"type\" @click.prevent=\"$root.editFormField(field.id)\">{{ field.label }}</a>\r\n                        <span v-else>{{ field.label }}</span>\r\n                        <br/><small class=\"uk-text-muted\">{{ field.slug }}</small>\r\n                    </div>\r\n                    <div class=\"pk-table-width-100 uk-text-center\">\r\n                        <td class=\"uk-text-center\">\r\n                            <a :class=\"{'pk-icon-circle-danger': !field.data.required, 'pk-icon-circle-success': field.data.required}\"\r\n                               @click.prevent=\"$parent.toggleRequired(field)\"></a>\r\n                        </td>\r\n                    </div>\r\n                    <div class=\"pk-table-width-150 pk-table-max-width-150 uk-text-truncate\">\r\n                        <span v-if=\"type\">{{ type.label }}</span>\r\n                        <span v-else class=\"uk-text-danger\">{{ field.type }}: {{ 'type not found!' | trans}}</span>\r\n                    </div>\r\n                </div>\r\n\r\n\r\n            </li>\r\n\r\n        </script>\r\n    </div>\r\n\r\n\r\n";
 
 /***/ },
-/* 24 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(25)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(8)
+	__vue_template__ = __webpack_require__(9)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(26)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -579,140 +495,97 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 25 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal">
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <span class="uk-form-label">{{ 'Title' | trans }}</span>
-
+	//
 	//             <div class="uk-form-controls uk-form-controls-text">
-
 	//                 <label><input type="checkbox" value="hide-title" v-model="formitem.data.hide_title"> {{ 'Hide Title' |
-
 	//                     trans }}</label>
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <label for="form-formstyle" class="uk-form-label">{{ 'Form style' | trans }}</label>
-
+	//
 	//             <div class="uk-form-controls">
-
 	//                 <select id="form-formstyle" class="uk-form-width-large" v-model="formitem.data.formStyle">
-
 	//                     <option value="uk-form-stacked">{{ 'Form stacked' | trans }}</option>
-
 	//                     <option value="uk-form-horizontal">{{ 'Form horizontal' | trans }}</option>
-
 	//                 </select>
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <label for="form-class" class="uk-form-label">{{ 'Class suffix' | trans }}</label>
-
+	//
 	//             <div class="uk-form-controls">
-
 	//                 <input id="form-class" class="uk-form-width-large" type="text" v-model="formitem.data.classSfx">
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <label for="form-submit-button" class="uk-form-label">{{ 'Text submit button' | trans }}</label>
-
+	//
 	//             <div class="uk-form-controls">
-
 	//                 <input id="form-submit-button" class="uk-form-width-large" type="text" v-model="formitem.data.submitButton">
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-form-row" v-show="formitem.data.required">
-
 	//             <label for="form-required-error" class="uk-form-label">{{ 'Required error message' | trans }}</label>
-
+	//
 	//             <div class="uk-form-controls">
-
 	//                 <input id="form-required-error" class="uk-form-width-large" type="text"
-
 	//                        v-model="formitem.data.requiredError">
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//         <div class="uk-margin" v-show="formitem.data.recaptcha">
-
 	//             <div class="uk-form-row">
-
 	//                 <label for="form-recaptcha_label" class="uk-form-label">{{ 'reCAPTCHA label' | trans }}</label>
-
+	//
 	//                 <div class="uk-form-controls">
-
 	//                     <input id="form-recaptcha_label" class="uk-form-width-large" type="text" name="recaptcha_label"
-
 	//                            v-model="formitem.data.recaptcha_label" placeholder="{{ 'Empty for no label' | trans }}">
-
 	//                 </div>
-
 	//             </div>
-
+	//
 	//             <div class="uk-form-row">
-
 	//                 <label for="form-recaptcha_label" class="uk-form-label">{{ 'reCAPTCHA setup' | trans }}</label>
-
+	//
 	//                 <div class="uk-form-controls">
-
 	//                     <select class="uk-form-width-small" v-model="formitem.data.recaptcha_theme">
-
 	//                         <option v-for="option in recaptcha_themes" :value="option.value">{{ option.text }}</option>
-
 	//                     </select>
-
 	//                     <select class="uk-form-width-small" v-model="formitem.data.recaptcha_type">
-
 	//                         <option v-for="option in recaptcha_types" :value="option.value">{{ option.text }}</option>
-
 	//                     </select>
-
 	//                     <select class="uk-form-width-small" v-model="formitem.data.recaptcha_size">
-
 	//                         <option v-for="option in recaptcha" :value="option.value">{{ option.text }}</option>
-
 	//                     </select>
-
 	//                 </div>
-
 	//             </div>
-
+	//
 	//         </div>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -736,21 +609,24 @@
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 26 */
+/* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Title' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"hide-title\" v-model=\"formitem.data.hide_title\"> {{ 'Hide Title' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'Form style' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select id=\"form-formstyle\" class=\"uk-form-width-large\" v-model=\"formitem.data.formStyle\">\r\n                    <option value=\"uk-form-stacked\">{{ 'Form stacked' | trans }}</option>\r\n                    <option value=\"uk-form-horizontal\">{{ 'Form horizontal' | trans }}</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-class\" class=\"uk-form-label\">{{ 'Class suffix' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-class\" class=\"uk-form-width-large\" type=\"text\" v-model=\"formitem.data.classSfx\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-submit-button\" class=\"uk-form-label\">{{ 'Text submit button' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-submit-button\" class=\"uk-form-width-large\" type=\"text\" v-model=\"formitem.data.submitButton\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\" v-show=\"formitem.data.required\">\r\n            <label for=\"form-required-error\" class=\"uk-form-label\">{{ 'Required error message' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-required-error\" class=\"uk-form-width-large\" type=\"text\"\r\n                       v-model=\"formitem.data.requiredError\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-margin\" v-show=\"formitem.data.recaptcha\">\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-recaptcha_label\" class=\"uk-form-label\">{{ 'reCAPTCHA label' | trans }}</label>\r\n\r\n                <div class=\"uk-form-controls\">\r\n                    <input id=\"form-recaptcha_label\" class=\"uk-form-width-large\" type=\"text\" name=\"recaptcha_label\"\r\n                           v-model=\"formitem.data.recaptcha_label\" placeholder=\"{{ 'Empty for no label' | trans }}\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-recaptcha_label\" class=\"uk-form-label\">{{ 'reCAPTCHA setup' | trans }}</label>\r\n\r\n                <div class=\"uk-form-controls\">\r\n                    <select class=\"uk-form-width-small\" v-model=\"formitem.data.recaptcha_theme\">\r\n                        <option v-for=\"option in recaptcha_themes\" :value=\"option.value\">{{ option.text }}</option>\r\n                    </select>\r\n                    <select class=\"uk-form-width-small\" v-model=\"formitem.data.recaptcha_type\">\r\n                        <option v-for=\"option in recaptcha_types\" :value=\"option.value\">{{ option.text }}</option>\r\n                    </select>\r\n                    <select class=\"uk-form-width-small\" v-model=\"formitem.data.recaptcha_size\">\r\n                        <option v-for=\"option in recaptcha\" :value=\"option.value\">{{ option.text }}</option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Title' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <label><input type=\"checkbox\" value=\"hide-title\" v-model=\"formitem.data.hide_title\"> {{ 'Hide Title' |\r\n                    trans }}</label>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'Form style' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <select id=\"form-formstyle\" class=\"uk-form-width-large\" v-model=\"formitem.data.formStyle\">\r\n                    <option value=\"uk-form-stacked\">{{ 'Form stacked' | trans }}</option>\r\n                    <option value=\"uk-form-horizontal\">{{ 'Form horizontal' | trans }}</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-class\" class=\"uk-form-label\">{{ 'Class suffix' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-class\" class=\"uk-form-width-large\" type=\"text\" v-model=\"formitem.data.classSfx\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\">\r\n            <label for=\"form-submit-button\" class=\"uk-form-label\">{{ 'Text submit button' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-submit-button\" class=\"uk-form-width-large\" type=\"text\" v-model=\"formitem.data.submitButton\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-form-row\" v-show=\"formitem.data.required\">\r\n            <label for=\"form-required-error\" class=\"uk-form-label\">{{ 'Required error message' | trans }}</label>\r\n\r\n            <div class=\"uk-form-controls\">\r\n                <input id=\"form-required-error\" class=\"uk-form-width-large\" type=\"text\"\r\n                       v-model=\"formitem.data.requiredError\">\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"uk-margin\" v-show=\"formitem.data.recaptcha\">\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-recaptcha_label\" class=\"uk-form-label\">{{ 'reCAPTCHA label' | trans }}</label>\r\n\r\n                <div class=\"uk-form-controls\">\r\n                    <input id=\"form-recaptcha_label\" class=\"uk-form-width-large\" type=\"text\" name=\"recaptcha_label\"\r\n                           v-model=\"formitem.data.recaptcha_label\" placeholder=\"{{ 'Empty for no label' | trans }}\">\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"uk-form-row\">\r\n                <label for=\"form-recaptcha_label\" class=\"uk-form-label\">{{ 'reCAPTCHA setup' | trans }}</label>\r\n\r\n                <div class=\"uk-form-controls\">\r\n                    <select class=\"uk-form-width-small\" v-model=\"formitem.data.recaptcha_theme\">\r\n                        <option v-for=\"option in recaptcha_themes\" :value=\"option.value\">{{ option.text }}</option>\r\n                    </select>\r\n                    <select class=\"uk-form-width-small\" v-model=\"formitem.data.recaptcha_type\">\r\n                        <option v-for=\"option in recaptcha_types\" :value=\"option.value\">{{ option.text }}</option>\r\n                    </select>\r\n                    <select class=\"uk-form-width-small\" v-model=\"formitem.data.recaptcha_size\">\r\n                        <option v-for=\"option in recaptcha\" :value=\"option.value\">{{ option.text }}</option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ },
-/* 27 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(28)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(11)
+	__vue_template__ = __webpack_require__(15)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(32)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -759,80 +635,60 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 28 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal uk-margin">
-
+	//
 	//         <div class="uk-grid">
-
 	//             <div class="uk-width-medium-3-4">
-
+	//
 	//                 <div class="uk-form-row">
-
 	//                     <label for="form-formstyle" class="uk-form-label">{{ 'After submit' | trans }}</label>
-
+	//
 	//                     <div class="uk-form-controls">
-
 	//                         <select id="form-formstyle" class="uk-form-width-large" v-model="formitem.data.afterSubmit">
-
 	//                             <option value="thankyou">{{ 'Show Thank you message' | trans }}</option>
-
 	//                             <option value="redirect">{{ 'Redirect to page' | trans }}</option>
-
 	//                         </select>
-
 	//                     </div>
-
 	//                 </div>
-
+	//
 	//                 <div class="uk-form-row" v-show="formitem.data.afterSubmit == 'thankyou'">
-
 	//                     <v-editor id="formitem-thankyou" :value.sync="formitem.data.thankyou" :options="{markdown : formitem.data.thankyou_markdown}"></v-editor>
-
 	//                     <p>
-
 	//                         <label><input type="checkbox" v-model="formitem.data.thankyou_markdown"> {{ 'Enable Markdown' | trans }}</label>
-
 	//                     </p>
-
 	//                 </div>
-
+	//
 	//                 <div class="uk-form-row" v-show="formitem.data.afterSubmit == 'redirect'">
-
 	//                     <label class="uk-form-label">{{ 'Redirect' | trans }}</label>
-
 	//                     <div class="uk-form-controls">
-
 	//                         <input-link class="uk-form-width-large" :link.sync="formitem.data.redirect"></input-link>
-
 	//                     </div>
-
 	//                 </div>
-
+	//
 	//             </div>
-
 	//             <div class="uk-width-medium-1-4">
-
+	//
 	//                 <formfieldslist :fields="formfields"></formfieldslist>
-
+	//
 	//             </div>
-
 	//         </div>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -840,20 +696,23 @@
 	    props: ['formitem', 'formfields', 'form'],
 
 	    components: {
-	        formfieldslist: __webpack_require__(29)
+	        formfieldslist: __webpack_require__(12)
 	    }
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 29 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(30)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(13)
+	__vue_template__ = __webpack_require__(14)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(31)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -862,44 +721,34 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 30 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <h3>{{ 'Available variables' | trans }}</h3>
-
 	//     <ul class="uk-list uk-list-line">
-
 	//         <li v-for="field in fields">
-
 	//             <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>
-
 	//             <kbd>{{ field.slug | shortcode 'value' }}</kbd>
-
 	//         </li>
-
+	//
 	//         <li>
-
 	//             <kbd v-for="key in ['id', 'form_id', 'email', 'ip', 'created']"
-
 	//                  class="uk-display-block uk-margin-small-bottom">
-
 	//                 {{ 'submission' | shortcode key }}</kbd>
-
 	//         </li>
-
 	//     </ul>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -909,27 +758,30 @@
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 31 */
+/* 14 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3>{{ 'Available variables' | trans }}</h3>\r\n    <ul class=\"uk-list uk-list-line\">\r\n        <li v-for=\"field in fields\">\r\n            <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>\r\n            <kbd>{{ field.slug | shortcode 'value' }}</kbd>\r\n        </li>\r\n\r\n        <li>\r\n            <kbd v-for=\"key in ['id', 'form_id', 'email', 'ip', 'created']\"\r\n                 class=\"uk-display-block uk-margin-small-bottom\">\r\n                {{ 'submission' | shortcode key }}</kbd>\r\n        </li>\r\n    </ul>";
+	module.exports = "\r\n\r\n    <h3>{{ 'Available variables' | trans }}</h3>\r\n    <ul class=\"uk-list uk-list-line\">\r\n        <li v-for=\"field in fields\">\r\n            <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>\r\n            <kbd>{{ field.slug | shortcode 'value' }}</kbd>\r\n        </li>\r\n\r\n        <li>\r\n            <kbd v-for=\"key in ['id', 'form_id', 'email', 'ip', 'created']\"\r\n                 class=\"uk-display-block uk-margin-small-bottom\">\r\n                {{ 'submission' | shortcode key }}</kbd>\r\n        </li>\r\n    </ul>\r\n\r\n";
 
 /***/ },
-/* 32 */
+/* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4\">\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'After submit' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <select id=\"form-formstyle\" class=\"uk-form-width-large\" v-model=\"formitem.data.afterSubmit\">\r\n                            <option value=\"thankyou\">{{ 'Show Thank you message' | trans }}</option>\r\n                            <option value=\"redirect\">{{ 'Redirect to page' | trans }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'thankyou'\">\r\n                    <v-editor id=\"formitem-thankyou\" :value.sync=\"formitem.data.thankyou\" :options=\"{markdown : formitem.data.thankyou_markdown}\"></v-editor>\r\n                    <p>\r\n                        <label><input type=\"checkbox\" v-model=\"formitem.data.thankyou_markdown\"> {{ 'Enable Markdown' | trans }}</label>\r\n                    </p>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'redirect'\">\r\n                    <label class=\"uk-form-label\">{{ 'Redirect' | trans }}</label>\r\n                    <div class=\"uk-form-controls\">\r\n                        <input-link class=\"uk-form-width-large\" :link.sync=\"formitem.data.redirect\"></input-link>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4\">\r\n\r\n                <formfieldslist :fields=\"formfields\"></formfieldslist>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4\">\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-formstyle\" class=\"uk-form-label\">{{ 'After submit' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <select id=\"form-formstyle\" class=\"uk-form-width-large\" v-model=\"formitem.data.afterSubmit\">\r\n                            <option value=\"thankyou\">{{ 'Show Thank you message' | trans }}</option>\r\n                            <option value=\"redirect\">{{ 'Redirect to page' | trans }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'thankyou'\">\r\n                    <v-editor id=\"formitem-thankyou\" :value.sync=\"formitem.data.thankyou\" :options=\"{markdown : formitem.data.thankyou_markdown}\"></v-editor>\r\n                    <p>\r\n                        <label><input type=\"checkbox\" v-model=\"formitem.data.thankyou_markdown\"> {{ 'Enable Markdown' | trans }}</label>\r\n                    </p>\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\" v-show=\"formitem.data.afterSubmit == 'redirect'\">\r\n                    <label class=\"uk-form-label\">{{ 'Redirect' | trans }}</label>\r\n                    <div class=\"uk-form-controls\">\r\n                        <input-link class=\"uk-form-width-large\" :link.sync=\"formitem.data.redirect\"></input-link>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4\">\r\n\r\n                <formfieldslist :fields=\"formfields\"></formfieldslist>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ },
-/* 33 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(34)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(17)
+	__vue_template__ = __webpack_require__(18)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(35)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -938,114 +790,83 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 34 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal uk-margin">
-
+	//
 	//         <div class="uk-grid">
-
 	//             <div class="uk-width-medium-3-4">
-
 	//                 <div class="uk-form-row">
-
 	//                     <label for="form-user_email_field" class="uk-form-label">{{ 'User email field' | trans }}</label>
-
+	//
 	//                     <div class="uk-form-controls">
-
 	//                         <select id="form-user_email_field" class="uk-form-width-medium" v-model="formitem.data.user_email_field">
-
 	//                             <option value="">{{ 'Select a field' | trans }}</option>
-
 	//                             <option v-for="field in formfields | filterBy 'email' in 'type'" :value="field.slug">{{ field.label }}</option>
-
 	//                         </select>
-
 	//                     </div>
-
 	//                 </div>
-
+	//
 	//                 <div class="uk-alert" v-show="formitem.data.user_email_field">
-
 	//                     {{ 'Email address from field "%field%" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>
-
 	//                 <div class="uk-alert uk-alert-warning" v-show="!formitem.data.user_email_field">
-
 	//                     {{ 'No email field is selected for user confirmation mail.' | trans }}</div>
-
+	//
 	//                 <div class="uk-form-row">
-
 	//                     <label for="form-submitemail" class="uk-form-label">{{ 'Email copy of submission to' | trans }}</label>
-
+	//
 	//                     <div class="uk-form-controls">
-
 	//                         <input id="form-submitemail" class="uk-form-width-large" type="text" name="submitemail"
-
 	//                                v-model="formitem.data.submitEmail" v-validate:email v-validate:required="!!formitem.data.user_email_field">
-
 	//                     <!-- //todo fix req message -->
-
 	//                     <p class="uk-form-help-block uk-text-danger" v-show="form.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
-
+	//
 	//                     <p class="uk-form-help-block uk-text-danger" v-show="formitem.data.user_email_field && !formitem.data.submitEmail">
-
 	//                         {{ 'No email will be sent to the user when no address is entered here!' | trans }}</p>
-
 	//                 </div>
-
 	//             </div>
-
+	//
+	//
 	//                 <div class="uk-form-row">
-
 	//                     <label for="form-emailsubject" class="uk-form-label">{{ 'Email subject' | trans }}</label>
-
+	//
 	//                     <div class="uk-form-controls">
-
 	//                         <input id="form-emailsubject" class="uk-form-width-large" type="text" name="emailsubject"
-
 	//                                v-model="formitem.data.email_subject">
-
 	//                     </div>
-
+	//
 	//                 </div>
-
+	//
 	//                 <div class="uk-form-row">
-
 	//                     <v-editor id="formitem-emailbody" :value.sync="formitem.data.email_body"
-
 	//                               :options="{markdown : formitem.data.email_body_markdown}"></v-editor>
-
 	//                     <p>
-
 	//                         <label><input type="checkbox" v-model="formitem.data.email_body_markdown"> {{ 'Enable Markdown' | trans }}</label>
-
 	//                     </p>
-
 	//                 </div>
-
+	//
 	//             </div>
-
 	//             <div class="uk-width-medium-1-4">
-
+	//
 	//                 <formfieldslist :fields="formfields"></formfieldslist>
-
+	//
 	//             </div>
-
 	//         </div>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -1053,27 +874,30 @@
 	    props: ['formitem', 'formfields', 'form'],
 
 	    components: {
-	        formfieldslist: __webpack_require__(29)
+	        formfieldslist: __webpack_require__(12)
 	    }
 
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 35 */
+/* 18 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4\">\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-user_email_field\" class=\"uk-form-label\">{{ 'User email field' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <select id=\"form-user_email_field\" class=\"uk-form-width-medium\" v-model=\"formitem.data.user_email_field\">\r\n                            <option value=\"\">{{ 'Select a field' | trans }}</option>\r\n                            <option v-for=\"field in formfields | filterBy 'email' in 'type'\" :value=\"field.slug\">{{ field.label }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-alert\" v-show=\"formitem.data.user_email_field\">\r\n                    {{ 'Email address from field \"%field%\" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>\r\n                <div class=\"uk-alert uk-alert-warning\" v-show=\"!formitem.data.user_email_field\">\r\n                    {{ 'No email field is selected for user confirmation mail.' | trans }}</div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-submitemail\" class=\"uk-form-label\">{{ 'Email copy of submission to' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-submitemail\" class=\"uk-form-width-large\" type=\"text\" name=\"submitemail\"\r\n                               v-model=\"formitem.data.submitEmail\" v-validate:email v-validate:required=\"!!formitem.data.user_email_field\">\r\n                    <!-- //todo fix req message -->\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.submitemail.invalid\">{{ 'Please enter valid email address' | trans }}</p>\r\n\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"formitem.data.user_email_field && !formitem.data.submitEmail\">\r\n                        {{ 'No email will be sent to the user when no address is entered here!' | trans }}</p>\r\n                </div>\r\n            </div>\r\n\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-emailsubject\" class=\"uk-form-label\">{{ 'Email subject' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-emailsubject\" class=\"uk-form-width-large\" type=\"text\" name=\"emailsubject\"\r\n                               v-model=\"formitem.data.email_subject\">\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <v-editor id=\"formitem-emailbody\" :value.sync=\"formitem.data.email_body\"\r\n                              :options=\"{markdown : formitem.data.email_body_markdown}\"></v-editor>\r\n                    <p>\r\n                        <label><input type=\"checkbox\" v-model=\"formitem.data.email_body_markdown\"> {{ 'Enable Markdown' | trans }}</label>\r\n                    </p>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4\">\r\n\r\n                <formfieldslist :fields=\"formfields\"></formfieldslist>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4\">\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-user_email_field\" class=\"uk-form-label\">{{ 'User email field' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <select id=\"form-user_email_field\" class=\"uk-form-width-medium\" v-model=\"formitem.data.user_email_field\">\r\n                            <option value=\"\">{{ 'Select a field' | trans }}</option>\r\n                            <option v-for=\"field in formfields | filterBy 'email' in 'type'\" :value=\"field.slug\">{{ field.label }}</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"uk-alert\" v-show=\"formitem.data.user_email_field\">\r\n                    {{ 'Email address from field \"%field%\" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>\r\n                <div class=\"uk-alert uk-alert-warning\" v-show=\"!formitem.data.user_email_field\">\r\n                    {{ 'No email field is selected for user confirmation mail.' | trans }}</div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-submitemail\" class=\"uk-form-label\">{{ 'Email copy of submission to' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-submitemail\" class=\"uk-form-width-large\" type=\"text\" name=\"submitemail\"\r\n                               v-model=\"formitem.data.submitEmail\" v-validate:email v-validate:required=\"!!formitem.data.user_email_field\">\r\n                    <!-- //todo fix req message -->\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.submitemail.invalid\">{{ 'Please enter valid email address' | trans }}</p>\r\n\r\n                    <p class=\"uk-form-help-block uk-text-danger\" v-show=\"formitem.data.user_email_field && !formitem.data.submitEmail\">\r\n                        {{ 'No email will be sent to the user when no address is entered here!' | trans }}</p>\r\n                </div>\r\n            </div>\r\n\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <label for=\"form-emailsubject\" class=\"uk-form-label\">{{ 'Email subject' | trans }}</label>\r\n\r\n                    <div class=\"uk-form-controls\">\r\n                        <input id=\"form-emailsubject\" class=\"uk-form-width-large\" type=\"text\" name=\"emailsubject\"\r\n                               v-model=\"formitem.data.email_subject\">\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class=\"uk-form-row\">\r\n                    <v-editor id=\"formitem-emailbody\" :value.sync=\"formitem.data.email_body\"\r\n                              :options=\"{markdown : formitem.data.email_body_markdown}\"></v-editor>\r\n                    <p>\r\n                        <label><input type=\"checkbox\" v-model=\"formitem.data.email_body_markdown\"> {{ 'Enable Markdown' | trans }}</label>\r\n                    </p>\r\n                </div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4\">\r\n\r\n                <formfieldslist :fields=\"formfields\"></formfieldslist>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ },
-/* 36 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(37)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(20)
+	__vue_template__ = __webpack_require__(30)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(47)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -1082,88 +906,64 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 37 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	// <template>
-
 	//     <div>
-
 	//         <div class="uk-modal-spinner" v-show="!loaded"></div>
-
 	//         <form v-else id="field-edit" class="uk-form" name="fieldform" v-validator="form" @submit.prevent="save | valid">
-
+	//
 	//             <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
-
 	//                 <div data-uk-margin>
-
+	//
 	//                     <h2 class="uk-margin-remove" v-if="field.id">{{ 'Edit' | trans }} {{ type.label }} <em>{{
-
 	//                         field.label | trans }}</em></h2>
-
+	//
 	//                     <h2 class="uk-margin-remove" v-if="!field.id">{{ 'Add' | trans }} {{ type.label }} <em>{{
-
 	//                         field.label | trans }}</em></h2>
-
+	//
 	//                 </div>
-
 	//                 <div data-uk-margin>
-
+	//
 	//                     <a class="uk-button uk-margin-small-right uk-modal-close">{{ field.id ? 'Close' :
-
 	//                         'Cancel' | trans }}</a>
-
 	//                     <button class="uk-button uk-button-primary" type="submit">{{ 'Save' | trans }}</button>
-
+	//
 	//                 </div>
-
 	//             </div>
-
+	//
 	//             <ul class="uk-tab" v-el:tab>
-
 	//                 <li><a>{{ type.label | trans }}</a></li>
-
 	//                 <li v-if="type.hasOptions"><a>{{ 'Options' | trans }}</a></li>
-
 	//                 <li><a>{{ 'Appearance' | trans }}</a></li>
-
 	//             </ul>
-
+	//
 	//             <div class="uk-switcher uk-margin" v-el:content>
-
 	//                 <div>
-
 	//                     <fieldbasic :field.sync="field" :type.sync="type" :roles="roles" :form="form"></fieldbasic>
-
 	//                 </div>
-
 	//                 <div v-if="type.hasOptions">
-
 	//                     <fieldoptions :field.sync="field" :form="form"></fieldoptions>
-
 	//                 </div>
-
 	//                 <div>
-
 	//                     <appearance :field.sync="field" :form="form"></appearance>
-
 	//                 </div>
-
 	//             </div>
-
+	//
 	//         </form>
-
 	//     </div>
-
+	//
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -1239,24 +1039,27 @@
 
 	    components: {
 
-	        fieldbasic: __webpack_require__(38),
-	        fieldoptions: __webpack_require__(41),
-	        appearance: __webpack_require__(44)
+	        fieldbasic: __webpack_require__(21),
+	        fieldoptions: __webpack_require__(24),
+	        appearance: __webpack_require__(27)
 
 	    }
 
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 38 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(39)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(22)
+	__vue_template__ = __webpack_require__(23)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(40)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -1265,60 +1068,49 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 39 */
+/* 22 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-margin">
-
+	//
 	//         <div class="uk-grid">
-
 	//             <div class="uk-width-medium-3-4 uk-form-horizontal">
-
+	//
 	//                 <partial name="fieldtype-basic"></partial>
-
+	//
 	//                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
-
 	//                             v-ref:fieldtypes
-
 	//                             :edit-type="field.type"
-
 	//                             :fields="[field]"
-
 	//                             :field.sync="field"
-
 	//                             :form="form"></fieldtypes>
-
+	//
 	//                 <div id="type-settings" class="uk-margin"
-
 	//                      :data-object.sync="field.data"
-
 	//                      :field.sync="field"
-
 	//                      :form="form"></div>
-
+	//
 	//             </div>
-
 	//             <div class="uk-width-medium-1-4 uk-form-stacked">
-
+	//
 	//                 <partial name="fieldtype-settings"></partial>
-
+	//
 	//             </div>
-
 	//         </div>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -1347,21 +1139,24 @@
 
 	};
 	// </script>
+	//
 
 /***/ },
-/* 40 */
+/* 23 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n\r\n                <partial name=\"fieldtype-basic\"></partial>\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                            v-ref:fieldtypes\r\n                            :edit-type=\"field.type\"\r\n                            :fields=\"[field]\"\r\n                            :field.sync=\"field\"\r\n                            :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <partial name=\"fieldtype-settings\"></partial>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-margin\">\r\n\r\n        <div class=\"uk-grid\">\r\n            <div class=\"uk-width-medium-3-4 uk-form-horizontal\">\r\n\r\n                <partial name=\"fieldtype-basic\"></partial>\r\n\r\n                <fieldtypes class=\"uk-margin\" v-show=\"!type.hasOptions || field.options.length\"\r\n                            v-ref:fieldtypes\r\n                            :edit-type=\"field.type\"\r\n                            :fields=\"[field]\"\r\n                            :field.sync=\"field\"\r\n                            :form=\"form\"></fieldtypes>\r\n\r\n                <div id=\"type-settings\" class=\"uk-margin\"\r\n                     :data-object.sync=\"field.data\"\r\n                     :field.sync=\"field\"\r\n                     :form=\"form\"></div>\r\n\r\n            </div>\r\n            <div class=\"uk-width-medium-1-4 uk-form-stacked\">\r\n\r\n                <partial name=\"fieldtype-settings\"></partial>\r\n\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ },
-/* 41 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(42)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(25)
+	__vue_template__ = __webpack_require__(26)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(43)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -1370,50 +1165,38 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 42 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal">
-
+	//
 	//         <div class="uk-form-row">
-
 	//             <span class="uk-form-label">{{ 'Manage options' | trans }}</span>
-
+	//
 	//             <div class="uk-form-controls uk-form-controls-text">
-
 	//                 <ul class="uk-nestable uk-margin-remove" v-el:options-nestable v-show="field.options.length">
-
 	//                     <selectoption v-for="selectoption in field.options"
-
 	//                                   :selectoption.sync="selectoption"
-
 	//                                   :read-only="readOnly"></selectoption>
-
 	//                 </ul>
-
 	//                 <button v-if="!readOnly" type="button" class="uk-button uk-button-primary uk-button-small uk-margin"
-
 	//                         @click="addFieldoption">{{ 'Add option' | trans }}
-
 	//                 </button>
-
 	//             </div>
-
 	//         </div>
-
+	//
 	//     </div>
-
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -1511,21 +1294,24 @@
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 43 */
+/* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Manage options' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <ul class=\"uk-nestable uk-margin-remove\" v-el:options-nestable v-show=\"field.options.length\">\r\n                    <selectoption v-for=\"selectoption in field.options\"\r\n                                  :selectoption.sync=\"selectoption\"\r\n                                  :read-only=\"readOnly\"></selectoption>\r\n                </ul>\r\n                <button v-if=\"!readOnly\" type=\"button\" class=\"uk-button uk-button-primary uk-button-small uk-margin\"\r\n                        @click=\"addFieldoption\">{{ 'Add option' | trans }}\r\n                </button>\r\n            </div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal\">\r\n\r\n        <div class=\"uk-form-row\">\r\n            <span class=\"uk-form-label\">{{ 'Manage options' | trans }}</span>\r\n\r\n            <div class=\"uk-form-controls uk-form-controls-text\">\r\n                <ul class=\"uk-nestable uk-margin-remove\" v-el:options-nestable v-show=\"field.options.length\">\r\n                    <selectoption v-for=\"selectoption in field.options\"\r\n                                  :selectoption.sync=\"selectoption\"\r\n                                  :read-only=\"readOnly\"></selectoption>\r\n                </ul>\r\n                <button v-if=\"!readOnly\" type=\"button\" class=\"uk-button uk-button-primary uk-button-small uk-margin\"\r\n                        @click=\"addFieldoption\">{{ 'Add option' | trans }}\r\n                </button>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n";
 
 /***/ },
-/* 44 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(45)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(28)
+	__vue_template__ = __webpack_require__(29)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(46)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -1534,28 +1320,28 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 45 */
+/* 28 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
+	//
 	//     <div class="uk-form-horizontal">
-
+	//
 	//         <partial name="fieldtype-appearance"></partial>
-
+	//
 	//         <fields :config="appearanceSettings" :model.sync="field.data" template="formrow"></fields>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 
 	module.exports = {
@@ -1571,21 +1357,22 @@
 	};
 
 	// </script>
+	//
 
 /***/ },
-/* 46 */
+/* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-horizontal\">\r\n\r\n        <partial name=\"fieldtype-appearance\"></partial>\r\n\r\n        <fields :config=\"appearanceSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n\r\n    </div>";
+	module.exports = "\r\n\r\n    <div class=\"uk-form-horizontal\">\r\n\r\n        <partial name=\"fieldtype-appearance\"></partial>\r\n\r\n        <fields :config=\"appearanceSettings\" :model.sync=\"field.data\" template=\"formrow\"></fields>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ },
-/* 47 */
+/* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\r\n        <div class=\"uk-modal-spinner\" v-show=\"!loaded\"></div>\r\n        <form v-else id=\"field-edit\" class=\"uk-form\" name=\"fieldform\" v-validator=\"form\" @submit.prevent=\"save | valid\">\r\n\r\n            <div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin>\r\n                <div data-uk-margin>\r\n\r\n                    <h2 class=\"uk-margin-remove\" v-if=\"field.id\">{{ 'Edit' | trans }} {{ type.label }} <em>{{\r\n                        field.label | trans }}</em></h2>\r\n\r\n                    <h2 class=\"uk-margin-remove\" v-if=\"!field.id\">{{ 'Add' | trans }} {{ type.label }} <em>{{\r\n                        field.label | trans }}</em></h2>\r\n\r\n                </div>\r\n                <div data-uk-margin>\r\n\r\n                    <a class=\"uk-button uk-margin-small-right uk-modal-close\">{{ field.id ? 'Close' :\r\n                        'Cancel' | trans }}</a>\r\n                    <button class=\"uk-button uk-button-primary\" type=\"submit\">{{ 'Save' | trans }}</button>\r\n\r\n                </div>\r\n            </div>\r\n\r\n            <ul class=\"uk-tab\" v-el:tab>\r\n                <li><a>{{ type.label | trans }}</a></li>\r\n                <li v-if=\"type.hasOptions\"><a>{{ 'Options' | trans }}</a></li>\r\n                <li><a>{{ 'Appearance' | trans }}</a></li>\r\n            </ul>\r\n\r\n            <div class=\"uk-switcher uk-margin\" v-el:content>\r\n                <div>\r\n                    <fieldbasic :field.sync=\"field\" :type.sync=\"type\" :roles=\"roles\" :form=\"form\"></fieldbasic>\r\n                </div>\r\n                <div v-if=\"type.hasOptions\">\r\n                    <fieldoptions :field.sync=\"field\" :form=\"form\"></fieldoptions>\r\n                </div>\r\n                <div>\r\n                    <appearance :field.sync=\"field\" :form=\"form\"></appearance>\r\n                </div>\r\n            </div>\r\n\r\n        </form>\r\n    </div>";
+	module.exports = "\r\n    <div>\r\n        <div class=\"uk-modal-spinner\" v-show=\"!loaded\"></div>\r\n        <form v-else id=\"field-edit\" class=\"uk-form\" name=\"fieldform\" v-validator=\"form\" @submit.prevent=\"save | valid\">\r\n\r\n            <div class=\"uk-margin uk-flex uk-flex-space-between uk-flex-wrap\" data-uk-margin>\r\n                <div data-uk-margin>\r\n\r\n                    <h2 class=\"uk-margin-remove\" v-if=\"field.id\">{{ 'Edit' | trans }} {{ type.label }} <em>{{\r\n                        field.label | trans }}</em></h2>\r\n\r\n                    <h2 class=\"uk-margin-remove\" v-if=\"!field.id\">{{ 'Add' | trans }} {{ type.label }} <em>{{\r\n                        field.label | trans }}</em></h2>\r\n\r\n                </div>\r\n                <div data-uk-margin>\r\n\r\n                    <a class=\"uk-button uk-margin-small-right uk-modal-close\">{{ field.id ? 'Close' :\r\n                        'Cancel' | trans }}</a>\r\n                    <button class=\"uk-button uk-button-primary\" type=\"submit\">{{ 'Save' | trans }}</button>\r\n\r\n                </div>\r\n            </div>\r\n\r\n            <ul class=\"uk-tab\" v-el:tab>\r\n                <li><a>{{ type.label | trans }}</a></li>\r\n                <li v-if=\"type.hasOptions\"><a>{{ 'Options' | trans }}</a></li>\r\n                <li><a>{{ 'Appearance' | trans }}</a></li>\r\n            </ul>\r\n\r\n            <div class=\"uk-switcher uk-margin\" v-el:content>\r\n                <div>\r\n                    <fieldbasic :field.sync=\"field\" :type.sync=\"type\" :roles=\"roles\" :form=\"form\"></fieldbasic>\r\n                </div>\r\n                <div v-if=\"type.hasOptions\">\r\n                    <fieldoptions :field.sync=\"field\" :form=\"form\"></fieldoptions>\r\n                </div>\r\n                <div>\r\n                    <appearance :field.sync=\"field\" :form=\"form\"></appearance>\r\n                </div>\r\n            </div>\r\n\r\n        </form>\r\n    </div>\r\n\r\n\r\n";
 
 /***/ },
-/* 48 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = function (Vue) {

@@ -88,7 +88,7 @@
 	    },
 
 	    components: {
-	        recaptcha: __webpack_require__(55)
+	        recaptcha: __webpack_require__(38)
 	    }
 
 	};
@@ -100,13 +100,15 @@
 
 /***/ },
 
-/***/ 55:
+/***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(56)
-
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(39)
+	__vue_template__ = __webpack_require__(40)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(57)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -115,33 +117,30 @@
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
 
-/***/ 56:
+/***/ 39:
 /***/ function(module, exports) {
 
 	'use strict';
 
 	// <template>
-
 	//     <div class="uk-form-row">
-
+	//
 	//         <span class="uk-form-label" v-show="formitem.data.recaptcha_label">{{ formitem.data.recaptcha_label | trans }}</span>
-
+	//
 	//         <div class="uk-form-controls uk-form-controls-text">
-
 	//             <div id="grecaptcha_el"></div>
-
 	//         </div>
-
+	//
 	//     </div>
-
+	//
 	// </template>
-
+	//
 	// <script>
 	window.grecacapthaCallback = function () {
 	    Vue.ready(function () {
@@ -176,13 +175,14 @@
 	};
 
 	// </script>
+	//
 
 /***/ },
 
-/***/ 57:
+/***/ 40:
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"uk-form-row\">\r\n\r\n        <span class=\"uk-form-label\" v-show=\"formitem.data.recaptcha_label\">{{ formitem.data.recaptcha_label | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <div id=\"grecaptcha_el\"></div>\r\n        </div>\r\n\r\n    </div>";
+	module.exports = "\r\n    <div class=\"uk-form-row\">\r\n\r\n        <span class=\"uk-form-label\" v-show=\"formitem.data.recaptcha_label\">{{ formitem.data.recaptcha_label | trans }}</span>\r\n\r\n        <div class=\"uk-form-controls uk-form-controls-text\">\r\n            <div id=\"grecaptcha_el\"></div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n";
 
 /***/ }
 
