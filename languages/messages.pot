@@ -1,22 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pagekit UNKNOWN (bixie/formmaker, messages)\n"
-"POT-Creation-Date: 2015-12-12 20:48+0000\n"
+"Project-Id-Version: Pagekit 0.10.3 (bixie/formmaker, messages)\n"
+"POT-Creation-Date: 2016-02-29 15:21+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-msgid "Label"
-msgstr ""
-
-msgid "Manage options"
-msgstr ""
-
-msgid "%type% saved."
-msgstr ""
 
 msgid "Title"
 msgstr ""
@@ -49,6 +40,9 @@ msgid "Delete"
 msgstr ""
 
 msgid "Add Field"
+msgstr ""
+
+msgid "Label"
 msgstr ""
 
 msgid "Required"
@@ -123,6 +117,9 @@ msgstr ""
 msgid "Please enter valid email address"
 msgstr ""
 
+msgid "No email will be sent to the user when no address is entered here!"
+msgstr ""
+
 msgid "Email subject"
 msgstr ""
 
@@ -141,19 +138,7 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-msgid "Please enter a label"
-msgstr ""
-
-msgid "Field required"
-msgstr ""
-
-msgid "Multiple values"
-msgstr ""
-
-msgid "Multiple"
-msgstr ""
-
-msgid "Restrict Access"
+msgid "Manage options"
 msgstr ""
 
 msgid "Add option"
@@ -193,6 +178,9 @@ msgid "Normal"
 msgstr ""
 
 msgid "Compact"
+msgstr ""
+
+msgid "%type% saved."
 msgstr ""
 
 msgid "Submission for form \"%formtitle%\""
@@ -240,15 +228,6 @@ msgstr ""
 msgid "Data to export"
 msgstr ""
 
-msgid "Id"
-msgstr ""
-
-msgid "Email"
-msgstr ""
-
-msgid "IP address"
-msgstr ""
-
 msgid "Created"
 msgstr ""
 
@@ -261,16 +240,10 @@ msgstr ""
 msgid "Archive"
 msgstr ""
 
-msgid "Mark exported as \"Archived\""
-msgstr ""
-
 msgid "Export"
 msgstr ""
 
-msgid "Download"
-msgstr ""
-
-msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported"
+msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[\r\n                                submissions to be exported"
 msgstr ""
 
 msgid "Show all"
@@ -280,54 +253,6 @@ msgid "Filter by"
 msgstr ""
 
 msgid "Form"
-msgstr ""
-
-msgid "Form submitted"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "January"
-msgstr ""
-
-msgid "February"
-msgstr ""
-
-msgid "March"
-msgstr ""
-
-msgid "April"
-msgstr ""
-
-msgid "May"
-msgstr ""
-
-msgid "June"
-msgstr ""
-
-msgid "July"
-msgstr ""
-
-msgid "August"
-msgstr ""
-
-msgid "September"
-msgstr ""
-
-msgid "October"
-msgstr ""
-
-msgid "November"
-msgstr ""
-
-msgid "December"
-msgstr ""
-
-msgid "Day"
-msgstr ""
-
-msgid "Year"
 msgstr ""
 
 msgid "Formmaker Settings"
@@ -375,40 +300,31 @@ msgstr ""
 msgid "Form title"
 msgstr ""
 
-msgid "Hide Label"
-msgstr ""
-
 msgid "Hide Title"
 msgstr ""
 
 msgid "Use reCAPTCHA"
 msgstr ""
 
+msgid "Id"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "IP address"
+msgstr ""
+
+msgid "Mark exported as \"Archived\""
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
 msgid "Hide form title"
 msgstr ""
 
-msgid "Checkboxes"
-msgstr ""
-
-msgid "Date of birth"
-msgstr ""
-
-msgid "Email field"
-msgstr ""
-
-msgid "Html code"
-msgstr ""
-
-msgid "Pulldown"
-msgstr ""
-
-msgid "Radio bullets"
-msgstr ""
-
-msgid "Textfield"
-msgstr ""
-
-msgid "Text area"
+msgid "Form not found."
 msgstr ""
 
 msgid "Invalid slug."
@@ -418,9 +334,6 @@ msgid "Field not found."
 msgstr ""
 
 msgid "Type not found."
-msgstr ""
-
-msgid "Form not found."
 msgstr ""
 
 msgid "Formmaker"
