@@ -125,7 +125,7 @@ class TranslateCommand extends Command
 			$content = file_get_contents($fieldfile);
 
 			// field matches (optionlabel|label|title|tip): 'foo',
-			preg_match_all('/\s.(?:label|tip)(\:\s*)(\'|")((?:(?!\2).)+)\2\s*/', $content, $matches);
+			preg_match_all('/\s.(?:optionlabel|label|title|tip)(\:\s*)(\'|")((?:(?!\2).)+)\2\s*/', $content, $matches);
 			foreach ($matches[3] as $string) {
 				$translations[$string] = $string;
 				$i++;
