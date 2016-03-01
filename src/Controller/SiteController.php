@@ -38,12 +38,6 @@ class SiteController {
 				'title' => __($form->title),
 				'name' => 'bixie/formmaker/form.php'
 			],
-			'$formmaker' => [
-				'config' => $formmaker->publicConfig(),
-				'submission' => Submission::initData($form),
-				'formitem' => $form,
-				'fields' => array_values($form->getFields())
-			],
 			'node' => App::node()
 		];
 

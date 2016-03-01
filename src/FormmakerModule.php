@@ -72,15 +72,6 @@ class FormmakerModule extends Module {
 		}
 
 		$form->prepareView($app, $this);
-		$formmaker = $this;
-		$app->on('view.data', function ($event, $data) use ($form, $formmaker) {
-			$data->add('$formmaker', [
-				'config' => $this->publicConfig(),
-				'formitem' => $form,
-				'submission' => Submission::initData($form),
-				'fields' => array_values($form->getFields())
-			]);
-		});
 
 		return $app->view($view ?: 'bixie/formmaker/form.php');
 	}
