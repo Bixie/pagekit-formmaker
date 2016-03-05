@@ -71,6 +71,7 @@
         },
 
         created: function () {
+            this.$options.partials = this.$parent.$options.partials;
             //TODO don't retrieve entire form objects
             this.$resource('api/formmaker/form').get().then(function (res) {
                 this.forms = res.data;
