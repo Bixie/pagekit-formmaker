@@ -48,6 +48,19 @@ return [
 
     },
 
+    'enable' => function ($app) {
+		if (!$app->module('bixie/framework')) {
+			if (!$package = $app->package('bixie/framework')) {
+				throw new \RuntimeException('Bixie Framework required for Formmaker');
+			}
+			$app->module()->load($package->get('module'));
+			if (!$module = $app->module($package->get('module'))) {
+				throw new \RuntimeException('Unable to activate Bixie Framework');
+			}
+			(new \Pagekit\Installer\Package\PackageManager())->enable($package);
+		}
+    },
+
     'uninstall' => function ($app) {
 
         $util = $app['db']->getUtility();

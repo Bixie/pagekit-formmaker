@@ -22,12 +22,9 @@ class FormmakerModule extends Module {
 	 * {@inheritdoc}
 	 */
 	public function main (App $app) {
-		if (!in_array('bixie/framework', App::system()->config('extensions'))) {
-			throw new \RuntimeException('Bixie Framework required for Formmaker');
-		}
 
-		$app->on('boot', function () {
-			$this->framework = App::module('bixie/framework');
+		$app->on('boot', function () use ($app) {
+			$this->framework = $app->module('bixie/framework');
 		});
 
 		$app->subscribe(
