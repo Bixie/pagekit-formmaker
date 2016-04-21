@@ -43,24 +43,30 @@
 
     </form>
 
-    <div class="pk-text-large">{{ count }}</div>
+    <div v-show="!loading">
+        <div class="pk-text-large">{{ count }}</div>
 
-    <h3 class="uk-panel-title" v-show="!widget.done">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions' | transChoice count}}</h3>
+        <h3 class="uk-panel-title" v-show="!widget.done">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active
+            submissions' | transChoice count}}</h3>
 
-    <h3 class="uk-panel-title" v-else>{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>
+        <h3 class="uk-panel-title" v-else>{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice
+            count}}</h3>
 
-    <ul v-show="submissions.length" class="uk-list uk-list-line">
-        <li class="" v-for="submission in submissions | orderBy 'status ASC, created DESC'">
+        <ul v-show="submissions.length" class="uk-list uk-list-line">
+            <li class="" v-for="submission in submissions | orderBy 'status ASC, created DESC'">
             <span class="uk-float-right" :class="{'pk-icon-circle-danger': !submission.status,
 							  'pk-icon-circle-primary': submission.status == 1,
 							  'pk-icon-circle-success': submission.status == 2}"></span>
 
-            <a :href="$url.route('admin/formmaker/submissions#' + submission.id )">{{ submission.created | datetime }}</a>
-            <div class="uk-text-truncate uk-text-muted">
-                {{ submission.form_title }}<span v-if="submission.email"> | {{ submission.email }}</span>
-            </div>
-        </li>
-    </ul>
+                <a :href="$url.route('admin/formmaker/submissions#' + submission.id )">{{ submission.created | datetime
+                    }}</a>
+                <div class="uk-text-truncate uk-text-muted">
+                    {{ submission.form_title }}<span v-if="submission.email"> | {{ submission.email }}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
 
 </template>
 
@@ -88,6 +94,14 @@
 
         props: ['widget', 'editing'],
 
+        data: function () {
+            return {
+                loading: false,
+                submissions: [],
+                count: 0
+            };
+        },
+
         watch: {
 
             'widget.form': {
@@ -111,6 +125,7 @@
                     status: 1,
                     limit: this.widget.count
                 };
+                this.loading = true;
 
                 if (this.$get('widget.form').indexOf('all') === -1) {
                     filter['form'] = this.$get('widget.form');
@@ -124,6 +139,7 @@
 
                     this.$set('count', res.data.count);
                     this.$set('submissions', res.data.submissions);
+                    this.loading = false;
 
                 });
             },
