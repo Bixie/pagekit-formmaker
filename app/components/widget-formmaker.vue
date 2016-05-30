@@ -46,11 +46,9 @@
     <div v-show="!loading">
         <div class="pk-text-large">{{ count }}</div>
 
-        <h3 class="uk-panel-title" v-show="!widget.done">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active
-            submissions' | transChoice count}}</h3>
+        <h3 class="uk-panel-title" v-show="!widget.done">{{ '{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions' | transChoice count}}</h3>
 
-        <h3 class="uk-panel-title" v-else>{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice
-            count}}</h3>
+        <h3 class="uk-panel-title" v-else>{{ '{0} Submissions|{1} Submission|]1,Inf[ Submissions' | transChoice count}}</h3>
 
         <ul v-show="submissions.length" class="uk-list uk-list-line">
             <li class="" v-for="submission in submissions | orderBy 'status ASC, created DESC'">
