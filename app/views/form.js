@@ -30,6 +30,10 @@ module.exports = {
                     if (data.submission.thankyou) {
                         vm.$set('thankyou', data.submission.thankyou);
                     }
+                    if (this.formitem.data.google_datalayer) {
+                        var dataLayer = window.dataLayer || [];
+                        dataLayer.push({'event': 'form-' + this.formitem.slug});
+                    }
                     if (data.submission.redirect) {
                         window.location.replace(data.submission.redirect);
                     }
