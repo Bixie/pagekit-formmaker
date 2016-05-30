@@ -19,10 +19,14 @@ return [
 		$id = $widget->get('form_id');
 		$formmaker = $app->module('bixie/formmaker');
 
-		return $formmaker->renderForm($app, $id, [
-			'hide_title' => $widget->get('hide_title'),
-			'formStyle' => $widget->get('formStyle')
-		]);
+		try {
+			return $formmaker->renderForm($app, $id, [
+				'hide_title' => $widget->get('hide_title'),
+				'formStyle' => $widget->get('formStyle')
+			]);
+		} catch (\Pagekit\Application\Exception $e) {
+			return $e->getMessage();
+		}
     }
 
 ];

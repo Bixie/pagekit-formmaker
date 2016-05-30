@@ -34,7 +34,14 @@ class FormmakerPlugin implements EventSubscriberInterface
 		$app = App::getInstance();
 		$form_id = $options['id'];
 		unset($options['id']);
-		return $formmaker->renderForm($app, $form_id, $options);
+
+		try {
+
+			return $formmaker->renderForm($app, $form_id, $options);
+
+		} catch (App\Exception $e) {
+			return $e->getMessage();
+		}
 	}
 
     /**
