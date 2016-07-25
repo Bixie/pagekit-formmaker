@@ -44,9 +44,19 @@ $view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['bixie-fi
 				    <div class="uk-width-medium-1-4">
 						<h3>{{ 'Plugin code' | trans }}</h3>
 						<p>{{ 'Add this code to any Pagekit content to show the form.' | trans }}</p>
-						<kbd>(formmaker){"id":"{{ formitem.id }}"}</kbd>
+						<kbd>
+							(formmaker){<br>
+							  "id":"{{ formitem.id }}"<br>
+							}
+						</kbd>
 						<p>{{ 'Optionally, you can hide the title of the form.' | trans }}</p>
-						<kbd>(formmaker){"id":"{{ formitem.id }}", "hide_title":"1", "formStyle": "uk-form-stacked"}</kbd>
+						<kbd>
+							(formmaker){<br>
+							  "id":"{{ formitem.id }}",<br>
+							  "hide_title":"1",<br>
+							  "formStyle": "uk-form-stacked"<br>
+							}
+						</kbd>
 					</div>
 				</div>
 			</div>
