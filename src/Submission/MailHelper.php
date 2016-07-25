@@ -5,6 +5,7 @@ namespace Bixie\Formmaker\Submission;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Bixie\Formmaker\Model\Submission;
+use Pagekit\Mail\Message;
 
 class MailHelper {
 
@@ -22,32 +23,40 @@ class MailHelper {
 	}
 
 	/**
-	 * @return string
+	 * @return MailHelper
 	 */
 	public function sendMail () {
 		if (!$adminMail = $this->submission->form->get('submitEmail')) {
-			return '';
+			return $this;
 		}
-		$userMail = '';
+		$user_email = $this->submission->email ? : false;
 		$mailSubject = $this->replaceString($this->submission->form->get('email_subject'));
 		$mailBody = $this->replaceString($this->submission->form->get('email_body'));
 		$mailBody = App::content()->applyPlugins($mailBody, ['submission' => $this->submission, 'markdown' => $this->submission->form->get('email_body_markdown')]);
 		try {
-
+			/** @var Message $mail */
 			$mail = App::mailer()->create();
-			$mail->setTo($adminMail)->setSubject($mailSubject)->setBody(App::view('bixie/formmaker/mails/template.php', compact('mailBody')), 'text/html')->send();
+			if ($user_email && $this->submission->form->get('use_replyto', 0)) {
+				$mail->setReplyTo($user_email);
+			}
+			$mail->setTo($adminMail)
+				->setSubject($mailSubject)
+				->setBody(App::view('bixie/formmaker/mails/template.php', compact('mailBody')), 'text/html')
+				->send();
 
-			if ($this->submission->email) {
-
+			if ($user_email) {
 				$mail = App::mailer()->create();
-				$mail->setTo($this->submission->email)->setSubject($mailSubject)->setBody(App::view('bixie/formmaker/mails/template.php', compact('mailBody')), 'text/html')->send();
+				$mail->setTo($user_email)
+					->setSubject($mailSubject)
+					->setBody(App::view('bixie/formmaker/mails/template.php', compact('mailBody')), 'text/html')
+					->send();
 			}
 
 		} catch (\Exception $e) {
 			throw new Exception(__('Unable to send confirmation mail.'));
 		}
 
-		return $userMail;
+		return $this;
 	}
 
 	public function replaceString ($string, $arraySeparator = ', ') {

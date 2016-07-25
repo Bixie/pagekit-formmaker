@@ -15,6 +15,15 @@
                     </div>
                 </div>
 
+                <div class="uk-form-row">
+                    <span class="uk-form-label">{{ 'Reply to' | trans }}</span>
+
+                    <div class="uk-form-controls uk-form-controls-text">
+                        <label><input type="checkbox" value="use_replyto" v-model="formitem.data.use_replyto"> {{ 'Use as reply-to address for email' |
+                            trans }}</label>
+                    </div>
+                </div>
+
                 <div class="uk-alert" v-show="formitem.data.user_email_field">
                     {{ 'Email address from field "%field%" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>
                 <div class="uk-alert uk-alert-warning" v-show="!formitem.data.user_email_field">
