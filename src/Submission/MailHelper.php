@@ -35,6 +35,7 @@ class MailHelper {
 		try {
 
 			$mail = App::mailer()->create();
+			$mail->getHeaders()->addTextHeader('Reply-To', $this->submission->email);
 			$mail->setTo($adminMail)->setSubject($mailSubject)->setBody(App::view('bixie/formmaker/mails/template.php', compact('mailBody')), 'text/html')->send();
 
 			if ($this->submission->email) {
