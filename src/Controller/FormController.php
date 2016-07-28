@@ -35,7 +35,7 @@ class FormController {
 				'name' => 'bixie/formmaker/admin/edit.php'
 			],
 			'$data' => [
-				'config' => $formmaker->publicConfig(),
+				'config' => $formmaker->config(),
 				'types' => $formmaker->getFieldTypes(),
 				'formitem' => $form
 			]
