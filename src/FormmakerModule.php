@@ -78,6 +78,6 @@ class FormmakerModule extends Module {
 	 * @return array
 	 */
 	public function publicConfig () {
-		return array_intersect_key(static::config(), array_flip(['recaptha_secret_key', 'from_address']));
+		return array_intersect_key(static::config(), array_flip(['recaptha_sitekey']));
 	}
 }
