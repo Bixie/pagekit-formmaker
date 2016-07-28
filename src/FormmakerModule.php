@@ -78,8 +78,6 @@ class FormmakerModule extends Module {
 	 * @return array
 	 */
 	public function publicConfig () {
-		$config = static::config();
-		unset($config['recaptha_secret_key']);
-		return $config;
+		return array_intersect_key(static::config(), array_flip(['recaptha_secret_key', 'from_address']));
 	}
 }
