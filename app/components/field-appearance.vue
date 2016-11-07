@@ -4,7 +4,7 @@
 
         <partial name="fieldtype-appearance"></partial>
 
-        <fields :config="appearanceSettings" :model.sync="field.data" template="formrow"></fields>
+        <bixie-fields :config="appearanceSettings" :values.sync="field.data"></bixie-fields>
 
     </div>
 
