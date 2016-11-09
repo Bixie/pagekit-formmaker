@@ -6,8 +6,8 @@
             <span class="uk-form-label">{{ 'Title' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">
-                <label><input type="checkbox" value="hide-title" v-model="formitem.data.hide_title"> {{ 'Hide Title' |
-                    trans }}</label>
+                <label><input type="checkbox" value="hide-title"
+                              v-model="formitem.data.hide_title"> {{ 'Hide Title' | trans }}</label>
             </div>
         </div>
 

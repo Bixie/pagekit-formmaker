@@ -34,8 +34,9 @@
                     <span class="uk-form-label">{{ 'Google Datalayer' | trans }}</span>
 
                     <div class="uk-form-controls uk-form-controls-text">
-                        <label><input type="checkbox" v-model="formitem.data.google_datalayer"> {{ 'Push event to Google Datalayer' |
-                            trans }}</label>
+                        <label>
+                            <input type="checkbox"
+                                   v-model="formitem.data.google_datalayer"> {{ 'Push event to Google Datalayer' | trans }}</label>
                     </div>
                 </div>
 

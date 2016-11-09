@@ -19,8 +19,9 @@
                     <span class="uk-form-label">{{ 'Reply to' | trans }}</span>
 
                     <div class="uk-form-controls uk-form-controls-text">
-                        <label><input type="checkbox" value="use_replyto" v-model="formitem.data.use_replyto"> {{ 'Use as reply-to address for email' |
-                            trans }}</label>
+                        <label>
+                            <input type="checkbox" value="use_replyto"
+                                  v-model="formitem.data.use_replyto"> {{ 'Use as reply-to address for email' | trans }}</label>
                     </div>
                 </div>
 

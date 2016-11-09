@@ -144,8 +144,8 @@
                 <span v-else>{{ 'Export' | trans }}</span>
             </button>
             <a :href="csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
-               v-show="csvLink" v-el:exportlink><i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' |
-                trans }}</a>
+               v-show="csvLink" v-el:exportlink>
+                <i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
         </div>
     </div>
 

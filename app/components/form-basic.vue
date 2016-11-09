@@ -35,8 +35,8 @@
 
             <div class="uk-form-controls uk-form-controls-text">
                 <label v-show="config.recaptha_sitekey && config.recaptha_secret_key">
-                    <input type="checkbox" value="hide-title" v-model="formitem.data.recaptcha"> {{ 'Use reCAPTCHA' |
-                    trans }}</label>
+                    <input type="checkbox" value="hide-title"
+                           v-model="formitem.data.recaptcha"> {{ 'Use reCAPTCHA' | trans }}</label>
                 <a  v-else class="uk-link-muted" :href="$url.route('admin/system/package/extensions')">{{ 'Enter reCAPTCHA keys in the extension settings' | trans }}</a>
             </div>
         </div>
