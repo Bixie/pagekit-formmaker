@@ -2,9 +2,9 @@
   "name": "bixie/formmaker",
   "module": "bixie/formmaker",
   "type": "pagekit-extension",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "title": "Formmaker",
-  "description": "Create forms in your Pagekit site. Build forms and manage the submissions.",
+  "description": "Create forms in your Pagekit site. Build forms and manage the submissions. Requires the Bixie Framework, available on the Pagekit Marketplace.",
   "license": "MIT",
   "authors": [
     {
@@ -18,7 +18,6 @@
     "scripts": "scripts.php"
   },
   "require": {
-    "bixie/framework": "^0.1",
     "google/recaptcha": "~1.1"
   }
 }
