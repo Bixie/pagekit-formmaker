@@ -1,5 +1,14 @@
 <?php $view->script('forms-formmaker', 'bixie/formmaker:app/bundle/forms.js', ['vue', 'uikit-nestable']) ?>
 
+<?php if ($frameworkValid !== true) : ?>
+	<div class="uk-alert uk-alert-warning">
+		<p><?=$frameworkValid?></p>
+		<p><a href="<?=$view->url('admin/system/marketplace/extensions')?>">
+				{{ 'Download and install the Bixie Framework via the Pagekit Marketplace.' | trans}}
+			</a></p>
+	</div>
+<?php endif; ?>
+
 <div id="formmaker-forms" class="uk-form uk-form-horizontal" v-cloak>
 
 	<div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>

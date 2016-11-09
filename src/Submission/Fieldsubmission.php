@@ -2,7 +2,7 @@
 
 namespace Bixie\Formmaker\Submission;
 
-use Bixie\Framework\FieldValue\FieldValueBase;
+use Bixie\PkFramework\FieldValue\FieldValueBase;
 use Bixie\Formmaker\Model\Field;
 use Pagekit\Application as App;
 

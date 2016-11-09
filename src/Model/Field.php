@@ -2,7 +2,7 @@
 
 namespace Bixie\Formmaker\Model;
 
-use Bixie\Framework\Field\FieldBase;
+use Bixie\PkFramework\Field\FieldBase;
 use Pagekit\Application as App;
 use Pagekit\User\Model\AccessModelTrait;
 

@@ -2,7 +2,7 @@
 
 namespace Bixie\Formmaker\Controller;
 
-use Bixie\Framework\FieldValue\FieldValue;
+use Bixie\PkFramework\FieldValue\FieldValue;
 use Pagekit\Application as App;
 use Pagekit\Application\Exception;
 use Pagekit\Util\ArrObject;

@@ -9,8 +9,12 @@ use Pagekit\Module\Module;
 use Bixie\Formmaker\Model\Form;
 
 class FormmakerModule extends Module {
+    /**
+     * Bixie Framework Module version
+     */
+    const REQUIRED_FRAMEWORK_VERSION = '0.1.6';
 	/**
-	 * @var \Bixie\Framework\FrameworkModule
+	 * @var \Bixie\PkFramework\FrameworkModule
 	 */
 	protected $framework;
 	/**
@@ -24,7 +28,7 @@ class FormmakerModule extends Module {
 	public function main (App $app) {
 
 		$app->on('boot', function () use ($app) {
-			$this->framework = $app->module('bixie/framework');
+			$this->framework = $app->module('bixie/pk-framework');
 		});
 
 		$app->subscribe(
@@ -35,7 +39,7 @@ class FormmakerModule extends Module {
 
 	/**
 	 * @param  string $type
-	 * @return \Bixie\Framework\FieldType\FieldTypeBase
+	 * @return \Bixie\PkFramework\FieldType\FieldTypeBase
 	 */
 	public function getFieldType ($type) {
 		$types = $this->getFieldTypes();
@@ -47,6 +51,9 @@ class FormmakerModule extends Module {
 	 * @return array
 	 */
 	public function getFieldTypes () {
+        if (!$this->framework) {
+            return [];
+        }
 		if (!$this->fieldTypes) {
 			$this->fieldTypes = $this->framework->getFieldTypes('bixie/formmaker');
 		}
@@ -54,8 +61,18 @@ class FormmakerModule extends Module {
 		return $this->fieldTypes;
 	}
 
+    /**
+     * @param App   $app
+     * @param int   $form_id
+     * @param array $options
+     * @param null  $view
+     * @return mixed
+     */
 	public function renderForm (App $app, $form_id, $options = [], $view = null) {
 
+        if (!$this->framework) {
+            throw new App\Exception('Bixie Framework Extension required!');
+        }
 		$user = $app->user();
 		/** @var Form $form */
 		if (!$form = Form::where(['id = ?'], [$form_id])->where(function ($query) use ($user) {
@@ -80,4 +97,20 @@ class FormmakerModule extends Module {
 	public function publicConfig () {
 		return array_intersect_key(static::config(), array_flip(['recaptha_sitekey']));
 	}
+
+    /**
+     * @return bool|string
+     */
+    public function checkFramework () {
+        if (!$package = App::package('bixie/pk-framework')) {
+            return __('Please install the Bixie Framework.');
+        }
+        if (!$module = App::module('bixie/pk-framework')) {
+            return __('Please enable the Bixie Framework.');
+        }
+        if (version_compare(self::REQUIRED_FRAMEWORK_VERSION, $package->get('version')) == 1) {
+            return __('Please update the Bixie Framework to version %version%.', ['%version%' => self::REQUIRED_FRAMEWORK_VERSION]);
+        }
+        return true;
+    }
 }

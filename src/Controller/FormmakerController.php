@@ -15,6 +15,7 @@ class FormmakerController {
 	 * @Route("/", methods="GET")
 	 */
 	public function indexAction () {
+        $formmaker = App::module('bixie/formmaker');
 
 		return [
 			'$view' => [
@@ -22,8 +23,9 @@ class FormmakerController {
 				'name' => 'bixie/formmaker/admin/forms.php'
 			],
 			'$data' => [
-				'config' => App::module('bixie/formmaker')->config()
-			]
+				'config' => $formmaker->config()
+			],
+            'frameworkValid' => $formmaker->checkFramework()
 		];
 	}
 
@@ -32,6 +34,7 @@ class FormmakerController {
 	 * @Request({"filter": "array", "page":"int"})
 	 */
 	public function submissionsAction ($filter = null, $page = 0) {
+        $formmaker = App::module('bixie/formmaker');
 
 		return [
 			'$view' => [
@@ -45,7 +48,8 @@ class FormmakerController {
 					'filter' => $filter,
 					'page'   => $page
 				]
-			]
+			],
+            'frameworkValid' => $formmaker->checkFramework()
 		];
 	}
 
