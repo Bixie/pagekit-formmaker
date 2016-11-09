@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="uk-modal-spinner" v-show="!loaded"></div>
+        <div class="uk-modal-spinner" v-if="!loaded"></div>
         <form v-else id="field-edit" class="uk-form" name="fieldform" v-validator="form" @submit.prevent="save | valid">
 
             <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
@@ -22,13 +22,13 @@
                 </div>
             </div>
 
-            <ul class="uk-tab" v-el:tab>
+            <ul class="uk-tab" data-uk-tab="connect:'#field-edit-switcher'">
                 <li><a>{{ type.label | trans }}</a></li>
                 <li v-if="type.hasOptions"><a>{{ 'Options' | trans }}</a></li>
                 <li><a>{{ 'Appearance' | trans }}</a></li>
             </ul>
 
-            <div class="uk-switcher uk-margin" v-el:content>
+            <div id="field-edit-switcher" class="uk-switcher uk-margin">
                 <div>
                     <fieldbasic :field.sync="field" :type.sync="type" :roles="roles" :form="form"></fieldbasic>
                 </div>
@@ -86,8 +86,8 @@
                 this.$set('roles', res.data.roles);
                 this.field.form_id = this.formitem.id;
 
-                UIkit.tab(this.$els.tab, {connect: this.$els.content});
                 this.loaded = true;
+//                UIkit.tab(this.$els.tab, {connect: this.$els.content});
             });
 
 

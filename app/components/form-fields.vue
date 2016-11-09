@@ -46,7 +46,7 @@
             </div>
 
             <ul class="uk-nestable uk-margin-remove" v-el:nestable v-show="fields.length">
-                <field v-for="field in fields | orderBy 'priority'" :field="field"></field>
+                <form-field v-for="field in fields | orderBy 'priority'" :field="field"></form-field>
 
             </ul>
 
@@ -190,7 +190,7 @@
 
         components: {
 
-            field: {
+            'form-field': {
 
                 props: ['field'],
 

@@ -4,7 +4,7 @@
 
         <partial name="fieldtype-appearance"></partial>
 
-        <bixie-fields :config="appearanceSettings" :values.sync="field.data"></bixie-fields>
+        <bixie-fields v-if="hasAppearanceSettings" :config="appearanceSettings" :values.sync="field.data"></bixie-fields>
 
     </div>
 
@@ -17,6 +17,9 @@
         props: ['field', 'form'],
 
         computed: {
+            hasAppearanceSettings: function () {
+                return _.size(this.appearanceSettings) > 0;
+            },
             appearanceSettings: function () {
                 return this.field.type ? BixieFieldtypes.components[this.field.type].appearance || BixieFieldtypes.components[this.field.type].options.appearance : {};
             }
