@@ -37,8 +37,8 @@ module.exports = {
                     if (data.submission.redirect) {
                         window.location.replace(data.submission.redirect);
                     }
-                }, function (error) {
-                    this.error = this.$trans(error);
+                }, function (res) {
+                    this.error = this.$trans(res.data.message || res.data);
                 });
         }
 
