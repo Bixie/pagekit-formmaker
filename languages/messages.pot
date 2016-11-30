@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pagekit 0.10.3 (bixie/formmaker, messages)\n"
-"POT-Creation-Date: 2016-02-29 15:21+0000\n"
+"Project-Id-Version: Pagekit 1.0.8 (bixie/formmaker, messages)\n"
+"POT-Creation-Date: 2016-11-30 23:11+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,136 +12,22 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-msgid "Please enter a title"
-msgstr ""
-
-msgid "Slug"
-msgstr ""
-
-msgid "Status"
-msgstr ""
-
-msgid "Disabled"
-msgstr ""
-
-msgid "Enabled"
-msgstr ""
-
-msgid "Google reCAPTCHA"
-msgstr ""
-
-msgid "Enter reCAPTCHA keys in the extension settings"
-msgstr ""
-
 msgid "Save form before adding fields."
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-msgid "Add Field"
-msgstr ""
-
-msgid "Label"
-msgstr ""
-
-msgid "Required"
-msgstr ""
-
-msgid "Type"
-msgstr ""
-
-msgid "No fields found."
-msgstr ""
-
-msgid "Form style"
-msgstr ""
-
-msgid "Form stacked"
-msgstr ""
-
-msgid "Form horizontal"
-msgstr ""
-
-msgid "Class suffix"
-msgstr ""
-
-msgid "Text submit button"
-msgstr ""
-
-msgid "Required error message"
-msgstr ""
-
-msgid "reCAPTCHA label"
-msgstr ""
-
-msgid "Empty for no label"
-msgstr ""
-
-msgid "reCAPTCHA setup"
-msgstr ""
-
-msgid "After submit"
-msgstr ""
-
-msgid "Show Thank you message"
-msgstr ""
-
-msgid "Redirect to page"
-msgstr ""
-
-msgid "Enable Markdown"
-msgstr ""
-
-msgid "Redirect"
 msgstr ""
 
 msgid "Available variables"
 msgstr ""
 
+msgid "After submit"
+msgstr ""
+
 msgid "User email field"
-msgstr ""
-
-msgid "Select a field"
-msgstr ""
-
-msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
-msgstr ""
-
-msgid "No email field is selected for user confirmation mail."
-msgstr ""
-
-msgid "Email copy of submission to"
-msgstr ""
-
-msgid "Please enter valid email address"
-msgstr ""
-
-msgid "No email will be sent to the user when no address is entered here!"
-msgstr ""
-
-msgid "Email subject"
-msgstr ""
-
-msgid "Edit"
-msgstr ""
-
-msgid "Add"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "Options"
-msgstr ""
-
-msgid "Appearance"
 msgstr ""
 
 msgid "Manage options"
 msgstr ""
 
-msgid "Add option"
+msgid "Edit"
 msgstr ""
 
 msgid "Thank you for your submission"
@@ -183,6 +69,228 @@ msgstr ""
 msgid "%type% saved."
 msgstr ""
 
+msgid "Submission for form \\"%formtitle%\\""
+msgstr ""
+
+msgid "Export submissions as CSV file"
+msgstr ""
+
+msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[\n                            submissions to be exported"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Filter by"
+msgstr ""
+
+msgid "Form"
+msgstr ""
+
+msgid "Formmaker Settings"
+msgstr ""
+
+msgid "Filter forms"
+msgstr ""
+
+msgid "{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Add option"
+msgstr ""
+
+msgid "Hide Title"
+msgstr ""
+
+msgid "Form style"
+msgstr ""
+
+msgid "Form stacked"
+msgstr ""
+
+msgid "Form horizontal"
+msgstr ""
+
+msgid "Class suffix"
+msgstr ""
+
+msgid "Text submit button"
+msgstr ""
+
+msgid "Required error message"
+msgstr ""
+
+msgid "reCAPTCHA label"
+msgstr ""
+
+msgid "Empty for no label"
+msgstr ""
+
+msgid "reCAPTCHA setup"
+msgstr ""
+
+msgid "Please enter a title"
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Google reCAPTCHA"
+msgstr ""
+
+msgid "Use reCAPTCHA"
+msgstr ""
+
+msgid "Enter reCAPTCHA keys in the extension settings"
+msgstr ""
+
+msgid "Select a field"
+msgstr ""
+
+msgid "Reply to"
+msgstr ""
+
+msgid "Use as reply-to address for email"
+msgstr ""
+
+msgid "Email address from field \"%field%\" will be used to confirm submission to the user."
+msgstr ""
+
+msgid "No email field is selected for user confirmation mail."
+msgstr ""
+
+msgid "Email copy of submission to"
+msgstr ""
+
+msgid "Please enter valid email address"
+msgstr ""
+
+msgid "No email will be sent to the user when no address is entered here!"
+msgstr ""
+
+msgid "Email subject"
+msgstr ""
+
+msgid "Enable Markdown"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Add Field"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "No fields found."
+msgstr ""
+
+msgid "Show Thank you message"
+msgstr ""
+
+msgid "Redirect to page"
+msgstr ""
+
+msgid "Redirect"
+msgstr ""
+
+msgid "Google Datalayer"
+msgstr ""
+
+msgid "Push event to Google Datalayer"
+msgstr ""
+
+msgid "Default mail address"
+msgstr ""
+
+msgid "Google reCAPTCHA sitekey"
+msgstr ""
+
+msgid "Google reCAPTCHA secret key"
+msgstr ""
+
+msgid "Setup your reCaptcha keys at Google Recaptcha"
+msgstr ""
+
+msgid "Submissions per page"
+msgstr ""
+
+msgid "Select form"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Data to export"
+msgstr ""
+
+msgid "Id"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "IP address"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Fields to export"
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "Mark exported as \"Archived\""
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
 msgid "Submission for form \"%formtitle%\""
 msgstr ""
 
@@ -204,78 +312,6 @@ msgstr ""
 msgid "Submission data"
 msgstr ""
 
-msgid "Close"
-msgstr ""
-
-msgid "Submission for form \"%formtitle%\""
-msgstr ""
-
-msgid "Export submissions as CSV file"
-msgstr ""
-
-msgid "Select form"
-msgstr ""
-
-msgid "Archived"
-msgstr ""
-
-msgid "Active"
-msgstr ""
-
-msgid "Done"
-msgstr ""
-
-msgid "Data to export"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Fields to export"
-msgstr ""
-
-msgid "Filename"
-msgstr ""
-
-msgid "Archive"
-msgstr ""
-
-msgid "Export"
-msgstr ""
-
-msgid "{0} submissions to be exported|{1} submission to be exported|]1,Inf[\r\n                                submissions to be exported"
-msgstr ""
-
-msgid "Show all"
-msgstr ""
-
-msgid "Filter by"
-msgstr ""
-
-msgid "Form"
-msgstr ""
-
-msgid "Formmaker Settings"
-msgstr ""
-
-msgid "Default mail address"
-msgstr ""
-
-msgid "Google reCAPTCHA sitekey"
-msgstr ""
-
-msgid "Google reCAPTCHA secret key"
-msgstr ""
-
-msgid "Setup your reCaptcha keys at Google Recaptcha"
-msgstr ""
-
-msgid "Submissions per page"
-msgstr ""
-
-msgid "Filter forms"
-msgstr ""
-
 msgid "Done submissions"
 msgstr ""
 
@@ -288,9 +324,6 @@ msgstr ""
 msgid "Number of submissions"
 msgstr ""
 
-msgid "{0} Active submissions|{1} Active submission|]1,Inf[ Active submissions"
-msgstr ""
-
 msgid "{0} Submissions|{1} Submission|]1,Inf[ Submissions"
 msgstr ""
 
@@ -298,27 +331,6 @@ msgid "Title cannot be blank."
 msgstr ""
 
 msgid "Form title"
-msgstr ""
-
-msgid "Hide Title"
-msgstr ""
-
-msgid "Use reCAPTCHA"
-msgstr ""
-
-msgid "Id"
-msgstr ""
-
-msgid "Email"
-msgstr ""
-
-msgid "IP address"
-msgstr ""
-
-msgid "Mark exported as \"Archived\""
-msgstr ""
-
-msgid "Download"
 msgstr ""
 
 msgid "Hide form title"
@@ -346,6 +358,15 @@ msgid "Form not found!"
 msgstr ""
 
 msgid "Insufficient User Rights."
+msgstr ""
+
+msgid "Please install the Bixie Framework."
+msgstr ""
+
+msgid "Please enable the Bixie Framework."
+msgstr ""
+
+msgid "Please update the Bixie Framework to version %version%."
 msgstr ""
 
 msgid "Field type not found."
