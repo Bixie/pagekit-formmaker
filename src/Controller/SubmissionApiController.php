@@ -118,7 +118,10 @@ class SubmissionApiController {
 		$submission->email = $submission->getUserEmail();
 
 		if ($id == 0) {
-			try {
+
+            App::trigger('formmaker.form.submission', [$form, $submission]);
+
+            try {
 
 				(new MailHelper($submission))->sendMail();
 
