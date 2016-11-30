@@ -96,7 +96,7 @@
 
         props: ['formitem', 'types', 'form'],
 
-        data: function () {
+        data() {
             return {
                 fields: [],
                 selected: [],
@@ -104,12 +104,12 @@
             };
         },
 
-        created: function () {
+        created() {
             this.Fields = this.$resource('api/formmaker/field{/id}');
             this.load();
         },
 
-        ready: function () {
+        ready() {
 
             var vm = this;
 
@@ -132,37 +132,37 @@
 
         methods: {
 
-            load: function () {
-                return this.Fields.query({form_id: this.formitem.id}).then(function (res) {
+            load() {
+                return this.Fields.query({form_id: this.formitem.id}).then(res => {
                     this.$set('fields', res.data);
                     this.$set('selected', []);
                 });
             },
 
-            toggleRequired: function (field) {
+            toggleRequired(field) {
 
                 field.data.required = field.data.required ? 0 : 1;
 
                 this.Fields.save({id: field.id}, {field: field}).then(function () {
                     this.load();
                     this.$notify('Field saved.');
-                }, function (res) {
+                }, res => {
                     this.load();
                     this.$notify(res.data, 'danger');
                 });
             },
 
-            getSelected: function () {
+            getSelected() {
                 return this.fields.filter(function (field) {
                     return this.isSelected(field);
                 }, this);
             },
 
-            isSelected: function (field) {
+            isSelected(field) {
                 return this.selected.indexOf(field.id.toString()) !== -1;
             },
 
-            toggleSelect: function (field) {
+            toggleSelect(field) {
 
                 var index = this.selected.indexOf(field.id.toString());
 
@@ -173,11 +173,11 @@
                 }
             },
 
-            getFieldType: function (field) {
+            getFieldType(field) {
                 return _.find(this.types, 'id', field.type);
             },
 
-            removeFields: function () {
+            removeFields() {
 
                 this.Fields.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
                     this.load();
@@ -197,7 +197,7 @@
                 template: '#field',
 
                 computed: {
-                    type: function () {
+                    type() {
                         return this.$parent.getFieldType(this.field);
                     }
 

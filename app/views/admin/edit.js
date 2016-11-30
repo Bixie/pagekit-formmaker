@@ -23,26 +23,26 @@ module.exports = {
         }, window.$data);
     },
 
+    ready() {
+        this.Forms = this.$resource('api/formmaker/form{/id}');
+        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
+    },
+
     events: {
         'close.editmodal': function () {
             this.$refs.formfields.load();
         }
     },
 
-    ready: function () {
-        this.Forms = this.$resource('api/formmaker/form{/id}');
-        this.tab = UIkit.tab(this.$els.tab, {connect: this.$els.content});
-    },
-
     computed: {
-        formfields: function () {
+        formfields() {
             return this.$refs.formfields ? this.$refs.formfields.fields : [];
         }
     },
 
     methods: {
 
-        save: function () {
+        save() {
 
             var data = {formitem: this.formitem};
 
@@ -63,7 +63,7 @@ module.exports = {
             });
         },
 
-        editFormField: function (id) {
+        editFormField(id) {
             this.editid = id;
             this.$refs.editmodal.open();
 //                this.$nextTick(function () {

@@ -69,17 +69,14 @@
 
         methods: {
 
-            save: function () {
+            save() {
                 this.$http.post('admin/system/settings/config', {
                     name: 'bixie/formmaker',
                     config: this.package.config
-                }, function () {
-                    this.$notify('Settings saved.', '');
-                }).error(function (data) {
-                    this.$notify(data, 'danger');
-                }).always(function () {
-                    this.$parent.close();
-                });
+                })
+                    .then(() => this.$notify('Settings saved.', ''))
+                    .error(res => this.$notify(res.data, 'danger'))
+                    .always(() =>this.$parent.close());
             }
 
         }

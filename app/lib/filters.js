@@ -1,4 +1,4 @@
-module.exports = function (Vue) {
+module.exports = (Vue) => {
 
     Vue.filter('datetime', function (date) {
         if (typeof date === 'string') {
@@ -7,7 +7,7 @@ module.exports = function (Vue) {
         return date ? this.$date(date, 'mediumDate') + ', ' + this.$date(date, 'HH:mm:ss') : '';
     });
 
-    Vue.filter('shortcode', function (slug, key) {
+    Vue.filter('shortcode', (slug, key) => {
         return '$$ ' + slug + ':' + key + ' $$';
     });
 

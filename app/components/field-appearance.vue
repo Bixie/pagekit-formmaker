@@ -17,10 +17,10 @@
         props: ['field', 'form'],
 
         computed: {
-            hasAppearanceSettings: function () {
+            hasAppearanceSettings() {
                 return _.size(this.appearanceSettings) > 0;
             },
-            appearanceSettings: function () {
+            appearanceSettings() {
                 return this.field.type ? BixieFieldtypes.components[this.field.type].appearance || BixieFieldtypes.components[this.field.type].options.appearance : {};
             }
         }

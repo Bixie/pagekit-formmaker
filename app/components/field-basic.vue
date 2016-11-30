@@ -38,7 +38,7 @@
         props: ['field', 'type', 'roles', 'form'],
 
         computed: {
-            fieldSettings: function () {
+            fieldSettings() {
                 var settings = this.field.type ? BixieFieldtypes.components[this.field.type].settings || BixieFieldtypes.components[this.field.type].options.settings : {},
                         parent = this;
                 if (settings.template !== undefined) {

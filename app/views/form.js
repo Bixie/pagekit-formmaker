@@ -14,9 +14,9 @@ module.exports = {
 
     methods: {
 
-        save: function () {
+        save() {
 
-            var vm = this, data = {submission: this.submission};
+            var data = {submission: this.submission};
 
             this.$set('message', '');
             this.$set('error', '');
@@ -24,11 +24,11 @@ module.exports = {
             this.$broadcast('submit', data);
 
             this.$http.post('api/formmaker/submission', data)
-                .then(function (res) {
+                .then(res => {
                     data = res.data;
                     this.message = data.message;
                     if (data.submission.thankyou) {
-                        vm.$set('thankyou', data.submission.thankyou);
+                        this.$set('thankyou', data.submission.thankyou);
                     }
                     if (this.formitem.data.google_datalayer) {
                         var dataLayer = window.dataLayer || [];
@@ -37,9 +37,7 @@ module.exports = {
                     if (data.submission.redirect) {
                         window.location.replace(data.submission.redirect);
                     }
-                }, function (res) {
-                    this.error = this.$trans(res.data.message || res.data);
-                });
+                }, res => this.error = this.$trans(res.data.message || res.data));
         }
 
     },
@@ -50,6 +48,6 @@ module.exports = {
 
 };
 
-Vue.ready(function () {
+Vue.ready(() => {
     window.Formmaker = new Vue(module.exports);
 });

@@ -2,7 +2,7 @@ module.exports = {
 
     el: '#formmaker-submissions',
 
-    data: function () {
+    data() {
         return _.merge({
             submissions: false,
             submissionID: 0,
@@ -34,7 +34,7 @@ module.exports = {
         'config.page': 'load',
 
         'config.filter': {
-            handler: function () { this.load(0); },
+            handler: function() {this.load(0);},
             deep: true
         }
 
@@ -42,18 +42,18 @@ module.exports = {
 
     computed: {
 
-        statusOptions: function () {
+        statusOptions() {
 
-            var options = _.map(this.statuses, function (status, id) {
+            var options = _.map(this.statuses, (status, id) => {
                 return { text: status, value: id };
             });
 
             return [{ text: this.$trans('Status'), value: '' }, { text: this.$trans('Show all'), value: 'all' }, { label: this.$trans('Filter by'), options: options }];
         },
 
-        formOptions: function () {
+        formOptions() {
 
-            var options = _.map(this.forms, function (form) {
+            var options = _.map(this.forms, form => {
                 return { text: form.title, value: form.id };
             });
 
@@ -64,11 +64,11 @@ module.exports = {
 
     methods: {
 
-        load: function (page) {
+        load(page) {
 
             page = page !== undefined ? page : this.config.page;
 
-            this.resource.query({ filter: this.config.filter, page: page }).then(function (res) {
+            this.resource.query({ filter: this.config.filter, page: page }).then(res => {
                 this.$set('submissions', res.data.submissions);
                 this.$set('pages', res.data.pages);
                 this.$set('count', res.data.count);
@@ -78,69 +78,65 @@ module.exports = {
             });
         },
 
-        checkDetailHash: function () {
+        checkDetailHash() {
             if (this.$url.current.hash) {
-                var id = parseInt(this.$url.current.hash, 10), submission = _.find(this.submissions, function (submission) {
-                    return submission.id === id;
-                });
+                var id = parseInt(this.$url.current.hash, 10),
+                    submission = _.find(this.submissions, submission => submission.id === id);
                 if (submission) {
                     this.submissionDetails(submission);
                 }
             }
         },
 
-        active: function (submission) {
+        active(submission) {
             return this.selected.indexOf(submission.id) !== -1;
         },
 
-        getSelected: function () {
-            return this.submissions.filter(function(submission) { return this.selected.indexOf(submission.id) !== -1; }, this);
+        getSelected() {
+            return this.submissions.filter(submission => this.selected.indexOf(submission.id) !== -1);
         },
 
-        getStatusText: function (submission) {
+        getStatusText(submission) {
             return this.statuses[submission.status];
         },
 
-        status: function (status, submissions) {
+        status(status, submissions) {
 
             submissions = submissions || this.getSelected();
 
-            submissions.forEach(function (submission) {
-                submission.status = status;
-            });
+            submissions.forEach(submission => submission.status = status);
 
-            this.resource.save({id: 'bulk'}, {submissions: submissions}).then(function () {
+            this.resource.save({id: 'bulk'}, {submissions: submissions}).then(() => {
                 this.load();
                 this.$notify('Submission(s) saved.');
             });
         },
 
-        toggleStatus: function (submission) {
+        toggleStatus(submission) {
             submission.status = submission.status === 2 ? 0 : submission.status + 1;
-            this.resource.save({id: submission.id}, {submission: submission}).then(function () {
+            this.resource.save({id: submission.id}, {submission: submission}).then(() => {
                 this.load();
                 this.$notify('Submission saved.');
             });
         },
 
-        removeSubmissions: function () {
+        removeSubmissions() {
 
-            this.resource.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
+            this.resource.delete({id: 'bulk'}, {ids: this.selected}).then(() => {
                 this.load();
                 this.$notify('Submission(s) deleted.');
             });
         },
 
-        submissionDetails: function (submission) {
+        submissionDetails(submission) {
             window.history.replaceState({}, '', this.$url.current.href.replace('#' + this.$url.current.hash, '') + '#' + submission.id);
             this.$url.current.hash = '#' + submission.id;
             this.submissionID = submission.id;
             this.$refs.submissionmodal.open();
         },
 
-        formatValue: function (fieldvalue) {
+        formatValue(fieldvalue) {
             if (window.Formmakerfields.components[fieldvalue.type] && typeof window.Formmakerfields.components[fieldvalue.type].formatValue === 'function') {
-                console.log(fieldvalue.value);
                 return window.Formmakerfields.components[fieldvalue.type].formatValue.apply(this, [fieldvalue]);
             }
             return typeof fieldvalue.value === 'string' ? [fieldvalue.value] : fieldvalue.value;

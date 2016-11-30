@@ -52,7 +52,7 @@
 <script>
 
     module.exports = {
-        data: function () {
+        data() {
             return {
                 submission: {status: null},
                 loaded: false
@@ -61,21 +61,21 @@
 
         props: ['submissionid'],
 
-        created: function () {
+        created() {
 
-            this.$root.resource.query({id: 'detail', submission_id: this.submissionid}).then(function (res) {
-                this.$set('submission', res.data);
+            this.$root.resource.query({id: 'detail', submission_id: this.submissionid}).then(res => {
+                this.submission = res.data;
                 this.loaded = true;
-            }.bind(this));
+            });
 
         },
 
-        beforeDestroy: function () {
+        beforeDestroy() {
             this.$dispatch('close.submissionmodal');
         },
 
         watch: {
-            'submission.status': function (value, oldValue) {
+            'submission.status'(value, oldValue) {
                 if (oldValue !== null && oldValue !== value) {
                     this.$root.status(value, [this.submission])
                 }

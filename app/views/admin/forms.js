@@ -2,7 +2,7 @@ module.exports = {
 
     el: '#formmaker-forms',
 
-    data: function () {
+    data() {
         return _.merge({
             forms: false,
             pages: 0,
@@ -12,56 +12,52 @@ module.exports = {
         }, window.$data);
     },
 
-    created: function () {
+    created() {
         this.Forms = this.$resource('api/formmaker/form{/id}');
         this.load();
     },
 
     methods: {
 
-        load: function () {
-            return this.Forms.query().then(function (res) {
+        load() {
+            return this.Forms.query().then(res => {
                 this.$set('forms', res.data);
             });
         },
 
-        toggleStatus: function (formitem) {
+        toggleStatus(formitem) {
 
             formitem.status = formitem.status ? 0 : 1;
 
-            this.Forms.save({id: formitem.id}, {formitem: formitem}).then(function () {
+            this.Forms.save({id: formitem.id}, {formitem: formitem}).then(res => {
                 this.load();
                 this.$notify('Form saved.');
-            }, function (message) {
+            }, res => {
                 this.load();
-                this.$notify(message, 'danger');
+                this.$notify(res.data.message || res.data, 'danger');
             });
         },
 
-        getSelected: function () {
-            return this.forms.filter(function (field) {
-                return this.isSelected(field);
-            }, this);
+        getSelected() {
+            return this.forms.filter(field => this.isSelected(field));
         },
 
-        isSelected: function (field, children) {
+        isSelected(field, children) {
 
             if (_.isArray(field)) {
-                return _.every(field, function (field) {
-                    return this.isSelected(field, children);
-                }, this);
+                return field.forEach(field => this.isSelected(field, children));
             }
 
             return this.selected.indexOf(field.id) !== -1;
         },
 
-        getFieldType: function (field) {
-            return _.find(this.types, 'id', field.type);
+        getFieldType(field) {
+            return _.find(this.types,{id: field.type});
         },
 
-        removeForms: function () {
+        removeForms() {
 
-            this.Forms.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
+            this.Forms.delete({id: 'bulk'}, {ids: this.selected}).then(() => {
                 this.load();
                 this.$notify('Forms(s) deleted.');
             });
@@ -78,7 +74,7 @@ module.exports = {
             template: '#formitem',
 
             computed: {
-                type: function () {
+                type() {
                     return this.getFieldType(this.field);
                 }
 
@@ -89,7 +85,7 @@ module.exports = {
 
     watch: {
 
-        forms: function () {
+        forms() {
 
             var vm = this;
 
@@ -97,7 +93,7 @@ module.exports = {
             UIkit.nestable(this.$els.nestable, {
                 maxDepth: 1,
                 group: 'formmaker.forms'
-            }).off('change.uk.nestable').on('change.uk.nestable', function (e, nestable, el, type) {
+            }).off('change.uk.nestable').on('change.uk.nestable', (e, nestable, el, type) => {
 
                 if (type && type !== 'removed') {
 
@@ -114,9 +110,7 @@ module.exports = {
                             }
                         });
 
-                    }, function () {
-                        this.$notify('Reorder failed.', 'danger');
-                    });
+                    }, () => this.$notify('Reorder failed.', 'danger'));
                 }
             });
         }

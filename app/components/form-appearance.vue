@@ -68,7 +68,7 @@
                         <option v-for="option in recaptcha_types" :value="option.value">{{ option.text }}</option>
                     </select>
                     <select class="uk-form-width-small" v-model="formitem.data.recaptcha_size">
-                        <option v-for="option in recaptcha" :value="option.value">{{ option.text }}</option>
+                        <option v-for="option in recaptcha_sizes" :value="option.value">{{ option.text }}</option>
                     </select>
                 </div>
             </div>
@@ -85,7 +85,7 @@
 
         props: ['formitem', 'form'],
 
-        data: function () {
+        data() {
             return {
                 recaptcha_themes: [
                     {value: '', text: this.$trans('- Style -')},
@@ -105,10 +105,10 @@
             }
         },
 
-        created: function () {
-            this.formitem.data.recaptcha_theme =  this.formitem.data.recaptcha_theme || '';
-            this.formitem.data.recaptcha_type =  this.formitem.data.recaptcha_type || '';
-            this.formitem.data.recaptcha_size =  this.formitem.data.recaptcha_size || '';
+        created() {
+            this.formitem.data.recaptcha_theme = this.formitem.data.recaptcha_theme || '';
+            this.formitem.data.recaptcha_type = this.formitem.data.recaptcha_type || '';
+            this.formitem.data.recaptcha_size = this.formitem.data.recaptcha_size || '';
         }
 
     };

@@ -27,47 +27,45 @@
         props: ['field', 'form'],
 
         methods: {
-            addFieldoption: function () {
+            addFieldoption() {
                 this.field.options.push({
                     value: '',
                     text: '',
                     attachValue: true,
                     invalid: false
                 });
-                this.$nextTick(function () {
-                    $(this.$els.optionsNestable).find('input:last').focus();
-                });
+                this.$nextTick(() => $(this.$els.optionsNestable).find('input:last').focus());
             },
-            deleteFieldoption: function (idx) {
+            deleteFieldoption(idx) {
                 this.field.options.$remove(idx);
                 this.checkDuplicates();
             },
-            checkDuplicates: function () {
+            checkDuplicates() {
                 var current, dups = [];
-                _.sortBy(this.field.options, 'value').forEach(function (option) {
+                _.sortBy(this.field.options, 'value').forEach(option => {
                     if (current && current === option.value) {
                         dups.push(option.value);
                     }
                     current = option.value;
                 });
-                this.field.options.forEach(function (option) {
+                this.field.options.forEach(option => {
                     option.invalid = dups.indexOf(option.value) > -1 ? 'Duplicate value' : false;
                 });
             }
         },
 
-        ready: function () {
+        ready() {
             if (!this.readOnly) {
                 var vm = this;
                 UIkit.nestable(this.$els.optionsNestable, {
                     maxDepth: 1,
                     handleClass: 'uk-nestable-handle',
                     group: 'formmaker.selectoptions'
-                }).on('change.uk.nestable', function (e, nestable, el, type) {
+                }).on('change.uk.nestable', (e, nestable, el, type) => {
                     if (type && type !== 'removed') {
 
                         var options = [];
-                        _.forEach(nestable.list(), function (option) {
+                        _.forEach(nestable.list(),option => {
                             //todo can't reorder options with empty value
                             options.push(_.find(vm.field.options, 'value', option.value));
                         });
@@ -81,7 +79,7 @@
         },
 
         computed: {
-            readOnly: function () {
+            readOnly() {
                 return !!this.field.data.readonlyOptions;
             }
         },
@@ -95,7 +93,7 @@
                 props: ['selectoption', 'readOnly'],
 
                 methods: {
-                    safeValue: function (checkDups) {
+                    safeValue(checkDups) {
                         this.selectoption.value = _.escape(_.snakeCase(this.selectoption.value));
                         if (checkDups) {
                             this.$parent.checkDuplicates();
@@ -104,7 +102,7 @@
                 },
 
                 watch: {
-                    "selectoption.text": function (value) {
+                    "selectoption.text"(value) {
                         if (this.selectoption.attachValue) {
                             this.selectoption.value = _.escape(_.snakeCase(value));
                         }

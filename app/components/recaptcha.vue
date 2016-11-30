@@ -23,7 +23,7 @@
         props: ['sitekey', 'formitem'],
 
         events: {
-            'submit': function (data) {
+            'submit'(data) {
                 if (window.grecaptcha) {
                     data['g-recaptcha-response'] = grecaptcha.getResponse();
                 }
@@ -31,7 +31,7 @@
         },
 
         methods: {
-            grecaptchaCallback: function (grecaptcha) {
+            grecaptchaCallback(grecaptcha) {
                 grecaptcha.render('grecaptcha_el', {
                     'sitekey' : this.sitekey,
                     'theme' : this.formitem.data.recaptcha_theme || 'light',

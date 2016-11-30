@@ -158,7 +158,7 @@
 
         props: ['forms'],
 
-        data: function () {
+        data() {
             return {
                 options: {
                     form_id: 0,
@@ -179,23 +179,23 @@
             };
         },
 
-        created: function () {
+        created() {
             this.load();
         },
 
-        beforeDestroy: function () {
+        beforeDestroy() {
             this.$dispatch('close.csvmodal');
         },
 
         computed: {
-            formLoaded: function () {
+            formLoaded() {
                 return this.options.form_id && this.options.form_id == this.formitem.id;
             }
         },
 
         methods: {
-            load: function () {
-                this.$root.resource.query({id: 'csv', options: this.options}).then(function (res) {
+            load() {
+                this.$root.resource.query({id: 'csv', options: this.options}).then(res => {
                     var data = res.data;
                     this.$set('options.field_ids', data.options.field_ids);
                     this.$set('options.filename', data.options.filename);
@@ -210,32 +210,32 @@
                         this.options.filename = 'export_' + this.formitem.slug + '.csv'
                     }
                     this.loaded = true;
-                }.bind(this));
+                });
 
             },
 
-            doExport: function () {
+            doExport() {
 
                 if (this.exporting || !this.options.form_id || this.formitem.id !== this.options.form_id) {
                     return false;
                 }
                 this.exporting = true;
-                this.$root.resource.export({options: this.options}).then(function (res) {
+                this.$root.resource.export({options: this.options}).then(res => {
                     if (res.data.csv) {
                         var $url = window.URL || window.webkitURL;
                         this.csvLink = $url.createObjectURL(new Blob([res.data.csv], {type: "application/force-download"}));
                         this.exporting = false;
                     }
-                }.bind(this));
+                });
             }
         },
 
         watch: {
-            'options': {handler: function (value) {
+            'options': {handler(value) {
                 this.csvLink = '';
             }, deep: true},
 
-            'options.form_id,options.status': function (value) {
+            'options.form_id,options.status'(value) {
                 this.load();
             }
         }

@@ -77,7 +77,7 @@
 
             id: 'formmaker',
             label: 'New form submissions',
-            description: function () {
+            description() {
 
             },
             defaults: {
@@ -92,7 +92,7 @@
 
         props: ['widget', 'editing'],
 
-        data: function () {
+        data() {
             return {
                 loading: false,
                 submissions: [],
@@ -117,7 +117,7 @@
 
         methods: {
 
-            load: function () {
+            load() {
 
                 var filter = {
                     status: 1,
@@ -133,22 +133,16 @@
                     filter['status'] = '';
                 }
 
-                this.$resource('api/formmaker/submission{/id}').query({filter: filter}).then(function (res) {
-
+                this.$resource('api/formmaker/submission{/id}').query({filter: filter}).then(res => {
                     this.$set('count', res.data.count);
                     this.$set('submissions', res.data.submissions);
                     this.loading = false;
-
                 });
             },
 
-            loadForms: function (editing) {
+            loadForms(editing) {
                 if (editing && !this.$get('forms')) {
-
-                    this.$resource('api/formmaker/form{/id}').query().then(function (res) {
-                        this.$set('forms', res.data);
-                    });
-
+                    this.$resource('api/formmaker/form{/id}').query().then(res => this.$set('forms', res.data));
                 }
             }
 

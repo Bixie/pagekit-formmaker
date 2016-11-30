@@ -21,16 +21,16 @@
 
         props: ['link'],
 
-        data: function () {
+        data() {
             return {
                 forms: [],
                 formid: ''
             }
         },
 
-        created: function () {
+        created() {
             //TODO don't retrieve entire form objects
-            this.$resource('api/formmaker/form').get().then(function (res) {
+            this.$resource('api/formmaker/form').get().then(res => {
                 this.forms = res.data;
                 if (res.data.length) {
                     this.formid = res.data[0].id;
@@ -40,7 +40,7 @@
 
         watch: {
 
-            formid: function (formid) {
+            formid(formid) {
                 this.link = '@formmaker/form/front?id=' + formid;
             }
 

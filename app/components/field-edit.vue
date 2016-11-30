@@ -49,7 +49,7 @@
 <script>
 
     module.exports = {
-        data: function () {
+        data() {
             return {
                 loaded: false,
                 type: {
@@ -74,48 +74,45 @@
 
         props: ['formitem', 'form', 'fieldid'],
 
-        created: function () {
+        created() {
             this.Fields = this.$resource('api/formmaker/field/edit');
             this.Field = this.$resource('api/formmaker/field{/id}');
         },
 
-        ready: function () {
-            this.Fields.query({id: this.fieldid}).then(function (res) {
+        ready() {
+            this.Fields.query({id: this.fieldid}).then(res => {
                 this.$set('field',res.data.field);
                 this.$set('type', res.data.type);
                 this.$set('roles', res.data.roles);
                 this.field.form_id = this.formitem.id;
 
                 this.loaded = true;
-//                UIkit.tab(this.$els.tab, {connect: this.$els.content});
             });
 
 
         },
 
-        beforeDestroy: function () {
+        beforeDestroy() {
             this.$dispatch('close.editmodal');
         },
 
         methods: {
 
-            save: function () {
+            save() {
 
                 var data = {field: this.field};
 
                 this.$broadcast('save', data);
 
-                this.Field.save({id: this.field.id}, data).then(function (res) {
+                this.Field.save({id: this.field.id}, data).then(res => {
 
                     this.$set('field', res.data.field);
 
                     this.$notify(this.$trans('%type% saved.', {type: this.type.label}));
 
-                }, function (data) {
-                    this.$notify(data, 'danger');
-                });
+                }, res => this.$notify(res.data.message || res.data, 'danger'));
             },
-            formFieldInvalid: function (fieldname) {
+            formFieldInvalid(fieldname) {
                 console.log(this.$parent);
                 console.log(this.$validator.validators);
 
@@ -124,11 +121,9 @@
         },
 
         components: {
-
             fieldbasic: require('./field-basic.vue'),
             fieldoptions: require('./field-options.vue'),
             appearance: require('./field-appearance.vue')
-
         }
 
     };
