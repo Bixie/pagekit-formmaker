@@ -30,13 +30,13 @@
 
             <div id="field-edit-switcher" class="uk-switcher uk-margin">
                 <div>
-                    <fieldbasic :field.sync="field" :type.sync="type" :roles="roles" :form="form"></fieldbasic>
+                    <field-basic :field.sync="field" :type.sync="type" :roles="roles" :form="form"></field-basic>
                 </div>
                 <div v-if="type.hasOptions">
-                    <fieldoptions :field.sync="field" :form="form"></fieldoptions>
+                    <field-options :field.sync="field" :form="form"></field-options>
                 </div>
                 <div>
-                    <appearance :field.sync="field" :form="form"></appearance>
+                    <field-appearance :field.sync="field" :form="form"></field-appearance>
                 </div>
             </div>
 
@@ -121,9 +121,9 @@
         },
 
         components: {
-            fieldbasic: require('./field-basic.vue'),
-            fieldoptions: require('./field-options.vue'),
-            appearance: require('./field-appearance.vue')
+            'field-basic': require('./field-basic.vue'),
+            'field-options': require('./field-options.vue'),
+            'field-appearance': require('./field-appearance.vue')
         }
 
     };
