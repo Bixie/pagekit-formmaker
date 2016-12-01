@@ -45,11 +45,12 @@
                     new Vue(_.merge({
                         'el': '#type-settings',
                         'name': 'type-settings',
+                        'replace': false,
                         'parent': parent,
                         'data': _.merge({
                             'field': parent.field,
                             'form': parent.form
-                        }, settings.data),
+                        }, settings.data)
                     }, settings));
                     return false;
                 }
