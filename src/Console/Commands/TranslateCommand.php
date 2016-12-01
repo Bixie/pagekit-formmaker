@@ -74,8 +74,9 @@ class TranslateCommand extends Command
 		//insert extra strings
 		if (file_exists($rootpath . '/packages/bixie/' . $this->extension . '/languages/base.php')) {
 			$extraStrings = include($rootpath . '/packages/bixie/' . $this->extension . '/languages/base.php');
-			foreach ($extraStrings as $string) {
-				$translations[$string] = $locale != 'en_US' && isset($existing[$string])? $existing[$string] : $string;
+            $this->line("Add base.php");
+            foreach ($extraStrings as $string) {
+				$translations[$string] = isset($existing[$string])? $existing[$string] : $string;
 			}
 		}
 		//get pot strings
