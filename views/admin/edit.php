@@ -39,7 +39,7 @@ $view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['bixie-fi
 			<div>
 				<div class="uk-grid">
 				    <div class="uk-width-medium-3-4">
-						<formbasic :formitem.sync="formitem" :config="config" :form="form"></formbasic>
+						<form-basic :formitem.sync="formitem" :config="config" :form="form"></form-basic>
 				    </div>
 				    <div class="uk-width-medium-1-4">
 						<h3>{{ 'Plugin code' | trans }}</h3>
@@ -61,23 +61,23 @@ $view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['bixie-fi
 				</div>
 			</div>
 			<div>
-				<formfields v-ref:formfields :types="types" :formitem.sync="formitem" :form="form"></formfields>
+				<form-fields v-ref:formfields :types="types" :formitem.sync="formitem" :form="form"></form-fields>
 			</div>
 			<div>
-				<appearance :formitem.sync="formitem" :form="form"></appearance>
+				<form-appearance :formitem.sync="formitem" :form="form"></form-appearance>
 			</div>
 			<div>
-				<submission :formitem.sync="formitem" :formfields="formfields" :form="form"></submission>
+				<form-submission :formitem.sync="formitem" :formfields="formfields" :form="form"></form-submission>
 			</div>
 			<div>
-				<emailsettings :formitem.sync="formitem" :formfields="formfields" :form="form"></emailsettings>
+				<form-emailsettings :formitem.sync="formitem" :formfields="formfields" :form="form"></form-emailsettings>
 			</div>
 		</div>
 
 	</form>
 
 	<v-modal v-ref:editmodal large>
-		<fieldedit :formitem.sync="formitem" :fieldid="editid" :form="form"></fieldedit>
+		<field-edit :formitem.sync="formitem" :fieldid="editid" :form="form"></field-edit>
 	</v-modal>
 </div>
 

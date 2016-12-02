@@ -76,12 +76,12 @@ module.exports = {
 
     components: {
 
-        formbasic: require('../../components/form-basic.vue'),
-        formfields: require('../../components/form-fields.vue'),
-        appearance: require('../../components/form-appearance.vue'),
-        submission: require('../../components/form-submission.vue'),
-        emailsettings: require('../../components/form-email.vue'),
-        fieldedit: require('../../components/field-edit.vue')
+        'form-basic': require('../../components/form-basic.vue'),
+        'form-fields': require('../../components/form-fields.vue'),
+        'form-appearance': require('../../components/form-appearance.vue'),
+        'form-submission': require('../../components/form-submission.vue'),
+        'form-emailsettings': require('../../components/form-email.vue'),
+        'field-edit': require('../../components/field-edit.vue')
 
     }
 
