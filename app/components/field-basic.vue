@@ -54,7 +54,7 @@
                     }, settings));
                     return false;
                 }
-                return settings;
+                return _.size(settings) ? settings : false;
             }
         }
 
