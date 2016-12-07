@@ -1,4 +1,5 @@
-<?php $view->script('forms-formmaker', 'bixie/formmaker:app/bundle/forms.js', ['vue', 'uikit-nestable']) ?>
+<?php $view->script('forms-formmaker', 'bixie/formmaker:app/bundle/forms.js', ['vue', 'uikit-nestable'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/formmaker')->get('version'))]) ?>
 
 <?php if ($frameworkValid !== true) : ?>
 	<div class="uk-alert uk-alert-warning">

@@ -1,4 +1,5 @@
-<?php $view->script('form-submissions', 'bixie/formmaker:app/bundle/form-submissions.js', ['bixie-fieldtypes']) ?>
+<?php $view->script('form-submissions', 'bixie/formmaker:app/bundle/form-submissions.js', ['bixie-fieldtypes'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/formmaker')->get('version'))]) ?>
 
 <?php if ($frameworkValid !== true) : ?>
 	<div class="uk-alert uk-alert-warning">

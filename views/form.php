@@ -1,5 +1,6 @@
 <?php
-$view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['bixie-fieldtypes']);
+$view->script('formmaker', 'bixie/formmaker:app/bundle/formmaker.js', ['bixie-fieldtypes'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/formmaker')->get('version'))]);
 ?>
 
 <form id="formmaker-form" class="uk-form {{ formitem.data.formStyle }} {{ formitem.data.classSfx }}"

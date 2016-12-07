@@ -1,6 +1,7 @@
 <?php
 $view->style('codemirror');
-$view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['bixie-fieldtypes', 'editor', 'uikit-nestable']); ?>
+$view->script('form-edit', 'bixie/formmaker:app/bundle/form-edit.js', ['bixie-fieldtypes', 'editor', 'uikit-nestable'],
+    ['version' => $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/formmaker')->get('version'))]); ?>
 
 <div id="form-edit" v-cloak>
 	<form class="uk-form" v-validator="form" @submit.prevent="save | valid">

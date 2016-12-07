@@ -106,11 +106,12 @@ return [
 	'events' => [
 
 		'view.scripts' => function ($event, $scripts) use ($app) {
-			if ($app['user']->hasAccess('formmaker: manage submissions')) {
-				$scripts->register('widget-formmaker', 'bixie/formmaker:app/bundle/widget-formmaker.js', ['~dashboard']);
+            $version = $app->module('bixie/pk-framework')->getVersionKey($app->package('bixie/formmaker')->get('version'));
+            if ($app['user']->hasAccess('formmaker: manage submissions')) {
+				$scripts->register('widget-formmaker', 'bixie/formmaker:app/bundle/widget-formmaker.js', ['~dashboard'], ['version' => $version]);
 			}
-			$scripts->register('formmaker-settings', 'bixie/formmaker:app/bundle/settings.js', '~extensions');
-			$scripts->register('link-formmaker', 'bixie/formmaker:app/bundle/link-formmaker.js', '~panel-link');
+			$scripts->register('formmaker-settings', 'bixie/formmaker:app/bundle/settings.js', '~extensions', ['version' => $version]);
+			$scripts->register('link-formmaker', 'bixie/formmaker:app/bundle/link-formmaker.js', '~panel-link', ['version' => $version]);
 		},
 
 		'view.data' => function ($event, $data) use ($app) {
