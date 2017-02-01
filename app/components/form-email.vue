@@ -10,7 +10,7 @@
                     <div class="uk-form-controls">
                         <select id="form-user_email_field" class="uk-form-width-medium" v-model="formitem.data.user_email_field">
                             <option value="">{{ 'Select a field' | trans }}</option>
-                            <option v-for="field in formfields | filterBy 'email' in 'type'" :value="field.slug">{{ field.label }}</option>
+                            <option v-for="field in userEmailFields" :value="field.slug">{{ field.label }}</option>
                         </select>
                     </div>
                 </div>
@@ -31,19 +31,40 @@
                     {{ 'No email field is selected for user confirmation mail.' | trans }}</div>
 
                 <div class="uk-form-row">
-                    <label for="form-submitemail" class="uk-form-label">{{ 'Email copy of submission to' | trans }}</label>
+                    <label class="uk-form-label">{{ 'Email receiver' | trans }}</label>
 
                     <div class="uk-form-controls">
-                        <input id="form-submitemail" class="uk-form-width-large" type="text" name="submitemail"
-                               v-model="formitem.data.submitEmail" v-validate:email v-validate:required="!!formitem.data.user_email_field">
-                    <!-- //todo fix req message -->
-                    <p class="uk-form-help-block uk-text-danger" v-show="form.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
-
-                    <p class="uk-form-help-block uk-text-danger" v-show="formitem.data.user_email_field && !formitem.data.submitEmail">
-                        {{ 'No email will be sent to the user when no address is entered here!' | trans }}</p>
+                        <label>
+                            <input type="checkbox" value="submitemailtype"
+                                  v-model="formitem.data.submitEmailMultiple"> {{ 'User can choose email receiver from email pulldown' | trans }}</label>
+                    </div>
                 </div>
-            </div>
 
+                <div class="uk-form-row">
+                    <label for="form-submitemail" class="uk-form-label">{{ 'Email copy of submission to' | trans }}</label>
+
+                    <div v-show="!formitem.data.submitEmailMultiple" class="uk-form-controls">
+                        <input id="form-submitemail" class="uk-form-width-large" type="text" name="submitemail"
+                               v-model="formitem.data.submitEmail" v-validate:email v-validate:required="!!formitem.data.user_email_field && !formitem.data.submitEmailMultiple">
+	                    <!-- //todo fix req message -->
+	                    <p class="uk-form-help-block uk-text-danger" v-show="form.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
+
+	                    <p class="uk-form-help-block uk-text-danger" v-show="formitem.data.user_email_field && !formitem.data.submitEmail">
+	                        {{ 'No email will be sent to the user when no address is entered here!' | trans }}</p>
+	                </div>
+
+                    <div v-show="formitem.data.submitEmailMultiple" class="uk-form-controls">
+                        <select id="form-submitemailfield" class="uk-form-width-medium" v-model="formitem.data.submitEmailField">
+                            <option value="">{{ 'Select a field' | trans }}</option>
+                            <option v-for="field in submitEmailFields" :value="field.slug">{{ field.label }}</option>
+                        </select>
+                        <!-- Validate that there was a selection made -->
+                        <input type="hidden" v-model="formitem.data.submitEmailField" name="submitemailfield" v-validate:required="!!formitem.data.user_email_field && formitem.data.submitEmailMultiple" />
+
+	                    <p class="uk-form-help-block uk-text-danger" v-show="formitem.data.user_email_field && !formitem.data.submitEmailField">
+	                        {{ 'No email will be sent to the user when no email receiver field is selected here!' | trans }}</p>
+                    </div>
+                </div>
 
                 <div class="uk-form-row">
                     <label for="form-emailsubject" class="uk-form-label">{{ 'Email subject' | trans }}</label>
@@ -80,6 +101,20 @@
     module.exports = {
 
         props: ['formitem', 'formfields', 'form'],
+
+        computed: {
+            userEmailFields () {
+                return this.formfields.filter((field)  => {
+                    return field.type === 'email'
+                })
+            },
+
+            submitEmailFields () {
+                return this.formfields.filter((field)  => {
+                    return field.type === 'emailpulldown'
+                })
+            }
+        },
 
         components: {
             formfieldslist: require('./form-fieldslist.vue')
