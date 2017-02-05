@@ -50,6 +50,14 @@ class Field extends FieldBase implements \JsonSerializable {
 	public function jsonSerialize () {
 		$field = $this->toArray([], ['fieldValue', 'fieldType']);
 		$field['options'] = $this->getOptions();
+		if (is_array($field['options']) && !App::user()->isAdministrator()) {
+		    $fieldOptions = [];
+		    foreach ($field['options'] as $fieldOption) {
+		        unset($fieldOption['email']);
+		        $fieldOptions[] = $fieldOption;
+		    }
+		    $field['options'] = $fieldOptions;
+		}
 		return $field;
 	}
 
