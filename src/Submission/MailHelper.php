@@ -26,7 +26,7 @@ class MailHelper {
 	 * @return MailHelper
 	 */
 	public function sendMail () {
-		if (!$adminMail = $this->submission->form->get('submitEmail')) {
+		if (!$adminMail = $this->submission->getAdminEmail()) {
 			return $this;
 		}
 		$user_email = $this->submission->email ? : false;

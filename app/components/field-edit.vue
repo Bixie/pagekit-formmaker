@@ -33,7 +33,7 @@
                     <field-basic :field.sync="field" :type.sync="type" :roles="roles" :form="form"></field-basic>
                 </div>
                 <div v-if="type.hasOptions">
-                    <field-options :field.sync="field" :form="form"></field-options>
+                    <field-options :field.sync="field" :form="form" :type="type"></field-options>
                 </div>
                 <div>
                     <field-appearance :field.sync="field" :form="form"></field-appearance>

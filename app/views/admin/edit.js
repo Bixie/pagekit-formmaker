@@ -10,6 +10,8 @@ module.exports = {
                     classSfx: '',
                     user_email_field: false,
                     submitEmail: window.$data.config.from_address,
+                    submitEmailMultiple: false,
+                    submitEmailField: '',
                     email_subject: this.$trans('Thank you for your submission'),
                     thankyou_markdown: true,
                     email_body_markdown: true,

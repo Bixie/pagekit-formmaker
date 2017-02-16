@@ -27,6 +27,15 @@ class Fieldsubmission extends FieldValueBase {
 
 	public function toFormattedArray (array $data = [], array $ignore = []) {
 		$data['field_id'] = $this->field_id;
+		$data = parent::toFormattedArray($data, $ignore);
+		if (isset($data['field']['options']) && is_array($data['field']['options']) && !App::user()->isAdministrator()) {
+		    $fieldOptions = [];
+		    foreach ($data['field']['options'] as $fieldOption) {
+		        unset($fieldOption['email']);
+		        $fieldOptions[] = $fieldOption;
+		    }
+		    $data['field']['options'] = $fieldOptions;
+		}
 		return parent::toFormattedArray($data, $ignore);
 	}
 

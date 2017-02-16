@@ -103,6 +103,25 @@ class Submission implements \JsonSerializable {
 		return '';
 	}
 
+    public function getAdminEmail () {
+        $this->getFieldsubmissions();
+        if ($this->form->get('submitEmailMultiple')) {
+            $submitEmailSubmission = $this->fieldsubmissions[$this->form->get('submitEmailField')];
+            if (isset($submitEmailSubmission)
+                and $selectionValue = count($submitEmailSubmission['value']) ? $submitEmailSubmission['value'][0] : ''
+                and $submitEmailField = Field::find($submitEmailSubmission['field']['id'])) {
+                foreach ($submitEmailField->getOptions() as $submitEmailOption) {
+                    if ($submitEmailOption['value'] == $selectionValue) {
+                        return $submitEmailOption['email'];
+                    }
+                }
+            }
+        } else {
+            return $this->form->get('submitEmail');
+        }
+        return '';
+    }
+
 	public function getFieldsubmissions () {
 		if (!isset($this->fieldsubmissions)) {
 			$fields = $this->form->getFields();
