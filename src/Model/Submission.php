@@ -109,8 +109,8 @@ class Submission implements \JsonSerializable {
             $submitEmailSubmission = $this->fieldsubmissions[$this->form->get('submitEmailField')];
             if (isset($submitEmailSubmission)
                 and $selectionValue = count($submitEmailSubmission['value']) ? $submitEmailSubmission['value'][0] : ''
-                and $submitEmailField = $submitEmailSubmission['field']) {
-                foreach ($submitEmailField['options'] as $submitEmailOption) {
+                and $submitEmailField = Field::find($submitEmailSubmission['field']['id'])) {
+                foreach ($submitEmailField->getOptions() as $submitEmailOption) {
                     if ($submitEmailOption['value'] == $selectionValue) {
                         return $submitEmailOption['email'];
                     }
