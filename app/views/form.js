@@ -1,22 +1,30 @@
-module.exports = {
+/*global _, Vue*/
+
+const vm = {
 
     el: '#formmaker-form',
 
-    data: _.assign({
+    name: 'formmaker-form',
+
+    components: {
+        recaptcha: require('../components/recaptcha.vue'),
+    },
+
+    data: () => _.assign({
         formitem: {},
         fields: [],
         message: '',
         error: '',
         thankyou: '',
         submission: {},
-        form: {}
+        form: {},
     }, window.$formmaker),
 
     methods: {
 
         save() {
 
-            var data = {submission: this.submission};
+            let data = {submission: this.submission,};
 
             this.$set('message', '');
             this.$set('error', '');
@@ -31,23 +39,20 @@ module.exports = {
                         this.$set('thankyou', data.submission.thankyou);
                     }
                     if (this.formitem.data.google_datalayer) {
-                        var dataLayer = window.dataLayer || [];
-                        dataLayer.push({'event': 'form-' + this.formitem.slug});
+                        const dataLayer = window.dataLayer || [];
+                        dataLayer.push({'event': 'form-' + this.formitem.slug,});
                     }
                     if (data.submission.redirect) {
                         window.location.replace(data.submission.redirect);
                     }
                 }, res => this.error = this.$trans(res.data.message || res.data));
-        }
+        },
 
     },
-
-    components: {
-        recaptcha: require('../components/recaptcha.vue')
-    }
 
 };
 
 Vue.ready(() => {
-    window.Formmaker = new Vue(module.exports);
+    window.Formmaker = new Vue(vm);
 });
+export default vm;

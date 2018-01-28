@@ -1,15 +1,62 @@
-module.exports = {
+/*global _, Vue, UIkit*/
+
+const vm = {
 
     el: '#formmaker-forms',
 
-    data() {
-        return _.merge({
-            forms: false,
-            pages: 0,
-            count: '',
-            types: [],
-            selected: []
-        }, window.$data);
+    name: '#formmaker-forms',
+
+    components: {
+
+        formitem: {
+            props: {'formitem': Object,},
+            template: '#formitem',
+            computed: {
+                type() {
+                    return this.getFieldType(this.field);
+                },
+            },
+        },
+
+    },
+
+    data: () => _.assign({
+        forms: false,
+        pages: 0,
+        count: '',
+        types: [],
+        selected: [],
+    }, window.$data),
+
+    watch: {
+
+        forms() {
+            const vm = this;
+            // TODO this is still buggy
+            UIkit.nestable(this.$els.nestable, {
+                maxDepth: 1,
+                group: 'formmaker.forms',
+            }).off('change.uk.nestable').on('change.uk.nestable', (e, nestable, el, type) => {
+
+                if (type && type !== 'removed') {
+
+                    vm.Forms.save({id: 'updateOrder',}, {forms: nestable.list(),}).then(function () {
+
+                        // @TODO reload everything on reorder really needed?
+                        vm.load().success(function () {
+
+                            // hack for weird flickr bug
+                            if (el.parent()[0] === nestable.element[0]) {
+                                setTimeout(function () {
+                                    el.remove();
+                                }, 50);
+                            }
+                        });
+
+                    }, () => this.$notify('Reorder failed.', 'danger'));
+                }
+            });
+        },
     },
 
     created() {
@@ -29,7 +76,7 @@ module.exports = {
 
             formitem.status = formitem.status ? 0 : 1;
 
-            this.Forms.save({id: formitem.id}, {formitem: formitem}).then(res => {
+            this.Forms.save({id: formitem.id,}, {formitem: formitem,}).then(() => {
                 this.load();
                 this.$notify('Form saved.');
             }, res => {
@@ -52,71 +99,22 @@ module.exports = {
         },
 
         getFieldType(field) {
-            return _.find(this.types,{id: field.type});
+            return _.find(this.types, {id: field.type,});
         },
 
         removeForms() {
 
-            this.Forms.delete({id: 'bulk'}, {ids: this.selected}).then(() => {
+            this.Forms.delete({id: 'bulk',}, {ids: this.selected,}).then(() => {
                 this.load();
                 this.$notify('Forms(s) deleted.');
             });
-        }
+        },
 
     },
-
-    components: {
-
-        formitem: {
-
-            props: ['formitem'],
-
-            template: '#formitem',
-
-            computed: {
-                type() {
-                    return this.getFieldType(this.field);
-                }
-
-            }
-        }
-
-    },
-
-    watch: {
-
-        forms() {
-
-            var vm = this;
-
-            // TODO this is still buggy
-            UIkit.nestable(this.$els.nestable, {
-                maxDepth: 1,
-                group: 'formmaker.forms'
-            }).off('change.uk.nestable').on('change.uk.nestable', (e, nestable, el, type) => {
-
-                if (type && type !== 'removed') {
-
-                    vm.Forms.save({id: 'updateOrder'}, {forms: nestable.list()}).then(function () {
-
-                        // @TODO reload everything on reorder really needed?
-                        vm.load().success(function () {
-
-                            // hack for weird flickr bug
-                            if (el.parent()[0] === nestable.element[0]) {
-                                setTimeout(function () {
-                                    el.remove();
-                                }, 50);
-                            }
-                        });
-
-                    }, () => this.$notify('Reorder failed.', 'danger'));
-                }
-            });
-        }
-    }
 
 };
 
-Vue.ready(module.exports);
+Vue.ready(vm);
+
+export default vm;
 

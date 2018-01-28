@@ -47,32 +47,42 @@
 </template>
 
 <script>
+    import FieldBasic from './field-basic.vue';
+    import FieldOptions from './field-options.vue';
+    import FieldAppearance from './field-appearance.vue';
 
-    module.exports = {
-        data() {
-            return {
-                loaded: false,
-                type: {
-                    label: ''
-                },
-                field: {
-                    label: '',
-                    type: '',
-                    priority: 0,
-                    form_id: 0,
-                    data: {
-                        value: [],
-                        data: {},
-                        classSfx: '',
-                        help_text: '',
-                        help_show: ''
-                    }
-                },
-                roles: []
-            };
+    export default {
+
+        name: 'FieldEdit',
+
+        components: {
+            'field-basic': FieldBasic,
+            'field-options': FieldOptions,
+            'field-appearance': FieldAppearance,
         },
 
-        props: ['formitem', 'form', 'fieldid'],
+        data: () => ({
+            loaded: false,
+            type: {
+                label: ''
+            },
+            field: {
+                label: '',
+                type: '',
+                priority: 0,
+                form_id: 0,
+                data: {
+                    value: [],
+                    data: {},
+                    classSfx: '',
+                    help_text: '',
+                    help_show: '',
+                },
+            },
+            roles: [],
+        }),
+
+        props: {'formitem': Object, 'form': Object, 'fieldid': Number,},
 
         created() {
             this.Fields = this.$resource('api/formmaker/field/edit');
@@ -100,7 +110,7 @@
 
             save() {
 
-                var data = {field: this.field};
+                const data = {field: this.field,};
 
                 this.$broadcast('save', data);
 
@@ -112,19 +122,14 @@
 
                 }, res => this.$notify(res.data.message || res.data, 'danger'));
             },
+
             formFieldInvalid(fieldname) {
                 console.log(this.$parent);
                 console.log(this.$validator.validators);
 
-            }
+            },
 
         },
-
-        components: {
-            'field-basic': require('./field-basic.vue'),
-            'field-options': require('./field-options.vue'),
-            'field-appearance': require('./field-appearance.vue')
-        }
 
     };
 

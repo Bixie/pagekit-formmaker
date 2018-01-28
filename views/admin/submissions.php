@@ -92,11 +92,11 @@
 	<v-pagination :page.sync="config.page" :pages="pages" v-show="pages > 1"></v-pagination>
 
 	<v-modal v-ref:submissionmodal large>
-		<submissiondetail :submissionid="submissionID"></submissiondetail>
+		<submission-detail :submissionid="submissionID"></submission-detail>
 	</v-modal>
 
 	<v-modal v-ref:csvmodal large>
-		<submissioncsv :forms="forms"></submissioncsv>
+		<submission-csv :forms="forms"></submission-csv>
 	</v-modal>
 
 </div>

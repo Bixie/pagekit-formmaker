@@ -17,9 +17,11 @@
                 </div>
 
                 <div class="uk-form-row" v-show="formitem.data.afterSubmit == 'thankyou'">
-                    <v-editor id="formitem-thankyou" :value.sync="formitem.data.thankyou" :options="{markdown : formitem.data.thankyou_markdown}"></v-editor>
+                    <v-editor id="formitem-thankyou" :value.sync="formitem.data.thankyou"
+                              :options="{markdown : formitem.data.thankyou_markdown}"></v-editor>
                     <p>
-                        <label><input type="checkbox" v-model="formitem.data.thankyou_markdown"> {{ 'Enable Markdown' | trans }}</label>
+                        <label><input type="checkbox" v-model="formitem.data.thankyou_markdown">
+                            {{ 'Enable Markdown' | trans }}</label>
                     </p>
                 </div>
 
@@ -34,16 +36,16 @@
                     <span class="uk-form-label">{{ 'Google Datalayer' | trans }}</span>
 
                     <div class="uk-form-controls uk-form-controls-text">
-                        <label>
-                            <input type="checkbox"
-                                   v-model="formitem.data.google_datalayer"> {{ 'Push event to Google Datalayer' | trans }}</label>
+                        <label><input type="checkbox"
+                                   v-model="formitem.data.google_datalayer">
+                            {{ 'Push event to Google Datalayer' | trans }}</label>
                     </div>
                 </div>
 
             </div>
             <div class="uk-width-medium-1-4">
 
-                <formfieldslist :fields="formfields"></formfieldslist>
+                <form-fieldslist :fields="formfields"></form-fieldslist>
 
             </div>
         </div>
@@ -54,13 +56,22 @@
 
 <script>
 
-    module.exports = {
+    import FormFieldslist from './form-fieldslist.vue';
 
-        props: ['formitem', 'formfields', 'form'],
+    export default {
+
+        name: 'FormSubmission',
 
         components: {
-            formfieldslist: require('./form-fieldslist.vue')
-        }
+            'form-fieldslist': FormFieldslist,
+        },
+
+        props: {
+            'formitem': Object,
+            'formfields': Array,
+            'form': Object,
+        },
+
     };
 
 </script>

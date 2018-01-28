@@ -54,21 +54,25 @@
 
 <script>
 
-    module.exports = {
+    const vm = {
+
+        name: 'WidgetSiteform',
 
         section: {
-            label: 'Settings'
+            label: 'Settings',
         },
 
         replace: false,
 
-        props: ['widget', 'config', 'form'],
-
-        data() {
-            return {
-                forms: []
-            }
+        props: {
+            'widget': Object,
+            'config': Object,
+            'form': Object,
         },
+
+        data: () => ({
+            forms: [],
+        }),
 
         created() {
             this.$options.partials = this.$parent.$options.partials;
@@ -83,6 +87,7 @@
         }
     };
 
-    window.Widgets.components['bixie-siteform:settings'] = module.exports;
+    window.Widgets.components['bixie-siteform:settings'] = vm;
+    export default vm;
 
 </script>

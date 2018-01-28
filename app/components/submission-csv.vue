@@ -154,29 +154,39 @@
 
 <script>
 
-    module.exports = {
+    export default {
 
-        props: ['forms'],
+        name: 'SubmissionCsv',
 
-        data() {
-            return {
-                options: {
-                    form_id: 0,
-                    filename: 'csv-export.csv',
-                    mark_archived: true,
-                    status: [1, 2],
-                    field_ids: [],
-                    datafields: ['id', 'status', 'email', 'ip', 'created']
-                },
-                formitem: {
-                    id: 0,
-                    fields: []
-                },
-                csvLink: '',
-                exporting: false,
-                count: 0,
-                loaded: false
-            };
+        props: {'forms': Array,},
+
+        data: () => ({
+            options: {
+                form_id: 0,
+                filename: 'csv-export.csv',
+                mark_archived: true,
+                status: [1, 2,],
+                field_ids: [],
+                datafields: ['id', 'status', 'email', 'ip', 'created',],
+            },
+            formitem: {
+                id: 0,
+                fields: [],
+            },
+            csvLink: '',
+            exporting: false,
+            count: 0,
+            loaded: false,
+        }),
+
+        watch: {
+            'options': {handler(value) {
+                    this.csvLink = '';
+                }, deep: true,},
+
+            'options.form_id,options.status'(value) {
+                this.load();
+            },
         },
 
         created() {
@@ -189,14 +199,14 @@
 
         computed: {
             formLoaded() {
-                return this.options.form_id && this.options.form_id == this.formitem.id;
+                return this.options.form_id && this.options.form_id === this.formitem.id;
             }
         },
 
         methods: {
             load() {
-                this.$root.resource.query({id: 'csv', options: this.options}).then(res => {
-                    var data = res.data;
+                this.$root.resource.query({id: 'csv', options: this.options,}).then(res => {
+                    const data = res.data;
                     this.$set('options.field_ids', data.options.field_ids);
                     this.$set('options.filename', data.options.filename);
                     if (data.forms.length) {
@@ -220,26 +230,15 @@
                     return false;
                 }
                 this.exporting = true;
-                this.$root.resource.export({options: this.options}).then(res => {
+                this.$root.resource.export({options: this.options,}).then(res => {
                     if (res.data.csv) {
                         var $url = window.URL || window.webkitURL;
-                        this.csvLink = $url.createObjectURL(new Blob([res.data.csv], {type: "application/force-download"}));
+                        this.csvLink = $url.createObjectURL(new Blob([res.data.csv,], {type: "application/force-download",}));
                         this.exporting = false;
                     }
                 });
-            }
+            },
         },
-
-        watch: {
-            'options': {handler(value) {
-                this.csvLink = '';
-            }, deep: true},
-
-            'options.form_id,options.status'(value) {
-                this.load();
-            }
-        }
-
 
     };
 

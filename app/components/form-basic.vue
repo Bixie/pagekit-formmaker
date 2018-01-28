@@ -47,9 +47,11 @@
 
 <script>
 
-    module.exports = {
+    export default {
 
-        props: ['formitem', 'config', 'form']
+        name: 'FormBasic',
+
+        props: {'formitem': Object, 'config': Object, 'form': Object,},
 
     };
 

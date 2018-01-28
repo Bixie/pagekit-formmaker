@@ -33,14 +33,17 @@
 
 <script>
 
-    module.exports = {
+    export default {
 
-        props: ['field', 'type', 'roles', 'form'],
+        name: 'FieldBasic',
+
+        props: {'field': Object, 'type': Object, 'roles': Array, 'form': Object,},
 
         computed: {
             fieldSettings() {
-                var settings = this.field.type ? BixieFieldtypes.components[this.field.type].settings || BixieFieldtypes.components[this.field.type].options.settings : {},
-                        parent = this;
+                const settings = this.field.type ? BixieFieldtypes.components[this.field.type].settings ||
+                    BixieFieldtypes.components[this.field.type].options.settings : {};
+                const parent = this;
                 if (settings.template !== undefined) {
                     new Vue(_.merge({
                         'el': '#type-settings',
@@ -49,14 +52,14 @@
                         'parent': parent,
                         'data': _.merge({
                             'field': parent.field,
-                            'form': parent.form
-                        }, settings.data)
+                            'form': parent.form,
+                        }, settings.data),
                     }, settings));
                     return false;
                 }
                 return _.size(settings) ? settings : false;
-            }
-        }
+            },
+        },
 
     };
 </script>

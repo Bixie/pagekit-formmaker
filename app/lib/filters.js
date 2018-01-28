@@ -1,4 +1,4 @@
-module.exports = (Vue) => {
+export default (Vue) => {
 
     Vue.filter('datetime', function (date) {
         if (typeof date === 'string') {

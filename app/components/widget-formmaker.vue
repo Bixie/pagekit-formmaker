@@ -69,9 +69,14 @@
 </template>
 
 <script>
-    require('../lib/filters')(Vue);
+    /*global Vue*/
 
-    module.exports = {
+    import filters from '../lib/filters';
+    filters(Vue);
+
+    const vm = {
+
+        name: 'WidgetFormmaker',
 
         type: {
 
@@ -83,35 +88,33 @@
             defaults: {
                 form: ['all'],
                 done: false,
-                count: 12
+                count: 12,
             }
 
         },
 
         replace: false,
 
-        props: ['widget', 'editing'],
+        props: {'widget': Object, 'editing': Boolean,},
 
-        data() {
-            return {
-                loading: false,
+        data: () => ({
+            loading: false,
                 submissions: [],
-                count: 0
-            };
-        },
+                count: 0,
+        }),
 
         watch: {
 
             'widget.form': {
                 handler: 'load',
-                immediate: true
+                immediate: true,
             },
 
             'editing': 'loadForms',
 
             'widget.count': 'load',
 
-            'widget.done': 'load'
+            'widget.done': 'load',
 
         },
 
@@ -119,9 +122,9 @@
 
             load() {
 
-                var filter = {
+                const filter = {
                     status: 1,
-                    limit: this.widget.count
+                    limit: this.widget.count,
                 };
                 this.loading = true;
 
@@ -133,7 +136,7 @@
                     filter['status'] = '';
                 }
 
-                this.$resource('api/formmaker/submission{/id}').query({filter: filter}).then(res => {
+                this.$resource('api/formmaker/submission{/id}').query({filter,}).then(res => {
                     this.$set('count', res.data.count);
                     this.$set('submissions', res.data.submissions);
                     this.loading = false;
@@ -151,5 +154,5 @@
     };
 
     window.Dashboard.components['formmaker'] = module.exports;
-
+    export default vm;
 </script>

@@ -1,20 +1,47 @@
-module.exports = {
+/*global _, Vue*/
+import SubmissionDetail from '../../components/submission-detail.vue';
+import SubmissionCsv from '../../components/submission-csv.vue';
+
+const vm = {
 
     el: '#formmaker-submissions',
 
-    data() {
-        return _.merge({
-            submissions: false,
-            submissionID: 0,
-            pages: 0,
-            count: '',
-            selected: []
-        }, window.$data);
+    name: 'formmaker-submissions',
+
+    components: {
+        'submission-detail': SubmissionDetail,
+        'submission-csv': SubmissionCsv,
     },
 
-    created: function () {
-        this.resource = this.$resource('api/formmaker/submission{/id}', {}, {'export': {method: 'post', url: 'api/formmaker/submission/csv'}});
-        this.config.filter = _.extend({ status: '', form: '', order: 'created desc'}, this.config.filter);
+    data: () => _.assign({
+        submissions: false,
+        submissionID: 0,
+        pages: 0,
+        count: '',
+        selected: [],
+    }, window.$data),
+
+    computed: {
+
+        statusOptions() {
+            const options = _.map(this.statuses, (status, id) => {
+                return {text: status, value: id,};
+            });
+
+            return [{text: this.$trans('Status'), value: '',}, {
+                text: this.$trans('Show all'),
+                value: 'all',
+            }, {label: this.$trans('Filter by'), options: options,},];
+        },
+
+        formOptions() {
+            const options = _.map(this.forms, form => {
+                return {text: form.title, value: form.id,};
+            });
+
+            return [{text: this.$trans('Form'), value: '',}, {label: this.$trans('Filter by'), options: options,},];
+        },
+
     },
 
     events: {
@@ -26,7 +53,7 @@ module.exports = {
         },
         'close.csvmodal': function () {
             this.load();
-        }
+        },
     },
 
     watch: {
@@ -34,32 +61,22 @@ module.exports = {
         'config.page': 'load',
 
         'config.filter': {
-            handler: function() {this.load(0);},
-            deep: true
-        }
+            handler: function () {
+                this.load(0);
+            },
+            deep: true,
+        },
 
     },
 
-    computed: {
-
-        statusOptions() {
-
-            var options = _.map(this.statuses, (status, id) => {
-                return { text: status, value: id };
-            });
-
-            return [{ text: this.$trans('Status'), value: '' }, { text: this.$trans('Show all'), value: 'all' }, { label: this.$trans('Filter by'), options: options }];
-        },
-
-        formOptions() {
-
-            var options = _.map(this.forms, form => {
-                return { text: form.title, value: form.id };
-            });
-
-            return [{ text: this.$trans('Form'), value: '' }, { label: this.$trans('Filter by'), options: options }];
-        }
-
+    created() {
+        this.resource = this.$resource('api/formmaker/submission{/id}', {}, {
+            'export': {
+                method: 'post',
+                url: 'api/formmaker/submission/csv',
+            },
+        });
+        this.config.filter = _.extend({status: '', form: '', order: 'created desc',}, this.config.filter);
     },
 
     methods: {
@@ -68,7 +85,7 @@ module.exports = {
 
             page = page !== undefined ? page : this.config.page;
 
-            this.resource.query({ filter: this.config.filter, page: page }).then(res => {
+            this.resource.query({filter: this.config.filter, page: page,}).then(res => {
                 this.$set('submissions', res.data.submissions);
                 this.$set('pages', res.data.pages);
                 this.$set('count', res.data.count);
@@ -80,7 +97,7 @@ module.exports = {
 
         checkDetailHash() {
             if (this.$url.current.hash) {
-                var id = parseInt(this.$url.current.hash, 10),
+                const id = parseInt(this.$url.current.hash, 10),
                     submission = _.find(this.submissions, submission => submission.id === id);
                 if (submission) {
                     this.submissionDetails(submission);
@@ -106,7 +123,7 @@ module.exports = {
 
             submissions.forEach(submission => submission.status = status);
 
-            this.resource.save({id: 'bulk'}, {submissions: submissions}).then(() => {
+            this.resource.save({id: 'bulk',}, {submissions,}).then(() => {
                 this.load();
                 this.$notify('Submission(s) saved.');
             });
@@ -114,7 +131,7 @@ module.exports = {
 
         toggleStatus(submission) {
             submission.status = submission.status === 2 ? 0 : submission.status + 1;
-            this.resource.save({id: submission.id}, {submission: submission}).then(() => {
+            this.resource.save({id: submission.id,}, {submission,}).then(() => {
                 this.load();
                 this.$notify('Submission saved.');
             });
@@ -122,7 +139,7 @@ module.exports = {
 
         removeSubmissions() {
 
-            this.resource.delete({id: 'bulk'}, {ids: this.selected}).then(() => {
+            this.resource.delete({id: 'bulk',}, {ids: this.selected,}).then(() => {
                 this.load();
                 this.$notify('Submission(s) deleted.');
             });
@@ -137,21 +154,18 @@ module.exports = {
 
         formatValue(fieldvalue) {
             if (window.Formmakerfields.components[fieldvalue.type] && typeof window.Formmakerfields.components[fieldvalue.type].formatValue === 'function') {
-                return window.Formmakerfields.components[fieldvalue.type].formatValue.apply(this, [fieldvalue]);
+                return window.Formmakerfields.components[fieldvalue.type].formatValue.apply(this, [fieldvalue,]);
             }
-            return typeof fieldvalue.value === 'string' ? [fieldvalue.value] : fieldvalue.value;
-        }
+            return typeof fieldvalue.value === 'string' ? [fieldvalue.value,] : fieldvalue.value;
+        },
 
     },
 
-    components: {
-        'submissiondetail': require('../../components/submission-detail.vue'),
-        'submissioncsv': require('../../components/submission-csv.vue')
-    }
-
 };
 
-require('../../lib/filters')(Vue);
+import filters from '../../lib/filters';
 
-Vue.ready(module.exports);
+filters(Vue);
+Vue.ready(vm);
 
+export default vm;

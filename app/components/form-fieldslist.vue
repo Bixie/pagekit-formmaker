@@ -18,9 +18,11 @@
 
 <script>
 
-    module.exports = {
+   export default {
 
-        props: ['fields']
+        name: 'FormFieldslist',
+
+        props: {'fields': Array},
 
     };
 

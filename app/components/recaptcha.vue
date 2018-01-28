@@ -12,22 +12,22 @@
 </template>
 
 <script>
-    window.grecacapthaCallback = function () {
-        Vue.ready(function () {
-            window.Formmaker.$refs.grecaptcha.grecaptchaCallback(grecaptcha)
-        });
+    window.grecacapthaCallback = () => {
+        Vue.ready(() => window.Formmaker.$refs.grecaptcha.grecaptchaCallback(grecaptcha));
     };
 
     module.exports = {
 
-        props: ['sitekey', 'formitem'],
+        name: 'FormRecaptcha',
+
+        props: {'sitekey': String, 'formitem': Object,},
 
         events: {
             'submit'(data) {
                 if (window.grecaptcha) {
                     data['g-recaptcha-response'] = grecaptcha.getResponse();
                 }
-            }
+            },
         },
 
         methods: {
@@ -36,11 +36,10 @@
                     'sitekey' : this.sitekey,
                     'theme' : this.formitem.data.recaptcha_theme || 'light',
                     'type' : this.formitem.data.recaptcha_type || 'image',
-                    'size' : this.formitem.data.recaptcha_size || 'normal'
+                    'size' : this.formitem.data.recaptcha_size || 'normal',
                 });
             }
-
-        }
+        },
 
     };
 

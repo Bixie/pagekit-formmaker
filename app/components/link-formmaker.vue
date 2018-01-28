@@ -13,19 +13,27 @@
 
 <script>
 
-    module.exports = {
+    const vm = {
+
+        name: 'LinkFormmaker',
 
         link: {
-            label: 'Formmaker'
+            label: 'Formmaker',
         },
 
-        props: ['link'],
+        props: {'link': String,},
 
-        data() {
-            return {
-                forms: [],
-                formid: ''
-            }
+        data: () => ({
+            forms: [],
+            formid: '',
+        }),
+
+        watch: {
+
+            formid(formid) {
+                this.link = '@formmaker/form/front?id=' + formid;
+            },
+
         },
 
         created() {
@@ -38,16 +46,9 @@
             });
         },
 
-        watch: {
-
-            formid(formid) {
-                this.link = '@formmaker/form/front?id=' + formid;
-            }
-
-        }
-
     };
 
-    window.Links.components['formmaker'] = module.exports;
+    window.Links.components['formmaker'] = vm;
+    export default vm;
 
 </script>

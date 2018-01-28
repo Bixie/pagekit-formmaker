@@ -61,9 +61,11 @@
 
 <script>
 
-    module.exports = {
+    const vm = {
 
-        props: ['package'],
+        name: 'SettingsFormmaker',
+
+        props: {'package': Object,},
 
         settings: true,
 
@@ -72,17 +74,18 @@
             save() {
                 this.$http.post('admin/system/settings/config', {
                     name: 'bixie/formmaker',
-                    config: this.package.config
+                    config: this.package.config,
                 })
                     .then(() => this.$notify('Settings saved.', ''))
                     .error(res => this.$notify(res.data, 'danger'))
                     .always(() =>this.$parent.close());
-            }
+            },
 
-        }
+        },
 
     };
 
-    window.Extensions.components['settings-formmaker'] = module.exports;
+    window.Extensions.components['settings-formmaker'] = vm;
+    export default vm;
 
 </script>

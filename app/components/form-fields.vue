@@ -92,17 +92,36 @@
 
 <script>
 
-    module.exports = {
+    export default {
 
-        props: ['formitem', 'types', 'form'],
+        name: 'FormFields',
 
-        data() {
-            return {
-                fields: [],
-                selected: [],
-                editid: ''
-            };
+        components: {
+            'form-field': {
+
+                name: 'FormField',
+
+                props: {'field': Object,},
+
+                template: '#field',
+
+                computed: {
+                    type() {
+                        return this.$parent.getFieldType(this.field);
+                    },
+                },
+            },
         },
+
+        mixins: [window.BixieFieldtypes,],
+
+        props: {'formitem': Object, 'types': Object, 'form': Object,},
+
+        data: () => ({
+            fields: [],
+            selected: [],
+            editid: '',
+        }),
 
         created() {
             this.Fields = this.$resource('api/formmaker/field{/id}');
@@ -111,8 +130,7 @@
 
         ready() {
 
-            var vm = this;
-
+            const vm = this;
             UIkit.nestable(this.$els.nestable, {
                 maxDepth: 20,
                 group: 'formmaker.fields'
@@ -143,7 +161,7 @@
 
                 field.data.required = field.data.required ? 0 : 1;
 
-                this.Fields.save({id: field.id}, {field: field}).then(function () {
+                this.Fields.save({id: field.id}, {field: field}).then(() => {
                     this.load();
                     this.$notify('Field saved.');
                 }, res => {
@@ -153,9 +171,7 @@
             },
 
             getSelected() {
-                return this.fields.filter(function (field) {
-                    return this.isSelected(field);
-                }, this);
+                return this.fields.filter(field => this.isSelected(field));
             },
 
             isSelected(field) {
@@ -164,9 +180,9 @@
 
             toggleSelect(field) {
 
-                var index = this.selected.indexOf(field.id.toString());
+                const index = this.selected.indexOf(field.id.toString());
 
-                if (index == -1) {
+                if (index === -1) {
                     this.selected.push(field.id.toString());
                 } else {
                     this.selected.splice(index, 1);
@@ -178,35 +194,13 @@
             },
 
             removeFields() {
-
-                this.Fields.delete({id: 'bulk'}, {ids: this.selected}).then(function () {
+                this.Fields.delete({id: 'bulk',}, {ids: this.selected}).then(() => {
                     this.load();
                     this.$notify('Field(s) deleted.');
                 });
-            }
-
-
-        },
-
-        components: {
-
-            'form-field': {
-
-                props: ['field'],
-
-                template: '#field',
-
-                computed: {
-                    type() {
-                        return this.$parent.getFieldType(this.field);
-                    }
-
-                }
-            }
+            },
 
         },
-
-        mixins: [window.BixieFieldtypes]
 
     };
 

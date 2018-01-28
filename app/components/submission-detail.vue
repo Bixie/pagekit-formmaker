@@ -51,19 +51,28 @@
 
 <script>
 
-    module.exports = {
-        data() {
-            return {
-                submission: {status: null},
-                loaded: false
-            };
-        },
+    export default {
 
-        props: ['submissionid'],
+        name: 'SubmissionDetail',
+
+        data:() => ({
+            submission: {status: null,},
+            loaded: false,
+        }),
+
+        props: {'submissionid': Number,},
+
+        watch: {
+            'submission.status'(value, oldValue) {
+                if (oldValue !== null && oldValue !== value) {
+                    this.$root.status(value, [this.submission,])
+                }
+            }
+        },
 
         created() {
 
-            this.$root.resource.query({id: 'detail', submission_id: this.submissionid}).then(res => {
+            this.$root.resource.query({id: 'detail', submission_id: this.submissionid,}).then(res => {
                 this.submission = res.data;
                 this.loaded = true;
             });
@@ -74,13 +83,6 @@
             this.$dispatch('close.submissionmodal');
         },
 
-        watch: {
-            'submission.status'(value, oldValue) {
-                if (oldValue !== null && oldValue !== value) {
-                    this.$root.status(value, [this.submission])
-                }
-            }
-        }
     };
 
 </script>

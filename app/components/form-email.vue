@@ -66,7 +66,7 @@
             </div>
             <div class="uk-width-medium-1-4">
 
-                <formfieldslist :fields="formfields"></formfieldslist>
+                <form-fieldslist :fields="formfields"></form-fieldslist>
 
             </div>
         </div>
@@ -77,13 +77,17 @@
 
 <script>
 
-    module.exports = {
+    import FormFieldslist from './form-fieldslist.vue';
 
-        props: ['formitem', 'formfields', 'form'],
+    export default {
+
+        name: 'FormEmail',
 
         components: {
-            formfieldslist: require('./form-fieldslist.vue')
-        }
+            'form-fieldslist': FormFieldslist,
+        },
+
+        props: {'formitem': Object, 'formfields': Array, 'form': Object,},
 
     };
 

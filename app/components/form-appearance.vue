@@ -81,35 +81,37 @@
 
 <script>
 
-    module.exports = {
+    export default {
 
-        props: ['formitem', 'form'],
+        name: 'FormAppearance',
+
+        props: {'formitem': Object, 'form': Object,},
 
         data() {
             return {
                 recaptcha_themes: [
                     {value: '', text: this.$trans('- Style -')},
                     {value: 'light', text: this.$trans('Light')},
-                    {value: 'dark', text: this.$trans('Dark')}
+                    {value: 'dark', text: this.$trans('Dark')},
                 ],
                 recaptcha_types: [
                     {value: '', text: this.$trans('- Type -')},
                     {value: 'image', text: this.$trans('Image')},
-                    {value: 'audio', text: this.$trans('Audio')}
+                    {value: 'audio', text: this.$trans('Audio')},
                 ],
                 recaptcha_sizes: [
                     {value: '', text: this.$trans('- Size -')},
                     {value: 'normal', text: this.$trans('Normal')},
-                    {value: 'compact ', text: this.$trans('Compact')}
-                ]
-            }
+                    {value: 'compact ', text: this.$trans('Compact')},
+                ],
+            };
         },
 
         created() {
             this.formitem.data.recaptcha_theme = this.formitem.data.recaptcha_theme || '';
             this.formitem.data.recaptcha_type = this.formitem.data.recaptcha_type || '';
             this.formitem.data.recaptcha_size = this.formitem.data.recaptcha_size || '';
-        }
+        },
 
     };
 
