@@ -118,7 +118,6 @@
         props: {'formitem': Object, 'types': Object, 'form': Object,},
 
         data: () => ({
-            fields: [],
             selected: [],
             editid: '',
         }),
