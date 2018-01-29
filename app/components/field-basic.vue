@@ -8,10 +8,8 @@
                 <partial name="fieldtype-basic"></partial>
 
                 <fieldtypes class="uk-margin" v-show="!type.hasOptions || field.options.length"
-                            v-ref:fieldtypes
-                            :edit-type="field.type"
                             :fields="[field]"
-                            :field.sync="field"
+                            :edit-type="field.type"
                             :form="form"></fieldtypes>
 
                 <div id="type-settings" class="uk-margin"
