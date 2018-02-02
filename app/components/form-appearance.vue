@@ -15,7 +15,8 @@
             <label for="form-formstyle" class="uk-form-label">{{ 'Form style' | trans }}</label>
 
             <div class="uk-form-controls">
-                <select id="form-formstyle" class="uk-form-width-large" v-model="formitem.data.formStyle">
+                <select id="form-formstyle" class="uk-form-width-large"
+                        v-model="formitem.data.formStyle">
                     <option value="uk-form-stacked">{{ 'Form stacked' | trans }}</option>
                     <option value="uk-form-horizontal">{{ 'Form horizontal' | trans }}</option>
                 </select>
@@ -26,7 +27,8 @@
             <label for="form-class" class="uk-form-label">{{ 'Class suffix' | trans }}</label>
 
             <div class="uk-form-controls">
-                <input id="form-class" class="uk-form-width-large" type="text" v-model="formitem.data.classSfx">
+                <input id="form-class" class="uk-form-width-large" type="text"
+                       v-model="formitem.data.classSfx">
             </div>
         </div>
 
@@ -34,7 +36,8 @@
             <label for="form-submit-button" class="uk-form-label">{{ 'Text submit button' | trans }}</label>
 
             <div class="uk-form-controls">
-                <input id="form-submit-button" class="uk-form-width-large" type="text" v-model="formitem.data.submitButton">
+                <input id="form-submit-button" class="uk-form-width-large" type="text"
+                       v-model="formitem.data.submitButton">
             </div>
         </div>
 
@@ -52,8 +55,9 @@
                 <label for="form-recaptcha_label" class="uk-form-label">{{ 'reCAPTCHA label' | trans }}</label>
 
                 <div class="uk-form-controls">
-                    <input id="form-recaptcha_label" class="uk-form-width-large" type="text" name="recaptcha_label"
-                           v-model="formitem.data.recaptcha_label" placeholder="{{ 'Empty for no label' | trans }}">
+                    <input id="form-recaptcha_label" class="uk-form-width-large" type="text"
+                           name="recaptcha_label" v-model="formitem.data.recaptcha_label"
+                           placeholder="{{ 'Empty for no label' | trans }}">
                 </div>
             </div>
 
@@ -81,38 +85,38 @@
 
 <script>
 
-    export default {
+export default {
 
-        name: 'FormAppearance',
+    name: 'FormAppearance',
 
-        props: {'formitem': Object, 'form': Object,},
+    props: {'formitem': Object, 'form': Object,},
 
-        data() {
-            return {
-                recaptcha_themes: [
-                    {value: '', text: this.$trans('- Style -')},
-                    {value: 'light', text: this.$trans('Light')},
-                    {value: 'dark', text: this.$trans('Dark')},
-                ],
-                recaptcha_types: [
-                    {value: '', text: this.$trans('- Type -')},
-                    {value: 'image', text: this.$trans('Image')},
-                    {value: 'audio', text: this.$trans('Audio')},
-                ],
-                recaptcha_sizes: [
-                    {value: '', text: this.$trans('- Size -')},
-                    {value: 'normal', text: this.$trans('Normal')},
-                    {value: 'compact ', text: this.$trans('Compact')},
-                ],
-            };
-        },
+    data() {
+        return {
+            recaptcha_themes: [
+                {value: '', text: this.$trans('- Style -'),},
+                {value: 'light', text: this.$trans('Light'),},
+                {value: 'dark', text: this.$trans('Dark'),},
+            ],
+            recaptcha_types: [
+                {value: '', text: this.$trans('- Type -'),},
+                {value: 'image', text: this.$trans('Image'),},
+                {value: 'audio', text: this.$trans('Audio'),},
+            ],
+            recaptcha_sizes: [
+                {value: '', text: this.$trans('- Size -'),},
+                {value: 'normal', text: this.$trans('Normal'),},
+                {value: 'compact ', text: this.$trans('Compact'),},
+            ],
+        };
+    },
 
-        created() {
-            this.formitem.data.recaptcha_theme = this.formitem.data.recaptcha_theme || '';
-            this.formitem.data.recaptcha_type = this.formitem.data.recaptcha_type || '';
-            this.formitem.data.recaptcha_size = this.formitem.data.recaptcha_size || '';
-        },
+    created() {
+        this.formitem.data.recaptcha_theme = this.formitem.data.recaptcha_theme || '';
+        this.formitem.data.recaptcha_type = this.formitem.data.recaptcha_type || '';
+        this.formitem.data.recaptcha_size = this.formitem.data.recaptcha_size || '';
+    },
 
-    };
+};
 
 </script>

@@ -2,11 +2,12 @@
 import SubmissionDetail from '../../components/submission-detail.vue';
 import SubmissionCsv from '../../components/submission-csv.vue';
 
+// @vue/component
 const vm = {
 
     el: '#formmaker-submissions',
 
-    name: 'formmaker-submissions',
+    name: 'FormmakerSubmissions',
 
     components: {
         'submission-detail': SubmissionDetail,
@@ -168,4 +169,3 @@ import filters from '../../lib/filters';
 filters(Vue);
 Vue.ready(vm);
 
-export default vm;

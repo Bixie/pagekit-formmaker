@@ -21,36 +21,38 @@
                     <div class="uk-form-controls uk-form-controls-text">
                         <label>
                             <input type="checkbox" value="use_replyto"
-                                  v-model="formitem.data.use_replyto"> {{ 'Use as reply-to address for email' | trans }}</label>
+                                   v-model="formitem.data.use_replyto"> {{ 'Use as reply-to address for email' | trans }}</label>
                     </div>
                 </div>
 
                 <div class="uk-alert" v-show="formitem.data.user_email_field">
-                    {{ 'Email address from field "%field%" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>
+                {{ 'Email address from field "%field%" will be used to confirm submission to the user.' | trans {field:formitem.data.user_email_field} }}</div>
                 <div class="uk-alert uk-alert-warning" v-show="!formitem.data.user_email_field">
-                    {{ 'No email field is selected for user confirmation mail.' | trans }}</div>
+                {{ 'No email field is selected for user confirmation mail.' | trans }}</div>
 
                 <div class="uk-form-row">
                     <label for="form-submitemail" class="uk-form-label">{{ 'Email copy of submission to' | trans }}</label>
 
                     <div class="uk-form-controls">
-                        <input id="form-submitemail" class="uk-form-width-large" type="text" name="submitemail"
-                               v-model="formitem.data.submitEmail" v-validate:email v-validate:required="!!formitem.data.user_email_field">
-                    <!-- //todo fix req message -->
-                    <p class="uk-form-help-block uk-text-danger" v-show="form.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
+                        <input id="form-submitemail" class="uk-form-width-large" type="text"
+                               name="submitemail" v-model="formitem.data.submitEmail"
+                               v-validate:email
+                               v-validate:required="!!formitem.data.user_email_field">
+                        <!-- //todo fix req message -->
+                        <p class="uk-form-help-block uk-text-danger" v-show="form.submitemail.invalid">{{ 'Please enter valid email address' | trans }}</p>
 
-                    <p class="uk-form-help-block uk-text-danger" v-show="formitem.data.user_email_field && !formitem.data.submitEmail">
+                        <p class="uk-form-help-block uk-text-danger" v-show="formitem.data.user_email_field && !formitem.data.submitEmail">
                         {{ 'No email will be sent to the user when no address is entered here!' | trans }}</p>
+                    </div>
                 </div>
-            </div>
 
 
                 <div class="uk-form-row">
                     <label for="form-emailsubject" class="uk-form-label">{{ 'Email subject' | trans }}</label>
 
                     <div class="uk-form-controls">
-                        <input id="form-emailsubject" class="uk-form-width-large" type="text" name="emailsubject"
-                               v-model="formitem.data.email_subject">
+                        <input id="form-emailsubject" class="uk-form-width-large" type="text"
+                               name="emailsubject" v-model="formitem.data.email_subject">
                     </div>
 
                 </div>
@@ -77,18 +79,18 @@
 
 <script>
 
-    import FormFieldslist from './form-fieldslist.vue';
+import FormFieldslist from './form-fieldslist.vue';
 
-    export default {
+export default {
 
-        name: 'FormEmail',
+    name: 'FormEmail',
 
-        components: {
-            'form-fieldslist': FormFieldslist,
-        },
+    components: {
+        'form-fieldslist': FormFieldslist,
+    },
 
-        props: {'formitem': Object, 'formfields': Array, 'form': Object,},
+    props: {'formitem': Object, 'formfields': Array, 'form': Object,},
 
-    };
+};
 
 </script>

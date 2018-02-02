@@ -19,13 +19,13 @@
             <div class="uk-position-relative" data-uk-margin>
 
                 <div data-uk-dropdown="{ mode: 'click' }">
-                    <a class="uk-button uk-button-primary" @click.prevent="">{{ 'Add Field' | trans
-                        }}</a>
+                    <a class="uk-button uk-button-primary">{{ 'Add Field' | trans
+                    }}</a>
 
                     <div class="uk-dropdown uk-dropdown-small uk-dropdown-flip">
                         <ul class="uk-nav uk-nav-dropdown">
                             <li v-for="type in types | orderBy 'label'">
-                                <a @click.prevent="$root.editFormField(type.id)">{{ type.label }}</a></li>
+                            <a @click.prevent="$root.editFormField(type.id)">{{ type.label }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -53,33 +53,33 @@
         </div>
 
         <h3 class="uk-h1 uk-text-muted uk-text-center" v-show="fields && !fields.length">{{ 'No fields found.' | trans
-            }}</h3>
+        }}</h3>
 
         <script id="field" type="text/template">
             <li class="uk-nestable-item" :class="{'uk-active': $parent.isSelected(field)}" data-id="{{ field.id }}">
 
-                <div class="uk-nestable-panel pk-table-fake uk-form uk-visible-hover">
-                    <div class="pk-table-width-minimum pk-table-collapse">
-                        <div class="uk-nestable-toggle" data-nestable-action="toggle"></div>
-                    </div>
-                    <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"
-                                                               @click="toggleSelect(field)"></div>
-                    <div class="pk-table-min-width-100">
-                        <a v-if="type" @click.prevent="$root.editFormField(field.id)">{{ field.label }}</a>
-                        <span v-else>{{ field.label }}</span>
-                        <br/><small class="uk-text-muted">{{ field.slug }}</small>
-                    </div>
-                    <div class="pk-table-width-100 uk-text-center">
-                        <td class="uk-text-center">
-                            <a :class="{'pk-icon-circle-danger': !field.data.required, 'pk-icon-circle-success': field.data.required}"
-                               @click.prevent="$parent.toggleRequired(field)"></a>
-                        </td>
-                    </div>
-                    <div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
-                        <span v-if="type">{{ type.label }}</span>
-                        <span v-else class="uk-text-danger">{{ field.type }}: {{ 'type not found!' | trans}}</span>
-                    </div>
-                </div>
+            <div class="uk-nestable-panel pk-table-fake uk-form uk-visible-hover">
+            <div class="pk-table-width-minimum pk-table-collapse">
+            <div class="uk-nestable-toggle" data-nestable-action="toggle"></div>
+            </div>
+            <div class="pk-table-width-minimum"><input type="checkbox" name="id" value="{{ field.id }}"
+            @click="toggleSelect(field)"></div>
+            <div class="pk-table-min-width-100">
+            <a v-if="type" @click.prevent="$root.editFormField(field.id)">{{ field.label }}</a>
+            <span v-else>{{ field.label }}</span>
+            <br/><small class="uk-text-muted">{{ field.slug }}</small>
+            </div>
+            <div class="pk-table-width-100 uk-text-center">
+            <td class="uk-text-center">
+            <a :class="{'pk-icon-circle-danger': !field.data.required, 'pk-icon-circle-success': field.data.required}"
+            @click.prevent="$parent.toggleRequired(field)"></a>
+            </td>
+            </div>
+            <div class="pk-table-width-150 pk-table-max-width-150 uk-text-truncate">
+            <span v-if="type">{{ type.label }}</span>
+            <span v-else class="uk-text-danger">{{ field.type }}: {{ 'type not found!' | trans }}</span>
+            </div>
+            </div>
 
 
             </li>
@@ -91,116 +91,114 @@
 </template>
 
 <script>
+/*global _, UIkit */
 
-    export default {
+export default {
 
-        name: 'FormFields',
+    name: 'FormFields',
 
-        components: {
-            'form-field': {
+    components: {
+        'form-field': {
 
-                name: 'FormField',
+            name: 'FormField',
 
-                props: {'field': Object,},
+            props: {'field': Object,},
 
-                template: '#field',
+            template: '#field',
 
-                computed: {
-                    type() {
-                        return this.$parent.getFieldType(this.field);
-                    },
+            computed: {
+                type() {
+                    return this.$parent.getFieldType(this.field);
                 },
             },
         },
+    },
 
-        mixins: [window.BixieFieldtypes,],
+    mixins: [window.BixieFieldtypes,],
 
-        props: {'formitem': Object, 'types': Object, 'form': Object,},
+    props: {'formitem': Object, 'types': Object, 'form': Object,},
 
-        data: () => ({
-            selected: [],
-            editid: '',
-        }),
+    data: () => ({
+        selected: [],
+        editid: '',
+    }),
 
-        created() {
-            this.Fields = this.$resource('api/formmaker/field{/id}');
-            this.load();
-        },
+    created() {
+        this.Fields = this.$resource('api/formmaker/field{/id}');
+        this.load();
+    },
 
-        ready() {
+    ready() {
 
-            const vm = this;
-            UIkit.nestable(this.$els.nestable, {
-                maxDepth: 20,
-                group: 'formmaker.fields'
-            }).on('change.uk.nestable', function (e, nestable, el, type) {
+        UIkit.nestable(this.$els.nestable, {
+            maxDepth: 20,
+            group: 'formmaker.fields',
+        }).on('change.uk.nestable', (e, nestable, el, type) => {
 
-                if (type && type !== 'removed') {
+            if (type && type !== 'removed') {
 
-                    vm.Fields.save({id: 'updateOrder'}, {
-                        fields: nestable.list()
-                    }).then(vm.load, function () {
-                        this.$notify('Reorder failed.', 'danger');
-                    });
-                }
+                this.Fields.save({id: 'updateOrder',}, {
+                    fields: nestable.list(),
+                }).then(this.load, () => this.$notify('Reorder failed.', 'danger'));
+            }
+        });
+
+    },
+
+    methods: {
+
+        load() {
+            return this.Fields.query({form_id: this.formitem.id,}).then(res => {
+                this.$set('fields', res.data);
+                this.$set('selected', []);
             });
-
         },
 
-        methods: {
+        toggleRequired(field) {
 
-            load() {
-                return this.Fields.query({form_id: this.formitem.id}).then(res => {
-                    this.$set('fields', res.data);
-                    this.$set('selected', []);
-                });
-            },
+            field.data.required = field.data.required ? 0 : 1;
 
-            toggleRequired(field) {
-
-                field.data.required = field.data.required ? 0 : 1;
-
-                this.Fields.save({id: field.id}, {field: field}).then(() => {
-                    this.load();
-                    this.$notify('Field saved.');
-                }, res => {
-                    this.load();
-                    this.$notify(res.data, 'danger');
-                });
-            },
-
-            getSelected() {
-                return this.fields.filter(field => this.isSelected(field));
-            },
-
-            isSelected(field) {
-                return this.selected.indexOf(field.id.toString()) !== -1;
-            },
-
-            toggleSelect(field) {
-
-                const index = this.selected.indexOf(field.id.toString());
-
-                if (index === -1) {
-                    this.selected.push(field.id.toString());
-                } else {
-                    this.selected.splice(index, 1);
-                }
-            },
-
-            getFieldType(field) {
-                return _.find(this.types, 'id', field.type);
-            },
-
-            removeFields() {
-                this.Fields.delete({id: 'bulk',}, {ids: this.selected}).then(() => {
-                    this.load();
-                    this.$notify('Field(s) deleted.');
-                });
-            },
-
+            this.Fields.save({id: field.id,}, {field: field,}).then(() => {
+                this.load();
+                this.$notify('Field saved.');
+            }, res => {
+                this.load();
+                this.$notify(res.data, 'danger');
+            });
         },
 
-    };
+        getSelected() {
+            return this.fields.filter(field => this.isSelected(field));
+        },
+
+        isSelected(field) {
+            return this.selected.indexOf(field.id.toString()) !== -1;
+        },
+
+        toggleSelect(field) {
+
+            const index = this.selected.indexOf(field.id.toString());
+
+            if (index === -1) {
+                this.selected.push(field.id.toString());
+            } else {
+                this.selected.splice(index, 1);
+            }
+        },
+
+        getFieldType(field) {
+            return _.find(this.types, 'id', field.type);
+        },
+
+        removeFields() {
+            this.Fields.delete({id: 'bulk',}, {ids: this.selected,}).then(() => {
+                this.load();
+                this.$notify('Field(s) deleted.');
+            });
+        },
+
+    },
+
+};
 
 </script>

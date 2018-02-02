@@ -22,17 +22,17 @@
                             <div class="uk-width-1-3">
                                 <label><input type="checkbox" :value="0" v-model="options.status" number>
                                     {{ 'Archived' | trans
-                                    }}</label>
+                                }}</label>
                             </div>
                             <div class="uk-width-1-3">
                                 <label><input type="checkbox" :value="1" v-model="options.status" number>
                                     {{ 'Active' | trans
-                                    }}</label>
+                                }}</label>
                             </div>
                             <div class="uk-width-1-3">
                                 <label><input type="checkbox" :value="2" v-model="options.status" number>
                                     {{ 'Done' | trans
-                                    }}</label>
+                                }}</label>
                             </div>
                         </div>
                     </div>
@@ -51,31 +51,31 @@
                                         <p class="uk-form-controls-condensed">
                                             <label><input type="checkbox" value="id" v-model="options.datafields"> {{
                                                 'Id' | trans
-                                                }}</label>
+                                            }}</label>
                                         </p>
 
                                         <p class="uk-form-controls-condensed">
                                             <label><input type="checkbox" value="status" v-model="options.datafields">
                                                 {{ 'Status' | trans
-                                                }}</label>
+                                            }}</label>
                                         </p>
 
                                         <p class="uk-form-controls-condensed">
                                             <label><input type="checkbox" value="email" v-model="options.datafields"> {{
                                                 'Email' | trans
-                                                }}</label>
+                                            }}</label>
                                         </p>
 
                                         <p class="uk-form-controls-condensed">
                                             <label><input type="checkbox" value="ip" v-model="options.datafields"> {{
                                                 'IP address' | trans
-                                                }}</label>
+                                            }}</label>
                                         </p>
 
                                         <p class="uk-form-controls-condensed">
                                             <label><input type="checkbox" value="created" v-model="options.datafields">
                                                 {{ 'Created' | trans
-                                                }}</label>
+                                            }}</label>
                                         </p>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                         <p v-for="field in formitem.fields" class="uk-form-controls-condensed">
                                             <label><input type="checkbox" value="{{ field.id }}"
                                                           v-model="options.field_ids" number> {{ field.label | trans
-                                                }}</label>
+                                            }}</label>
                                         </p>
                                     </div>
                                 </div>
@@ -118,13 +118,12 @@
                                 <div class="uk-form-controls uk-form-controls-text">
                                     <label><input type="checkbox" value="archived" v-model="options.mark_archived"> {{
                                         'Mark exported as "Archived"' | trans
-                                        }}</label>
+                                    }}</label>
                                 </div>
                             </div>
 
                             <div class="uk-badge uk-badge-success uk-margin">
-                                {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[
-                                submissions to be exported' | transChoice count}}
+                                {{ count }} {{ '{0} submissions to be exported|{1} submission to be exported|]1,Inf[ submissions to be exported' | transChoice count}}
                             </div>
 
                         </div>
@@ -141,11 +140,11 @@
                     v-show="!csvLink" @click="doExport" v-el:export
                     :disabled="!formLoaded">
                 <i v-show="exporting" class="uk-icon-spinner uk-icon-spin"></i>
-                <span v-else>{{ 'Export' | trans }}</span>
+                <span v-show="!exporting">{{ 'Export' | trans }}</span>
             </button>
             <a :href="csvLink" class="uk-button uk-button-success" download="{{ options.filename }}"
                v-show="csvLink" v-el:exportlink>
-                <i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
+            <i class="uk-icon-download uk-margin-small-right"></i>{{ 'Download' | trans }}</a>
         </div>
     </div>
 
@@ -154,92 +153,92 @@
 
 <script>
 
-    export default {
+export default {
 
-        name: 'SubmissionCsv',
+    name: 'SubmissionCsv',
 
-        props: {'forms': Array,},
+    props: {'forms': Array,},
 
-        data: () => ({
-            options: {
-                form_id: 0,
-                filename: 'csv-export.csv',
-                mark_archived: true,
-                status: [1, 2,],
-                field_ids: [],
-                datafields: ['id', 'status', 'email', 'ip', 'created',],
-            },
-            formitem: {
-                id: 0,
-                fields: [],
-            },
-            csvLink: '',
-            exporting: false,
-            count: 0,
-            loaded: false,
-        }),
-
-        watch: {
-            'options': {handler(value) {
-                    this.csvLink = '';
-                }, deep: true,},
-
-            'options.form_id,options.status'(value) {
-                this.load();
-            },
+    data: () => ({
+        options: {
+            form_id: 0,
+            filename: 'csv-export.csv',
+            mark_archived: true,
+            status: [1, 2,],
+            field_ids: [],
+            datafields: ['id', 'status', 'email', 'ip', 'created',],
         },
+        formitem: {
+            id: 0,
+            fields: [],
+        },
+        csvLink: '',
+        exporting: false,
+        count: 0,
+        loaded: false,
+    }),
 
-        created() {
+    computed: {
+        formLoaded() {
+            return this.options.form_id && this.options.form_id === this.formitem.id;
+        },
+    },
+
+    watch: {
+        'options': {handler() {
+            this.csvLink = '';
+        }, deep: true,},
+
+        'options.form_id,options.status'() {
             this.load();
         },
+    },
 
-        beforeDestroy() {
-            this.$dispatch('close.csvmodal');
-        },
+    created() {
+        this.load();
+    },
 
-        computed: {
-            formLoaded() {
-                return this.options.form_id && this.options.form_id === this.formitem.id;
-            }
-        },
+    beforeDestroy() {
+        this.$dispatch('close.csvmodal');
+    },
 
-        methods: {
-            load() {
-                this.$root.resource.query({id: 'csv', options: this.options,}).then(res => {
-                    const data = res.data;
-                    this.$set('options.field_ids', data.options.field_ids);
-                    this.$set('options.filename', data.options.filename);
-                    if (data.forms.length) {
-                        this.$set('count', 0);
-                        this.$set('forms', data.forms);
-                    }
-                    if (data.formitem.id) {
-                        this.$set('formitem', data.formitem);
-                        this.$set('formitem.fields', data.fields);
-                        this.$set('count', data.count);
-                        this.options.filename = 'export_' + this.formitem.slug + '.csv'
-                    }
-                    this.loaded = true;
-                });
-
-            },
-
-            doExport() {
-
-                if (this.exporting || !this.options.form_id || this.formitem.id !== this.options.form_id) {
-                    return false;
+    methods: {
+        load() {
+            this.$root.resource.query({id: 'csv', options: this.options,}).then(res => {
+                const data = res.data;
+                this.$set('options.field_ids', data.options.field_ids);
+                this.$set('options.filename', data.options.filename);
+                if (data.forms.length) {
+                    this.$set('count', 0);
+                    this.$set('forms', data.forms);
                 }
-                this.exporting = true;
-                this.$root.resource.export({options: this.options,}).then(res => {
-                    if (res.data.csv) {
-                        var $url = window.URL || window.webkitURL;
-                        this.csvLink = $url.createObjectURL(new Blob([res.data.csv,], {type: "application/force-download",}));
-                        this.exporting = false;
-                    }
-                });
-            },
+                if (data.formitem.id) {
+                    this.$set('formitem', data.formitem);
+                    this.$set('formitem.fields', data.fields);
+                    this.$set('count', data.count);
+                    this.options.filename = 'export_' + this.formitem.slug + '.csv'
+                }
+                this.loaded = true;
+            });
+
         },
 
-    };
+        doExport() {
+
+            if (this.exporting || !this.options.form_id || this.formitem.id !== this.options.form_id) {
+                return false;
+            }
+            this.exporting = true;
+            this.$root.resource.export({options: this.options,}).then(res => {
+                if (res.data.csv) {
+                    let $url = window.URL || window.webkitURL;
+                    this.csvLink = $url.createObjectURL(new Blob([res.data.csv,], {type: 'application/force-download',}));
+                    this.exporting = false;
+                }
+            });
+        },
+    },
+
+};
 
 </script>

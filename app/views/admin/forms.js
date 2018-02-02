@@ -1,10 +1,11 @@
 /*global _, Vue, UIkit*/
 
+// @vue/component
 const vm = {
 
     el: '#formmaker-forms',
 
-    name: '#formmaker-forms',
+    name: 'FormmakerForms',
 
     components: {
 
@@ -116,5 +117,4 @@ const vm = {
 
 Vue.ready(vm);
 
-export default vm;
 

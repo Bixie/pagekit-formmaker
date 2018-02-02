@@ -12,35 +12,36 @@
 </template>
 
 <script>
-    window.grecacapthaCallback = () => {
-        Vue.ready(() => window.Formmaker.$refs.grecaptcha.grecaptchaCallback(grecaptcha));
-    };
+/*global Vue */
+window.grecacapthaCallback = () => {
+    Vue.ready(() => window.Formmaker.$refs.grecaptcha.grecaptchaCallback(window.grecaptcha));
+};
 
-    module.exports = {
+module.exports = {
 
-        name: 'FormRecaptcha',
+    name: 'FormRecaptcha',
 
-        props: {'sitekey': String, 'formitem': Object,},
+    props: {'sitekey': String, 'formitem': Object,},
 
-        events: {
-            'submit'(data) {
-                if (window.grecaptcha) {
-                    data['g-recaptcha-response'] = grecaptcha.getResponse();
-                }
-            },
-        },
-
-        methods: {
-            grecaptchaCallback(grecaptcha) {
-                grecaptcha.render('grecaptcha_el', {
-                    'sitekey' : this.sitekey,
-                    'theme' : this.formitem.data.recaptcha_theme || 'light',
-                    'type' : this.formitem.data.recaptcha_type || 'image',
-                    'size' : this.formitem.data.recaptcha_size || 'normal',
-                });
+    events: {
+        'submit'(data) {
+            if (window.grecaptcha) {
+                data['g-recaptcha-response'] = window.grecaptcha.getResponse();
             }
         },
+    },
 
-    };
+    methods: {
+        grecaptchaCallback(grecaptcha) {
+            grecaptcha.render('grecaptcha_el', {
+                'sitekey': this.sitekey,
+                'theme': this.formitem.data.recaptcha_theme || 'light',
+                'type': this.formitem.data.recaptcha_type || 'image',
+                'size': this.formitem.data.recaptcha_size || 'normal',
+            });
+        },
+    },
+
+};
 
 </script>

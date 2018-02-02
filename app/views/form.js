@@ -1,10 +1,11 @@
 /*global _, Vue*/
 
+// @vue/component
 const vm = {
 
     el: '#formmaker-form',
 
-    name: 'formmaker-form',
+    name: 'FormmakerForm',
 
     components: {
         recaptcha: require('../components/recaptcha.vue'),

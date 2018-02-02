@@ -6,7 +6,9 @@
             <div class="uk-form-row">
                 <label for="form-title" class="uk-form-label">{{ 'Title' | trans }}</label>
                 <div class="uk-form-controls">
-                    <input id="form-title" class="uk-form-width-large" type="text" name="title" v-model="widget.title" v-validate:required>
+                    <input id="form-title" class="uk-form-width-large" type="text"
+                           name="title" v-model="widget.title"
+                           v-validate:required>
                     <p class="uk-form-help-block uk-text-danger" v-show="form.title.invalid">{{ 'Title cannot be blank.' | trans }}</p>
                 </div>
             </div>
@@ -53,41 +55,43 @@
 </template>
 
 <script>
+/*global _ */
 
-    const vm = {
+// @vue/component
+const vm = {
 
-        name: 'WidgetSiteform',
+    name: 'WidgetSiteform',
 
-        section: {
-            label: 'Settings',
-        },
+    section: {
+        label: 'Settings',
+    },
 
-        replace: false,
+    replace: false,
 
-        props: {
-            'widget': Object,
-            'config': Object,
-            'form': Object,
-        },
+    props: {
+        'widget': Object,
+        'config': Object,
+        'form': Object,
+    },
 
-        data: () => ({
-            forms: [],
-        }),
+    data: () => ({
+        forms: [],
+    }),
 
-        created() {
-            this.$options.partials = this.$parent.$options.partials;
-            //TODO don't retrieve entire form objects
-            this.$resource('api/formmaker/form').get().then(res => {
-                this.forms = res.data;
-                if (res.data.length) {
-                    this.widget.data.form_id = this.widget.data.form_id || res.data[0].id;
-                }
-            });
-            this.widget.data = _.assign({form_id: 0, formStyle: 'uk-form-stacked'}, this.widget.data);
-        }
-    };
+    created() {
+        this.$options.partials = this.$parent.$options.partials;
+        //TODO don't retrieve entire form objects
+        this.$resource('api/formmaker/form').get().then(res => {
+            this.forms = res.data;
+            if (res.data.length) {
+                this.widget.data.form_id = this.widget.data.form_id || res.data[0].id;
+            }
+        });
+        this.widget.data = _.assign({form_id: 0, formStyle: 'uk-form-stacked',}, this.widget.data);
+    },
+};
 
-    window.Widgets.components['bixie-siteform:settings'] = vm;
-    export default vm;
-
+window.Widgets.components['bixie-siteform:settings'] = vm;
+//needs to be exported to compile template
+export default vm;
 </script>

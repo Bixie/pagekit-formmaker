@@ -21,7 +21,7 @@
                               :options="{markdown : formitem.data.thankyou_markdown}"></v-editor>
                     <p>
                         <label><input type="checkbox" v-model="formitem.data.thankyou_markdown">
-                            {{ 'Enable Markdown' | trans }}</label>
+                        {{ 'Enable Markdown' | trans }}</label>
                     </p>
                 </div>
 
@@ -37,8 +37,8 @@
 
                     <div class="uk-form-controls uk-form-controls-text">
                         <label><input type="checkbox"
-                                   v-model="formitem.data.google_datalayer">
-                            {{ 'Push event to Google Datalayer' | trans }}</label>
+                                      v-model="formitem.data.google_datalayer">
+                        {{ 'Push event to Google Datalayer' | trans }}</label>
                     </div>
                 </div>
 
@@ -56,22 +56,22 @@
 
 <script>
 
-    import FormFieldslist from './form-fieldslist.vue';
+import FormFieldslist from './form-fieldslist.vue';
 
-    export default {
+export default {
 
-        name: 'FormSubmission',
+    name: 'FormSubmission',
 
-        components: {
-            'form-fieldslist': FormFieldslist,
-        },
+    components: {
+        'form-fieldslist': FormFieldslist,
+    },
 
-        props: {
-            'formitem': Object,
-            'formfields': Array,
-            'form': Object,
-        },
+    props: {
+        'formitem': Object,
+        'formfields': Array,
+        'form': Object,
+    },
 
-    };
+};
 
 </script>

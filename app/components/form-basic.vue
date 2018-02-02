@@ -6,8 +6,8 @@
             <label for="form-title" class="uk-form-label">{{ 'Title' | trans }}</label>
 
             <div class="uk-form-controls">
-                <input id="form-title" class="uk-form-width-large" type="text" name="title"
-                       v-model="formitem.title" v-validate:required>
+                <input id="form-title" class="uk-form-width-large" type="text"
+                       name="title" v-model="formitem.title" v-validate:required>
             </div>
             <p class="uk-form-help-block uk-text-danger" v-show="form.title.invalid">{{ 'Please enter a title' | trans }}</p>
         </div>
@@ -34,10 +34,12 @@
             <span class="uk-form-label">{{ 'Google reCAPTCHA' | trans }}</span>
 
             <div class="uk-form-controls uk-form-controls-text">
-                <label v-show="config.recaptha_sitekey && config.recaptha_secret_key">
+                <label v-if="config.recaptha_sitekey && config.recaptha_secret_key">
                     <input type="checkbox" value="hide-title"
                            v-model="formitem.data.recaptcha"> {{ 'Use reCAPTCHA' | trans }}</label>
-                <a  v-else class="uk-link-muted" :href="$url.route('admin/system/package/extensions')">{{ 'Enter reCAPTCHA keys in the extension settings' | trans }}</a>
+                <a v-else class="uk-link-muted" :href="$url.route('admin/system/package/extensions')">
+                    {{ 'Enter reCAPTCHA keys in the extension settings' | trans }}
+                </a>
             </div>
         </div>
 
@@ -47,12 +49,12 @@
 
 <script>
 
-    export default {
+export default {
 
-        name: 'FormBasic',
+    name: 'FormBasic',
 
-        props: {'formitem': Object, 'config': Object, 'form': Object,},
+    props: {'formitem': Object, 'config': Object, 'form': Object,},
 
-    };
+};
 
 </script>

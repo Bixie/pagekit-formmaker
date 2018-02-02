@@ -1,22 +1,24 @@
 <template>
     <div>
         <div class="uk-modal-spinner" v-if="!loaded"></div>
-        <form v-else id="field-edit" class="uk-form" name="fieldform" v-validator="form" @submit.prevent="save | valid">
+        <form v-else id="field-edit" class="uk-form"
+              name="fieldform" v-validator="form"
+              @submit.prevent="save | valid">
 
             <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
                 <div data-uk-margin>
 
                     <h2 class="uk-margin-remove" v-if="field.id">{{ 'Edit' | trans }} {{ type.label }} <em>{{
-                        field.label | trans }}</em></h2>
+                    field.label | trans }}</em></h2>
 
                     <h2 class="uk-margin-remove" v-if="!field.id">{{ 'Add' | trans }} {{ type.label }} <em>{{
-                        field.label | trans }}</em></h2>
+                    field.label | trans }}</em></h2>
 
                 </div>
                 <div data-uk-margin>
 
                     <a class="uk-button uk-margin-small-right uk-modal-close">{{ field.id ? 'Close' :
-                        'Cancel' | trans }}</a>
+                    'Cancel' | trans }}</a>
                     <button class="uk-button uk-button-primary" type="submit">{{ 'Save' | trans }}</button>
 
                 </div>
@@ -47,90 +49,88 @@
 </template>
 
 <script>
-    import FieldBasic from './field-basic.vue';
-    import FieldOptions from './field-options.vue';
-    import FieldAppearance from './field-appearance.vue';
+import FieldBasic from './field-basic.vue';
+import FieldOptions from './field-options.vue';
+import FieldAppearance from './field-appearance.vue';
 
-    export default {
+export default {
 
-        name: 'FieldEdit',
+    name: 'FieldEdit',
 
-        components: {
-            'field-basic': FieldBasic,
-            'field-options': FieldOptions,
-            'field-appearance': FieldAppearance,
+    components: {
+        'field-basic': FieldBasic,
+        'field-options': FieldOptions,
+        'field-appearance': FieldAppearance,
+    },
+
+    props: {'formitem': Object, 'form': Object, 'fieldid': [Number, String,],},
+
+    data: () => ({
+        loaded: false,
+        type: {
+            label: '',
         },
-
-        data: () => ({
-            loaded: false,
-            type: {
-                label: ''
+        field: {
+            label: '',
+            type: '',
+            priority: 0,
+            form_id: 0,
+            data: {
+                value: [],
+                data: {},
+                classSfx: '',
+                help_text: '',
+                help_show: '',
             },
-            field: {
-                label: '',
-                type: '',
-                priority: 0,
-                form_id: 0,
-                data: {
-                    value: [],
-                    data: {},
-                    classSfx: '',
-                    help_text: '',
-                    help_show: '',
-                },
-            },
-            roles: [],
-        }),
+        },
+        roles: [],
+    }),
 
-        props: {'formitem': Object, 'form': Object, 'fieldid': Number,},
+    created() {
+        this.Fields = this.$resource('api/formmaker/field/edit');
+        this.Field = this.$resource('api/formmaker/field{/id}');
+    },
 
-        created() {
-            this.Fields = this.$resource('api/formmaker/field/edit');
-            this.Field = this.$resource('api/formmaker/field{/id}');
+    ready() {
+        this.Fields.query({id: this.fieldid,}).then(res => {
+            this.$set('field',res.data.field);
+            this.$set('type', res.data.type);
+            this.$set('roles', res.data.roles);
+            this.field.form_id = this.formitem.id;
+
+            this.loaded = true;
+        });
+    },
+
+    beforeDestroy() {
+        this.$dispatch('close.editmodal');
+    },
+
+    methods: {
+
+        save() {
+
+            const data = {field: this.field,};
+
+            this.$broadcast('save', data);
+
+            this.Field.save({id: this.field.id,}, data).then(res => {
+
+                this.$set('field', res.data.field);
+
+                this.$notify(this.$trans('%type% saved.', {type: this.type.label,}));
+
+            }, res => this.$notify(res.data.message || res.data, 'danger'));
         },
 
-        ready() {
-            this.Fields.query({id: this.fieldid}).then(res => {
-                this.$set('field',res.data.field);
-                this.$set('type', res.data.type);
-                this.$set('roles', res.data.roles);
-                this.field.form_id = this.formitem.id;
-
-                this.loaded = true;
-            });
-
-
-        },
-
-        beforeDestroy() {
-            this.$dispatch('close.editmodal');
-        },
-
-        methods: {
-
-            save() {
-
-                const data = {field: this.field,};
-
-                this.$broadcast('save', data);
-
-                this.Field.save({id: this.field.id}, data).then(res => {
-
-                    this.$set('field', res.data.field);
-
-                    this.$notify(this.$trans('%type% saved.', {type: this.type.label}));
-
-                }, res => this.$notify(res.data.message || res.data, 'danger'));
-            },
-
-            formFieldInvalid(fieldname) {
-                console.log(this.$parent);
-                console.log(this.$validator.validators);
-
-            },
+        formFieldInvalid(fieldname) {
+            console.log(this.$parent);
+            console.log(this.$validator.validators);
 
         },
 
-    };
+    },
+
+};
 
 </script>

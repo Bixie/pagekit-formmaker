@@ -13,42 +13,41 @@
 
 <script>
 
-    const vm = {
+const vm = {
 
-        name: 'LinkFormmaker',
+    name: 'LinkFormmaker',
 
-        link: {
-            label: 'Formmaker',
+    link: {
+        label: 'Formmaker',
+    },
+
+    props: {'link': String,},
+
+    data: () => ({
+        forms: [],
+        formid: '',
+    }),
+
+    watch: {
+
+        formid(formid) {
+            this.link = '@formmaker/form/front?id=' + formid;
         },
 
-        props: {'link': String,},
+    },
 
-        data: () => ({
-            forms: [],
-            formid: '',
-        }),
+    created() {
+        //TODO don't retrieve entire form objects
+        this.$resource('api/formmaker/form').get().then(res => {
+            this.forms = res.data;
+            if (res.data.length) {
+                this.formid = res.data[0].id;
+            }
+        });
+    },
 
-        watch: {
+};
 
-            formid(formid) {
-                this.link = '@formmaker/form/front?id=' + formid;
-            },
-
-        },
-
-        created() {
-            //TODO don't retrieve entire form objects
-            this.$resource('api/formmaker/form').get().then(res => {
-                this.forms = res.data;
-                if (res.data.length) {
-                    this.formid = res.data[0].id;
-                }
-            });
-        },
-
-    };
-
-    window.Links.components['formmaker'] = vm;
-    export default vm;
+window.Links.components.formmaker = vm;
 
 </script>

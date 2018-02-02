@@ -19,8 +19,8 @@
             <label for="form-mail-address" class="uk-form-label">{{ 'Default mail address' | trans }}</label>
 
             <div class="uk-form-controls">
-                <input id="form-mail-address" class="uk-form-width-large" type="text" name="fromAddress"
-                       v-model="package.config.from_address" v-validate:email>
+                <input id="form-mail-address" class="uk-form-width-large" type="text"
+                       name="fromAddress" v-model="package.config.from_address" v-validate:email>
             </div>
         </div>
 
@@ -28,8 +28,8 @@
             <label for="form-recaptha_sitekey" class="uk-form-label">{{ 'Google reCAPTCHA sitekey' | trans }}</label>
 
             <div class="uk-form-controls">
-                <input id="form-recaptha_sitekey" class="uk-form-width-large" type="text" name="recaptha_sitekey"
-                       v-model="package.config.recaptha_sitekey">
+                <input id="form-recaptha_sitekey" class="uk-form-width-large" type="text"
+                       name="recaptha_sitekey" v-model="package.config.recaptha_sitekey">
             </div>
         </div>
 
@@ -37,12 +37,12 @@
             <label for="form-recaptha_secret_key" class="uk-form-label">{{ 'Google reCAPTCHA secret key' | trans }}</label>
 
             <div class="uk-form-controls">
-                <input id="form-recaptha_secret_key" class="uk-form-width-large" type="text" name="recaptha_secret_key"
-                       v-model="package.config.recaptha_secret_key">
+                <input id="form-recaptha_secret_key" class="uk-form-width-large" type="text"
+                       name="recaptha_secret_key" v-model="package.config.recaptha_secret_key">
             </div>
             <p class="uk-form-help-block">
                 <a href="https://www.google.com/recaptcha/admin" class="uk-link-muted" target="_blank">
-                    <i class="uk-icon-external-link uk-margin-small-right"></i>{{ 'Setup your reCaptcha keys at Google Recaptcha' | trans }}</a>
+                <i class="uk-icon-external-link uk-margin-small-right"></i>{{ 'Setup your reCaptcha keys at Google Recaptcha' | trans }}</a>
             </p>
         </div>
 
@@ -61,31 +61,30 @@
 
 <script>
 
-    const vm = {
+const vm = {
 
-        name: 'SettingsFormmaker',
+    name: 'SettingsFormmaker',
 
-        props: {'package': Object,},
+    props: {'package': Object,},
 
-        settings: true,
+    settings: true,
 
-        methods: {
+    methods: {
 
-            save() {
-                this.$http.post('admin/system/settings/config', {
-                    name: 'bixie/formmaker',
-                    config: this.package.config,
-                })
-                    .then(() => this.$notify('Settings saved.', ''))
-                    .error(res => this.$notify(res.data, 'danger'))
-                    .always(() =>this.$parent.close());
-            },
-
+        save() {
+            this.$http.post('admin/system/settings/config', {
+                name: 'bixie/formmaker',
+                config: this.package.config,
+            })
+                .then(() => this.$notify('Settings saved.', ''))
+                .error(res => this.$notify(res.data, 'danger'))
+                .always(() =>this.$parent.close());
         },
 
-    };
+    },
 
-    window.Extensions.components['settings-formmaker'] = vm;
-    export default vm;
+};
+
+window.Extensions.components['settings-formmaker'] = vm;
 
 </script>

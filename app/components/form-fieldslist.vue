@@ -1,29 +1,33 @@
 <template>
 
-    <h3>{{ 'Available variables' | trans }}</h3>
-    <ul class="uk-list uk-list-line">
-        <li v-for="field in fields">
-            <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>
-            <kbd>{{ field.slug | shortcode 'value' }}</kbd>
-        </li>
+    <div>
 
-        <li>
-            <kbd v-for="key in ['id', 'form_id', 'email', 'ip', 'created']"
-                 class="uk-display-block uk-margin-small-bottom">
+        <h3>{{ 'Available variables' | trans }}</h3>
+        <ul class="uk-list uk-list-line">
+            <li v-for="field in fields">
+                <kbd>{{ field.slug | shortcode 'label' }}</kbd><br>
+                <kbd>{{ field.slug | shortcode 'value' }}</kbd>
+            </li>
+
+            <li>
+                <kbd v-for="key in ['id', 'form_id', 'email', 'ip', 'created']"
+                     class="uk-display-block uk-margin-small-bottom">
                 {{ 'submission' | shortcode key }}</kbd>
-        </li>
-    </ul>
+            </li>
+        </ul>
+
+    </div>
 
 </template>
 
 <script>
 
-   export default {
+export default {
 
-        name: 'FormFieldslist',
+    name: 'FormFieldslist',
 
-        props: {'fields': Array},
+    props: {'fields': Array,},
 
-    };
+};
 
 </script>

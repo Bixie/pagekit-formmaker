@@ -11,23 +11,23 @@
 </template>
 
 <script>
+/*global _ */
+export default {
 
-    export default {
+    name: 'FieldAppearance',
 
-        name: 'FieldAppearance',
+    props: {'field': Object, 'form': Object,},
 
-        props: {'field': Object, 'form': Object,},
-
-        computed: {
-            hasAppearanceSettings() {
-                return _.size(this.appearanceSettings) > 0;
-            },
-            appearanceSettings() {
-                return this.field.type ? BixieFieldtypes.components[this.field.type].appearance ||
-                    BixieFieldtypes.components[this.field.type].options.appearance : {};
-            },
+    computed: {
+        hasAppearanceSettings() {
+            return _.size(this.appearanceSettings) > 0;
         },
+        appearanceSettings() {
+            return this.field.type ? window.BixieFieldtypes.components[this.field.type].appearance ||
+                    window.BixieFieldtypes.components[this.field.type].options.appearance : {};
+        },
+    },
 
-    };
+};
 
 </script>

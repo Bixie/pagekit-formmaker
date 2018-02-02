@@ -6,11 +6,12 @@ import FormSubmission from '../../components/form-submission.vue';
 import FormEmail from '../../components/form-email.vue';
 import FieldEdit from '../../components/field-edit.vue';
 
+// @vue/component
 const vm = {
 
     el: '#form-edit',
 
-    name: 'form-edit',
+    name: 'FormEdit',
 
     components: {
         'form-basic': FormBasic,
@@ -96,4 +97,3 @@ import filters from '../../lib/filters';
 filters(Vue);
 Vue.ready(vm);
 
-export default vm;
