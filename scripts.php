@@ -2,7 +2,7 @@
 
 return [
 
-    'install' => function ($app) {
+	'install' => function ($app) {
 
 		$util = $app['db']->getUtility();
 
@@ -45,28 +45,26 @@ return [
 				$table->setPrimaryKey(['id']);
 			});
 		}
+	},
 
-    },
+	'uninstall' => function ($app) {
 
-    'uninstall' => function ($app) {
+		$util = $app['db']->getUtility();
 
-        $util = $app['db']->getUtility();
+		if ($util->tableExists('@formmaker_field')) {
+			$util->dropTable('@formmaker_field');
+		}
 
-        if ($util->tableExists('@formmaker_field')) {
-            $util->dropTable('@formmaker_field');
-        }
+		if ($util->tableExists('@formmaker_form')) {
+			$util->dropTable('@formmaker_form');
+		}
 
-        if ($util->tableExists('@formmaker_form')) {
-            $util->dropTable('@formmaker_form');
-        }
-
-        if ($util->tableExists('@formmaker_submission')) {
-            $util->dropTable('@formmaker_submission');
-        }
+		if ($util->tableExists('@formmaker_submission')) {
+			$util->dropTable('@formmaker_submission');
+		}
 
 		// remove the config
 		$app['config']->remove('bixie/formmaker');
-
 	},
 
 	'updates' => [
